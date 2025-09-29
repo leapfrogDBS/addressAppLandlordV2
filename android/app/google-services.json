@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "193876818360",
+    "project_id": "addressedapp",
+    "storage_bucket": "addressedapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193876818360:android:5034a49af9f254348e374d",
+        "android_client_info": {
+          "package_name": "com.mycompany.addressedappdesign"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtqAODiWtyk-B6oJGVmES8Opn_WeK0bV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193876818360:android:2290fd2ebefe30808e374d",
+        "android_client_info": {
+          "package_name": "com.nocodeui.adminpanel01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtqAODiWtyk-B6oJGVmES8Opn_WeK0bV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
