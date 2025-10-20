@@ -1,3 +1,6 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/components/notifications_icon_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -26,9 +29,19 @@ class ArticleModel extends FlutterFlowModel<ArticleWidget> {
   void updateBlogContentAtIndex(int index, Function(String) updateFn) =>
       blogContent[index] = updateFn(blogContent[index]);
 
-  @override
-  void initState(BuildContext context) {}
+  ///  State fields for stateful widgets in this page.
+
+  // Model for NotificationsIcon component.
+  late NotificationsIconModel notificationsIconModel;
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    notificationsIconModel =
+        createModel(context, () => NotificationsIconModel());
+  }
+
+  @override
+  void dispose() {
+    notificationsIconModel.dispose();
+  }
 }

@@ -12,8 +12,6 @@ export '/pages/articles/articles/articles_widget.dart' show ArticlesWidget;
 export '/pages/articles/article/article_widget.dart' show ArticleWidget;
 export '/pages/login_registration/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
-export '/pages/dashboard/financials/financials_widget.dart'
-    show FinancialsWidget;
 export '/pages/messages/all_messages/all_messages_widget.dart'
     show AllMessagesWidget;
 export '/pages/properties/sales_offers/sales_offers_widget.dart'

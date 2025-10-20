@@ -254,6 +254,66 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                           ].divide(SizedBox(height: 8.0)),
                         ),
                       ),
+                      Align(
+                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Text(
+                                'Daily Growth',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color:
+                                          FlutterFlowTheme.of(context).greyBlue,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    widget!.projections?.combinedDailyGain
+                                        ?.elementAtOrNull(
+                                            widget!.selectedYearIndex!),
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  '0',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .override(
+                                      fontFamily: 'Thunder',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ].divide(SizedBox(height: 8.0)),
+                        ),
+                      ),
                     ].divide(SizedBox(width: 4.0)),
                   ),
                 ),

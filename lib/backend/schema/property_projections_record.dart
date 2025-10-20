@@ -116,6 +116,48 @@ class PropertyProjectionsRecord extends FirestoreRecord {
   bool get hasActiveTenancy => _hasActiveTenancy ?? false;
   bool hasHasActiveTenancy() => _hasActiveTenancy != null;
 
+  // "combinedDailyGain" field.
+  List<double>? _combinedDailyGain;
+  List<double> get combinedDailyGain => _combinedDailyGain ?? const [];
+  bool hasCombinedDailyGain() => _combinedDailyGain != null;
+
+  // "atRetirementCumulativeRentalProfit" field.
+  double? _atRetirementCumulativeRentalProfit;
+  double get atRetirementCumulativeRentalProfit =>
+      _atRetirementCumulativeRentalProfit ?? 0.0;
+  bool hasAtRetirementCumulativeRentalProfit() =>
+      _atRetirementCumulativeRentalProfit != null;
+
+  // "ownerId" field.
+  String? _ownerId;
+  String get ownerId => _ownerId ?? '';
+  bool hasOwnerId() => _ownerId != null;
+
+  // "ownerRef" field.
+  DocumentReference? _ownerRef;
+  DocumentReference? get ownerRef => _ownerRef;
+  bool hasOwnerRef() => _ownerRef != null;
+
+  // "atRetirementCombinedDailyGain" field.
+  double? _atRetirementCombinedDailyGain;
+  double get atRetirementCombinedDailyGain =>
+      _atRetirementCombinedDailyGain ?? 0.0;
+  bool hasAtRetirementCombinedDailyGain() =>
+      _atRetirementCombinedDailyGain != null;
+
+  // "cumulativeRentalProfit" field.
+  List<double>? _cumulativeRentalProfit;
+  List<double> get cumulativeRentalProfit =>
+      _cumulativeRentalProfit ?? const [];
+  bool hasCumulativeRentalProfit() => _cumulativeRentalProfit != null;
+
+  // "historicalNetProfitBaseToJan1" field.
+  double? _historicalNetProfitBaseToJan1;
+  double get historicalNetProfitBaseToJan1 =>
+      _historicalNetProfitBaseToJan1 ?? 0.0;
+  bool hasHistoricalNetProfitBaseToJan1() =>
+      _historicalNetProfitBaseToJan1 != null;
+
   void _initializeFields() {
     _propertyRef = snapshotData['propertyRef'] as DocumentReference?;
     _startYear = castToType<int>(snapshotData['startYear']);
@@ -140,6 +182,17 @@ class PropertyProjectionsRecord extends FirestoreRecord {
     _rentalProfit = getDataList(snapshotData['rentalProfit']);
     _yieldPct = getDataList(snapshotData['yieldPct']);
     _hasActiveTenancy = snapshotData['hasActiveTenancy'] as bool?;
+    _combinedDailyGain = getDataList(snapshotData['combinedDailyGain']);
+    _atRetirementCumulativeRentalProfit =
+        castToType<double>(snapshotData['atRetirementCumulativeRentalProfit']);
+    _ownerId = snapshotData['ownerId'] as String?;
+    _ownerRef = snapshotData['ownerRef'] as DocumentReference?;
+    _atRetirementCombinedDailyGain =
+        castToType<double>(snapshotData['atRetirementCombinedDailyGain']);
+    _cumulativeRentalProfit =
+        getDataList(snapshotData['cumulativeRentalProfit']);
+    _historicalNetProfitBaseToJan1 =
+        castToType<double>(snapshotData['historicalNetProfitBaseToJan1']);
   }
 
   static CollectionReference get collection =>
@@ -187,6 +240,11 @@ Map<String, dynamic> createPropertyProjectionsRecordData({
   double? atRetirementAnnualRent,
   double? atRetirementCapitalValue,
   bool? hasActiveTenancy,
+  double? atRetirementCumulativeRentalProfit,
+  String? ownerId,
+  DocumentReference? ownerRef,
+  double? atRetirementCombinedDailyGain,
+  double? historicalNetProfitBaseToJan1,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -199,6 +257,11 @@ Map<String, dynamic> createPropertyProjectionsRecordData({
       'atRetirementAnnualRent': atRetirementAnnualRent,
       'atRetirementCapitalValue': atRetirementCapitalValue,
       'hasActiveTenancy': hasActiveTenancy,
+      'atRetirementCumulativeRentalProfit': atRetirementCumulativeRentalProfit,
+      'ownerId': ownerId,
+      'ownerRef': ownerRef,
+      'atRetirementCombinedDailyGain': atRetirementCombinedDailyGain,
+      'historicalNetProfitBaseToJan1': historicalNetProfitBaseToJan1,
     }.withoutNulls,
   );
 
@@ -231,7 +294,17 @@ class PropertyProjectionsRecordDocumentEquality
         listEquality.equals(e1?.expenses, e2?.expenses) &&
         listEquality.equals(e1?.rentalProfit, e2?.rentalProfit) &&
         listEquality.equals(e1?.yieldPct, e2?.yieldPct) &&
-        e1?.hasActiveTenancy == e2?.hasActiveTenancy;
+        e1?.hasActiveTenancy == e2?.hasActiveTenancy &&
+        listEquality.equals(e1?.combinedDailyGain, e2?.combinedDailyGain) &&
+        e1?.atRetirementCumulativeRentalProfit ==
+            e2?.atRetirementCumulativeRentalProfit &&
+        e1?.ownerId == e2?.ownerId &&
+        e1?.ownerRef == e2?.ownerRef &&
+        e1?.atRetirementCombinedDailyGain ==
+            e2?.atRetirementCombinedDailyGain &&
+        listEquality.equals(
+            e1?.cumulativeRentalProfit, e2?.cumulativeRentalProfit) &&
+        e1?.historicalNetProfitBaseToJan1 == e2?.historicalNetProfitBaseToJan1;
   }
 
   @override
@@ -255,7 +328,14 @@ class PropertyProjectionsRecordDocumentEquality
         e?.expenses,
         e?.rentalProfit,
         e?.yieldPct,
-        e?.hasActiveTenancy
+        e?.hasActiveTenancy,
+        e?.combinedDailyGain,
+        e?.atRetirementCumulativeRentalProfit,
+        e?.ownerId,
+        e?.ownerRef,
+        e?.atRetirementCombinedDailyGain,
+        e?.cumulativeRentalProfit,
+        e?.historicalNetProfitBaseToJan1
       ]);
 
   @override

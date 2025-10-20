@@ -78,77 +78,64 @@ String? timeHeldFunction(DateTime? purchaseDate) {
 
 EstimatedGainResultsStruct? calculateEstimatedAnnualGain(
   double estimatedValue,
-  double annualIncreasePercentage,
-  double totalExpenses,
   double purchasePrice,
-  double previousRentalIncome,
-  double previousExpenses,
-  double annualCapitalGain,
-  double annualRent,
+  double totalHistoricalRentalIncome,
+  double totalHistoricalExpenses,
+  PropertyProjectionsRecord? projection,
+  int currentYearIndex,
 ) {
-  // null-safe inputs
-  final ev = estimatedValue;
-  final pp = purchasePrice;
-  final expY = totalExpenses;
-
-  final rentY = annualRent;
-  final capY = annualCapitalGain;
-  final incrPct = annualIncreasePercentage;
-
-  final prevRent = previousRentalIncome;
-  final prevExp = previousExpenses;
-
-  // yearly pieces
-  final netRentalProfit = rentY - expY;
-  final totalEstimatedGain = capY + netRentalProfit;
-
-  // per-day (dailyGain includes rental + capital)
-  final gainPerDay = totalEstimatedGain / 365.0;
-  final gainPerSecond = gainPerDay / 86400.0;
-  final dailyCapGain = capY / 365.0;
-
-  // ROI & earnings
-  final roi = pp > 0 ? (totalEstimatedGain / pp) * 100.0 : 0.0;
+  // 1. Initial Defaults and Time Calculation
+  double gainPerDay = 0.0;
+  double gainPerSecond = 0.0;
+  double gainThisYear = 0.0;
+  double annualCapitalGain = 0.0;
+  double netRentalProfit = 0.0;
 
   final now = DateTime.now();
   final startOfYear = DateTime(now.year, 1, 1);
+  // Calculate seconds passed since start of year (for accurate real-time display)
   final secondsPassed = now.difference(startOfYear).inSeconds.toDouble();
+  final secondsInYear =
+      (365 * 86400).toDouble(); // Assuming 365 days for projection period
 
-  final historicalCapitalGain = ev - pp;
-  final realTimeGain = gainPerSecond * secondsPassed;
-  final earningsToDate = prevRent + historicalCapitalGain + realTimeGain;
+  // 2. Extract Projection Data (if available)
+  if (projection != null &&
+      projection.combinedDailyGain.isNotEmpty &&
+      currentYearIndex >= 0 &&
+      currentYearIndex < projection.combinedDailyGain.length) {
+    final index = currentYearIndex;
 
-  final totalInvestment = pp + prevExp + expY;
-  final rentalYield = pp > 0 ? (netRentalProfit / pp) * 100.0 : 0.0;
+    // a) Get Projected Annual Components (CORRECTED FIELD NAMES)
+    // Using 'capitalGains' (plural) to match the Cloud Function output.
+    annualCapitalGain = projection.capitalGains[index];
+    netRentalProfit = projection.rentalProfit[index];
 
-  // “all-time” rollups
-  final allTimeCapitalAppreciation = historicalCapitalGain + capY;
-  final allTimeRentalIncome = prevRent + rentY;
-  final allTimeExpenses = prevExp + expY;
-  final allTimeNetProfit =
-      (allTimeCapitalAppreciation + allTimeRentalIncome) - allTimeExpenses;
-  final allTimeROI =
-      totalInvestment > 0 ? (allTimeNetProfit / totalInvestment) * 100.0 : 0.0;
+    // b) Get Per-Day/Second Values from Projection
+    gainPerDay = projection.combinedDailyGain[index];
+    gainPerSecond = gainPerDay / 86400.0;
 
+    // c) Calculate Projected Annual Gain
+    gainThisYear = annualCapitalGain + netRentalProfit;
+  }
+
+  // 3. Calculate Historical Net Profit (Base for cumulative earnings)
+  final historicalNetProfitBase =
+      totalHistoricalRentalIncome - totalHistoricalExpenses;
+
+  // 4. Calculate Earnings As Of Now (All-time cumulative earnings)
+
+  // Real-time gain accrued this year (Capital + Rental)
+  final realTimeGainThisYear = gainPerSecond * secondsPassed;
+
+  // Total earnings = Historical Base + Real-Time Accrual This Year
+  final earningsAsOfNowValue = historicalNetProfitBase + realTimeGainThisYear;
+
+  // 5. Final Struct Assembly (Outputting only the 4 required fields with correct mapping)
   return EstimatedGainResultsStruct(
-    totalGain: totalEstimatedGain,
+    earningsAsOfNow: earningsAsOfNowValue,
     gainPerDay: gainPerDay,
     gainPerSecond: gainPerSecond,
-    capitalGain: capY,
-    rentalProfit: netRentalProfit,
-    totalExpenses: expY,
-    roi: roi,
-    earningsToDate: earningsToDate,
-    totalAnnualRent: rentY,
-    totalInvestment: totalInvestment,
-    rentalYield: rentalYield,
-    annualIncreasePercentage: incrPct,
-    dailyCapitalGain: dailyCapGain,
-    allTimeCapitalAppreciation: allTimeCapitalAppreciation,
-    allTimeRentalIncome: allTimeRentalIncome,
-    allTimeExpenses: allTimeExpenses,
-    allTimeNetProfit: allTimeNetProfit,
-    allTimeROI: allTimeROI,
+    gainThisYear: gainThisYear,
   );
 }
 
@@ -364,4 +351,225 @@ String initialYearLabel(List<int> years) {
   final now = DateTime.now().year;
   final chosen = years.contains(now) ? now : years.first;
   return chosen.toString();
+}
+
+PortfolioTotalsStruct aggregateAtRetirement(
+    List<PropertyProjectionsRecord> projections) {
+  PortfolioTotalsStruct _makeTotals({
+    required double annualRent,
+    required double capitalValue,
+    required double combinedDailyGain,
+    required double cumulativeRentalProfit,
+    required int? retirementYear,
+
+    // NEW live fields
+    double? liveGainPerDay,
+    double? liveGainPerSecond,
+    double? liveGainThisYear,
+    double? liveEarningsAsOfNow,
+    int? currentYearIndex,
+  }) {
+    try {
+      return createPortfolioTotalsStruct(
+        annualRent: annualRent,
+        capitalValue: capitalValue,
+        combinedDailyGain: combinedDailyGain,
+        cumulativeRentalProfit: cumulativeRentalProfit,
+        retirementYear: retirementYear,
+        liveGainPerDay: liveGainPerDay,
+        liveGainPerSecond: liveGainPerSecond,
+        liveGainThisYear: liveGainThisYear,
+        liveEarningsAsOfNow: liveEarningsAsOfNow,
+        currentYearIndex: currentYearIndex,
+      );
+    } catch (_) {
+      return PortfolioTotalsStruct(
+        annualRent: annualRent,
+        capitalValue: capitalValue,
+        combinedDailyGain: combinedDailyGain,
+        cumulativeRentalProfit: cumulativeRentalProfit,
+        retirementYear: retirementYear,
+        liveGainPerDay: liveGainPerDay ?? 0.0,
+        liveGainPerSecond: liveGainPerSecond ?? 0.0,
+        liveGainThisYear: liveGainThisYear ?? 0.0,
+        liveEarningsAsOfNow: liveEarningsAsOfNow ?? 0.0,
+        currentYearIndex: currentYearIndex,
+      );
+    }
+  }
+
+  double _toDouble(dynamic v, [double fallback = 0.0]) {
+    if (v == null) return fallback;
+    if (v is num) return v.toDouble();
+    if (v is String) {
+      final parsed = double.tryParse(v.replaceAll(',', ''));
+      return parsed ?? fallback;
+    }
+    return fallback;
+  }
+
+  double _sumIterable(dynamic values) {
+    if (values is Iterable) {
+      double s = 0.0;
+      for (final x in values) {
+        s += _toDouble(x);
+      }
+      return s;
+    }
+    return 0.0;
+  }
+
+  // At-retirement sums
+  double sumAnnualRent = 0.0;
+  double sumCapitalValue = 0.0;
+  double sumCombinedDailyGain = 0.0;
+  double sumCumulativeRentalProfit = 0.0;
+  int? retirementYear;
+
+  // Live-this-year aggregates
+  int? detectedYearIndex;
+  final now = DateTime.now();
+  final startOfYear = DateTime(now.year, 1, 1);
+  final secondsPassed = now.difference(startOfYear).inSeconds.toDouble();
+
+  double liveSumGainPerDay = 0.0; // Σ combinedDailyGain[idx]
+  double liveSumGainThisYear = 0.0; // Σ (capitalGains[idx] + rentalProfit[idx])
+  double sumHistoricalBaseToJan1 = 0.0; // Σ historicalNetProfitBaseToJan1
+
+  // Detect currentYearIndex from absolute years if present; else assume 0
+  for (final rec in projections) {
+    if (rec == null) continue;
+    final years = rec.years;
+    if (years is List && years.isNotEmpty) {
+      final i = years.indexOf(now.year);
+      if (i != -1) {
+        detectedYearIndex = i;
+        break;
+      }
+    }
+  }
+  detectedYearIndex ??= 0;
+
+  for (final rec in projections) {
+    if (rec == null) continue;
+
+    // At-retirement aggregation
+    sumAnnualRent += _toDouble(rec.atRetirementAnnualRent);
+    sumCapitalValue += _toDouble(rec.atRetirementCapitalValue);
+    sumCombinedDailyGain += _toDouble(rec.atRetirementCombinedDailyGain);
+
+    final crp = _toDouble(rec.atRetirementCumulativeRentalProfit);
+    if (crp != 0.0) {
+      sumCumulativeRentalProfit += crp;
+    } else {
+      sumCumulativeRentalProfit += _sumIterable(rec.rentalProfit);
+    }
+
+    retirementYear ??= (rec.atRetirementYear is int)
+        ? rec.atRetirementYear as int
+        : int.tryParse('${rec.atRetirementYear}');
+
+    // NEW: sum the persisted historical base
+    sumHistoricalBaseToJan1 += _toDouble(rec.historicalNetProfitBaseToJan1);
+
+    // Live-this-year aggregation from arrays
+    final idx = detectedYearIndex!;
+    final hasIdx = rec.combinedDailyGain.length > idx &&
+        rec.capitalGains.length > idx &&
+        rec.rentalProfit.length > idx;
+
+    if (hasIdx) {
+      final gpd = _toDouble(rec.combinedDailyGain[idx]);
+      final cap = _toDouble(rec.capitalGains[idx]);
+      final rent = _toDouble(rec.rentalProfit[idx]);
+
+      liveSumGainPerDay += gpd;
+      liveSumGainThisYear += (cap + rent);
+    }
+  }
+
+  final liveGainPerSecond = liveSumGainPerDay / 86400.0;
+  final liveEarningsAsOfNow =
+      sumHistoricalBaseToJan1 + (liveGainPerSecond * secondsPassed);
+
+  return _makeTotals(
+    annualRent: sumAnnualRent,
+    capitalValue: sumCapitalValue,
+    combinedDailyGain: sumCombinedDailyGain,
+    cumulativeRentalProfit: sumCumulativeRentalProfit,
+    retirementYear: retirementYear,
+    liveGainPerDay: liveSumGainPerDay,
+    liveGainPerSecond: liveGainPerSecond,
+    liveGainThisYear: liveSumGainThisYear,
+    liveEarningsAsOfNow: liveEarningsAsOfNow,
+    currentYearIndex: detectedYearIndex,
+  );
+}
+
+int computePortfolioScore(
+  double? capitalValue,
+  double? annualRentalIncome,
+  double? targetEquity,
+  double? targetIncome,
+) {
+  // Tunables (adjust if needed)
+  const double kEquityWeight = 0.5; // 50% capital, 50% income
+  const double kGamma = 0.8; // concavity for below-target progress
+
+  double _nz(double? v) => (v == null || v.isNaN || v.isInfinite) ? 0.0 : v;
+
+  // Smooth progress 0..1: concave for below-target, capped above-target.
+  double _progress(double actual, double target) {
+    actual = _nz(actual);
+    target = _nz(target);
+    if (target <= 0)
+      return actual >= 0 ? 1.0 : 0.0; // treat no/zero target as met
+    final r = actual / target;
+    if (r <= 0) return 0.0;
+    final below = r < 1.0 ? math.pow(r, kGamma).toDouble() : 1.0;
+    return below.clamp(0.0, 1.0);
+  }
+
+  final double capVal = _nz(capitalValue);
+  final double rentYr = _nz(annualRentalIncome);
+  final double tgtEq = _nz(targetEquity);
+  final double tgtInc = _nz(targetIncome);
+
+  // Determine weights; if a target is absent/zero, shift all weight to the other.
+  final bool hasEq = tgtEq > 0;
+  final bool hasInc = tgtInc > 0;
+
+  if (!hasEq && !hasInc) return 999; // nothing to chase → max score
+
+  double wEq = hasEq ? kEquityWeight : 0.0;
+  double wInc = hasInc ? (1.0 - kEquityWeight) : 0.0;
+  final wSum = wEq + wInc;
+  if (wSum > 0) {
+    wEq /= wSum;
+    wInc /= wSum;
+  }
+
+  final pEq = _progress(capVal, tgtEq);
+  final pInc = _progress(rentYr, tgtInc);
+
+  final progress = (wEq * pEq) + (wInc * pInc); // 0..1
+  int score = (progress * 999.0).round();
+  if (score < 0) score = 0;
+  if (score > 999) score = 999;
+  return score;
+}
+
+int? convertStringToInteger(String? stringToConvert) {
+  if (stringToConvert == null) {
+    return null;
+  }
+
+  // Remove anything that isn't a digit or minus sign (handles things like "£1,200" or " 300 ")
+  final cleaned = stringToConvert.replaceAll(RegExp(r'[^0-9\-]'), '');
+
+  if (cleaned.isEmpty) {
+    return null;
+  }
+
+  return int.tryParse(cleaned);
 }

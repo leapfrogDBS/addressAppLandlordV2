@@ -109,7 +109,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: PropertiesWidget.routeName,
           path: PropertiesWidget.routePath,
-          builder: (context, params) => PropertiesWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Properties')
+              : PropertiesWidget(),
         ),
         FFRoute(
             name: PropertyWidget.routeName,
@@ -170,13 +172,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: ForgotPasswordWidget.routeName,
           path: ForgotPasswordWidget.routePath,
           builder: (context, params) => ForgotPasswordWidget(),
-        ),
-        FFRoute(
-          name: FinancialsWidget.routeName,
-          path: FinancialsWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Financials')
-              : FinancialsWidget(),
         ),
         FFRoute(
           name: AllMessagesWidget.routeName,

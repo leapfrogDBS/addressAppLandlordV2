@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:data_shema_changes/flutter_flow/flutter_flow_drop_down.dart';
-import 'package:data_shema_changes/flutter_flow/flutter_flow_icon_button.dart';
-import 'package:data_shema_changes/flutter_flow/flutter_flow_widgets.dart';
-import 'package:data_shema_changes/flutter_flow/flutter_flow_theme.dart';
-import 'package:data_shema_changes/index.dart';
-import 'package:data_shema_changes/main.dart';
-import 'package:data_shema_changes/flutter_flow/flutter_flow_util.dart';
+import 'package:addressed_pro/flutter_flow/flutter_flow_drop_down.dart';
+import 'package:addressed_pro/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:addressed_pro/flutter_flow/flutter_flow_widgets.dart';
+import 'package:addressed_pro/flutter_flow/flutter_flow_theme.dart';
+import 'package:addressed_pro/index.dart';
+import 'package:addressed_pro/main.dart';
+import 'package:addressed_pro/flutter_flow/flutter_flow_util.dart';
 
-import 'package:data_shema_changes/backend/firebase/firebase_config.dart';
-import 'package:data_shema_changes/auth/firebase_auth/auth_util.dart';
+import 'package:provider/provider.dart';
+import 'package:addressed_pro/backend/firebase/firebase_config.dart';
+import 'package:addressed_pro/auth/firebase_auth/auth_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
@@ -25,13 +26,19 @@ void main() async {
 
   setUp(() async {
     await authManager.signOut();
+    FFAppState.reset();
+    final appState = FFAppState();
+    await appState.initializePersistedState();
   });
 
   group('Authentication', () {
     testWidgets('User Login to Dashboard', (WidgetTester tester) async {
       _overrideOnError();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => FFAppState(),
+        child: const MyApp(),
+      ));
       await GoogleFonts.pendingFonts();
 
       await tester.pumpAndSettle(const Duration(milliseconds: 5000));
@@ -49,7 +56,10 @@ void main() async {
     testWidgets('Not Signed Agreement', (WidgetTester tester) async {
       _overrideOnError();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => FFAppState(),
+        child: const MyApp(),
+      ));
       await GoogleFonts.pendingFonts();
 
       await tester.pumpAndSettle(const Duration(milliseconds: 3000));
@@ -69,7 +79,10 @@ void main() async {
     testWidgets('Not Entered Retirment Goals', (WidgetTester tester) async {
       _overrideOnError();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => FFAppState(),
+        child: const MyApp(),
+      ));
       await GoogleFonts.pendingFonts();
 
       await tester.pumpAndSettle(const Duration(milliseconds: 3000));
@@ -89,7 +102,10 @@ void main() async {
         (WidgetTester tester) async {
       _overrideOnError();
 
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => FFAppState(),
+        child: const MyApp(),
+      ));
       await GoogleFonts.pendingFonts();
 
       await tester.pumpAndSettle(const Duration(milliseconds: 3000));
@@ -113,7 +129,10 @@ void main() async {
       _overrideOnError();
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: 'nonadmin@aol.com', password: 'password');
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(ChangeNotifierProvider(
+        create: (context) => FFAppState(),
+        child: const MyApp(),
+      ));
       await GoogleFonts.pendingFonts();
 
       await tester.tap(find.byKey(const ValueKey('Container_raul')));

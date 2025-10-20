@@ -1,7 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/key_metrics_dash_widget.dart';
-import '/components/live_earnings_all_widget.dart';
+import '/components/live_earnings_property_widget.dart';
 import '/components/notifications_icon_widget.dart';
 import '/components/portfolio_score_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,9 +12,11 @@ import '/nav/hamburger/hamburger_widget.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import '/property_cards/property_slider/property_slider_widget.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dashboard_widget.dart' show DashboardWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,10 +25,19 @@ import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
 class DashboardModel extends FlutterFlowModel<DashboardWidget> {
+  ///  Local state fields for this page.
+
+  PortfolioTotalsStruct? pvTotals;
+  void updatePvTotalsStruct(Function(PortfolioTotalsStruct) updateFn) {
+    updateFn(pvTotals ??= PortfolioTotalsStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
-  // Model for liveEarningsAll component.
-  late LiveEarningsAllModel liveEarningsAllModel;
+  // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
+  List<PropertyProjectionsRecord>? projectionDocs;
+  // Model for liveEarningsProperty component.
+  late LiveEarningsPropertyModel liveEarningsPropertyModel;
   // Model for portfolioScore component.
   late PortfolioScoreModel portfolioScoreModel;
   // Model for keyMetricsDash component.
@@ -41,7 +53,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   @override
   void initState(BuildContext context) {
-    liveEarningsAllModel = createModel(context, () => LiveEarningsAllModel());
+    liveEarningsPropertyModel =
+        createModel(context, () => LiveEarningsPropertyModel());
     portfolioScoreModel = createModel(context, () => PortfolioScoreModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
@@ -53,7 +66,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   @override
   void dispose() {
-    liveEarningsAllModel.dispose();
+    liveEarningsPropertyModel.dispose();
     portfolioScoreModel.dispose();
     keyMetricsDashModel.dispose();
     propertySliderModel.dispose();

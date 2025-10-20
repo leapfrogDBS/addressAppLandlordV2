@@ -17,15 +17,18 @@ class LiveEarningsPropertyWidget extends StatefulWidget {
     double? dailyGain,
     double? secondGain,
     double? earningsToDate,
+    String? headingText,
   })  : this.yearlyGain = yearlyGain ?? 0.00,
         this.dailyGain = dailyGain ?? 0.00,
         this.secondGain = secondGain ?? 0.00,
-        this.earningsToDate = earningsToDate ?? 0.00;
+        this.earningsToDate = earningsToDate ?? 0.00,
+        this.headingText = headingText ?? 'This property has earned you...';
 
   final double yearlyGain;
   final double dailyGain;
   final double secondGain;
   final double earningsToDate;
+  final String headingText;
 
   @override
   State<LiveEarningsPropertyWidget> createState() =>
@@ -95,7 +98,7 @@ class _LiveEarningsPropertyWidgetState
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Text(
-                  'This property has earned you...',
+                  widget!.headingText,
                   style: FlutterFlowTheme.of(context).titleSmall.override(
                         font: GoogleFonts.figtree(
                           fontWeight: FontWeight.normal,

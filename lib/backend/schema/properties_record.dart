@@ -191,6 +191,21 @@ class PropertiesRecord extends FirestoreRecord {
   double get expenseInflationPct => _expenseInflationPct ?? 0.0;
   bool hasExpenseInflationPct() => _expenseInflationPct != null;
 
+  // "mortgageMonthlyPayment" field.
+  double? _mortgageMonthlyPayment;
+  double get mortgageMonthlyPayment => _mortgageMonthlyPayment ?? 0.0;
+  bool hasMortgageMonthlyPayment() => _mortgageMonthlyPayment != null;
+
+  // "mortgageTermRemaining" field.
+  int? _mortgageTermRemaining;
+  int get mortgageTermRemaining => _mortgageTermRemaining ?? 0;
+  bool hasMortgageTermRemaining() => _mortgageTermRemaining != null;
+
+  // "letType" field.
+  String? _letType;
+  String get letType => _letType ?? '';
+  bool hasLetType() => _letType != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -230,6 +245,11 @@ class PropertiesRecord extends FirestoreRecord {
         castToType<double>(snapshotData['averageYearlyExpenses']);
     _expenseInflationPct =
         castToType<double>(snapshotData['expenseInflationPct']);
+    _mortgageMonthlyPayment =
+        castToType<double>(snapshotData['mortgageMonthlyPayment']);
+    _mortgageTermRemaining =
+        castToType<int>(snapshotData['mortgageTermRemaining']);
+    _letType = snapshotData['letType'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -301,6 +321,9 @@ Map<String, dynamic> createPropertiesRecordData({
   double? previousExpenses,
   double? averageYearlyExpenses,
   double? expenseInflationPct,
+  double? mortgageMonthlyPayment,
+  int? mortgageTermRemaining,
+  String? letType,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -338,6 +361,9 @@ Map<String, dynamic> createPropertiesRecordData({
       'previousExpenses': previousExpenses,
       'averageYearlyExpenses': averageYearlyExpenses,
       'expenseInflationPct': expenseInflationPct,
+      'mortgageMonthlyPayment': mortgageMonthlyPayment,
+      'mortgageTermRemaining': mortgageTermRemaining,
+      'letType': letType,
     }.withoutNulls,
   );
 
@@ -384,7 +410,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.previousRentalIncome == e2?.previousRentalIncome &&
         e1?.previousExpenses == e2?.previousExpenses &&
         e1?.averageYearlyExpenses == e2?.averageYearlyExpenses &&
-        e1?.expenseInflationPct == e2?.expenseInflationPct;
+        e1?.expenseInflationPct == e2?.expenseInflationPct &&
+        e1?.mortgageMonthlyPayment == e2?.mortgageMonthlyPayment &&
+        e1?.mortgageTermRemaining == e2?.mortgageTermRemaining &&
+        e1?.letType == e2?.letType;
   }
 
   @override
@@ -423,7 +452,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.previousRentalIncome,
         e?.previousExpenses,
         e?.averageYearlyExpenses,
-        e?.expenseInflationPct
+        e?.expenseInflationPct,
+        e?.mortgageMonthlyPayment,
+        e?.mortgageTermRemaining,
+        e?.letType
       ]);
 
   @override

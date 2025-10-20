@@ -23,8 +23,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
 import 'package:fl_chart/fl_chart.dart';
-import 'package:intl/intl.dart'; // for currency tooltip
-import 'package:collection/collection.dart'; // for firstWhereOrNull
 
 class PropertyProjectionChart2 extends StatefulWidget {
   const PropertyProjectionChart2({
@@ -51,9 +49,21 @@ class PropertyProjectionChart2 extends StatefulWidget {
 }
 
 class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
+  final _hScrollCtrl = ScrollController();
+
+  @override
+  void dispose() {
+    _hScrollCtrl.dispose();
+    super.dispose();
+  }
+
+  // ───────────────────── Helpers ─────────────────────
   String _moneyShort(double v) {
-    if (v.abs() >= 1000000) return '£${(v / 1000000).toStringAsFixed(1)}m';
-    return '£${(v / 1000).round()}k';
+    final abs = v.abs();
+    if (abs >= 1e9) return '£${(v / 1e9).toStringAsFixed(1)}b';
+    if (abs >= 1e6) return '£${(v / 1e6).toStringAsFixed(1)}m';
+    if (abs >= 1e3) return '£${(v / 1e3).round()}k';
+    return '£${v.toStringAsFixed(0)}';
   }
 
   double _toDouble(dynamic v, [double fallback = 0.0]) {
@@ -63,6 +73,28 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
       if (parsed != null) return parsed;
     }
     return fallback;
+  }
+
+  List<double> _asDoubleList(dynamic raw) {
+    if (raw is Iterable) {
+      return raw.map((e) => _toDouble(e)).toList();
+    }
+    return <double>[];
+  }
+
+  int _indexForX(List<double> xs, double x) {
+    final i = xs.indexOf(x);
+    if (i != -1) return i;
+    double best = double.infinity;
+    int bestIdx = 0;
+    for (int k = 0; k < xs.length; k++) {
+      final d = (xs[k] - x).abs();
+      if (d < best) {
+        best = d;
+        bestIdx = k;
+      }
+    }
+    return bestIdx;
   }
 
   @override
@@ -85,13 +117,17 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
       (proj.years ?? const <dynamic>[]).map((e) => _toDouble(e)),
     );
 
-    // Use the current field only; no legacy fallback
-    final prices = List<double>.from(
-      (proj.projectedHousePrice ?? const <dynamic>[]).map((e) => _toDouble(e)),
+    // Per-year capital gain (not total house price)
+    final capitalGainsRaw = (proj.capitalGains ??
+        proj.snapshotData['capitalGains'] ??
+        const <dynamic>[]);
+
+    // Core length = min(years, capitalGains)
+    final coreLen = math.min(
+      years.length,
+      (capitalGainsRaw is Iterable) ? capitalGainsRaw.length : 0,
     );
 
-    // Core length = min(years, prices)
-    final coreLen = math.min(years.length, prices.length);
     if (coreLen < 2) {
       return SizedBox(
         width: widget.width ?? double.infinity,
@@ -103,35 +139,36 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
     }
 
     final y = years.take(coreLen).toList();
-    final cap = prices.take(coreLen).toList();
+    final capGain = List<double>.from(
+      (capitalGainsRaw as Iterable).take(coreLen).map((e) => _toDouble(e)),
+    );
 
-    // Rental: if tenancy not active, treat as all zeros; also null-safe elements
+    // Rental (yearly profit)
     final rentalRaw = widget.hasActiveTenancy
-        ? (proj.rental ?? const <dynamic>[])
+        ? (proj.rentalProfit ?? const <dynamic>[])
         : const <dynamic>[];
-    final ren = List<double>.generate(
+    final rentProfit = List<double>.generate(
       coreLen,
       (i) => i < rentalRaw.length ? _toDouble(rentalRaw[i]) : 0.0,
     );
 
-    // Combined: if provided and long enough use it, else compute cap+ren
-    List<double> comb;
-    if (widget.hasActiveTenancy && (proj.combined?.length ?? 0) >= coreLen) {
-      comb = List<double>.from(
-        proj.combined!.take(coreLen).map((e) => _toDouble(e)),
-      );
-    } else {
-      comb = List<double>.generate(coreLen, (i) => cap[i] + ren[i]);
-    }
+    // Combined (for this chart) = per-year capital gain + per-year rental profit
+    final combinedAnnual = List<double>.generate(
+      coreLen,
+      (i) =>
+          (i < capGain.length ? capGain[i] : 0.0) +
+          (i < rentProfit.length ? rentProfit[i] : 0.0),
+    );
 
-    // If tenancy is NOT active, force CAPITAL view (match old behavior)
+    // Keep your existing vacancy behaviour (force CAPITAL unless explicitly CAPITAL)
     final effectiveViewType =
         (!widget.hasActiveTenancy && widget.chartViewType != 'CAPITAL')
             ? 'CAPITAL'
             : widget.chartViewType;
 
     // If user explicitly picked RENTAL but there’s no rent, show a friendly placeholder
-    final rentalAllZero = ren.every((v) => v.abs() < 1e-9);
+    final rentalAllZero =
+        rentProfit.isEmpty || rentProfit.every((v) => v.abs() < 1e-9);
     if (effectiveViewType == 'RENTAL' && rentalAllZero) {
       return SizedBox(
         width: widget.width ?? double.infinity,
@@ -144,35 +181,42 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
     }
 
     // Choose series
-    late final List<FlSpot> dataToPlot;
-    Color lineColor;
-    Color gradientColor;
-
+    late final List<double> seriesY;
+    late final Color lineColor;
+    late final Color gradientColor;
     switch (effectiveViewType) {
       case 'RENTAL':
-        dataToPlot =
-            List<FlSpot>.generate(coreLen, (i) => FlSpot(y[i], ren[i]));
+        seriesY = rentProfit;
         lineColor = const Color(0xFF33B56B);
         gradientColor = const Color(0xFF33B56B);
         break;
       case 'CAPITAL':
-        dataToPlot =
-            List<FlSpot>.generate(coreLen, (i) => FlSpot(y[i], cap[i]));
+        seriesY = capGain; // per-year capital gain
         lineColor = const Color(0xFFF2CB00); // Golden Yellow
         gradientColor = const Color(0xFFF2CB00);
         break;
       case 'COMBINED':
       default:
-        dataToPlot =
-            List<FlSpot>.generate(coreLen, (i) => FlSpot(y[i], comb[i]));
+        seriesY = combinedAnnual; // cap gain + rent (per year)
         lineColor = const Color(0xFF000080); // Navy
         gradientColor = const Color(0xFF000080);
         break;
     }
 
-    // Bounds (handle flat/all-zero)
-    final minX = y.first;
-    final maxX = y.last;
+    final dataToPlot = List<FlSpot>.generate(
+      coreLen,
+      (i) => FlSpot(y[i], seriesY[i]),
+    );
+
+    double minX = y.first;
+    double maxX = y.last;
+
+    // Tiny left pad so the first year label isn't clipped; roomier right pad
+    const xPadLeft = 0.25;
+    const xPadRight = 0.55; // keeps last year comfy
+    minX -= xPadLeft;
+    maxX += xPadRight;
+
     double minY = dataToPlot.map((s) => s.y).reduce(math.min);
     double maxY = dataToPlot.map((s) => s.y).reduce(math.max);
     if ((maxY - minY).abs() < 1e-9) {
@@ -191,116 +235,278 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
     final gridColor = theme.secondaryText.withOpacity(0.12);
     final axisLine = theme.secondaryText.withOpacity(0.35);
 
+    // Keep sticky Y and scrollable chart aligned vertically
+    const double kScrollBottomInset = 20.0;
+
     final currencyFmt =
-        NumberFormat.currency(locale: 'en_GB', symbol: '£', decimalDigits: 2);
+        NumberFormat.currency(locale: 'en_GB', symbol: '£', decimalDigits: 0);
 
     // Width depends on number of years
     const perYearPx = 60.0;
     final contentWidth =
         ((maxX - minX + 1) * perYearPx).clamp(perYearPx * 6, 30000.0);
-    const rightPadding = 50.0;
+    const rightPadding = 60.0; // tiny extra buffer on the right
 
     Widget bottomYear(double val, TitleMeta meta) {
+      // show only integer years
       if ((val % 1).abs() > 0.0001) return const SizedBox.shrink();
-      return Padding(
-        padding: const EdgeInsets.only(top: 4),
-        child: Text(val.toInt().toString(), style: axisText),
+
+      final year = val.toInt();
+      final firstYear = y.first.toInt();
+      final lastYear = y.last.toInt();
+
+      Alignment align;
+      EdgeInsets insets = const EdgeInsets.only(top: 6);
+
+      if (year == firstYear) {
+        align = Alignment.centerLeft; // start at tick, flow right
+        insets = insets.copyWith(left: 8); // nudge so it won't clip
+      } else if (year == lastYear) {
+        align = Alignment.centerRight; // keep inside right edge
+        insets = insets.copyWith(right: 8);
+      } else {
+        align = Alignment.center;
+      }
+
+      return Container(
+        alignment: align,
+        padding: insets,
+        child: Text(year.toString(), style: axisText),
       );
     }
 
-    final chart = LineChart(
-      LineChartData(
-        minX: minX,
-        maxX: maxX,
-        minY: minY,
-        maxY: maxY,
-        lineTouchData: LineTouchData(
-          touchTooltipData: LineTouchTooltipData(
-            getTooltipColor: (touchedSpot) => theme.secondary,
-            tooltipPadding:
-                const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            getTooltipItems: (spots) => spots
-                .map((s) => LineTooltipItem(
-                      currencyFmt.format(s.y),
-                      const TextStyle(color: Colors.white, fontSize: 12),
-                    ))
-                .toList(),
-          ),
-        ),
-        gridData: FlGridData(
-          show: true,
-          drawVerticalLine: false,
-          verticalInterval: 1.0,
-          drawHorizontalLine: true,
-          getDrawingHorizontalLine: (_) =>
-              FlLine(color: gridColor.withOpacity(0.5), strokeWidth: 1),
-        ),
-        titlesData: FlTitlesData(
-          bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 24,
-              getTitlesWidget: bottomYear,
+    // Build axis-only (sticky) chart for the left gutter
+    Widget buildStickyYAxis() {
+      return SizedBox(
+        width: 60,
+        height: widget.height ?? 300,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: kScrollBottomInset),
+          child: LineChart(
+            LineChartData(
+              minX: 0,
+              maxX: 1, // arbitrary (we don't show bottom titles/grid)
+              minY: minY,
+              maxY: maxY,
+              gridData: const FlGridData(show: false),
+              titlesData: FlTitlesData(
+                bottomTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                topTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                rightTitles: const AxisTitles(
+                  sideTitles: SideTitles(showTitles: false),
+                ),
+                leftTitles: AxisTitles(
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 58,
+                    getTitlesWidget: (val, meta) {
+                      if (val == minY || val == maxY) {
+                        return const SizedBox.shrink();
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: Text(_moneyShort(val), style: axisText),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              borderData: FlBorderData(
+                show: true,
+                border: Border(
+                  left: BorderSide(color: axisLine, width: 1.5),
+                  bottom: BorderSide(color: axisLine, width: 1.5), // meet axes
+                  right: const BorderSide(color: Colors.transparent, width: 0),
+                  top: const BorderSide(color: Colors.transparent, width: 0),
+                ),
+              ),
+              lineBarsData: const [],
             ),
           ),
-          leftTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              reservedSize: 60,
-              getTitlesWidget: (val, meta) {
-                if (val == minY || val == maxY) return const SizedBox.shrink();
-                return Padding(
-                  padding: const EdgeInsets.only(right: 0),
-                  child: Text(_moneyShort(val), style: axisText),
-                );
+        ),
+      );
+    }
+
+    // Build the main (scrollable) data chart with left titles OFF
+    Widget buildDataChart() {
+      final chart = LineChart(
+        LineChartData(
+          minX: minX,
+          maxX: maxX,
+          minY: minY,
+          maxY: maxY,
+
+          // allow tiny overdraw so first/last dots/labels don't get shaved
+          clipData: const FlClipData(
+            top: true,
+            bottom: true,
+            left: false,
+            right: false,
+          ),
+
+          lineTouchData: LineTouchData(
+            enabled: true,
+            getTouchedSpotIndicator: (barData, spotIndexes) {
+              return spotIndexes
+                  .map((_) => TouchedSpotIndicatorData(
+                        FlLine(color: theme.secondary, strokeWidth: 1),
+                        FlDotData(show: false),
+                      ))
+                  .toList();
+            },
+            touchTooltipData: LineTouchTooltipData(
+              getTooltipColor: (_) => theme.secondary,
+              tooltipPadding:
+                  const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              fitInsideHorizontally: true,
+              fitInsideVertically: true,
+              getTooltipItems: (spots) {
+                return spots.map((s) {
+                  final idx = _indexForX(y, s.x);
+                  final yearLabel = s.x.toInt().toString();
+
+                  if (effectiveViewType == 'COMBINED') {
+                    final total = (idx < combinedAnnual.length)
+                        ? combinedAnnual[idx]
+                        : 0.0;
+                    return LineTooltipItem(
+                      '$yearLabel\nCombined income: ${currencyFmt.format(total)}',
+                      const TextStyle(color: Colors.white, fontSize: 12),
+                    );
+                  } else if (effectiveViewType == 'CAPITAL') {
+                    final cg = (idx < capGain.length) ? capGain[idx] : 0.0;
+                    return LineTooltipItem(
+                      '$yearLabel\nCapital gain: ${currencyFmt.format(cg)}',
+                      const TextStyle(color: Colors.white, fontSize: 12),
+                    );
+                  } else {
+                    final rp =
+                        (idx < rentProfit.length) ? rentProfit[idx] : 0.0;
+                    return LineTooltipItem(
+                      '$yearLabel\nRental profit: ${currencyFmt.format(rp)}',
+                      const TextStyle(color: Colors.white, fontSize: 12),
+                    );
+                  }
+                }).toList();
               },
             ),
           ),
-          rightTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          topTitles:
-              const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        ),
-        borderData: FlBorderData(
-          show: true,
-          border: Border(
-            left: BorderSide(color: axisLine, width: 1.5),
-            bottom: BorderSide(color: axisLine, width: 1.5),
+          gridData: FlGridData(
+            show: true,
+            drawVerticalLine: false,
+            verticalInterval: 1.0,
+            drawHorizontalLine: true,
+            getDrawingHorizontalLine: (_) =>
+                FlLine(color: gridColor.withOpacity(0.5), strokeWidth: 1),
           ),
-        ),
-        lineBarsData: [
-          LineChartBarData(
-            spots: dataToPlot,
-            isCurved: true,
-            color: lineColor.withOpacity(0.9),
-            barWidth: 3,
-            belowBarData: BarAreaData(
-              show: true,
-              gradient: LinearGradient(
-                colors: [
-                  gradientColor.withOpacity(0.4),
-                  gradientColor.withOpacity(0.0),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+          titlesData: FlTitlesData(
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 30, // give labels a bit more room
+                getTitlesWidget: bottomYear,
               ),
             ),
-            dotData: const FlDotData(show: false),
+            leftTitles: const AxisTitles(
+              sideTitles:
+                  SideTitles(showTitles: false), // sticky y-axis handles it
+            ),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
-        ],
-      ),
-    );
+          borderData: FlBorderData(
+            show: true,
+            border: Border(
+              left: const BorderSide(
+                  color: Colors.transparent,
+                  width: 0), // sticky y-axis draws the left border
+              bottom: BorderSide(color: axisLine, width: 1.5),
+              right: const BorderSide(color: Colors.transparent, width: 0),
+              top: const BorderSide(color: Colors.transparent, width: 0),
+            ),
+          ),
+          lineBarsData: [
+            LineChartBarData(
+              spots: dataToPlot,
+              isCurved: true,
+              color: lineColor.withOpacity(0.95),
+              barWidth: 3,
+              belowBarData: BarAreaData(
+                show: true,
+                gradient: LinearGradient(
+                  colors: [
+                    gradientColor.withOpacity(0.35),
+                    gradientColor.withOpacity(0.0),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+              dotData: FlDotData(
+                show: true,
+                getDotPainter: (spot, percent, bar, index) {
+                  final isLast = index == dataToPlot.length - 1;
+                  return FlDotCirclePainter(
+                    radius: isLast ? 4 : 2,
+                    color: isLast ? Colors.white : lineColor,
+                    strokeColor: lineColor,
+                    strokeWidth: isLast ? 2 : 1.5,
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeOutCubic,
+      );
 
+      return SizedBox(
+        width: contentWidth + rightPadding,
+        height: widget.height ?? 300,
+        child: chart,
+      );
+    }
+
+    // Layout with sticky Y axis + scrollable chart + visible scrollbar
     return SizedBox(
       width: widget.width ?? double.infinity,
       height: widget.height ?? 300,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        child: SizedBox(
-          width: contentWidth + rightPadding,
-          child: chart,
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Sticky Y axis
+          buildStickyYAxis(),
+
+          // Scrollable data chart with a visible scrollbar as affordance
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 14), // space below x-axis
+              child: Scrollbar(
+                controller: _hScrollCtrl,
+                thumbVisibility: true,
+                thickness: 6,
+                radius: const Radius.circular(4),
+                child: SingleChildScrollView(
+                  controller: _hScrollCtrl,
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Padding(
+                    // keep scroll thumb away from the x-axis
+                    padding: EdgeInsets.only(bottom: kScrollBottomInset),
+                    child: buildDataChart(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

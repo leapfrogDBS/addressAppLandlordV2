@@ -15,17 +15,34 @@ import 'package:provider/provider.dart';
 class MortgagePromptModel extends FlutterFlowModel<MortgagePromptWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for mortgageValueRemaining widget.
+  FocusNode? mortgageValueRemainingFocusNode;
+  TextEditingController? mortgageValueRemainingTextController;
+  String? Function(BuildContext, String?)?
+      mortgageValueRemainingTextControllerValidator;
+  // State field(s) for mortgageTermRemaining widget.
+  FocusNode? mortgageTermRemainingFocusNode;
+  TextEditingController? mortgageTermRemainingTextController;
+  String? Function(BuildContext, String?)?
+      mortgageTermRemainingTextControllerValidator;
+  // State field(s) for mortgageMonthlyRepayment widget.
+  FocusNode? mortgageMonthlyRepaymentFocusNode;
+  TextEditingController? mortgageMonthlyRepaymentTextController;
+  String? Function(BuildContext, String?)?
+      mortgageMonthlyRepaymentTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
+    mortgageValueRemainingFocusNode?.dispose();
+    mortgageValueRemainingTextController?.dispose();
+
+    mortgageTermRemainingFocusNode?.dispose();
+    mortgageTermRemainingTextController?.dispose();
+
+    mortgageMonthlyRepaymentFocusNode?.dispose();
+    mortgageMonthlyRepaymentTextController?.dispose();
   }
 }

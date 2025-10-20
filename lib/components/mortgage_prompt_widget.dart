@@ -43,8 +43,14 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
     super.initState();
     _model = createModel(context, () => MortgagePromptModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.mortgageValueRemainingTextController ??= TextEditingController();
+    _model.mortgageValueRemainingFocusNode ??= FocusNode();
+
+    _model.mortgageTermRemainingTextController ??= TextEditingController();
+    _model.mortgageTermRemainingFocusNode ??= FocusNode();
+
+    _model.mortgageMonthlyRepaymentTextController ??= TextEditingController();
+    _model.mortgageMonthlyRepaymentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -107,16 +113,15 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
             child: TextFormField(
-              controller: _model.textController,
-              focusNode: _model.textFieldFocusNode,
+              controller: _model.mortgageValueRemainingTextController,
+              focusNode: _model.mortgageValueRemainingFocusNode,
               onChanged: (_) => EasyDebounce.debounce(
-                '_model.textController',
+                '_model.mortgageValueRemainingTextController',
                 Duration(milliseconds: 2000),
                 () async {
                   await widget!.documentId!.update(createPropertiesRecordData(
-                    mortgageRemaining:
-                        double.tryParse(_model.textController.text),
-                    mortgageEntered: true,
+                    mortgageRemaining: double.tryParse(
+                        _model.mortgageValueRemainingTextController.text),
                   ));
                 },
               ),
@@ -137,7 +142,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                       fontStyle:
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
-                hintText: 'Enter mortgage remaining',
+                hintText: 'Enter outstanding mortgage value',
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                       font: GoogleFonts.figtree(
                         fontWeight:
@@ -197,7 +202,200 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                   ),
               keyboardType: TextInputType.number,
               cursorColor: FlutterFlowTheme.of(context).primaryText,
-              validator: _model.textControllerValidator.asValidator(context),
+              validator: _model.mortgageValueRemainingTextControllerValidator
+                  .asValidator(context),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+            child: TextFormField(
+              controller: _model.mortgageTermRemainingTextController,
+              focusNode: _model.mortgageTermRemainingFocusNode,
+              onChanged: (_) => EasyDebounce.debounce(
+                '_model.mortgageTermRemainingTextController',
+                Duration(milliseconds: 2000),
+                () async {
+                  await widget!.documentId!.update(createPropertiesRecordData(
+                    mortgageTermRemaining: int.tryParse(
+                        _model.mortgageTermRemainingTextController.text),
+                  ));
+                },
+              ),
+              autofocus: false,
+              obscureText: false,
+              decoration: InputDecoration(
+                isDense: true,
+                labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                      font: GoogleFonts.figtree(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                      letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
+                hintText: 'Enter term remaining (years)',
+                hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                      font: GoogleFonts.figtree(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                      ),
+                      letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                    ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                filled: true,
+                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.figtree(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
+                    letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                  ),
+              keyboardType: TextInputType.number,
+              cursorColor: FlutterFlowTheme.of(context).primaryText,
+              validator: _model.mortgageTermRemainingTextControllerValidator
+                  .asValidator(context),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+            child: TextFormField(
+              controller: _model.mortgageMonthlyRepaymentTextController,
+              focusNode: _model.mortgageMonthlyRepaymentFocusNode,
+              onChanged: (_) => EasyDebounce.debounce(
+                '_model.mortgageMonthlyRepaymentTextController',
+                Duration(milliseconds: 2000),
+                () async {
+                  await widget!.documentId!.update(createPropertiesRecordData(
+                    mortgageMonthlyPayment: double.tryParse(
+                        _model.mortgageMonthlyRepaymentTextController.text),
+                  ));
+                },
+              ),
+              autofocus: false,
+              obscureText: false,
+              decoration: InputDecoration(
+                isDense: true,
+                labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                      font: GoogleFonts.figtree(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                      letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
+                hintText: 'Enter monthly mortgage repayment',
+                hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                      font: GoogleFonts.figtree(
+                        fontWeight:
+                            FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                      ),
+                      letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                    ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Color(0x00000000),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).error,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                filled: true,
+                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    font: GoogleFonts.figtree(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                    ),
+                    letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                  ),
+              keyboardType: TextInputType.number,
+              cursorColor: FlutterFlowTheme.of(context).primaryText,
+              validator: _model.mortgageMonthlyRepaymentTextControllerValidator
+                  .asValidator(context),
             ),
           ),
           Divider(

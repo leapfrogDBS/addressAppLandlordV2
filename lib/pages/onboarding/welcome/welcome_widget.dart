@@ -5,7 +5,6 @@ import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'welcome_model.dart';
 export 'welcome_model.dart';
@@ -87,64 +86,6 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Step 1 of 2',
-                          style:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .fontStyle,
-                                  ),
-                        ),
-                        Text(
-                          '50%',
-                          style:
-                              FlutterFlowTheme.of(context).titleMedium.override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ],
-                    ),
-                    LinearPercentIndicator(
-                      percent: 0.5,
-                      lineHeight: 12.0,
-                      animation: true,
-                      animateFromLastPercent: true,
-                      progressColor: FlutterFlowTheme.of(context).primary,
-                      backgroundColor: FlutterFlowTheme.of(context).accent4,
-                      barRadius: Radius.circular(8.0),
-                      padding: EdgeInsets.zero,
-                    ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(

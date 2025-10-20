@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/notifications_icon_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -32,12 +33,16 @@ class AllMessagesModel extends FlutterFlowModel<AllMessagesWidget> {
       conversationNameTextControllerValidator;
   // Model for Hamburger component.
   late HamburgerModel hamburgerModel;
+  // Model for NotificationsIcon component.
+  late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
     hamburgerModel = createModel(context, () => HamburgerModel());
+    notificationsIconModel =
+        createModel(context, () => NotificationsIconModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
@@ -48,6 +53,7 @@ class AllMessagesModel extends FlutterFlowModel<AllMessagesWidget> {
     conversationNameTextController?.dispose();
 
     hamburgerModel.dispose();
+    notificationsIconModel.dispose();
     slideNavigationModel.dispose();
   }
 }

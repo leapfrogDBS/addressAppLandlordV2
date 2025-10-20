@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/notifications_icon_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -18,6 +19,8 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
 
   // Model for Hamburger component.
   late HamburgerModel hamburgerModel;
+  // Model for NotificationsIcon component.
+  late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
   // Models for singleProperty dynamic component.
@@ -26,6 +29,8 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
   @override
   void initState(BuildContext context) {
     hamburgerModel = createModel(context, () => HamburgerModel());
+    notificationsIconModel =
+        createModel(context, () => NotificationsIconModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
     singlePropertyModels =
         FlutterFlowDynamicModels(() => SinglePropertyModel());
@@ -34,6 +39,7 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
   @override
   void dispose() {
     hamburgerModel.dispose();
+    notificationsIconModel.dispose();
     slideNavigationModel.dispose();
     singlePropertyModels.dispose();
   }

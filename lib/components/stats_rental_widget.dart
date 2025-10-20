@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -249,33 +250,90 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
-                              child: Text(
-                                'Yield',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color:
-                                          FlutterFlowTheme.of(context).greyBlue,
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Gross Yield',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .greyBlue,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                AlignedTooltip(
+                                  content: Padding(
+                                    padding: EdgeInsets.all(4.0),
+                                    child: Text(
+                                      'Calculated using rental income  against purchase price.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall
+                                                    .fontStyle,
+                                          ),
                                     ),
-                              ),
+                                  ),
+                                  offset: 4.0,
+                                  preferredDirection: AxisDirection.down,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 4.0,
+                                  tailBaseWidth: 24.0,
+                                  tailLength: 12.0,
+                                  waitDuration: Duration(milliseconds: 100),
+                                  showDuration: Duration(milliseconds: 1500),
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  child: Icon(
+                                    Icons.info,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 20.0,
+                                  ),
+                                ),
+                              ].divide(SizedBox(width: 6.0)),
                             ),
                             RichText(
                               textScaler: MediaQuery.of(context).textScaler,

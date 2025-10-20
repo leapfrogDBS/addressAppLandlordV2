@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class DataShemaChangesFirebaseUser extends BaseAuthUser {
-  DataShemaChangesFirebaseUser(this.user);
+class AddressedProFirebaseUser extends BaseAuthUser {
+  AddressedProFirebaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -59,18 +59,17 @@ class DataShemaChangesFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      DataShemaChangesFirebaseUser(user);
+      AddressedProFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> dataShemaChangesFirebaseUserStream() =>
-    FirebaseAuth.instance
+Stream<BaseAuthUser> addressedProFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = DataShemaChangesFirebaseUser(user);
+        currentUser = AddressedProFirebaseUser(user);
         return currentUser!;
       },
     );

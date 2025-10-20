@@ -64,487 +64,379 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                 child: Image.network(
                   'https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3VzZXxlbnwwfHx8fDE3NDU5NjQwMDB8MA&ixlib=rb-4.0.3&q=80&w=400',
                   width: double.infinity,
-                  height: 150.0,
+                  height: 172.0,
                   fit: BoxFit.cover,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                child: Text(
-                  '42 Any Street',
-                  style: FlutterFlowTheme.of(context).titleLarge.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .titleLarge
-                              .fontWeight,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                        ),
-                        fontSize: 14.0,
-                        letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).titleLarge.fontWeight,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).titleLarge.fontStyle,
-                      ),
                 ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 7.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Icon(
-                          Icons.money,
-                          color: FlutterFlowTheme.of(context).secondary,
-                          size: 20.0,
-                        ),
-                        Text(
-                          'Purchase Price:',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                        ),
-                        Text(
-                          '£730,000',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                        ),
-                      ].divide(SizedBox(width: 6.0)),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    child: Text(
+                      '42 Any Street, Anytown, Anywhere, NE1 3ED',
+                      style: FlutterFlowTheme.of(context).titleLarge.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .fontStyle,
+                          ),
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'PROJECTED 12 MONTH GAIN',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .override(
+                                fontFamily: 'Thunder',
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  'Purchase Price',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.figtree(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .greyBlue,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  '£730,000',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Thunder',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ].divide(SizedBox(height: 8.0)),
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  'Renatal Profit',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.figtree(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .greyBlue,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      '+ £12,00',
+                                      style: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .override(
+                                            fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].divide(SizedBox(height: 8.0)),
+                          ),
+                        ),
+                      ].divide(SizedBox(width: 4.0)),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.show_chart,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 20.0,
-                              ),
-                              Text(
-                                'Projected 12 Month Gain',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 6.0)),
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Capital Growth',
+                                    textAlign: TextAlign.start,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .greyBlue,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    '+£22,000',
+                                    style: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .override(
+                                          fontFamily: 'Thunder',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ].divide(SizedBox(height: 8.0)),
+                            ),
                           ),
-                        ],
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    'Total',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .greyBlue,
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Text(
+                                    '+£34,000',
+                                    style: FlutterFlowTheme.of(context)
+                                        .displaySmall
+                                        .override(
+                                          fontFamily: 'Thunder',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ].divide(SizedBox(height: 8.0)),
+                            ),
+                          ),
+                        ].divide(SizedBox(width: 4.0)),
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.show_chart,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 20.0,
-                              ),
-                              Text(
-                                'Rental Profit',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                '+£3,200',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 6.0)),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.show_chart,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              size: 20.0,
-                            ),
-                            Text(
-                              'Capital Growth',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                            Text(
-                              '+£6,000',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ].divide(SizedBox(width: 6.0)),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 2.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.show_chart,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 20.0,
-                              ),
-                              Text(
-                                'Total',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                '+£9,200',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 6.0)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ].divide(SizedBox(height: 6.0)),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(50.0, 10.0, 50.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.show_chart,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 20.0,
-                              ),
-                              Text(
-                                'Portfolio Impact',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 6.0)),
-                          ),
-                        ],
-                      ),
-                    ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.show_chart,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 20.0,
+                        Text(
+                          'PORTFOLIO IMPACT',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .override(
+                                fontFamily: 'Thunder',
+                                letterSpacing: 0.0,
                               ),
-                              Text(
-                                '+£9,200',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                'New Total',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                '£79,500',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(width: 6.0)),
-                          ),
                         ),
                       ],
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.show_chart,
-                              color: FlutterFlowTheme.of(context).secondary,
-                              size: 20.0,
-                            ),
-                            Text(
-                              '+13% Increase',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  '+£120,000',
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Thunder',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ].divide(SizedBox(height: 8.0)),
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      '+ 23% Increase',
+                                      style: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .override(
+                                            fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
                                   ),
-                            ),
-                          ].divide(SizedBox(width: 6.0)),
+                                ],
+                              ),
+                            ].divide(SizedBox(height: 8.0)),
+                          ),
                         ),
-                      ],
+                      ].divide(SizedBox(width: 4.0)),
                     ),
-                  ],
+                  ].divide(SizedBox(height: 6.0)),
                 ),
               ),
               Align(

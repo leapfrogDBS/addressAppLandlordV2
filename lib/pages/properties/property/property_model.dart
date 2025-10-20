@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/live_earnings_property_widget.dart';
@@ -29,7 +28,6 @@ import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'property_widget.dart' show PropertyWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:collection/collection.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/gestures.dart';
@@ -86,6 +84,8 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   String? selectedYearLabel;
 
+  int? currentYearIndex = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - Read Document] action in Property widget.
@@ -96,8 +96,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   List<ExpensesRecord>? getExpenses;
   // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   PropertyProjectionsRecord? projectionDoc;
-  // Stores action output result for [Cloud Function - computePropertyProjection] action in Button widget.
-  ComputePropertyProjectionCloudFunctionCallResponse? cloudFunctionor1;
   bool isDataUploading_userMainImage = false;
   FFUploadedFile uploadedLocalFile_userMainImage =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -128,16 +126,23 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   // Model for statsCapital component.
   late StatsCapitalModel statsCapitalModel;
   // State field(s) for Expandable widget.
-  late ExpandableController expandableExpandableController1;
-
-  // State field(s) for Expandable widget.
-  late ExpandableController expandableExpandableController2;
+  late ExpandableController expandableExpandableController;
 
   // State field(s) for mortgageRemaining widget.
   FocusNode? mortgageRemainingFocusNode;
   TextEditingController? mortgageRemainingTextController;
   String? Function(BuildContext, String?)?
       mortgageRemainingTextControllerValidator;
+  // State field(s) for mortgageTermRemaining widget.
+  FocusNode? mortgageTermRemainingFocusNode;
+  TextEditingController? mortgageTermRemainingTextController;
+  String? Function(BuildContext, String?)?
+      mortgageTermRemainingTextControllerValidator;
+  // State field(s) for mortgageMonthlyPayment widget.
+  FocusNode? mortgageMonthlyPaymentFocusNode;
+  TextEditingController? mortgageMonthlyPaymentTextController;
+  String? Function(BuildContext, String?)?
+      mortgageMonthlyPaymentTextControllerValidator;
   // Model for recentActivity component.
   late RecentActivityModel recentActivityModel;
   // State field(s) for Carousel widget.
@@ -175,10 +180,15 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
     statsCombinedModel.dispose();
     statsRentalModel.dispose();
     statsCapitalModel.dispose();
-    expandableExpandableController1.dispose();
-    expandableExpandableController2.dispose();
+    expandableExpandableController.dispose();
     mortgageRemainingFocusNode?.dispose();
     mortgageRemainingTextController?.dispose();
+
+    mortgageTermRemainingFocusNode?.dispose();
+    mortgageTermRemainingTextController?.dispose();
+
+    mortgageMonthlyPaymentFocusNode?.dispose();
+    mortgageMonthlyPaymentTextController?.dispose();
 
     recentActivityModel.dispose();
     hamburgerModel.dispose();

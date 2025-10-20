@@ -47,7 +47,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
       child: Container(
         width: double.infinity,
-        height: 340.0,
+        height: 320.0,
         decoration: BoxDecoration(),
         child: StreamBuilder<List<PropertiesRecord>>(
           stream: queryPropertiesRecord(

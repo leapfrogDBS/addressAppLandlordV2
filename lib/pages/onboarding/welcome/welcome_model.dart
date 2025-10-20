@@ -6,7 +6,6 @@ import '/index.dart';
 import 'welcome_widget.dart' show WelcomeWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class WelcomeModel extends FlutterFlowModel<WelcomeWidget> {

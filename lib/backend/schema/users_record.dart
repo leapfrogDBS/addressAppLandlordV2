@@ -116,6 +116,16 @@ class UsersRecord extends FirestoreRecord {
   int get portfolioRating => _portfolioRating ?? 0;
   bool hasPortfolioRating() => _portfolioRating != null;
 
+  // "calculatingProjections" field.
+  bool? _calculatingProjections;
+  bool get calculatingProjections => _calculatingProjections ?? false;
+  bool hasCalculatingProjections() => _calculatingProjections != null;
+
+  // "availableCapital" field.
+  double? _availableCapital;
+  double get availableCapital => _availableCapital ?? 0.0;
+  bool hasAvailableCapital() => _availableCapital != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -139,6 +149,8 @@ class UsersRecord extends FirestoreRecord {
     _requestedDeletion = snapshotData['requestedDeletion'] as bool?;
     _status = snapshotData['status'] as String?;
     _portfolioRating = castToType<int>(snapshotData['portfolioRating']);
+    _calculatingProjections = snapshotData['calculatingProjections'] as bool?;
+    _availableCapital = castToType<double>(snapshotData['availableCapital']);
   }
 
   static CollectionReference get collection =>
@@ -195,6 +207,8 @@ Map<String, dynamic> createUsersRecordData({
   bool? requestedDeletion,
   String? status,
   int? portfolioRating,
+  bool? calculatingProjections,
+  double? availableCapital,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -218,6 +232,8 @@ Map<String, dynamic> createUsersRecordData({
       'requestedDeletion': requestedDeletion,
       'status': status,
       'portfolioRating': portfolioRating,
+      'calculatingProjections': calculatingProjections,
+      'availableCapital': availableCapital,
     }.withoutNulls,
   );
 
@@ -248,7 +264,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.jobTitle == e2?.jobTitle &&
         e1?.requestedDeletion == e2?.requestedDeletion &&
         e1?.status == e2?.status &&
-        e1?.portfolioRating == e2?.portfolioRating;
+        e1?.portfolioRating == e2?.portfolioRating &&
+        e1?.calculatingProjections == e2?.calculatingProjections &&
+        e1?.availableCapital == e2?.availableCapital;
   }
 
   @override
@@ -272,7 +290,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.jobTitle,
         e?.requestedDeletion,
         e?.status,
-        e?.portfolioRating
+        e?.portfolioRating,
+        e?.calculatingProjections,
+        e?.availableCapital
       ]);
 
   @override

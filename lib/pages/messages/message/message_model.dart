@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/notifications_icon_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -45,6 +46,8 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   UsersRecord? adminEmail;
   // Stores action output result for [Firestore Query - Query a collection] action in Icon widget.
   List<UsersRecord>? adminUsersList;
+  // Model for NotificationsIcon component.
+  late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
@@ -52,6 +55,8 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   void initState(BuildContext context) {
     scrollColumnScrollController = ScrollController();
     listViewController = ScrollController();
+    notificationsIconModel =
+        createModel(context, () => NotificationsIconModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
@@ -62,6 +67,7 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
+    notificationsIconModel.dispose();
     slideNavigationModel.dispose();
   }
 

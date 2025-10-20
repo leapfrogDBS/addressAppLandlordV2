@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,13 @@ void main() async {
 
   await initFirebase();
 
-  runApp(MyApp());
+  final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -80,7 +87,7 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier, widget.entryPage);
-    userStream = dataShemaChangesFirebaseUserStream()
+    userStream = addressedProFirebaseUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
       });
@@ -110,7 +117,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Data Shema Changes',
+      title: 'Addressed  Pro',
       scrollBehavior: MyAppScrollBehavior(),
       localizationsDelegates: [
         FFLocalizationsDelegate(),
@@ -165,10 +172,10 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Financials': FinancialsWidget(),
+      'dashboard': DashboardWidget(),
+      'Properties': PropertiesWidget(),
       'AllMessages': AllMessagesWidget(),
       'SalesOffers': SalesOffersWidget(),
-      'dashboard': DashboardWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -204,14 +211,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.currency_pound,
+                  Icons.dashboard,
                   color: currentIndex == 0
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xC23C444C),
                   size: 24.0,
                 ),
                 Text(
-                  'Financials',
+                  'Home',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 0
@@ -228,14 +235,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.message,
+                  Icons.home,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xC23C444C),
                   size: 24.0,
                 ),
                 Text(
-                  'Messages',
+                  'Properties',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -252,14 +259,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.local_offer,
+                  Icons.message,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xC23C444C),
                   size: 24.0,
                 ),
                 Text(
-                  'Offers',
+                  'Messages',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
@@ -276,16 +283,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  currentIndex == 3
-                      ? Icons.notifications_rounded
-                      : Icons.notifications_none_rounded,
+                  Icons.local_offer,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xC23C444C),
-                  size: currentIndex == 3 ? 32.0 : 24.0,
+                  size: 24.0,
                 ),
                 Text(
-                  'Home',
+                  'Offers',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3

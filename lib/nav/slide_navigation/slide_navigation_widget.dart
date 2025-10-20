@@ -64,7 +64,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
           ],
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 80.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,65 +150,6 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    Navigator.pop(context);
-
-                    context.pushNamed(FinancialsWidget.routeName);
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.currency_pound_outlined,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 28.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Financials',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelLarge
-                                  .override(
-                                    font: GoogleFonts.plusJakartaSans(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF606A85),
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .fontStyle,

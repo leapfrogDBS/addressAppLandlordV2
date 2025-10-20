@@ -1,4 +1,6 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/notifications_icon_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -86,7 +88,43 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                   fit: BoxFit.cover,
                 ),
               ),
-              actions: [],
+              actions: [
+                FutureBuilder<int>(
+                  future: queryNotificationsRecordCount(
+                    parent: currentUserReference,
+                    queryBuilder: (notificationsRecord) =>
+                        notificationsRecord.where(
+                      'viewed',
+                      isNotEqualTo: true,
+                    ),
+                  ),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    int notificationsIconCount = snapshot.data!;
+
+                    return wrapWithModel(
+                      model: _model.notificationsIconModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: NotificationsIconWidget(
+                        noOfNotifications: notificationsIconCount,
+                      ),
+                    );
+                  },
+                ),
+              ],
               centerTitle: true,
               elevation: 2.0,
             )
