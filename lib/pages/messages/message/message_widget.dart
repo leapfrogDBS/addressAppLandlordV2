@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -182,324 +181,118 @@ class _MessageWidgetState extends State<MessageWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Builder(
-                    builder: (context) {
-                      if (messageThreadsRecord.assignedToAdmin) {
-                        return Column(
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        decoration: BoxDecoration(),
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Align(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                            Container(
+                              width: 68.0,
+                              height: 68.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).accent1,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  width: 2.0,
+                                ),
+                              ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
-                                child: StreamBuilder<List<UsersRecord>>(
-                                  stream: queryUsersRecord(
-                                    queryBuilder: (usersRecord) =>
-                                        usersRecord.where(
-                                      'uid',
-                                      isEqualTo: messageThreadsRecord.adminId,
-                                    ),
-                                    singleRecord: true,
+                                padding: EdgeInsets.all(2.0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                  child: Image.asset(
+                                    'assets/images/logo-add-icon-box-col-rgb@2x.png',
+                                    width: 53.9,
+                                    height: 44.0,
+                                    fit: BoxFit.cover,
                                   ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    List<UsersRecord> containerUsersRecordList =
-                                        snapshot.data!;
-                                    // Return an empty Container when the item does not exist.
-                                    if (snapshot.data!.isEmpty) {
-                                      return Container();
-                                    }
-                                    final containerUsersRecord =
-                                        containerUsersRecordList.isNotEmpty
-                                            ? containerUsersRecordList.first
-                                            : null;
-
-                                    return Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      decoration: BoxDecoration(),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 68.0,
-                                            height: 68.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .accent1,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 2.0,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(2.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                                child: Image.network(
-                                                  containerUsersRecord!
-                                                      .photoUrl,
-                                                  width: 53.9,
-                                                  height: 44.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 15.0, 0.0, 0.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                containerUsersRecord
-                                                    ?.displayName,
-                                                'ADDRESSED ADMIN',
-                                              ),
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayLarge
-                                                      .override(
-                                                        fontFamily: 'Thunder',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 5.0, 0.0, 0.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                containerUsersRecord?.jobTitle,
-                                                'Addressed Admin',
-                                              ),
-                                              textAlign: TextAlign.start,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font: GoogleFonts.figtree(
-                                                      fontWeight:
-                                                          FontWeight.w200,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w200,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 8.0, 0.0, 0.0),
-                                            child: Text(
-                                              messageThreadsRecord.title,
-                                              textAlign: TextAlign.start,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.figtree(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMedium
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                          ),
-                                          Divider(
-                                            thickness: 2.0,
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
                                 ),
                               ),
                             ),
-                          ],
-                        );
-                      } else {
-                        return Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 0.0),
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width * 1.0,
-                              decoration: BoxDecoration(),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: 68.0,
-                                    height: 68.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
+                              child: Text(
+                                'ADDRESSED ADMIN',
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .override(
+                                      fontFamily: 'Thunder',
+                                      letterSpacing: 0.0,
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(2.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(40.0),
-                                        child: Image.asset(
-                                          'assets/images/logo-add-icon-box-col-rgb@2x.png',
-                                          width: 53.9,
-                                          height: 44.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: Text(
-                                      'ADDRESSED ADMIN',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .displayLarge
-                                          .override(
-                                            fontFamily: 'Thunder',
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        20.0, 8.0, 20.0, 0.0),
-                                    child: Text(
-                                      'Please leave a message and a member of our team will resond shortly.',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontStyle,
-                                            ),
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 0.0),
-                                    child: Text(
-                                      messageThreadsRecord.title,
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .fontStyle,
-                                            ),
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                  Divider(
-                                    thickness: 2.0,
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
-                                ],
                               ),
                             ),
-                          ),
-                        );
-                      }
-                    },
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 8.0, 20.0, 0.0),
+                              child: Text(
+                                'Please leave a message and a member of our team will resond shortly.',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontStyle,
+                                      ),
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: Text(
+                                messageThreadsRecord.title,
+                                textAlign: TextAlign.start,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Divider(
+                              thickness: 2.0,
+                              color: FlutterFlowTheme.of(context).alternate,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                   SingleChildScrollView(
                     controller: _model.scrollColumnScrollController,
@@ -718,7 +511,138 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                     ),
                                                               ),
                                                             ),
-                                                          ],
+                                                            if (listViewMessagesRecord
+                                                                .senderIsAdmin)
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            2.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: StreamBuilder<
+                                                                    List<
+                                                                        UsersRecord>>(
+                                                                  stream:
+                                                                      queryUsersRecord(
+                                                                    queryBuilder:
+                                                                        (usersRecord) =>
+                                                                            usersRecord.where(
+                                                                      'uid',
+                                                                      isEqualTo:
+                                                                          listViewMessagesRecord
+                                                                              .senderId,
+                                                                    ),
+                                                                    singleRecord:
+                                                                        true,
+                                                                  ),
+                                                                  builder: (context,
+                                                                      snapshot) {
+                                                                    // Customize what your widget looks like when it's loading.
+                                                                    if (!snapshot
+                                                                        .hasData) {
+                                                                      return Center(
+                                                                        child:
+                                                                            SizedBox(
+                                                                          width:
+                                                                              50.0,
+                                                                          height:
+                                                                              50.0,
+                                                                          child:
+                                                                              CircularProgressIndicator(
+                                                                            valueColor:
+                                                                                AlwaysStoppedAnimation<Color>(
+                                                                              FlutterFlowTheme.of(context).primary,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                    List<UsersRecord>
+                                                                        rowUsersRecordList =
+                                                                        snapshot
+                                                                            .data!;
+                                                                    // Return an empty Container when the item does not exist.
+                                                                    if (snapshot
+                                                                        .data!
+                                                                        .isEmpty) {
+                                                                      return Container();
+                                                                    }
+                                                                    final rowUsersRecord = rowUsersRecordList
+                                                                            .isNotEmpty
+                                                                        ? rowUsersRecordList
+                                                                            .first
+                                                                        : null;
+
+                                                                    return Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children:
+                                                                          [
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Container(
+                                                                            width:
+                                                                                22.0,
+                                                                            height:
+                                                                                22.0,
+                                                                            decoration:
+                                                                                BoxDecoration(
+                                                                              shape: BoxShape.circle,
+                                                                              border: Border.all(
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                width: 0.0,
+                                                                              ),
+                                                                            ),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsets.all(2.0),
+                                                                              child: ClipRRect(
+                                                                                borderRadius: BorderRadius.circular(100.0),
+                                                                                child: Image.network(
+                                                                                  valueOrDefault<String>(
+                                                                                    rowUsersRecord?.photoUrl,
+                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                                                                  ),
+                                                                                  width: 32.0,
+                                                                                  height: 32.0,
+                                                                                  fit: BoxFit.cover,
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Text(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            rowUsersRecord?.displayName,
+                                                                            'Adressed Admin',
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.figtree(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ].divide(SizedBox(
+                                                                              width: 5.0)),
+                                                                    );
+                                                                  },
+                                                                ),
+                                                              ),
+                                                          ].divide(SizedBox(
+                                                              height: 5.0)),
                                                         ),
                                                       ),
                                                     ),
@@ -759,50 +683,11 @@ class _MessageWidgetState extends State<MessageWidget> {
                               focusNode: _model.textFieldFocusNode,
                               onFieldSubmitted: (_) async {
                                 await _model.sendMessage(context);
-                                if (messageThreadsRecord.assignedToAdmin) {
-                                  _model.adminEmail22 =
-                                      await queryUsersRecordOnce(
-                                    queryBuilder: (usersRecord) =>
-                                        usersRecord.where(
-                                      'uid',
-                                      isEqualTo: messageThreadsRecord.adminId,
-                                    ),
-                                    singleRecord: true,
-                                  ).then((s) => s.firstOrNull);
 
-                                  await EmailRecord.collection
-                                      .doc()
-                                      .set(createEmailRecordData(
-                                        to: _model.adminEmail22?.email,
-                                        message: createMessageStruct(
-                                          subject:
-                                              'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
-                                          text: _model.textController.text,
-                                          html: 'test',
-                                          clearUnsetFields: false,
-                                          create: true,
-                                        ),
-                                      ));
-                                } else {
-                                  _model.adminUsersList2 =
-                                      await queryUsersRecordOnce(
-                                    queryBuilder: (usersRecord) =>
-                                        usersRecord.where(
-                                      'isAdmin',
-                                      isEqualTo: true,
-                                    ),
-                                  );
-                                  for (int loop1Index = 0;
-                                      loop1Index <
-                                          _model.adminUsersList2!.length;
-                                      loop1Index++) {
-                                    final currentLoop1Item =
-                                        _model.adminUsersList2![loop1Index];
-                                    _model.addToAdminUids(currentLoop1Item.uid);
-                                  }
-
-                                  await EmailRecord.collection.doc().set({
-                                    ...createEmailRecordData(
+                                await EmailRecord.collection
+                                    .doc()
+                                    .set(createEmailRecordData(
+                                      to: 'info@leapfrogdbs.co.uk',
                                       message: createMessageStruct(
                                         subject:
                                             'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
@@ -811,15 +696,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                         clearUnsetFields: false,
                                         create: true,
                                       ),
-                                    ),
-                                    ...mapToFirestore(
-                                      {
-                                        'toUids': _model.adminUids,
-                                      },
-                                    ),
-                                  });
-                                }
-
+                                    ));
                                 safeSetState(() {
                                   _model.textController?.clear();
                                 });
@@ -840,8 +717,6 @@ class _MessageWidgetState extends State<MessageWidget> {
                                   duration: Duration(milliseconds: 100),
                                   curve: Curves.ease,
                                 );
-
-                                safeSetState(() {});
                               },
                               autofocus: false,
                               obscureText: false,
@@ -950,48 +825,16 @@ class _MessageWidgetState extends State<MessageWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               await _model.sendMessage(context);
-                              if (messageThreadsRecord.assignedToAdmin) {
-                                _model.adminEmail = await queryUsersRecordOnce(
-                                  queryBuilder: (usersRecord) =>
-                                      usersRecord.where(
-                                    'uid',
-                                    isEqualTo: messageThreadsRecord.adminId,
-                                  ),
-                                  singleRecord: true,
-                                ).then((s) => s.firstOrNull);
 
-                                await EmailRecord.collection
-                                    .doc()
-                                    .set(createEmailRecordData(
-                                      to: _model.adminEmail?.email,
-                                      message: createMessageStruct(
-                                        subject:
-                                            'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
-                                        text: _model.textController.text,
-                                        html: 'test',
-                                        clearUnsetFields: false,
-                                        create: true,
-                                      ),
-                                    ));
-                              } else {
-                                _model.adminUsersList =
-                                    await queryUsersRecordOnce(
-                                  queryBuilder: (usersRecord) =>
-                                      usersRecord.where(
-                                    'isAdmin',
-                                    isEqualTo: true,
-                                  ),
-                                );
-                                for (int loop1Index = 0;
-                                    loop1Index < _model.adminUsersList!.length;
-                                    loop1Index++) {
-                                  final currentLoop1Item =
-                                      _model.adminUsersList![loop1Index];
-                                  _model.addToAdminUids(currentLoop1Item.uid);
-                                }
+                              await messageThreadsRecord.reference
+                                  .update(createThreadsRecordData(
+                                messagesSent: true,
+                              ));
 
-                                await EmailRecord.collection.doc().set({
-                                  ...createEmailRecordData(
+                              await EmailRecord.collection
+                                  .doc()
+                                  .set(createEmailRecordData(
+                                    to: 'info@leapfrogdbs.co.uk',
                                     message: createMessageStruct(
                                       subject:
                                           'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
@@ -1000,15 +843,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                       clearUnsetFields: false,
                                       create: true,
                                     ),
-                                  ),
-                                  ...mapToFirestore(
-                                    {
-                                      'toUids': _model.adminUids,
-                                    },
-                                  ),
-                                });
-                              }
-
+                                  ));
                               safeSetState(() {
                                 _model.textController?.clear();
                               });
@@ -1019,8 +854,6 @@ class _MessageWidgetState extends State<MessageWidget> {
                                 duration: Duration(milliseconds: 100),
                                 curve: Curves.ease,
                               );
-
-                              safeSetState(() {});
                             },
                             child: Icon(
                               Icons.send,

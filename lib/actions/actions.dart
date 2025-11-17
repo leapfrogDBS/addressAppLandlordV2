@@ -17,26 +17,38 @@ Future enquire(
   ThreadsRecord? threadCreated;
 
   var threadsRecordReference = ThreadsRecord.collection.doc();
-  await threadsRecordReference.set(createThreadsRecordData(
-    landlordId: currentUserReference?.id,
-    status: 'open',
-    createdAt: getCurrentTimestamp,
-    landlordName: currentUserDisplayName,
-    landlordPhotoUrl: currentUserPhoto,
-    title: conversationName,
-    assignedToAdmin: false,
-  ));
-  threadCreated = ThreadsRecord.getDocumentFromData(
-      createThreadsRecordData(
-        landlordId: currentUserReference?.id,
-        status: 'open',
-        createdAt: getCurrentTimestamp,
-        landlordName: currentUserDisplayName,
-        landlordPhotoUrl: currentUserPhoto,
-        title: conversationName,
-        assignedToAdmin: false,
-      ),
-      threadsRecordReference);
+  await threadsRecordReference.set({
+    ...createThreadsRecordData(
+      landlordId: currentUserReference?.id,
+      status: 'open',
+      createdAt: getCurrentTimestamp,
+      landlordName: currentUserDisplayName,
+      landlordPhotoUrl: currentUserPhoto,
+      title: conversationName,
+      messagesSent: false,
+    ),
+    ...mapToFirestore(
+      {
+        'adminLastReadAt': FieldValue.serverTimestamp(),
+      },
+    ),
+  });
+  threadCreated = ThreadsRecord.getDocumentFromData({
+    ...createThreadsRecordData(
+      landlordId: currentUserReference?.id,
+      status: 'open',
+      createdAt: getCurrentTimestamp,
+      landlordName: currentUserDisplayName,
+      landlordPhotoUrl: currentUserPhoto,
+      title: conversationName,
+      messagesSent: false,
+    ),
+    ...mapToFirestore(
+      {
+        'adminLastReadAt': DateTime.now(),
+      },
+    ),
+  }, threadsRecordReference);
 
   context.pushNamed(
     MessageWidget.routeName,

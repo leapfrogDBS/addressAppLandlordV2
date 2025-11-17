@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,18 +36,45 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (valueOrDefault<bool>(
-              currentUserDocument?.hasSignedAgreement, false) ==
-          true) {
-        if (valueOrDefault<bool>(
-                currentUserDocument?.enteredRetirmentTargets, false) ==
-            true) {
-          context.pushNamed(DashboardWidget.routeName);
-        } else {
-          context.pushNamed(WelcomeWidget.routeName);
+      await Future.delayed(
+        Duration(
+          milliseconds: 2000,
+        ),
+      );
+      _model.userCollection =
+          await UsersRecord.getDocumentOnce(currentUserReference!);
+      if (_model.userCollection?.status != 'active') {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
         }
+        context.pushNamed(WelcomeWidget.routeName);
+      } else if (!_model.userCollection!.enteredRetirmentTargets) {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
+        context.pushNamed(RetirementGoalsWidget.routeName);
+      } else if (!_model.userCollection!.shownMortgageOnboarding) {
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
+        context.pushNamed(MortgageInfoWidget.routeName);
       } else {
-        context.goNamed(SignAgreementWidget.routeName);
+        while (valueOrDefault<bool>(
+            currentUserDocument?.calculatingProjections, false)) {
+          _model.isCalculatingProjections = true;
+          safeSetState(() {});
+          await Future.delayed(
+            Duration(
+              milliseconds: 1000,
+            ),
+          );
+        }
+        _model.isCalculatingProjections = false;
+        safeSetState(() {});
+        if (Navigator.of(context).canPop()) {
+          context.pop();
+        }
+        context.pushNamed(DashboardWidget.routeName);
       }
     });
 
@@ -101,6 +130,17 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                if (_model.isCalculatingProjections)
+                  Align(
+                    alignment: AlignmentDirectional(0.0, 0.0),
+                    child: Text(
+                      'Calculating Projections',
+                      style: FlutterFlowTheme.of(context).displayLarge.override(
+                            fontFamily: 'Thunder',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(

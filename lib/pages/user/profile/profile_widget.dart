@@ -283,6 +283,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           height: m.dimensions?.height,
                                           width: m.dimensions?.width,
                                           blurHash: m.blurHash,
+                                          originalFilename: m.originalFilename,
                                         ))
                                     .toList();
 

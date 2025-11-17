@@ -7,7 +7,6 @@ import 'dart:ui';
 import '/index.dart';
 import 'retirement_goals_widget.dart' show RetirementGoalsWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,35 +15,60 @@ import 'package:provider/provider.dart';
 class RetirementGoalsModel extends FlutterFlowModel<RetirementGoalsWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // Stores action output result for [Firestore Query - Query a collection] action in Text widget.
-  List<PropertiesRecord>? propsNoMortgage2;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<PropertiesRecord>? propsNoMortgage;
+  final formKey = GlobalKey<FormState>();
+  // State field(s) for reitementAge widget.
+  FocusNode? reitementAgeFocusNode;
+  TextEditingController? reitementAgeTextController;
+  String? Function(BuildContext, String?)? reitementAgeTextControllerValidator;
+  String? _reitementAgeTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Planned retirement age is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for equity widget.
+  FocusNode? equityFocusNode;
+  TextEditingController? equityTextController;
+  String? Function(BuildContext, String?)? equityTextControllerValidator;
+  String? _equityTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Target Equity is required';
+    }
+
+    return null;
+  }
+
+  // State field(s) for income widget.
+  FocusNode? incomeFocusNode;
+  TextEditingController? incomeTextController;
+  String? Function(BuildContext, String?)? incomeTextControllerValidator;
+  String? _incomeTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Target Income is required';
+    }
+
+    return null;
+  }
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    reitementAgeTextControllerValidator = _reitementAgeTextControllerValidator;
+    equityTextControllerValidator = _equityTextControllerValidator;
+    incomeTextControllerValidator = _incomeTextControllerValidator;
+  }
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    reitementAgeFocusNode?.dispose();
+    reitementAgeTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
+    equityFocusNode?.dispose();
+    equityTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
+    incomeFocusNode?.dispose();
+    incomeTextController?.dispose();
   }
 }

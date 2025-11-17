@@ -9,6 +9,8 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/backend/push_notifications/push_notifications_handler.dart'
+    show PushNotificationsHandler;
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
@@ -208,11 +210,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => SignAgreementWidget(),
         ),
         FFRoute(
-          name: RedirectPageWidget.routeName,
-          path: RedirectPageWidget.routePath,
-          builder: (context, params) => RedirectPageWidget(),
-        ),
-        FFRoute(
           name: PdFViewPageWidget.routeName,
           path: PdFViewPageWidget.routePath,
           builder: (context, params) => PdFViewPageWidget(
@@ -229,17 +226,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: MortgageInfoWidget.routeName,
           path: MortgageInfoWidget.routePath,
-          asyncParams: {
-            'missingMortgage':
-                getDocList(['properties'], PropertiesRecord.fromSnapshot),
-          },
-          builder: (context, params) => MortgageInfoWidget(
-            missingMortgage: params.getParam<PropertiesRecord>(
-              'missingMortgage',
-              ParamType.Document,
-              isList: true,
-            ),
-          ),
+          builder: (context, params) => MortgageInfoWidget(),
+        ),
+        FFRoute(
+          name: RedirectPageWidget.routeName,
+          path: RedirectPageWidget.routePath,
+          builder: (context, params) => RedirectPageWidget(),
+        ),
+        FFRoute(
+          name: PersonalDetailsWidget.routeName,
+          path: PersonalDetailsWidget.routePath,
+          builder: (context, params) => PersonalDetailsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -433,7 +430,7 @@ class FFRoute {
                     fit: BoxFit.cover,
                   ),
                 )
-              : page;
+              : PushNotificationsHandler(child: page);
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

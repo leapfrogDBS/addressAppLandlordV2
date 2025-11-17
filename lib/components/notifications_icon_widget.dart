@@ -56,11 +56,14 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () async {
-          context.pushNamed(NotificationsWidget.routeName);
+          context.goNamed(NotificationsWidget.routeName);
         },
         child: badges.Badge(
           badgeContent: Text(
-            widget!.noOfNotifications.toString(),
+            valueOrDefault<String>(
+              widget!.noOfNotifications.toString(),
+              '18',
+            ),
             style: FlutterFlowTheme.of(context).titleSmall.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -68,7 +71,7 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).titleSmall.fontStyle,
                   ),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: FlutterFlowTheme.of(context).tertiary,
                   fontSize: 11.0,
                   letterSpacing: 0.0,
                   fontWeight:

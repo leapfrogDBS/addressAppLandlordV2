@@ -71,30 +71,15 @@ class ThreadsRecord extends FirestoreRecord {
   DocumentReference? get lastMessageRef => _lastMessageRef;
   bool hasLastMessageRef() => _lastMessageRef != null;
 
-  // "adminName" field.
-  String? _adminName;
-  String get adminName => _adminName ?? '';
-  bool hasAdminName() => _adminName != null;
-
-  // "adminPhotoUrl" field.
-  String? _adminPhotoUrl;
-  String get adminPhotoUrl => _adminPhotoUrl ?? '';
-  bool hasAdminPhotoUrl() => _adminPhotoUrl != null;
-
   // "title" field.
   String? _title;
   String get title => _title ?? '';
   bool hasTitle() => _title != null;
 
-  // "assignedToAdmin" field.
-  bool? _assignedToAdmin;
-  bool get assignedToAdmin => _assignedToAdmin ?? false;
-  bool hasAssignedToAdmin() => _assignedToAdmin != null;
-
-  // "adminId" field.
-  String? _adminId;
-  String get adminId => _adminId ?? '';
-  bool hasAdminId() => _adminId != null;
+  // "messagesSent" field.
+  bool? _messagesSent;
+  bool get messagesSent => _messagesSent ?? false;
+  bool hasMessagesSent() => _messagesSent != null;
 
   void _initializeFields() {
     _landlordId = snapshotData['landlordId'] as String?;
@@ -108,11 +93,8 @@ class ThreadsRecord extends FirestoreRecord {
     _landlordName = snapshotData['landlordName'] as String?;
     _landlordPhotoUrl = snapshotData['landlordPhotoUrl'] as String?;
     _lastMessageRef = snapshotData['lastMessageRef'] as DocumentReference?;
-    _adminName = snapshotData['adminName'] as String?;
-    _adminPhotoUrl = snapshotData['adminPhotoUrl'] as String?;
     _title = snapshotData['title'] as String?;
-    _assignedToAdmin = snapshotData['assignedToAdmin'] as bool?;
-    _adminId = snapshotData['adminId'] as String?;
+    _messagesSent = snapshotData['messagesSent'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -161,11 +143,8 @@ Map<String, dynamic> createThreadsRecordData({
   String? landlordName,
   String? landlordPhotoUrl,
   DocumentReference? lastMessageRef,
-  String? adminName,
-  String? adminPhotoUrl,
   String? title,
-  bool? assignedToAdmin,
-  String? adminId,
+  bool? messagesSent,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -180,11 +159,8 @@ Map<String, dynamic> createThreadsRecordData({
       'landlordName': landlordName,
       'landlordPhotoUrl': landlordPhotoUrl,
       'lastMessageRef': lastMessageRef,
-      'adminName': adminName,
-      'adminPhotoUrl': adminPhotoUrl,
       'title': title,
-      'assignedToAdmin': assignedToAdmin,
-      'adminId': adminId,
+      'messagesSent': messagesSent,
     }.withoutNulls,
   );
 
@@ -207,11 +183,8 @@ class ThreadsRecordDocumentEquality implements Equality<ThreadsRecord> {
         e1?.landlordName == e2?.landlordName &&
         e1?.landlordPhotoUrl == e2?.landlordPhotoUrl &&
         e1?.lastMessageRef == e2?.lastMessageRef &&
-        e1?.adminName == e2?.adminName &&
-        e1?.adminPhotoUrl == e2?.adminPhotoUrl &&
         e1?.title == e2?.title &&
-        e1?.assignedToAdmin == e2?.assignedToAdmin &&
-        e1?.adminId == e2?.adminId;
+        e1?.messagesSent == e2?.messagesSent;
   }
 
   @override
@@ -227,11 +200,8 @@ class ThreadsRecordDocumentEquality implements Equality<ThreadsRecord> {
         e?.landlordName,
         e?.landlordPhotoUrl,
         e?.lastMessageRef,
-        e?.adminName,
-        e?.adminPhotoUrl,
         e?.title,
-        e?.assignedToAdmin,
-        e?.adminId
+        e?.messagesSent
       ]);
 
   @override

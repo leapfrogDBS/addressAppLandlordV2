@@ -8,7 +8,6 @@ import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import 'message_widget.dart' show MessageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -38,14 +37,6 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Firestore Query - Query a collection] action in TextField widget.
-  UsersRecord? adminEmail22;
-  // Stores action output result for [Firestore Query - Query a collection] action in TextField widget.
-  List<UsersRecord>? adminUsersList2;
-  // Stores action output result for [Firestore Query - Query a collection] action in Icon widget.
-  UsersRecord? adminEmail;
-  // Stores action output result for [Firestore Query - Query a collection] action in Icon widget.
-  List<UsersRecord>? adminUsersList;
   // Model for NotificationsIcon component.
   late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.

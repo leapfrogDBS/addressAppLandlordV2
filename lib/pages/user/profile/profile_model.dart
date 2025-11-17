@@ -31,7 +31,7 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
 
   bool isDataUploading_uploadData = false;
   FFUploadedFile uploadedLocalFile_uploadData =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadData = '';
 
   // State field(s) for retirementAge widget.

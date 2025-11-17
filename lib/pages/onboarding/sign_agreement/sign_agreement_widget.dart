@@ -232,8 +232,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                                     hasSignedAgreement: true,
                                   ));
 
-                                  context
-                                      .pushNamed(RedirectPageWidget.routeName);
+                                  context.goNamed(RedirectPageWidget.routeName);
                                 },
                                 text: 'Signed',
                                 options: FFButtonOptions(

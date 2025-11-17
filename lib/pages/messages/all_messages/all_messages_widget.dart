@@ -257,347 +257,305 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                   child: TabBarView(
                                     controller: _model.tabBarController,
                                     children: [
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          StreamBuilder<List<ThreadsRecord>>(
-                                            stream: queryThreadsRecord(
-                                              queryBuilder: (threadsRecord) =>
-                                                  threadsRecord
-                                                      .where(
-                                                        'status',
-                                                        isEqualTo: 'open',
-                                                      )
-                                                      .where(
-                                                        'landlordId',
-                                                        isEqualTo:
-                                                            currentUserReference
-                                                                ?.id,
-                                                      )
-                                                      .orderBy('lastMessageAt',
-                                                          descending: true),
-                                            ),
-                                            builder: (context, snapshot) {
-                                              // Customize what your widget looks like when it's loading.
-                                              if (!snapshot.hasData) {
-                                                return Center(
-                                                  child: SizedBox(
-                                                    width: 50.0,
-                                                    height: 50.0,
-                                                    child:
-                                                        CircularProgressIndicator(
-                                                      valueColor:
-                                                          AlwaysStoppedAnimation<
-                                                              Color>(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
+                                      SingleChildScrollView(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            StreamBuilder<List<ThreadsRecord>>(
+                                              stream: queryThreadsRecord(
+                                                queryBuilder: (threadsRecord) =>
+                                                    threadsRecord
+                                                        .where(
+                                                          'status',
+                                                          isEqualTo: 'open',
+                                                        )
+                                                        .where(
+                                                          'landlordId',
+                                                          isEqualTo:
+                                                              currentUserReference
+                                                                  ?.id,
+                                                        )
+                                                        .orderBy(
+                                                            'lastMessageAt',
+                                                            descending: true),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              }
-                                              List<ThreadsRecord>
-                                                  listViewThreadsRecordList =
-                                                  snapshot.data!;
+                                                  );
+                                                }
+                                                List<ThreadsRecord>
+                                                    listViewThreadsRecordList =
+                                                    snapshot.data!;
 
-                                              return ListView.builder(
-                                                padding: EdgeInsets.zero,
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    listViewThreadsRecordList
-                                                        .length,
-                                                itemBuilder:
-                                                    (context, listViewIndex) {
-                                                  final listViewThreadsRecord =
-                                                      listViewThreadsRecordList[
-                                                          listViewIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 1.0,
-                                                                0.0, 0.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                          MessageWidget
-                                                              .routeName,
-                                                          queryParameters: {
-                                                            'threadRef':
-                                                                serializeParam(
-                                                              listViewThreadsRecord
-                                                                  .reference,
-                                                              ParamType
-                                                                  .DocumentReference,
-                                                            ),
-                                                          }.withoutNulls,
-                                                        );
-                                                      },
-                                                      child: Material(
-                                                        color:
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewThreadsRecordList
+                                                          .length,
+                                                  itemBuilder:
+                                                      (context, listViewIndex) {
+                                                    final listViewThreadsRecord =
+                                                        listViewThreadsRecordList[
+                                                            listViewIndex];
+                                                    return Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  1.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: InkWell(
+                                                        splashColor:
                                                             Colors.transparent,
-                                                        elevation: 0.0,
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      0.0),
-                                                        ),
-                                                        child: Container(
-                                                          width:
-                                                              double.infinity,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            MessageWidget
+                                                                .routeName,
+                                                            queryParameters: {
+                                                              'threadRef':
+                                                                  serializeParam(
+                                                                listViewThreadsRecord
+                                                                    .reference,
+                                                                ParamType
+                                                                    .DocumentReference,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+                                                        },
+                                                        child: Material(
+                                                          color: Colors
+                                                              .transparent,
+                                                          elevation: 0.0,
+                                                          shape:
+                                                              RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         0.0),
                                                           ),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .all(
-                                                                            12.0),
-                                                                child: StreamBuilder<
-                                                                    List<
-                                                                        UsersRecord>>(
-                                                                  stream:
-                                                                      queryUsersRecord(
-                                                                    queryBuilder:
-                                                                        (usersRecord) =>
-                                                                            usersRecord.where(
-                                                                      'uid',
-                                                                      isEqualTo:
-                                                                          listViewThreadsRecord
-                                                                              .adminId,
-                                                                    ),
-                                                                    singleRecord:
-                                                                        true,
-                                                                  ),
-                                                                  builder: (context,
-                                                                      snapshot) {
-                                                                    // Customize what your widget looks like when it's loading.
-                                                                    if (!snapshot
-                                                                        .hasData) {
-                                                                      return Center(
-                                                                        child:
-                                                                            SizedBox(
-                                                                          width:
-                                                                              50.0,
-                                                                          height:
-                                                                              50.0,
-                                                                          child:
-                                                                              CircularProgressIndicator(
-                                                                            valueColor:
-                                                                                AlwaysStoppedAnimation<Color>(
-                                                                              FlutterFlowTheme.of(context).primary,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                    List<UsersRecord>
-                                                                        rowUsersRecordList =
-                                                                        snapshot
-                                                                            .data!;
-                                                                    final rowUsersRecord = rowUsersRecordList
-                                                                            .isNotEmpty
-                                                                        ? rowUsersRecordList
-                                                                            .first
-                                                                        : null;
-
-                                                                    return Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children: [
-                                                                        Container(
-                                                                          width:
-                                                                              44.0,
-                                                                          height:
-                                                                              44.0,
-                                                                          decoration:
-                                                                              BoxDecoration(
+                                                          child: Container(
+                                                            width:
+                                                                double.infinity,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0.0),
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              12.0),
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            44.0,
+                                                                        height:
+                                                                            44.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).accent1,
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                          border:
+                                                                              Border.all(
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).accent1,
-                                                                            shape:
-                                                                                BoxShape.circle,
-                                                                            border:
-                                                                                Border.all(
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              width: 2.0,
-                                                                            ),
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            width:
+                                                                                2.0,
                                                                           ),
+                                                                        ),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(2.0),
                                                                           child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                EdgeInsets.all(2.0),
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(40.0),
                                                                             child:
-                                                                                ClipRRect(
-                                                                              borderRadius: BorderRadius.circular(40.0),
-                                                                              child: Image.network(
-                                                                                valueOrDefault<String>(
-                                                                                  rowUsersRecord?.photoUrl,
-                                                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/ud0bs10ukq7d/logo-add-icon-box-col-rgb%402x.png',
-                                                                                ),
-                                                                                width: 44.0,
-                                                                                height: 44.0,
-                                                                                fit: BoxFit.cover,
-                                                                              ),
+                                                                                Image.network(
+                                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/ud0bs10ukq7d/logo-add-icon-box-col-rgb%402x.png',
+                                                                              width: 44.0,
+                                                                              height: 44.0,
+                                                                              fit: BoxFit.cover,
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                        Expanded(
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              8.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                8.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      listViewThreadsRecord.title,
-                                                                                      textAlign: TextAlign.start,
-                                                                                      style: FlutterFlowTheme.of(context).displaySmall.override(
-                                                                                            fontFamily: 'Thunder',
-                                                                                            letterSpacing: 0.0,
-                                                                                          ),
-                                                                                    ),
-                                                                                    if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) && (listViewThreadsRecord.lastMessageSenderId != currentUserReference?.id))
-                                                                                      Expanded(
-                                                                                        child: Align(
-                                                                                          alignment: AlignmentDirectional(1.0, 0.0),
-                                                                                          child: Icon(
-                                                                                            Icons.circle_sharp,
-                                                                                            color: FlutterFlowTheme.of(context).accent1,
-                                                                                            size: 12.0,
-                                                                                          ),
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    listViewThreadsRecord.title,
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                                                                                          fontFamily: 'Thunder',
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                  if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) && (listViewThreadsRecord.lastMessageSenderId != currentUserReference?.id))
+                                                                                    Expanded(
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                        child: Icon(
+                                                                                          Icons.circle_sharp,
+                                                                                          color: FlutterFlowTheme.of(context).accent1,
+                                                                                          size: 12.0,
                                                                                         ),
                                                                                       ),
-                                                                                  ],
-                                                                                ),
-                                                                                Text(
-                                                                                  valueOrDefault<String>(
-                                                                                    rowUsersRecord?.displayName,
-                                                                                    'Addressed Admin',
-                                                                                  ),
-                                                                                  textAlign: TextAlign.start,
-                                                                                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                        font: GoogleFonts.figtree(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                        ),
-                                                                                        letterSpacing: 0.0,
+                                                                                    ),
+                                                                                ],
+                                                                              ),
+                                                                              Text(
+                                                                                'Addressed Admin',
+                                                                                textAlign: TextAlign.start,
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                      font: GoogleFonts.figtree(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                                       ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                                  child: Text(
-                                                                                    listViewThreadsRecord.lastMessageText.maybeHandleOverflow(
-                                                                                      maxChars: 60,
-                                                                                      replacement: '…',
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                                     ),
-                                                                                    textAlign: TextAlign.start,
-                                                                                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                          font: GoogleFonts.figtree(
-                                                                                            fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                                                                                          ),
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          letterSpacing: 0.0,
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                child: Text(
+                                                                                  listViewThreadsRecord.lastMessageText.maybeHandleOverflow(
+                                                                                    maxChars: 60,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  textAlign: TextAlign.start,
+                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        font: GoogleFonts.figtree(
                                                                                           fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
                                                                                           fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                                                                                         ),
-                                                                                  ),
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                                      ),
                                                                                 ),
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                                      child: Text(
-                                                                                        dateTimeFormat(
-                                                                                          "relative",
-                                                                                          listViewThreadsRecord.lastMessageAt!,
-                                                                                          locale: FFLocalizations.of(context).languageCode,
-                                                                                        ),
-                                                                                        textAlign: TextAlign.start,
-                                                                                        style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                              font: GoogleFonts.figtree(
-                                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                              ),
-                                                                                              letterSpacing: 0.0,
+                                                                              ),
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                    child: Text(
+                                                                                      dateTimeFormat(
+                                                                                        "relative",
+                                                                                        listViewThreadsRecord.lastMessageAt!,
+                                                                                        locale: FFLocalizations.of(context).languageCode,
+                                                                                      ),
+                                                                                      textAlign: TextAlign.start,
+                                                                                      style: FlutterFlowTheme.of(context).labelSmall.override(
+                                                                                            font: GoogleFonts.figtree(
                                                                                               fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                               fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                             ),
-                                                                                      ),
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                          ),
                                                                                     ),
-                                                                                    Icon(
-                                                                                      Icons.chevron_right_rounded,
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      size: 24.0,
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ],
-                                                                            ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    Icons.chevron_right_rounded,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    size: 24.0,
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
                                                                           ),
                                                                         ),
-                                                                      ],
-                                                                    );
-                                                                  },
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              Divider(
-                                                                thickness: 2.0,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .alternate,
-                                                              ),
-                                                            ],
+                                                                Divider(
+                                                                  thickness:
+                                                                      2.0,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .alternate,
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
-                                          ),
-                                        ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                       SingleChildScrollView(
                                         child: Column(
@@ -724,196 +682,159 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                       EdgeInsets
                                                                           .all(
                                                                               12.0),
-                                                                  child: StreamBuilder<
-                                                                      List<
-                                                                          UsersRecord>>(
-                                                                    stream:
-                                                                        queryUsersRecord(
-                                                                      queryBuilder:
-                                                                          (usersRecord) =>
-                                                                              usersRecord.where(
-                                                                        'uid',
-                                                                        isEqualTo:
-                                                                            listViewThreadsRecord.adminId,
-                                                                      ),
-                                                                      singleRecord:
-                                                                          true,
-                                                                    ),
-                                                                    builder:
-                                                                        (context,
-                                                                            snapshot) {
-                                                                      // Customize what your widget looks like when it's loading.
-                                                                      if (!snapshot
-                                                                          .hasData) {
-                                                                        return Center(
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            child:
-                                                                                CircularProgressIndicator(
-                                                                              valueColor: AlwaysStoppedAnimation<Color>(
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            44.0,
+                                                                        height:
+                                                                            44.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).accent1,
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                          border:
+                                                                              Border.all(
+                                                                            color:
                                                                                 FlutterFlowTheme.of(context).primary,
-                                                                              ),
+                                                                            width:
+                                                                                2.0,
+                                                                          ),
+                                                                        ),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(2.0),
+                                                                          child:
+                                                                              ClipRRect(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(40.0),
+                                                                            child:
+                                                                                Image.network(
+                                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/ud0bs10ukq7d/logo-add-icon-box-col-rgb%402x.png',
+                                                                              width: 44.0,
+                                                                              height: 44.0,
+                                                                              fit: BoxFit.cover,
                                                                             ),
                                                                           ),
-                                                                        );
-                                                                      }
-                                                                      List<UsersRecord>
-                                                                          rowUsersRecordList =
-                                                                          snapshot
-                                                                              .data!;
-                                                                      final rowUsersRecord = rowUsersRecordList
-                                                                              .isNotEmpty
-                                                                          ? rowUsersRecordList
-                                                                              .first
-                                                                          : null;
-
-                                                                      return Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Container(
-                                                                            width:
-                                                                                44.0,
-                                                                            height:
-                                                                                44.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).accent1,
-                                                                              shape: BoxShape.circle,
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 2.0,
-                                                                              ),
-                                                                            ),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsets.all(2.0),
-                                                                              child: ClipRRect(
-                                                                                borderRadius: BorderRadius.circular(40.0),
-                                                                                child: Image.network(
-                                                                                  valueOrDefault<String>(
-                                                                                    rowUsersRecord?.photoUrl,
-                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/ud0bs10ukq7d/logo-add-icon-box-col-rgb%402x.png',
+                                                                        ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              8.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Text(
+                                                                                    listViewThreadsRecord.title,
+                                                                                    textAlign: TextAlign.start,
+                                                                                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                                                                                          fontFamily: 'Thunder',
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
                                                                                   ),
-                                                                                  width: 44.0,
-                                                                                  height: 44.0,
-                                                                                  fit: BoxFit.cover,
+                                                                                  if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) && (listViewThreadsRecord.lastMessageSenderId != currentUserReference?.id))
+                                                                                    Expanded(
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                        child: Icon(
+                                                                                          Icons.circle_sharp,
+                                                                                          color: FlutterFlowTheme.of(context).accent1,
+                                                                                          size: 12.0,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                ],
+                                                                              ),
+                                                                              Text(
+                                                                                'Addressed Admin',
+                                                                                textAlign: TextAlign.start,
+                                                                                style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                      font: GoogleFonts.figtree(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                child: Text(
+                                                                                  listViewThreadsRecord.lastMessageText.maybeHandleOverflow(
+                                                                                    maxChars: 60,
+                                                                                    replacement: '…',
+                                                                                  ),
+                                                                                  textAlign: TextAlign.start,
+                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                        font: GoogleFonts.figtree(
+                                                                                          fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                                          fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                                        ),
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                                      ),
                                                                                 ),
                                                                               ),
-                                                                            ),
-                                                                          ),
-                                                                          Expanded(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
-                                                                              child: Column(
+                                                                              Row(
                                                                                 mainAxisSize: MainAxisSize.max,
-                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                 children: [
-                                                                                  Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Text(
-                                                                                        listViewThreadsRecord.title,
-                                                                                        textAlign: TextAlign.start,
-                                                                                        style: FlutterFlowTheme.of(context).displaySmall.override(
-                                                                                              fontFamily: 'Thunder',
-                                                                                              letterSpacing: 0.0,
-                                                                                            ),
-                                                                                      ),
-                                                                                      if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) && (listViewThreadsRecord.lastMessageSenderId != currentUserReference?.id))
-                                                                                        Expanded(
-                                                                                          child: Align(
-                                                                                            alignment: AlignmentDirectional(1.0, 0.0),
-                                                                                            child: Icon(
-                                                                                              Icons.circle_sharp,
-                                                                                              color: FlutterFlowTheme.of(context).accent1,
-                                                                                              size: 12.0,
-                                                                                            ),
-                                                                                          ),
-                                                                                        ),
-                                                                                    ],
-                                                                                  ),
-                                                                                  Text(
-                                                                                    valueOrDefault<String>(
-                                                                                      rowUsersRecord?.displayName,
-                                                                                      'Addressed Admin',
-                                                                                    ),
-                                                                                    textAlign: TextAlign.start,
-                                                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                          font: GoogleFonts.figtree(
-                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                          ),
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
-                                                                                        ),
-                                                                                  ),
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                     child: Text(
-                                                                                      listViewThreadsRecord.lastMessageText.maybeHandleOverflow(
-                                                                                        maxChars: 60,
-                                                                                        replacement: '…',
+                                                                                      dateTimeFormat(
+                                                                                        "relative",
+                                                                                        listViewThreadsRecord.lastMessageAt!,
+                                                                                        locale: FFLocalizations.of(context).languageCode,
                                                                                       ),
                                                                                       textAlign: TextAlign.start,
-                                                                                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                      style: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                             font: GoogleFonts.figtree(
-                                                                                              fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                                                                                              fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                                              fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                             ),
-                                                                                            color: FlutterFlowTheme.of(context).secondaryText,
                                                                                             letterSpacing: 0.0,
-                                                                                            fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                           ),
                                                                                     ),
                                                                                   ),
-                                                                                  Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                                        child: Text(
-                                                                                          dateTimeFormat(
-                                                                                            "relative",
-                                                                                            listViewThreadsRecord.lastMessageAt!,
-                                                                                            locale: FFLocalizations.of(context).languageCode,
-                                                                                          ),
-                                                                                          textAlign: TextAlign.start,
-                                                                                          style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                                font: GoogleFonts.figtree(
-                                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                                ),
-                                                                                                letterSpacing: 0.0,
-                                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                                              ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Icon(
-                                                                                        Icons.chevron_right_rounded,
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                        size: 24.0,
-                                                                                      ),
-                                                                                    ],
+                                                                                  Icon(
+                                                                                    Icons.chevron_right_rounded,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    size: 24.0,
                                                                                   ),
                                                                                 ],
                                                                               ),
-                                                                            ),
+                                                                            ],
                                                                           ),
-                                                                        ],
-                                                                      );
-                                                                    },
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                 ),
                                                                 Divider(

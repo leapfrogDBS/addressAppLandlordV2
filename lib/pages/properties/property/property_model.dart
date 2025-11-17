@@ -98,7 +98,7 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   PropertyProjectionsRecord? projectionDoc;
   bool isDataUploading_userMainImage = false;
   FFUploadedFile uploadedLocalFile_userMainImage =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_userMainImage = '';
 
   // State field(s) for TabBar widget.

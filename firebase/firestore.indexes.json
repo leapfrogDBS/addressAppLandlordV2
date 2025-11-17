@@ -45,18 +45,16 @@
           "order": "ASCENDING"
         }
       ]
-    },
+    }
+  ],
+  "fieldOverrides": [
     {
-      "collectionGroup": "properties",
-      "queryScope": "COLLECTION",
-      "fields": [
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
         {
-          "fieldPath": "ownerID",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "mortgageEntered",
-          "order": "ASCENDING"
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
         }
       ]
     }

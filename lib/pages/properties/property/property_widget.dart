@@ -436,6 +436,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                           width: m.dimensions
                                                               ?.width,
                                                           blurHash: m.blurHash,
+                                                          originalFilename: m
+                                                              .originalFilename,
                                                         ))
                                                     .toList();
 
@@ -3196,6 +3198,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ?.width,
                                                                           blurHash:
                                                                               m.blurHash,
+                                                                          originalFilename:
+                                                                              m.originalFilename,
                                                                         ))
                                                                     .toList();
 

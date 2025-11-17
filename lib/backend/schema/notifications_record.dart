@@ -76,6 +76,11 @@ class NotificationsRecord extends FirestoreRecord {
   bool get viewed => _viewed ?? false;
   bool hasViewed() => _viewed != null;
 
+  // "sendPush" field.
+  bool? _sendPush;
+  bool get sendPush => _sendPush ?? false;
+  bool hasSendPush() => _sendPush != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -91,6 +96,7 @@ class NotificationsRecord extends FirestoreRecord {
     _priority = snapshotData['priority'] as String?;
     _collapseKey = snapshotData['collapseKey'] as String?;
     _viewed = snapshotData['viewed'] as bool?;
+    _sendPush = snapshotData['sendPush'] as bool?;
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -145,6 +151,7 @@ Map<String, dynamic> createNotificationsRecordData({
   String? priority,
   String? collapseKey,
   bool? viewed,
+  bool? sendPush,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -160,6 +167,7 @@ Map<String, dynamic> createNotificationsRecordData({
       'priority': priority,
       'collapseKey': collapseKey,
       'viewed': viewed,
+      'sendPush': sendPush,
     }.withoutNulls,
   );
 
@@ -183,7 +191,8 @@ class NotificationsRecordDocumentEquality
         e1?.linkRef == e2?.linkRef &&
         e1?.priority == e2?.priority &&
         e1?.collapseKey == e2?.collapseKey &&
-        e1?.viewed == e2?.viewed;
+        e1?.viewed == e2?.viewed &&
+        e1?.sendPush == e2?.sendPush;
   }
 
   @override
@@ -199,7 +208,8 @@ class NotificationsRecordDocumentEquality
         e?.linkRef,
         e?.priority,
         e?.collapseKey,
-        e?.viewed
+        e?.viewed,
+        e?.sendPush
       ]);
 
   @override

@@ -126,6 +126,11 @@ class UsersRecord extends FirestoreRecord {
   double get availableCapital => _availableCapital ?? 0.0;
   bool hasAvailableCapital() => _availableCapital != null;
 
+  // "shownMortgageOnboarding" field.
+  bool? _shownMortgageOnboarding;
+  bool get shownMortgageOnboarding => _shownMortgageOnboarding ?? false;
+  bool hasShownMortgageOnboarding() => _shownMortgageOnboarding != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -151,6 +156,7 @@ class UsersRecord extends FirestoreRecord {
     _portfolioRating = castToType<int>(snapshotData['portfolioRating']);
     _calculatingProjections = snapshotData['calculatingProjections'] as bool?;
     _availableCapital = castToType<double>(snapshotData['availableCapital']);
+    _shownMortgageOnboarding = snapshotData['shownMortgageOnboarding'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -209,6 +215,7 @@ Map<String, dynamic> createUsersRecordData({
   int? portfolioRating,
   bool? calculatingProjections,
   double? availableCapital,
+  bool? shownMortgageOnboarding,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -234,6 +241,7 @@ Map<String, dynamic> createUsersRecordData({
       'portfolioRating': portfolioRating,
       'calculatingProjections': calculatingProjections,
       'availableCapital': availableCapital,
+      'shownMortgageOnboarding': shownMortgageOnboarding,
     }.withoutNulls,
   );
 
@@ -266,7 +274,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.status == e2?.status &&
         e1?.portfolioRating == e2?.portfolioRating &&
         e1?.calculatingProjections == e2?.calculatingProjections &&
-        e1?.availableCapital == e2?.availableCapital;
+        e1?.availableCapital == e2?.availableCapital &&
+        e1?.shownMortgageOnboarding == e2?.shownMortgageOnboarding;
   }
 
   @override
@@ -292,7 +301,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.status,
         e?.portfolioRating,
         e?.calculatingProjections,
-        e?.availableCapital
+        e?.availableCapital,
+        e?.shownMortgageOnboarding
       ]);
 
   @override

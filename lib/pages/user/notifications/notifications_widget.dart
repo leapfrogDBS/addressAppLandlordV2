@@ -95,45 +95,46 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
         ),
         body: Container(
           decoration: BoxDecoration(),
-          child: StreamBuilder<List<NotificationsRecord>>(
-            stream: queryNotificationsRecord(
-              parent: currentUserReference,
-            ),
-            builder: (context, snapshot) {
-              // Customize what your widget looks like when it's loading.
-              if (!snapshot.hasData) {
-                return Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            child: StreamBuilder<List<NotificationsRecord>>(
+              stream: queryNotificationsRecord(
+                parent: currentUserReference,
+                queryBuilder: (notificationsRecord) =>
+                    notificationsRecord.orderBy('createdAt', descending: true),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }
-              List<NotificationsRecord> listViewNotificationsRecordList =
-                  snapshot.data!;
+                  );
+                }
+                List<NotificationsRecord> listViewNotificationsRecordList =
+                    snapshot.data!;
 
-              return ListView.separated(
-                padding: EdgeInsets.fromLTRB(
-                  0,
-                  4.0,
-                  0,
-                  44.0,
-                ),
-                scrollDirection: Axis.vertical,
-                itemCount: listViewNotificationsRecordList.length,
-                separatorBuilder: (_, __) => SizedBox(height: 8.0),
-                itemBuilder: (context, listViewIndex) {
-                  final listViewNotificationsRecord =
-                      listViewNotificationsRecordList[listViewIndex];
-                  return Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: InkWell(
+                return ListView.separated(
+                  padding: EdgeInsets.fromLTRB(
+                    0,
+                    4.0,
+                    0,
+                    44.0,
+                  ),
+                  scrollDirection: Axis.vertical,
+                  itemCount: listViewNotificationsRecordList.length,
+                  separatorBuilder: (_, __) => SizedBox(height: 0.0),
+                  itemBuilder: (context, listViewIndex) {
+                    final listViewNotificationsRecord =
+                        listViewNotificationsRecordList[listViewIndex];
+                    return InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       hoverColor: Colors.transparent,
@@ -144,27 +145,20 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                           readAt: getCurrentTimestamp,
                           viewed: true,
                         ));
-
+                        if (Navigator.of(context).canPop()) {
+                          context.pop();
+                        }
                         context.pushNamed(DashboardWidget.routeName);
                       },
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xE6F9FAFB),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 3.0,
-                              color: Color(0x33000000),
-                              offset: Offset(
-                                0.0,
-                                1.0,
-                              ),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(12.0),
+                          color: listViewNotificationsRecord.viewed
+                              ? FlutterFlowTheme.of(context).primaryBackground
+                              : Color(0x19153048),
                           border: Border.all(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 1.0,
+                            color: Colors.transparent,
+                            width: 0.0,
                           ),
                         ),
                         child: Padding(
@@ -185,9 +179,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                   ),
                                 ),
                                 child: Icon(
-                                  Icons.currency_pound,
+                                  Icons.newspaper_sharp,
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  size: 24.0,
+                                  size: 20.0,
                                 ),
                               ),
                               Expanded(
@@ -234,21 +228,6 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                           .fontStyle,
                                                 ),
                                           ),
-                                          if (!listViewNotificationsRecord
-                                              .viewed)
-                                            Expanded(
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    1.0, 0.0),
-                                                child: Icon(
-                                                  Icons.circle,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  size: 12.0,
-                                                ),
-                                              ),
-                                            ),
                                         ].divide(SizedBox(width: 10.0)),
                                       ),
                                       Text(
@@ -280,36 +259,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 4.0, 0.0, 0.0),
-                                        child: Text(
-                                          '£1,2000',
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.figtree(
-                                                  fontWeight: FontWeight.normal,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 4.0),
+                                            0.0, 4.0, 0.0, 4.0),
                                         child: Text(
                                           dateTimeFormat(
                                             "relative",
@@ -356,11 +306,11 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
-              );
-            },
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),

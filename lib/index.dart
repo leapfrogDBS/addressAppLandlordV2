@@ -23,9 +23,11 @@ export '/pages/login_registration/change_password/change_password_widget.dart'
     show ChangePasswordWidget;
 export '/pages/onboarding/sign_agreement/sign_agreement_widget.dart'
     show SignAgreementWidget;
-export '/pages/login_registration/redirect_page/redirect_page_widget.dart'
-    show RedirectPageWidget;
 export '/pages/properties/pd_f_view_page/pd_f_view_page_widget.dart'
     show PdFViewPageWidget;
 export '/pages/onboarding/mortgage_info/mortgage_info_widget.dart'
     show MortgageInfoWidget;
+export '/pages/onboarding/redirect_page/redirect_page_widget.dart'
+    show RedirectPageWidget;
+export '/pages/onboarding/personal_details/personal_details_widget.dart'
+    show PersonalDetailsWidget;
