@@ -1,10 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/components/notifications_icon_widget.dart';
+import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/nav/hamburger/hamburger_widget.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import '/property_cards/sales_offer/sales_offer_widget.dart';
 import 'dart:ui';
@@ -75,101 +72,43 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
             ),
           ),
         ),
-        body: NestedScrollView(
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, _) => [
-            SliverAppBar(
-              pinned: false,
-              floating: true,
-              snap: true,
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              automaticallyImplyLeading: false,
-              leading: wrapWithModel(
-                model: _model.hamburgerModel,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              wrapWithModel(
+                model: _model.mainHeaderModel,
                 updateCallback: () => safeSetState(() {}),
-                child: HamburgerWidget(),
+                child: MainHeaderWidget(),
               ),
-              title: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/Adobe_Express_-_file.png',
-                  width: 150.0,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              actions: [
-                FutureBuilder<int>(
-                  future: queryNotificationsRecordCount(
-                    parent: currentUserReference,
-                    queryBuilder: (notificationsRecord) =>
-                        notificationsRecord.where(
-                      'viewed',
-                      isNotEqualTo: true,
-                    ),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    int notificationsIconCount = snapshot.data!;
-
-                    return wrapWithModel(
-                      model: _model.notificationsIconModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: NotificationsIconWidget(
-                        noOfNotifications: notificationsIconCount,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      wrapWithModel(
+                        model: _model.salesOfferModel1,
+                        updateCallback: () => safeSetState(() {}),
+                        child: SalesOfferWidget(),
                       ),
-                    );
-                  },
-                ),
-              ],
-              centerTitle: true,
-              elevation: 2.0,
-            )
-          ],
-          body: Builder(
-            builder: (context) {
-              return SafeArea(
-                top: false,
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        wrapWithModel(
-                          model: _model.salesOfferModel1,
-                          updateCallback: () => safeSetState(() {}),
-                          child: SalesOfferWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.salesOfferModel2,
-                          updateCallback: () => safeSetState(() {}),
-                          child: SalesOfferWidget(),
-                        ),
-                        wrapWithModel(
-                          model: _model.salesOfferModel3,
-                          updateCallback: () => safeSetState(() {}),
-                          child: SalesOfferWidget(),
-                        ),
-                      ],
-                    ),
+                      wrapWithModel(
+                        model: _model.salesOfferModel2,
+                        updateCallback: () => safeSetState(() {}),
+                        child: SalesOfferWidget(),
+                      ),
+                      wrapWithModel(
+                        model: _model.salesOfferModel3,
+                        updateCallback: () => safeSetState(() {}),
+                        child: SalesOfferWidget(),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ),
       ),

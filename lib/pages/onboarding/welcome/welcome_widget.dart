@@ -179,34 +179,6 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                   ),
                                 ].divide(SizedBox(width: 7.0)),
                               ),
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Text(
-                                  'All questions are optional - you can skip any that don\'t apply to you right now and update them later.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.figtree(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                        lineHeight: 1.3,
-                                      ),
-                                ),
-                              ),
                             ].divide(SizedBox(height: 11.0)),
                           ),
                         ),

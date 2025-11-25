@@ -71,7 +71,7 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).titleSmall.fontStyle,
                   ),
-                  color: FlutterFlowTheme.of(context).tertiary,
+                  color: FlutterFlowTheme.of(context).primary,
                   fontSize: 11.0,
                   letterSpacing: 0.0,
                   fontWeight:
@@ -81,7 +81,7 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
           ),
           showBadge: widget!.noOfNotifications! > 0,
           shape: badges.BadgeShape.circle,
-          badgeColor: FlutterFlowTheme.of(context).primaryBackground,
+          badgeColor: FlutterFlowTheme.of(context).tertiary,
           elevation: 4.0,
           padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
           position: badges.BadgePosition.topEnd(),
@@ -91,8 +91,8 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
             child: Icon(
               Icons.notifications_sharp,
-              color: FlutterFlowTheme.of(context).primaryBackground,
-              size: 24.0,
+              color: FlutterFlowTheme.of(context).primary,
+              size: 30.0,
             ),
           ),
         ),

@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/live_earnings_property_widget.dart';
+import '/components/main_header_widget.dart';
 import '/components/recent_activity_widget.dart';
 import '/components/stats_capital_widget.dart';
 import '/components/stats_combined_widget.dart';
@@ -19,7 +20,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/nav/hamburger/hamburger_widget.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -96,6 +96,10 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   List<ExpensesRecord>? getExpenses;
   // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   PropertyProjectionsRecord? projectionDoc;
+  // Model for SlideNavigation component.
+  late SlideNavigationModel slideNavigationModel;
+  // Model for mainHeader component.
+  late MainHeaderModel mainHeaderModel;
   bool isDataUploading_userMainImage = false;
   FFUploadedFile uploadedLocalFile_userMainImage =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
@@ -156,25 +160,23 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
-  // Model for Hamburger component.
-  late HamburgerModel hamburgerModel;
-  // Model for SlideNavigation component.
-  late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    slideNavigationModel = createModel(context, () => SlideNavigationModel());
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsPropertyModel =
         createModel(context, () => LiveEarningsPropertyModel());
     statsCombinedModel = createModel(context, () => StatsCombinedModel());
     statsRentalModel = createModel(context, () => StatsRentalModel());
     statsCapitalModel = createModel(context, () => StatsCapitalModel());
     recentActivityModel = createModel(context, () => RecentActivityModel());
-    hamburgerModel = createModel(context, () => HamburgerModel());
-    slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    slideNavigationModel.dispose();
+    mainHeaderModel.dispose();
     tabBarController?.dispose();
     liveEarningsPropertyModel.dispose();
     statsCombinedModel.dispose();
@@ -191,7 +193,5 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
     mortgageMonthlyPaymentTextController?.dispose();
 
     recentActivityModel.dispose();
-    hamburgerModel.dispose();
-    slideNavigationModel.dispose();
   }
 }

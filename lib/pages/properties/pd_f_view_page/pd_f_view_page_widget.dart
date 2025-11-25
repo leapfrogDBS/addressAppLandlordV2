@@ -1,4 +1,4 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -57,53 +57,16 @@ class _PdFViewPageWidgetState extends State<PdFViewPageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          title: Text(
-            valueOrDefault<String>(
-              widget!.fileName,
-              'PDF Certificate',
-            ),
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
-                    fontWeight:
-                        FlutterFlowTheme.of(context).headlineMedium.fontWeight,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                  ),
-                  color: Colors.white,
-                  fontSize: 18.0,
-                  letterSpacing: 0.0,
-                  fontWeight:
-                      FlutterFlowTheme.of(context).headlineMedium.fontWeight,
-                  fontStyle:
-                      FlutterFlowTheme.of(context).headlineMedium.fontStyle,
-                ),
-          ),
-          actions: [
-            FlutterFlowIconButton(
-              borderRadius: 8.0,
-              buttonSize: 40.0,
-              fillColor: FlutterFlowTheme.of(context).primary,
-              icon: Icon(
-                Icons.arrow_back,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                context.pop();
-              },
-            ),
-          ],
-          centerTitle: false,
-          elevation: 2.0,
-        ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              wrapWithModel(
+                model: _model.mainHeaderModel,
+                updateCallback: () => safeSetState(() {}),
+                child: MainHeaderWidget(),
+              ),
               FlutterFlowPdfViewer(
                 networkPath: widget!.pdfUrl!,
                 width: MediaQuery.sizeOf(context).width * 1.0,

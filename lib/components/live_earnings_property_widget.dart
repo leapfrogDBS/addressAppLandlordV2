@@ -87,7 +87,8 @@ class _LiveEarningsPropertyWidgetState
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryText,
+          color: FlutterFlowTheme.of(context).secondary,
+          borderRadius: BorderRadius.circular(50.0),
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 10.0, 20.0),
@@ -204,7 +205,7 @@ class _LiveEarningsPropertyWidgetState
                                 .labelMedium
                                 .fontStyle,
                           ),
-                          color: FlutterFlowTheme.of(context).secondary,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w600,
                           fontStyle: FlutterFlowTheme.of(context)
@@ -226,7 +227,7 @@ class _LiveEarningsPropertyWidgetState
                           fontStyle:
                               FlutterFlowTheme.of(context).labelSmall.fontStyle,
                         ),
-                        color: FlutterFlowTheme.of(context).greyBlue,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         letterSpacing: 0.0,
                         fontWeight:
                             FlutterFlowTheme.of(context).labelSmall.fontWeight,

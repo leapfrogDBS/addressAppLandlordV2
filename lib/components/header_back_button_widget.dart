@@ -5,18 +5,23 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'hamburger_model.dart';
-export 'hamburger_model.dart';
+import 'header_back_button_model.dart';
+export 'header_back_button_model.dart';
 
-class HamburgerWidget extends StatefulWidget {
-  const HamburgerWidget({super.key});
+class HeaderBackButtonWidget extends StatefulWidget {
+  const HeaderBackButtonWidget({
+    super.key,
+    this.parameter1,
+  });
+
+  final bool? parameter1;
 
   @override
-  State<HamburgerWidget> createState() => _HamburgerWidgetState();
+  State<HeaderBackButtonWidget> createState() => _HeaderBackButtonWidgetState();
 }
 
-class _HamburgerWidgetState extends State<HamburgerWidget> {
-  late HamburgerModel _model;
+class _HeaderBackButtonWidgetState extends State<HeaderBackButtonWidget> {
+  late HeaderBackButtonModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,7 +32,7 @@ class _HamburgerWidgetState extends State<HamburgerWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HamburgerModel());
+    _model = createModel(context, () => HeaderBackButtonModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -42,17 +47,16 @@ class _HamburgerWidgetState extends State<HamburgerWidget> {
   @override
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
-      borderColor: Colors.transparent,
-      borderRadius: 30.0,
-      borderWidth: 1.0,
-      buttonSize: 60.0,
+      borderRadius: 8.0,
+      buttonSize: 40.0,
+      fillColor: FlutterFlowTheme.of(context).primaryBackground,
       icon: Icon(
-        Icons.menu_rounded,
+        Icons.arrow_back_rounded,
         color: FlutterFlowTheme.of(context).primary,
         size: 36.0,
       ),
       onPressed: () async {
-        Scaffold.of(context).openDrawer();
+        context.safePop();
       },
     );
   }

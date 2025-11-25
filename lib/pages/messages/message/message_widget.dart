@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/notifications_icon_widget.dart';
+import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -109,78 +109,19 @@ class _MessageWidgetState extends State<MessageWidget> {
                 ),
               ),
             ),
-            appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              automaticallyImplyLeading: false,
-              leading: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.safePop();
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  size: 24.0,
-                ),
-              ),
-              title: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: Image.asset(
-                  'assets/images/Adobe_Express_-_file.png',
-                  width: 150.0,
-                  fit: BoxFit.cover,
-                  alignment: Alignment(0.0, 0.0),
-                ),
-              ),
-              actions: [
-                FutureBuilder<int>(
-                  future: queryNotificationsRecordCount(
-                    parent: currentUserReference,
-                    queryBuilder: (notificationsRecord) =>
-                        notificationsRecord.where(
-                      'viewed',
-                      isNotEqualTo: true,
-                    ),
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    int notificationsIconCount = snapshot.data!;
-
-                    return wrapWithModel(
-                      model: _model.notificationsIconModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: NotificationsIconWidget(
-                        noOfNotifications: notificationsIconCount,
-                      ),
-                    );
-                  },
-                ),
-              ],
-              centerTitle: true,
-              elevation: 2.0,
-            ),
             body: SafeArea(
               top: true,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  wrapWithModel(
+                    model: _model.mainHeaderModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: MainHeaderWidget(
+                      isRootScreen: false,
+                    ),
+                  ),
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(

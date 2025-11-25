@@ -1,10 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/notifications_icon_widget.dart';
+import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/nav/hamburger/hamburger_widget.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import '/index.dart';
@@ -29,25 +27,20 @@ class ArticlesModel extends FlutterFlowModel<ArticlesWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for Hamburger component.
-  late HamburgerModel hamburgerModel;
-  // Model for NotificationsIcon component.
-  late NotificationsIconModel notificationsIconModel;
+  // Model for mainHeader component.
+  late MainHeaderModel mainHeaderModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
-    hamburgerModel = createModel(context, () => HamburgerModel());
-    notificationsIconModel =
-        createModel(context, () => NotificationsIconModel());
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
-    hamburgerModel.dispose();
-    notificationsIconModel.dispose();
+    mainHeaderModel.dispose();
     slideNavigationModel.dispose();
   }
 }

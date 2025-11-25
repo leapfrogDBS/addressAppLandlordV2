@@ -3,12 +3,11 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_property_widget.dart';
-import '/components/notifications_icon_widget.dart';
+import '/components/main_header_widget.dart';
 import '/components/portfolio_score_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/nav/hamburger/hamburger_widget.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import '/property_cards/property_slider/property_slider_widget.dart';
 import 'dart:ui';
@@ -37,6 +36,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   List<PropertyProjectionsRecord>? projectionDocs;
+  // Model for mainHeader component.
+  late MainHeaderModel mainHeaderModel;
   // Model for liveEarningsProperty component.
   late LiveEarningsPropertyModel liveEarningsPropertyModel;
   // Model for portfolioScore component.
@@ -45,34 +46,27 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late KeyMetricsDashModel keyMetricsDashModel;
   // Model for PropertySlider component.
   late PropertySliderModel propertySliderModel;
-  // Model for Hamburger component.
-  late HamburgerModel hamburgerModel;
-  // Model for NotificationsIcon component.
-  late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsPropertyModel =
         createModel(context, () => LiveEarningsPropertyModel());
     portfolioScoreModel = createModel(context, () => PortfolioScoreModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
-    hamburgerModel = createModel(context, () => HamburgerModel());
-    notificationsIconModel =
-        createModel(context, () => NotificationsIconModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    mainHeaderModel.dispose();
     liveEarningsPropertyModel.dispose();
     portfolioScoreModel.dispose();
     keyMetricsDashModel.dispose();
     propertySliderModel.dispose();
-    hamburgerModel.dispose();
-    notificationsIconModel.dispose();
     slideNavigationModel.dispose();
   }
 }

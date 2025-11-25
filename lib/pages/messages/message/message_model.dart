@@ -1,6 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/notifications_icon_widget.dart';
+import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -29,6 +29,8 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Model for mainHeader component.
+  late MainHeaderModel mainHeaderModel;
   // State field(s) for scrollColumn widget.
   ScrollController? scrollColumnScrollController;
   // State field(s) for ListView widget.
@@ -37,28 +39,25 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Model for NotificationsIcon component.
-  late NotificationsIconModel notificationsIconModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
     scrollColumnScrollController = ScrollController();
     listViewController = ScrollController();
-    notificationsIconModel =
-        createModel(context, () => NotificationsIconModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    mainHeaderModel.dispose();
     scrollColumnScrollController?.dispose();
     listViewController?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
 
-    notificationsIconModel.dispose();
     slideNavigationModel.dispose();
   }
 
