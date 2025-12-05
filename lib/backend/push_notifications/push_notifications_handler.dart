@@ -126,7 +126,7 @@ final parametersBuilderMap =
   'Profile': ParameterData.none(),
   'Message': (data) async => ParameterData(
         allParams: {
-          'threadRef': getParameter<DocumentReference>(data, 'threadRef'),
+          'prefillText': getParameter<String>(data, 'prefillText'),
         },
       ),
   'Notifications': ParameterData.none(),

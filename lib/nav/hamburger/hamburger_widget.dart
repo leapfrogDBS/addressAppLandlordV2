@@ -43,7 +43,6 @@ class _HamburgerWidgetState extends State<HamburgerWidget> {
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
       borderColor: Colors.transparent,
-      borderRadius: 30.0,
       borderWidth: 1.0,
       buttonSize: 60.0,
       icon: Icon(

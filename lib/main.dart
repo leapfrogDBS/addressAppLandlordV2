@@ -176,8 +176,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'dashboard': DashboardWidget(),
       'Properties': PropertiesWidget(),
-      'AllMessages': AllMessagesWidget(),
       'SalesOffers': SalesOffersWidget(),
+      'Message': MessageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -261,14 +261,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.message,
+                  Icons.local_offer,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).secondary
                       : FlutterFlowTheme.of(context).greyBlue,
                   size: 24.0,
                 ),
                 Text(
-                  'Messages',
+                  'Offers',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
@@ -285,14 +285,14 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.local_offer,
+                  Icons.forum_outlined,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).secondary
                       : FlutterFlowTheme.of(context).greyBlue,
                   size: 24.0,
                 ),
                 Text(
-                  'Offers',
+                  'Messages',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3

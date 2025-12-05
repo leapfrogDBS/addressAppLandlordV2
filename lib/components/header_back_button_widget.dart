@@ -47,9 +47,8 @@ class _HeaderBackButtonWidgetState extends State<HeaderBackButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return FlutterFlowIconButton(
-      borderRadius: 8.0,
-      buttonSize: 40.0,
-      fillColor: FlutterFlowTheme.of(context).primaryBackground,
+      borderRadius: 0.0,
+      buttonSize: 60.0,
       icon: Icon(
         Icons.arrow_back_rounded,
         color: FlutterFlowTheme.of(context).primary,

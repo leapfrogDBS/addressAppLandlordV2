@@ -20,6 +20,7 @@ class SinglePropertyWidget extends StatefulWidget {
     this.propValue,
     required this.propID,
     required this.propFormattedAddress,
+    this.propLetType,
   });
 
   final String? propImg;
@@ -27,6 +28,7 @@ class SinglePropertyWidget extends StatefulWidget {
   final double? propValue;
   final DocumentReference? propID;
   final String? propFormattedAddress;
+  final String? propLetType;
 
   @override
   State<SinglePropertyWidget> createState() => _SinglePropertyWidgetState();
@@ -102,17 +104,23 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                    child: Text(
-                      formatNumber(
-                        widget!.propValue,
-                        formatType: FormatType.decimal,
-                        decimalType: DecimalType.automatic,
-                        currency: '£',
-                      ),
-                      style:
-                          FlutterFlowTheme.of(context).headlineSmall.override(
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        child: Text(
+                          formatNumber(
+                            widget!.propValue,
+                            formatType: FormatType.decimal,
+                            decimalType: DecimalType.automatic,
+                            currency: '£',
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .override(
                                 font: GoogleFonts.figtree(
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -127,7 +135,50 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     .headlineSmall
                                     .fontStyle,
                               ),
-                    ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondary,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Visibility(
+                          visible: widget!.propLetType != null &&
+                              widget!.propLetType != '',
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                widget!.propLetType,
+                                'Long-let',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(SizedBox(height: 6.0)),
                   ),
                   Expanded(
                     flex: 1,
@@ -165,10 +216,6 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                     ),
                   ),
                 ].divide(SizedBox(width: 16.0)),
-              ),
-              Divider(
-                thickness: 2.0,
-                color: FlutterFlowTheme.of(context).alternate,
               ),
             ]
                 .divide(SizedBox(height: 8.0))

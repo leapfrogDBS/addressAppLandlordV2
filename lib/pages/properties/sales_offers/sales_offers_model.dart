@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,30 +17,18 @@ class SalesOffersModel extends FlutterFlowModel<SalesOffersWidget> {
 
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  // Model for salesOffer component.
-  late SalesOfferModel salesOfferModel1;
-  // Model for salesOffer component.
-  late SalesOfferModel salesOfferModel2;
-  // Model for salesOffer component.
-  late SalesOfferModel salesOfferModel3;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
-    salesOfferModel1 = createModel(context, () => SalesOfferModel());
-    salesOfferModel2 = createModel(context, () => SalesOfferModel());
-    salesOfferModel3 = createModel(context, () => SalesOfferModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
     mainHeaderModel.dispose();
-    salesOfferModel1.dispose();
-    salesOfferModel2.dispose();
-    salesOfferModel3.dispose();
     slideNavigationModel.dispose();
   }
 }

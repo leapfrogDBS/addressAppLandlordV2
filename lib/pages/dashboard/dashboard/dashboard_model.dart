@@ -2,9 +2,8 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/key_metrics_dash_widget.dart';
-import '/components/live_earnings_property_widget.dart';
+import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
-import '/components/portfolio_score_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -21,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
@@ -38,10 +38,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<PropertyProjectionsRecord>? projectionDocs;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  // Model for liveEarningsProperty component.
-  late LiveEarningsPropertyModel liveEarningsPropertyModel;
-  // Model for portfolioScore component.
-  late PortfolioScoreModel portfolioScoreModel;
+  // Model for liveEarningsDash component.
+  late LiveEarningsDashModel liveEarningsDashModel;
   // Model for keyMetricsDash component.
   late KeyMetricsDashModel keyMetricsDashModel;
   // Model for PropertySlider component.
@@ -52,9 +50,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void initState(BuildContext context) {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
-    liveEarningsPropertyModel =
-        createModel(context, () => LiveEarningsPropertyModel());
-    portfolioScoreModel = createModel(context, () => PortfolioScoreModel());
+    liveEarningsDashModel = createModel(context, () => LiveEarningsDashModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
@@ -63,8 +59,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   @override
   void dispose() {
     mainHeaderModel.dispose();
-    liveEarningsPropertyModel.dispose();
-    portfolioScoreModel.dispose();
+    liveEarningsDashModel.dispose();
     keyMetricsDashModel.dispose();
     propertySliderModel.dispose();
     slideNavigationModel.dispose();

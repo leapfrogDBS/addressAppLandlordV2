@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,7 +11,12 @@ import 'sales_offer_model.dart';
 export 'sales_offer_model.dart';
 
 class SalesOfferWidget extends StatefulWidget {
-  const SalesOfferWidget({super.key});
+  const SalesOfferWidget({
+    super.key,
+    required this.salesOffer,
+  });
+
+  final SalesOffersRecord? salesOffer;
 
   @override
   State<SalesOfferWidget> createState() => _SalesOfferWidgetState();
@@ -62,7 +68,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
-                  'https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwyfHxob3VzZXxlbnwwfHx8fDE3NDU5NjQwMDB8MA&ixlib=rb-4.0.3&q=80&w=400',
+                  widget!.salesOffer!.mainPhoto,
                   width: double.infinity,
                   height: 172.0,
                   fit: BoxFit.cover,
@@ -72,12 +78,37 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                    child: Text(
-                      '42 Any Street, Anytown, Anywhere, NE1 3ED',
-                      style: FlutterFlowTheme.of(context).titleLarge.override(
-                            font: GoogleFonts.figtree(
+                  Container(
+                    width: 250.0,
+                    decoration: BoxDecoration(),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 250.0,
+                    decoration: BoxDecoration(),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget!.salesOffer?.addressFormatted,
+                          'Address',
+                        ),
+                        style: FlutterFlowTheme.of(context).titleLarge.override(
+                              font: GoogleFonts.figtree(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
                               fontWeight: FlutterFlowTheme.of(context)
                                   .titleLarge
                                   .fontWeight,
@@ -85,14 +116,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                   .titleLarge
                                   .fontStyle,
                             ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .fontStyle,
-                          ),
+                      ),
                     ),
                   ),
                 ],
@@ -162,7 +186,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                               Align(
                                 alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  '£730,000',
+                                  '12000',
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
                                       .override(
@@ -183,7 +207,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                               Align(
                                 alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  'Renatal Profit',
+                                  'Cashflow PCM',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -216,7 +240,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                   Align(
                                     alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
-                                      '+ £12,00',
+                                      'xadsdad',
                                       style: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .override(
@@ -447,7 +471,8 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                     onPressed: () async {
                       await action_blocks.enquire(
                         context,
-                        conversationName: '42 Any Street',
+                        prefillText:
+                            'I would like to speak about ${widget!.salesOffer?.addressFormatted}',
                       );
                     },
                     text: 'Enquire',
@@ -483,7 +508,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                   ),
                 ),
               ),
-            ],
+            ].divide(SizedBox(height: 5.0)),
           ),
         ),
       ),

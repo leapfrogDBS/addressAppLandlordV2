@@ -72,34 +72,46 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
               wrapWithModel(
                 model: _model.mainHeaderModel,
                 updateCallback: () => safeSetState(() {}),
-                child: MainHeaderWidget(),
+                child: MainHeaderWidget(
+                  isRootScreen: false,
+                ),
               ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 0.0, 0.0),
-                      child: Text(
-                        'PROPERTY INVESTMENT INTELLIGENCE',
-                        textAlign: TextAlign.center,
-                        style:
-                            FlutterFlowTheme.of(context).displayLarge.override(
-                                  fontFamily: 'Thunder',
-                                  letterSpacing: 0.0,
-                                ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 20.0, 0.0, 0.0),
+                        child: Text(
+                          'PROPERTY INVESTMENT INTELLIGENCE',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .displayLarge
+                              .override(
+                                fontFamily: 'Thunder',
+                                letterSpacing: 0.0,
+                              ),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Stay ahead of the curve with our carefully curated insights into the rental market, property investment trends, and legislative changes affecting landlords across England.',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  font: GoogleFonts.figtree(
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Stay ahead of the curve with our carefully curated insights into the rental market, property investment trends, and legislative changes affecting landlords across England.',
+                          style:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .fontWeight,
@@ -107,122 +119,127 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .fontStyle,
-                                ),
+                        ),
                       ),
-                    ),
-                    Divider(
-                      height: 8.0,
-                      thickness: 1.0,
-                      color: FlutterFlowTheme.of(context).alternate,
-                    ),
-                    StreamBuilder<List<ArticlesRecord>>(
-                      stream: queryArticlesRecord(
-                        queryBuilder: (articlesRecord) =>
-                            articlesRecord.orderBy('date', descending: true),
+                      Divider(
+                        height: 8.0,
+                        thickness: 1.0,
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
+                      StreamBuilder<List<ArticlesRecord>>(
+                        stream: queryArticlesRecord(
+                          queryBuilder: (articlesRecord) =>
+                              articlesRecord.orderBy('date', descending: true),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }
-                        List<ArticlesRecord> listViewArticlesRecordList =
-                            snapshot.data!;
+                            );
+                          }
+                          List<ArticlesRecord> listViewArticlesRecordList =
+                              snapshot.data!;
 
-                        return ListView.builder(
-                          padding: EdgeInsets.fromLTRB(
-                            0,
-                            8.0,
-                            0,
-                            44.0,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: listViewArticlesRecordList.length,
-                          itemBuilder: (context, listViewIndex) {
-                            final listViewArticlesRecord =
-                                listViewArticlesRecordList[listViewIndex];
-                            return InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  ArticleWidget.routeName,
-                                  queryParameters: {
-                                    'articleContent': serializeParam(
-                                      listViewArticlesRecord.content,
-                                      ParamType.String,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                              child: Container(
-                                width: 100.0,
-                                decoration: BoxDecoration(),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 8.0, 16.0, 8.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 100.0,
-                                        height: 100.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(2.0),
-                                          child: ClipRRect(
+                          return ListView.builder(
+                            padding: EdgeInsets.fromLTRB(
+                              0,
+                              8.0,
+                              0,
+                              44.0,
+                            ),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listViewArticlesRecordList.length,
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewArticlesRecord =
+                                  listViewArticlesRecordList[listViewIndex];
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    ArticleWidget.routeName,
+                                    queryParameters: {
+                                      'articleContent': serializeParam(
+                                        listViewArticlesRecord.content,
+                                        ParamType.String,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Container(
+                                  width: 100.0,
+                                  decoration: BoxDecoration(),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 8.0, 16.0, 8.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(10.0),
-                                            child: Image.network(
-                                              listViewArticlesRecord.image,
-                                              width: 120.0,
-                                              height: 120.0,
-                                              fit: BoxFit.cover,
+                                                BorderRadius.circular(12.0),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(2.0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              child: Image.network(
+                                                listViewArticlesRecord.image,
+                                                width: 120.0,
+                                                height: 120.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 0.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                listViewArticlesRecord.title,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts.figtree(
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  listViewArticlesRecord.title,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.figtree(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -234,31 +251,34 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                 .titleSmall
                                                                 .fontStyle,
                                                       ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 8.0, 12.0, 0.0),
-                                                child: Text(
-                                                  'Read Now',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.figtree(
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 8.0, 12.0, 0.0),
+                                                  child: Text(
+                                                    'Read Now',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelSmall
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .figtree(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -270,38 +290,23 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                   .labelSmall
                                                                   .fontStyle,
                                                         ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
-                                                      ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ].divide(SizedBox(height: 4.0)),
+                                              ].divide(SizedBox(height: 4.0)),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ].divide(SizedBox(height: 10.0)),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ].divide(SizedBox(height: 10.0)),
+                  ),
                 ),
               ),
             ],

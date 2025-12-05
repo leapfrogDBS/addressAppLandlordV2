@@ -81,6 +81,11 @@ class ThreadsRecord extends FirestoreRecord {
   bool get messagesSent => _messagesSent ?? false;
   bool hasMessagesSent() => _messagesSent != null;
 
+  // "adminHasUnread" field.
+  bool? _adminHasUnread;
+  bool get adminHasUnread => _adminHasUnread ?? false;
+  bool hasAdminHasUnread() => _adminHasUnread != null;
+
   void _initializeFields() {
     _landlordId = snapshotData['landlordId'] as String?;
     _status = snapshotData['status'] as String?;
@@ -95,6 +100,7 @@ class ThreadsRecord extends FirestoreRecord {
     _lastMessageRef = snapshotData['lastMessageRef'] as DocumentReference?;
     _title = snapshotData['title'] as String?;
     _messagesSent = snapshotData['messagesSent'] as bool?;
+    _adminHasUnread = snapshotData['adminHasUnread'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -145,6 +151,7 @@ Map<String, dynamic> createThreadsRecordData({
   DocumentReference? lastMessageRef,
   String? title,
   bool? messagesSent,
+  bool? adminHasUnread,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -161,6 +168,7 @@ Map<String, dynamic> createThreadsRecordData({
       'lastMessageRef': lastMessageRef,
       'title': title,
       'messagesSent': messagesSent,
+      'adminHasUnread': adminHasUnread,
     }.withoutNulls,
   );
 
@@ -184,7 +192,8 @@ class ThreadsRecordDocumentEquality implements Equality<ThreadsRecord> {
         e1?.landlordPhotoUrl == e2?.landlordPhotoUrl &&
         e1?.lastMessageRef == e2?.lastMessageRef &&
         e1?.title == e2?.title &&
-        e1?.messagesSent == e2?.messagesSent;
+        e1?.messagesSent == e2?.messagesSent &&
+        e1?.adminHasUnread == e2?.adminHasUnread;
   }
 
   @override
@@ -201,7 +210,8 @@ class ThreadsRecordDocumentEquality implements Equality<ThreadsRecord> {
         e?.landlordPhotoUrl,
         e?.lastMessageRef,
         e?.title,
-        e?.messagesSent
+        e?.messagesSent,
+        e?.adminHasUnread
       ]);
 
   @override

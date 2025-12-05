@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -19,10 +20,10 @@ export 'message_model.dart';
 class MessageWidget extends StatefulWidget {
   const MessageWidget({
     super.key,
-    required this.threadRef,
+    this.prefillText,
   });
 
-  final DocumentReference? threadRef;
+  final String? prefillText;
 
   static String routeName = 'Message';
   static String routePath = '/message';
@@ -43,9 +44,58 @@ class _MessageWidgetState extends State<MessageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await widget!.threadRef!.update(createThreadsRecordData(
-        landlordLastReadAt: getCurrentTimestamp,
-      ));
+      _model.threadsForLandlord = await queryThreadsRecordOnce(
+        queryBuilder: (threadsRecord) => threadsRecord.where(
+          'landlordId',
+          isEqualTo: currentUserReference?.id,
+        ),
+        limit: 1,
+      );
+      if (_model.threadsForLandlord != null &&
+          (_model.threadsForLandlord)!.isNotEmpty) {
+        _model.threadRef = _model.threadsForLandlord?.firstOrNull?.reference;
+        safeSetState(() {});
+
+        await _model.threadsForLandlord!.firstOrNull!.reference
+            .update(createThreadsRecordData(
+          landlordLastReadAt: getCurrentTimestamp,
+        ));
+      } else {
+        var threadsRecordReference = ThreadsRecord.collection.doc();
+        await threadsRecordReference.set({
+          ...createThreadsRecordData(
+            landlordId: currentUserReference?.id,
+            status: 'open',
+            createdAt: getCurrentTimestamp,
+            landlordName: currentUserDisplayName,
+            landlordPhotoUrl: currentUserPhoto,
+            messagesSent: false,
+          ),
+          ...mapToFirestore(
+            {
+              'adminLastReadAt': FieldValue.serverTimestamp(),
+            },
+          ),
+        });
+        _model.newThreadRef = ThreadsRecord.getDocumentFromData({
+          ...createThreadsRecordData(
+            landlordId: currentUserReference?.id,
+            status: 'open',
+            createdAt: getCurrentTimestamp,
+            landlordName: currentUserDisplayName,
+            landlordPhotoUrl: currentUserPhoto,
+            messagesSent: false,
+          ),
+          ...mapToFirestore(
+            {
+              'adminLastReadAt': DateTime.now(),
+            },
+          ),
+        }, threadsRecordReference);
+        _model.threadRef = _model.newThreadRef?.reference;
+        safeSetState(() {});
+      }
+
       await _model.scrollColumnScrollController?.animateTo(
         _model.scrollColumnScrollController!.position.maxScrollExtent,
         duration: Duration(milliseconds: 100),
@@ -53,7 +103,7 @@ class _MessageWidgetState extends State<MessageWidget> {
       );
     });
 
-    _model.textController ??= TextEditingController();
+    _model.textController ??= TextEditingController(text: widget!.prefillText);
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -68,181 +118,133 @@ class _MessageWidgetState extends State<MessageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<ThreadsRecord>(
-      stream: ThreadsRecord.getDocument(widget!.threadRef!),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                    FlutterFlowTheme.of(context).primary,
-                  ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        drawer: Drawer(
+          elevation: 16.0,
+          child: WebViewAware(
+            child: wrapWithModel(
+              model: _model.slideNavigationModel,
+              updateCallback: () => safeSetState(() {}),
+              child: SlideNavigationWidget(),
+            ),
+          ),
+        ),
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              wrapWithModel(
+                model: _model.mainHeaderModel,
+                updateCallback: () => safeSetState(() {}),
+                child: MainHeaderWidget(
+                  isRootScreen: true,
                 ),
               ),
-            ),
-          );
-        }
-
-        final messageThreadsRecord = snapshot.data!;
-
-        return GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            drawer: Drawer(
-              elevation: 16.0,
-              child: WebViewAware(
-                child: wrapWithModel(
-                  model: _model.slideNavigationModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: SlideNavigationWidget(),
-                ),
-              ),
-            ),
-            body: SafeArea(
-              top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  wrapWithModel(
-                    model: _model.mainHeaderModel,
-                    updateCallback: () => safeSetState(() {}),
-                    child: MainHeaderWidget(
-                      isRootScreen: false,
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                      child: Container(
-                        width: MediaQuery.sizeOf(context).width * 1.0,
-                        decoration: BoxDecoration(),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 68.0,
-                              height: 68.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).accent1,
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(2.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(40.0),
-                                  child: Image.asset(
-                                    'assets/images/logo-add-icon-box-col-rgb@2x.png',
-                                    width: 53.9,
-                                    height: 44.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
-                              child: Text(
-                                'ADDRESSED ADMIN',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .displayLarge
-                                    .override(
-                                      fontFamily: 'Thunder',
-                                      letterSpacing: 0.0,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 8.0, 20.0, 0.0),
-                              child: Text(
-                                'Please leave a message and a member of our team will resond shortly.',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                      fontSize: 12.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
-                              child: Text(
-                                messageThreadsRecord.title,
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                            Divider(
-                              thickness: 2.0,
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    controller: _model.scrollColumnScrollController,
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Container(
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    decoration: BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Container(
+                          width: 68.0,
+                          height: 68.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).accent1,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(40.0),
+                              child: Image.asset(
+                                'assets/images/logo-add-icon-box-col-rgb@2x.png',
+                                width: 53.9,
+                                height: 44.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: Text(
+                            'ADDRESSED ADMIN',
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .override(
+                                  fontFamily: 'Thunder',
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 8.0, 20.0, 5.0),
+                          child: Text(
+                            'Please leave a message and a member of our team will resond shortly.',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  font: GoogleFonts.figtree(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontStyle,
+                                  ),
+                                  fontSize: 12.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .fontStyle,
+                                ),
+                          ),
+                        ),
+                        Divider(
+                          height: 2.0,
+                          thickness: 2.0,
+                          color: FlutterFlowTheme.of(context).alternate,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: _model.scrollColumnScrollController,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      if (_model.threadRef != null)
                         StreamBuilder<List<MessagesRecord>>(
                           stream: queryMessagesRecord(
-                            parent: widget!.threadRef,
+                            parent: _model.threadRef,
                             queryBuilder: (messagesRecord) => messagesRecord
                                 .orderBy('createdAt', descending: true),
                           ),
@@ -602,215 +604,202 @@ class _MessageWidgetState extends State<MessageWidget> {
                             );
                           },
                         ),
-                      ],
-                    ),
+                    ],
                   ),
-                  Divider(
-                    thickness: 2.0,
-                    color: FlutterFlowTheme.of(context).alternate,
-                  ),
-                  if (messageThreadsRecord.status == 'open')
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 70.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 300.0,
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              onFieldSubmitted: (_) async {
-                                await _model.sendMessage(context);
+                ),
+              ),
+              Divider(
+                thickness: 2.0,
+                color: FlutterFlowTheme.of(context).alternate,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 70.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 300.0,
+                      child: TextFormField(
+                        controller: _model.textController,
+                        focusNode: _model.textFieldFocusNode,
+                        onFieldSubmitted: (_) async {
+                          await _model.sendMessage(context);
 
-                                await EmailRecord.collection
-                                    .doc()
-                                    .set(createEmailRecordData(
-                                      to: 'info@leapfrogdbs.co.uk',
-                                      message: createMessageStruct(
-                                        subject:
-                                            'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
-                                        text: _model.textController.text,
-                                        html: 'test',
-                                        clearUnsetFields: false,
-                                        create: true,
-                                      ),
-                                    ));
-                                safeSetState(() {
-                                  _model.textController?.clear();
-                                });
-                                await _model.scrollColumnScrollController
-                                    ?.animateTo(
-                                  _model.scrollColumnScrollController!.position
-                                      .maxScrollExtent,
-                                  duration: Duration(milliseconds: 100),
-                                  curve: Curves.ease,
-                                );
-                                safeSetState(() {
-                                  _model.textController?.clear();
-                                });
-                                await _model.scrollColumnScrollController
-                                    ?.animateTo(
-                                  _model.scrollColumnScrollController!.position
-                                      .maxScrollExtent,
-                                  duration: Duration(milliseconds: 100),
-                                  curve: Curves.ease,
-                                );
-                              },
-                              autofocus: false,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                hintText: 'Write a message....',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                          await EmailRecord.collection
+                              .doc()
+                              .set(createEmailRecordData(
+                                to: 'info@leapfrogdbs.co.uk',
+                                message: createMessageStruct(
+                                  subject:
+                                      'New message from ${currentUserDisplayName}',
+                                  text: _model.textController.text,
+                                  html: 'test',
+                                  clearUnsetFields: false,
+                                  create: true,
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x00000000),
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                filled: true,
-                                fillColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
+                              ));
+                          safeSetState(() {
+                            _model.textController?.text = widget!.prefillText!;
+                          });
+                          await _model.scrollColumnScrollController?.animateTo(
+                            _model.scrollColumnScrollController!.position
+                                .maxScrollExtent,
+                            duration: Duration(milliseconds: 100),
+                            curve: Curves.ease,
+                          );
+                          safeSetState(() {
+                            _model.textController?.text = widget!.prefillText!;
+                          });
+                          await _model.scrollColumnScrollController?.animateTo(
+                            _model.scrollColumnScrollController!.position
+                                .maxScrollExtent,
+                            duration: Duration(milliseconds: 100),
+                            curve: Curves.ease,
+                          );
+                        },
+                        autofocus: false,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.figtree(
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .labelMedium
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .labelMedium
                                           .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .labelMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .labelMedium
                                         .fontStyle,
                                   ),
-                              cursorColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
-                            ),
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              await _model.sendMessage(context);
-
-                              await messageThreadsRecord.reference
-                                  .update(createThreadsRecordData(
-                                messagesSent: true,
-                              ));
-
-                              await EmailRecord.collection
-                                  .doc()
-                                  .set(createEmailRecordData(
-                                    to: 'info@leapfrogdbs.co.uk',
-                                    message: createMessageStruct(
-                                      subject:
-                                          'New message from ${messageThreadsRecord.landlordName} - ${messageThreadsRecord.title}',
-                                      text: _model.textController.text,
-                                      html: 'test',
-                                      clearUnsetFields: false,
-                                      create: true,
+                          hintText: 'Write a message....',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
                                     ),
-                                  ));
-                              safeSetState(() {
-                                _model.textController?.clear();
-                              });
-                              await _model.scrollColumnScrollController
-                                  ?.animateTo(
-                                _model.scrollColumnScrollController!.position
-                                    .maxScrollExtent,
-                                duration: Duration(milliseconds: 100),
-                                curve: Curves.ease,
-                              );
-                            },
-                            child: Icon(
-                              Icons.send,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
                             ),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                        ].divide(SizedBox(width: 7.0)),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          filled: true,
+                          fillColor: FlutterFlowTheme.of(context).alternate,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              font: GoogleFonts.figtree(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                        cursorColor: FlutterFlowTheme.of(context).primaryText,
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
                       ),
                     ),
-                ],
+                    InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await _model.sendMessage(context);
+
+                        await _model.threadRef!.update(createThreadsRecordData(
+                          messagesSent: true,
+                        ));
+
+                        await EmailRecord.collection
+                            .doc()
+                            .set(createEmailRecordData(
+                              to: 'info@leapfrogdbs.co.uk',
+                              message: createMessageStruct(
+                                subject:
+                                    'New message from ${currentUserDisplayName}',
+                                text: _model.textController.text,
+                                html: 'test',
+                                clearUnsetFields: false,
+                                create: true,
+                              ),
+                            ));
+                        safeSetState(() {
+                          _model.textController?.text = widget!.prefillText!;
+                        });
+                        await _model.scrollColumnScrollController?.animateTo(
+                          _model.scrollColumnScrollController!.position
+                              .maxScrollExtent,
+                          duration: Duration(milliseconds: 100),
+                          curve: Curves.ease,
+                        );
+                      },
+                      child: Icon(
+                        Icons.send,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                    ),
+                  ].divide(SizedBox(width: 7.0)),
+                ),
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

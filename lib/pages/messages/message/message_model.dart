@@ -8,6 +8,7 @@ import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import 'message_widget.dart' show MessageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -27,8 +28,14 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   void updateAdminUidsAtIndex(int index, Function(String) updateFn) =>
       adminUids[index] = updateFn(adminUids[index]);
 
+  DocumentReference? threadRef;
+
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Firestore Query - Query a collection] action in Message widget.
+  List<ThreadsRecord>? threadsForLandlord;
+  // Stores action output result for [Backend Call - Create Document] action in Message widget.
+  ThreadsRecord? newThreadRef;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
   // State field(s) for scrollColumn widget.
@@ -65,7 +72,7 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   Future sendMessage(BuildContext context) async {
     MessagesRecord? createMessage;
 
-    var messagesRecordReference = MessagesRecord.createDoc(widget!.threadRef!);
+    var messagesRecordReference = MessagesRecord.createDoc(threadRef!);
     await messagesRecordReference.set(createMessagesRecordData(
       text: textController.text,
       senderId: currentUserReference?.id,
@@ -81,11 +88,13 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
         ),
         messagesRecordReference);
 
-    await widget!.threadRef!.update(createThreadsRecordData(
+    await threadRef!.update(createThreadsRecordData(
       lastMessageText: textController.text,
       lastMessageAt: getCurrentTimestamp,
       lastMessageSenderId: currentUserReference?.id,
       lastMessageRef: createMessage?.reference,
+      messagesSent: true,
+      adminHasUnread: true,
     ));
   }
 }

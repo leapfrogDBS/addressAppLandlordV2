@@ -290,7 +290,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                   onTap: () async {
                     Navigator.pop(context);
 
-                    context.pushNamed(AllMessagesWidget.routeName);
+                    context.pushNamed(MessageWidget.routeName);
                   },
                   child: Container(
                     width: double.infinity,
@@ -421,7 +421,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,

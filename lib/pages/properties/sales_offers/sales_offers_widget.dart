@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -82,29 +83,48 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                 updateCallback: () => safeSetState(() {}),
                 child: MainHeaderWidget(),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      wrapWithModel(
-                        model: _model.salesOfferModel1,
-                        updateCallback: () => safeSetState(() {}),
-                        child: SalesOfferWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.salesOfferModel2,
-                        updateCallback: () => safeSetState(() {}),
-                        child: SalesOfferWidget(),
-                      ),
-                      wrapWithModel(
-                        model: _model.salesOfferModel3,
-                        updateCallback: () => safeSetState(() {}),
-                        child: SalesOfferWidget(),
-                      ),
-                    ],
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 80.0),
+                  child: StreamBuilder<List<SalesOffersRecord>>(
+                    stream: querySalesOffersRecord(),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                      List<SalesOffersRecord> columnSalesOffersRecordList =
+                          snapshot.data!;
+
+                      return SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children:
+                              List.generate(columnSalesOffersRecordList.length,
+                                  (columnIndex) {
+                            final columnSalesOffersRecord =
+                                columnSalesOffersRecordList[columnIndex];
+                            return SalesOfferWidget(
+                              key: Key(
+                                  'Keybgm_${columnIndex}_of_${columnSalesOffersRecordList.length}'),
+                              salesOffer: columnSalesOffersRecord,
+                            );
+                          }),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

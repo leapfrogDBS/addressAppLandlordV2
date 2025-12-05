@@ -110,7 +110,7 @@ class _PortfolioGaugeState extends State<PortfolioGauge>
     final radius = (h / 2) - (_stroke / 2);
 
     final numberStyle = FlutterFlowTheme.of(context).bodyMedium?.copyWith(
-          fontSize: 44,
+          fontSize: 28,
           fontWeight: FontWeight.w800,
           height: 1.0,
         );

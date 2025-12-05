@@ -256,17 +256,8 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
-                                                      MessageWidget.routeName,
-                                                      queryParameters: {
-                                                        'threadRef':
-                                                            serializeParam(
-                                                          listViewThreadsRecord
-                                                              .reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
+                                                        MessageWidget
+                                                            .routeName);
                                                   },
                                                   child: Material(
                                                     color: Colors.transparent,
@@ -561,17 +552,8 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                       Colors.transparent,
                                                   onTap: () async {
                                                     context.pushNamed(
-                                                      MessageWidget.routeName,
-                                                      queryParameters: {
-                                                        'threadRef':
-                                                            serializeParam(
-                                                          listViewThreadsRecord
-                                                              .reference,
-                                                          ParamType
-                                                              .DocumentReference,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
+                                                        MessageWidget
+                                                            .routeName);
                                                   },
                                                   child: Material(
                                                     color: Colors.transparent,
@@ -951,11 +933,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                       _model.conversationNameTextController
                                               .text !=
                                           '') {
-                                    await action_blocks.enquire(
-                                      context,
-                                      conversationName: _model
-                                          .conversationNameTextController.text,
-                                    );
+                                    await action_blocks.enquire(context);
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(

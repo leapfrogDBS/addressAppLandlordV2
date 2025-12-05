@@ -137,17 +137,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
             name: MessageWidget.routeName,
             path: MessageWidget.routePath,
-            builder: (context, params) => NavBarPage(
-                  initialPage: '',
-                  page: MessageWidget(
-                    threadRef: params.getParam(
-                      'threadRef',
-                      ParamType.DocumentReference,
-                      isList: false,
-                      collectionNamePath: ['threads'],
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'Message')
+                : NavBarPage(
+                    initialPage: 'Message',
+                    page: MessageWidget(
+                      prefillText: params.getParam(
+                        'prefillText',
+                        ParamType.String,
+                      ),
                     ),
-                  ),
-                )),
+                  )),
         FFRoute(
           name: NotificationsWidget.routeName,
           path: NotificationsWidget.routePath,
@@ -178,9 +178,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
         FFRoute(
           name: AllMessagesWidget.routeName,
           path: AllMessagesWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'AllMessages')
-              : AllMessagesWidget(),
+          builder: (context, params) => AllMessagesWidget(),
         ),
         FFRoute(
           name: SalesOffersWidget.routeName,

@@ -573,3 +573,22 @@ int? convertStringToInteger(String? stringToConvert) {
 
   return int.tryParse(cleaned);
 }
+
+double getRatio(
+  double current,
+  double target,
+) {
+  if (target == 0) {
+    return 0;
+  }
+
+  double ratio = current / target;
+
+  // Cap at 1 if current > target
+  if (ratio > 1) {
+    ratio = 1;
+  }
+
+  // Round to 2 decimal places
+  return double.parse(ratio.toStringAsFixed(2));
+}

@@ -869,6 +869,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                           _model.equityTextController.text),
                                       targetIncome: int.tryParse(
                                           _model.incomeTextController.text),
+                                      enteredRetirmentTargets: true,
                                     ));
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();

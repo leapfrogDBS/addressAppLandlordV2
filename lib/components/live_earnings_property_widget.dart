@@ -143,7 +143,7 @@ class _LiveEarningsPropertyWidgetState
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
-                        'assets/images/green_underline.png',
+                        'assets/images/Clip_path_group.png',
                         width: 215.0,
                         height: 10.0,
                         fit: BoxFit.contain,

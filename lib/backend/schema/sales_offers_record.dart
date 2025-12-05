@@ -116,6 +116,21 @@ class SalesOffersRecord extends FirestoreRecord {
   LatLng? get latLng => _latLng;
   bool hasLatLng() => _latLng != null;
 
+  // "gallery" field.
+  List<String>? _gallery;
+  List<String> get gallery => _gallery ?? const [];
+  bool hasGallery() => _gallery != null;
+
+  // "monthlyRental" field.
+  double? _monthlyRental;
+  double get monthlyRental => _monthlyRental ?? 0.0;
+  bool hasMonthlyRental() => _monthlyRental != null;
+
+  // "noOfBedrooms" field.
+  int? _noOfBedrooms;
+  int get noOfBedrooms => _noOfBedrooms ?? 0;
+  bool hasNoOfBedrooms() => _noOfBedrooms != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _mainPhoto = snapshotData['mainPhoto'] as String?;
@@ -137,6 +152,9 @@ class SalesOffersRecord extends FirestoreRecord {
     _addressVerifiedAt = snapshotData['address_verified_at'] as DateTime?;
     _updatedBy = snapshotData['updated_by'] as String?;
     _latLng = snapshotData['latLng'] as LatLng?;
+    _gallery = getDataList(snapshotData['gallery']);
+    _monthlyRental = castToType<double>(snapshotData['monthlyRental']);
+    _noOfBedrooms = castToType<int>(snapshotData['noOfBedrooms']);
   }
 
   static CollectionReference get collection =>
@@ -194,6 +212,8 @@ Map<String, dynamic> createSalesOffersRecordData({
   DateTime? addressVerifiedAt,
   String? updatedBy,
   LatLng? latLng,
+  double? monthlyRental,
+  int? noOfBedrooms,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -217,6 +237,8 @@ Map<String, dynamic> createSalesOffersRecordData({
       'address_verified_at': addressVerifiedAt,
       'updated_by': updatedBy,
       'latLng': latLng,
+      'monthlyRental': monthlyRental,
+      'noOfBedrooms': noOfBedrooms,
     }.withoutNulls,
   );
 
@@ -228,6 +250,7 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
 
   @override
   bool equals(SalesOffersRecord? e1, SalesOffersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.title == e2?.title &&
         e1?.mainPhoto == e2?.mainPhoto &&
         e1?.price == e2?.price &&
@@ -247,7 +270,10 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
         e1?.addressSource == e2?.addressSource &&
         e1?.addressVerifiedAt == e2?.addressVerifiedAt &&
         e1?.updatedBy == e2?.updatedBy &&
-        e1?.latLng == e2?.latLng;
+        e1?.latLng == e2?.latLng &&
+        listEquality.equals(e1?.gallery, e2?.gallery) &&
+        e1?.monthlyRental == e2?.monthlyRental &&
+        e1?.noOfBedrooms == e2?.noOfBedrooms;
   }
 
   @override
@@ -271,7 +297,10 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
         e?.addressSource,
         e?.addressVerifiedAt,
         e?.updatedBy,
-        e?.latLng
+        e?.latLng,
+        e?.gallery,
+        e?.monthlyRental,
+        e?.noOfBedrooms
       ]);
 
   @override

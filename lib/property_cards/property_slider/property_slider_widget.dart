@@ -104,6 +104,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                       propID: listViewPropertiesRecord.reference,
                       propFormattedAddress:
                           listViewPropertiesRecord.addressFormatted,
+                      propLetType: listViewPropertiesRecord.letType,
                     ),
                   ),
                 );

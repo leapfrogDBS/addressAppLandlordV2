@@ -91,16 +91,16 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
 
                     return Container(
                       width: 180.0,
-                      height: 120.0,
+                      height: 180.0,
                       constraints: BoxConstraints(
                         maxWidth: 270.0,
                       ),
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: FlutterFlowTheme.of(context).primary,
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
-                          color: FlutterFlowTheme.of(context).alternate,
-                          width: 1.0,
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 0.0,
                         ),
                       ),
                       child: Padding(
@@ -109,49 +109,44 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 16.0, 0.0),
-                              child: Icon(
-                                Icons.house,
-                                color: FlutterFlowTheme.of(context).secondary,
-                                size: 32.0,
-                              ),
-                            ),
                             Flexible(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
                                     'No of Properties',
+                                    textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium
+                                        .titleMedium
                                         .override(
                                           font: GoogleFonts.figtree(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleMedium
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .titleMedium
                                                     .fontStyle,
                                           ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleMedium
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .labelMedium
+                                                  .titleMedium
                                                   .fontStyle,
                                         ),
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -162,16 +157,19 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                             '0',
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .displaySmall
+                                              .displayLarge
                                               .override(
                                                 fontFamily: 'Thunder',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
                                                 letterSpacing: 0.0,
                                               ),
                                         ),
                                       ),
                                     ],
                                   ),
-                                ],
+                                ].divide(SizedBox(height: 20.0)),
                               ),
                             ),
                           ],
@@ -185,16 +183,16 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                 child: Container(
                   width: 180.0,
-                  height: 120.0,
+                  height: 180.0,
                   constraints: BoxConstraints(
                     maxWidth: 270.0,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).secondary,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 1.0,
+                      color: FlutterFlowTheme.of(context).secondary,
+                      width: 0.0,
                     ),
                   ),
                   child: Padding(
@@ -203,102 +201,6 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 16.0, 0.0),
-                          child: Icon(
-                            Icons.date_range,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 32.0,
-                          ),
-                        ),
-                        Flexible(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Retirement Year',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 4.0, 0.0),
-                                      child: Text(
-                                        widget!.retirementYear.toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Thunder',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
-                child: Container(
-                  width: 180.0,
-                  height: 120.0,
-                  constraints: BoxConstraints(
-                    maxWidth: 270.0,
-                  ),
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    borderRadius: BorderRadius.circular(8.0),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 1.0,
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 16.0, 0.0),
-                          child: Icon(
-                            Icons.line_axis,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 32.0,
-                          ),
-                        ),
                         Flexible(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -307,28 +209,32 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 'Predicted Value at retirement',
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                    .titleMedium
                                     .override(
                                       font: GoogleFonts.figtree(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontStyle,
                                       ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontStyle,
                                     ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -340,17 +246,20 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                         decimalType: DecimalType.automatic,
                                         currency: '£',
                                       ),
+                                      textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
-                                          .displaySmall
+                                          .displayLarge
                                           .override(
                                             fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ),
                       ],
@@ -362,16 +271,16 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                 child: Container(
                   width: 180.0,
-                  height: 120.0,
+                  height: 180.0,
                   constraints: BoxConstraints(
                     maxWidth: 270.0,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).tertiary,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 1.0,
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      width: 0.0,
                     ),
                   ),
                   child: Padding(
@@ -380,45 +289,40 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 16.0, 0.0),
-                          child: Icon(
-                            Icons.money,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 32.0,
-                          ),
-                        ),
                         Flexible(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'Cululative Rental Profit',
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                    .titleMedium
                                     .override(
                                       font: GoogleFonts.figtree(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontStyle,
                                       ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontStyle,
                                     ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -431,16 +335,18 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                         currency: '£',
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .displaySmall
+                                          .displayLarge
                                           .override(
                                             fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ),
                       ],
@@ -452,7 +358,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                 child: Container(
                   width: 180.0,
-                  height: 120.0,
+                  height: 180.0,
                   constraints: BoxConstraints(
                     maxWidth: 270.0,
                   ),
@@ -460,7 +366,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).alternate,
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
                       width: 1.0,
                     ),
                   ),
@@ -470,15 +376,6 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 16.0, 0.0),
-                          child: Icon(
-                            Icons.money,
-                            color: FlutterFlowTheme.of(context).secondary,
-                            size: 32.0,
-                          ),
-                        ),
                         Flexible(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -487,28 +384,30 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 'Daily Gain On Retirement',
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                                    .titleMedium
                                     .override(
                                       font: GoogleFonts.figtree(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
+                                            .titleMedium
                                             .fontStyle,
                                       ),
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleMedium
                                           .fontStyle,
                                     ),
                               ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -521,16 +420,18 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                         currency: '£',
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .displaySmall
+                                          .displayLarge
                                           .override(
                                             fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ].divide(SizedBox(height: 20.0)),
                           ),
                         ),
                       ],

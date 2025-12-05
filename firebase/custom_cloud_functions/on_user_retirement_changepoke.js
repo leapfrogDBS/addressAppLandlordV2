@@ -14,7 +14,12 @@ exports.onUserRetirementChangepoke = functions
     const after = change.after.data() || {};
 
     // Only react if one of these changed
-    const watched = ["dob", "planned_retirement_age"];
+    const watched = [
+      "dob",
+      "planned_retirement_age",
+      "target_equity",
+      "target_income",
+    ];
     const changed = watched.some(
       (k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]),
     );
