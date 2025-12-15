@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
+import '/components/subscribe_block_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -29,18 +30,22 @@ class ArticlesModel extends FlutterFlowModel<ArticlesWidget> {
 
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
+  // Model for subscribeBlock component.
+  late SubscribeBlockModel subscribeBlockModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
+    subscribeBlockModel = createModel(context, () => SubscribeBlockModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
     mainHeaderModel.dispose();
+    subscribeBlockModel.dispose();
     slideNavigationModel.dispose();
   }
 }

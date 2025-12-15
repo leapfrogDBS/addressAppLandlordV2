@@ -126,7 +126,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.dashboard_rounded,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
                           Padding(
@@ -188,7 +188,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.business_rounded,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
                           Padding(
@@ -247,7 +247,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.document_scanner_rounded,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
                           Padding(
@@ -306,7 +306,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.groups,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
                           Padding(
@@ -365,7 +365,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.local_offer_outlined,
-                            color: FlutterFlowTheme.of(context).secondary,
+                            color: FlutterFlowTheme.of(context).primary,
                             size: 28.0,
                           ),
                           Padding(
@@ -450,10 +450,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                 height: 50.0,
                                 decoration: BoxDecoration(
                                   color: Color(0x4D9489F5),
-                                  borderRadius: BorderRadius.circular(12.0),
+                                  borderRadius: BorderRadius.circular(24.0),
                                   border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
+                                    color: FlutterFlowTheme.of(context).primary,
                                     width: 2.0,
                                   ),
                                 ),
@@ -461,7 +460,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                   padding: EdgeInsets.all(2.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => ClipRRect(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                      borderRadius: BorderRadius.circular(24.0),
                                       child: Image.network(
                                         valueOrDefault<String>(
                                           currentUserPhoto,

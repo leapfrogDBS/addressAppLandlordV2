@@ -161,15 +161,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
                   page: ArticlesWidget(),
                 )),
         FFRoute(
-          name: ArticleWidget.routeName,
-          path: ArticleWidget.routePath,
-          builder: (context, params) => ArticleWidget(
-            articleContent: params.getParam(
-              'articleContent',
-              ParamType.String,
-            ),
-          ),
-        ),
+            name: ArticleWidget.routeName,
+            path: ArticleWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: ArticleWidget(
+                    articleContent: params.getParam(
+                      'articleContent',
+                      ParamType.String,
+                    ),
+                  ),
+                )),
         FFRoute(
           name: ForgotPasswordWidget.routeName,
           path: ForgotPasswordWidget.routePath,

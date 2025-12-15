@@ -67,15 +67,20 @@ class _ArticleWidgetState extends State<ArticleWidget> {
                   isRootScreen: false,
                 ),
               ),
-              Container(
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: BoxDecoration(),
-                child: FlutterFlowWebView(
-                  content: widget!.articleContent!,
-                  height: MediaQuery.sizeOf(context).height * 1.0,
-                  verticalScroll: false,
-                  horizontalScroll: false,
-                  html: true,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                  child: Container(
+                    decoration: BoxDecoration(),
+                    child: FlutterFlowWebView(
+                      content: widget!.articleContent!,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      verticalScroll: false,
+                      horizontalScroll: false,
+                      html: true,
+                    ),
+                  ),
                 ),
               ),
             ],
