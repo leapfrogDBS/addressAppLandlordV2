@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -145,10 +144,6 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                           readAt: getCurrentTimestamp,
                           viewed: true,
                         ));
-                        if (Navigator.of(context).canPop()) {
-                          context.pop();
-                        }
-                        context.pushNamed(DashboardWidget.routeName);
                       },
                       child: Container(
                         width: double.infinity,
@@ -167,22 +162,48 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: 40.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).accent1,
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 2.0,
-                                  ),
-                                ),
-                                child: Icon(
-                                  Icons.newspaper_sharp,
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  size: 20.0,
-                                ),
+                              Builder(
+                                builder: (context) {
+                                  if (listViewNotificationsRecord.imageUrl !=
+                                          null &&
+                                      listViewNotificationsRecord.imageUrl !=
+                                          '') {
+                                    return ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        listViewNotificationsRecord.imageUrl,
+                                        width: 70.0,
+                                        height: 60.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    );
+                                  } else {
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 0.0),
+                                      child: Container(
+                                        width: 40.0,
+                                        height: 40.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .accent1,
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                        child: Icon(
+                                          Icons.newspaper_sharp,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          size: 20.0,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                               ),
                               Expanded(
                                 child: Padding(
