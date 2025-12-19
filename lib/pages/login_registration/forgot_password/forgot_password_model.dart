@@ -1,11 +1,12 @@
-import '/auth/firebase_auth/auth_util.dart';
+import '/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/index.dart';
 import 'forgot_password_widget.dart' show ForgotPasswordWidget;
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,8 @@ class ForgotPasswordModel extends FlutterFlowModel<ForgotPasswordWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
   String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
+  // Stores action output result for [Cloud Function - sendPasswordResetEmail] action in Button widget.
+  SendPasswordResetEmailCloudFunctionCallResponse? cloudFunctionmk8;
 
   @override
   void initState(BuildContext context) {}

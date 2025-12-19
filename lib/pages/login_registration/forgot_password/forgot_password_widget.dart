@@ -1,10 +1,11 @@
-import '/auth/firebase_auth/auth_util.dart';
+import '/backend/custom_cloud_functions/custom_cloud_function_response_manager.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/index.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -95,7 +96,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // This row exists for when the "app bar" is hidden on desktop, having a way back for the user can work well.
                 if (responsiveVisibility(
                   context: context,
                   phone: false,
@@ -302,20 +302,57 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 16.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (_model.emailAddressTextController.text.isEmpty) {
+                        try {
+                          final result = await FirebaseFunctions.instance
+                              .httpsCallable('sendPasswordResetEmail')
+                              .call({
+                            "email": _model.emailAddressTextController.text,
+                          });
+                          _model.cloudFunctionmk8 =
+                              SendPasswordResetEmailCloudFunctionCallResponse(
+                            succeeded: true,
+                          );
+                        } on FirebaseFunctionsException catch (error) {
+                          _model.cloudFunctionmk8 =
+                              SendPasswordResetEmailCloudFunctionCallResponse(
+                            errorCode: error.code,
+                            succeeded: false,
+                          );
+                        }
+
+                        if (_model.cloudFunctionmk8!.succeeded!) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                'Email required!',
+                                'Please check your email for instructions',
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
                               ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
                             ),
                           );
-                          return;
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                _model.cloudFunctionmk8!.errorCode!,
+                                style: TextStyle(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).error,
+                            ),
+                          );
                         }
-                        await authManager.resetPassword(
-                          email: _model.emailAddressTextController.text,
-                          context: context,
-                        );
+
+                        safeSetState(() {});
                       },
                       text: 'Send Password Reset Link',
                       options: FFButtonOptions(

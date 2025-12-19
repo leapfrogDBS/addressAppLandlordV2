@@ -18,3 +18,5 @@ exports.onHouseOverrideWritepoke =
 const onRentOverrideWritepoke = require("./on_rent_override_writepoke.js");
 exports.onRentOverrideWritepoke =
   onRentOverrideWritepoke.onRentOverrideWritepoke;
+const sendPasswordResetEmail = require("./send_password_reset_email.js");
+exports.sendPasswordResetEmail = sendPasswordResetEmail.sendPasswordResetEmail;
