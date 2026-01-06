@@ -44,6 +44,7 @@ dependencies:
   csslib: 1.0.2
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
+  emoji_flag_converter: 1.1.0
   equatable: 2.0.7
   expandable: 5.0.1
   file_picker: 10.1.9

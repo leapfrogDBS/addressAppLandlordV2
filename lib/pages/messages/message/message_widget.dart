@@ -192,7 +192,9 @@ class _MessageWidgetState extends State<MessageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Text(
-                            'ADDRESSED ADMIN',
+                            FFLocalizations.of(context).getText(
+                              'ow7hdn9f' /* ADDRESSED ADMIN */,
+                            ),
                             textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
@@ -207,7 +209,9 @@ class _MessageWidgetState extends State<MessageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 8.0, 20.0, 5.0),
                           child: Text(
-                            'Please leave a message and a member of our team will resond shortly.',
+                            FFLocalizations.of(context).getText(
+                              'gw9i9bkl' /* Please leave a message and a m... */,
+                            ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -683,7 +687,9 @@ class _MessageWidgetState extends State<MessageWidget> {
                                         .labelMedium
                                         .fontStyle,
                                   ),
-                          hintText: 'Write a message....',
+                          hintText: FFLocalizations.of(context).getText(
+                            '3nu438u0' /* Write a message.... */,
+                          ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.figtree(

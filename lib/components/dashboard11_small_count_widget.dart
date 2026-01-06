@@ -89,7 +89,9 @@ class _Dashboard11SmallCountWidgetState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Balance at Risk',
+                      FFLocalizations.of(context).getText(
+                        '6dwh983a' /* Balance at Risk */,
+                      ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             font: GoogleFonts.figtree(
                               fontWeight: FlutterFlowTheme.of(context)
@@ -115,7 +117,9 @@ class _Dashboard11SmallCountWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 4.0, 0.0),
                           child: Text(
-                            '\$567,402',
+                            FFLocalizations.of(context).getText(
+                              'bylff1wn' /* $567,402 */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
@@ -150,7 +154,9 @@ class _Dashboard11SmallCountWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: Text(
-                            '45.5%',
+                            FFLocalizations.of(context).getText(
+                              'nmlbzy9i' /* 45.5% */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(

@@ -156,7 +156,9 @@ class _LiveEarningsPropertyWidgetState
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Esitmated gain this year',
+                    FFLocalizations.of(context).getText(
+                      'x2wysgaj' /* Esitmated gain this year */,
+                    ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           font: GoogleFonts.figtree(
                             fontWeight: FlutterFlowTheme.of(context)
@@ -218,7 +220,9 @@ class _LiveEarningsPropertyWidgetState
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                 child: Text(
-                  'Based on rental profit and capital appreciation',
+                  FFLocalizations.of(context).getText(
+                    'ak9pv36y' /* Based on rental profit and cap... */,
+                  ),
                   style: FlutterFlowTheme.of(context).labelSmall.override(
                         font: GoogleFonts.figtree(
                           fontWeight: FlutterFlowTheme.of(context)

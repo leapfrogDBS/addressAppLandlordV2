@@ -76,7 +76,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Capital Gain',
+                              FFLocalizations.of(context).getText(
+                                'kw4solyj' /* Capital Gain */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -128,7 +130,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Price Incease',
+                              FFLocalizations.of(context).getText(
+                                'cnh3mg8n' /* Price Incease */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -173,7 +177,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                       ),
                                 ),
                                 TextSpan(
-                                  text: '%',
+                                  text: FFLocalizations.of(context).getText(
+                                    'ekwv7t08' /* % */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .displayLarge
                                       .override(
@@ -223,7 +229,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Daily Growth',
+                                FFLocalizations.of(context).getText(
+                                  'hs052s18' /* Daily Growth */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -280,7 +288,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Property Value ',
+                                FFLocalizations.of(context).getText(
+                                  'ohhlt338' /* Property Value  */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium

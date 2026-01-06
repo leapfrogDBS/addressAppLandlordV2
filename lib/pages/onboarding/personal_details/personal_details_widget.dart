@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -70,7 +71,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Onboarding',
+            FFLocalizations.of(context).getText(
+              '0sriu7tq' /* Onboarding */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -113,11 +116,47 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                     ),
                     Text(
                       key: ValueKey('onboardingPageTitle'),
-                      'PERSONAL DETAILS',
+                      FFLocalizations.of(context).getText(
+                        'uq8f2fad' /* PERSONAL DETAILS */,
+                      ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily: 'Thunder',
                             letterSpacing: 0.0,
                           ),
+                    ),
+                    FlutterFlowLanguageSelector(
+                      width: 200.0,
+                      height: 40.0,
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      borderColor: Colors.transparent,
+                      dropdownIconColor:
+                          FlutterFlowTheme.of(context).secondaryText,
+                      borderRadius: 8.0,
+                      textStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                font: GoogleFonts.figtree(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                      hideFlags: false,
+                      flagSize: 24.0,
+                      flagTextGap: 8.0,
+                      currentLanguage: FFLocalizations.of(context).languageCode,
+                      languages: FFLocalizations.languages(),
+                      onChanged: (lang) => setAppLanguage(context, lang),
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -218,7 +257,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                         _model.uploadedFileUrl_uploadDataEdit,
                                   ));
                                 },
-                                text: 'Change Photo',
+                                text: FFLocalizations.of(context).getText(
+                                  'c3gvwgky' /* Change Photo */,
+                                ),
                                 options: FFButtonOptions(
                                   height: 26.7,
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -271,7 +312,10 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   readOnly: true,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText: 'Date of Birth',
+                                    labelText:
+                                        FFLocalizations.of(context).getText(
+                                      'qoe8wpq7' /* Date of Birth */,
+                                    ),
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -384,7 +428,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
-                                  'Date of Birth:',
+                                  FFLocalizations.of(context).getText(
+                                    '303j2upi' /* Date of Birth: */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
@@ -514,7 +560,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     );
                                   });
                                 },
-                                text: 'Choose Date',
+                                text: FFLocalizations.of(context).getText(
+                                  'w6e60lfa' /* Choose Date */,
+                                ),
                                 options: FFButtonOptions(
                                   height: 30.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -563,7 +611,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                 Expanded(
                                   flex: 2,
                                   child: Text(
-                                    'Capital Available for further investment',
+                                    FFLocalizations.of(context).getText(
+                                      'abo710f0' /* Capital Available for further ... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -632,7 +682,11 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                                               .labelMedium
                                                               .fontStyle,
                                                     ),
-                                            hintText: 'Enter here',
+                                            hintText:
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                              '6mr6o9kl' /* Enter here */,
+                                            ),
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -791,7 +845,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     );
                                   }
                                 },
-                                text: 'Next',
+                                text: FFLocalizations.of(context).getText(
+                                  '18xzafzd' /* Next */,
+                                ),
                                 options: FFButtonOptions(
                                   width: 200.0,
                                   height: 40.0,

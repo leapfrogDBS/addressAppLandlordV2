@@ -18,20 +18,17 @@ class LiveEarningsDashWidget extends StatefulWidget {
     double? dailyGain,
     double? secondGain,
     double? earningsToDate,
-    String? headingText,
     int? portfolioScore,
   })  : this.yearlyGain = yearlyGain ?? 0.00,
         this.dailyGain = dailyGain ?? 0.00,
         this.secondGain = secondGain ?? 0.00,
         this.earningsToDate = earningsToDate ?? 0.00,
-        this.headingText = headingText ?? 'This property has earned you...',
         this.portfolioScore = portfolioScore ?? 0;
 
   final double yearlyGain;
   final double dailyGain;
   final double secondGain;
   final double earningsToDate;
-  final String headingText;
   final int portfolioScore;
 
   @override
@@ -108,7 +105,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: Text(
-                        widget!.headingText,
+                        FFLocalizations.of(context).getText(
+                          '5pll7ff5' /* Your portfolio has earned an e... */,
+                        ),
                         style:
                             FlutterFlowTheme.of(context).headlineLarge.override(
                                   font: GoogleFonts.figtree(
@@ -208,7 +207,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Esitmated gain this year',
+                          FFLocalizations.of(context).getText(
+                            '9oa1xhyi' /* Esitmated gain this year */,
+                          ),
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.figtree(

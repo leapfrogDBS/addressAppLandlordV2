@@ -142,7 +142,9 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                       fontStyle:
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
-                hintText: 'Enter outstanding mortgage value',
+                hintText: FFLocalizations.of(context).getText(
+                  'd9qtwul0' /* Enter outstanding mortgage val... */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                       font: GoogleFonts.figtree(
                         fontWeight:
@@ -238,7 +240,9 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                       fontStyle:
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
-                hintText: 'Enter term remaining (years)',
+                hintText: FFLocalizations.of(context).getText(
+                  '8u8kt1mg' /* Enter term remaining (years) */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                       font: GoogleFonts.figtree(
                         fontWeight:
@@ -334,7 +338,9 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                       fontStyle:
                           FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                     ),
-                hintText: 'Enter monthly mortgage repayment',
+                hintText: FFLocalizations.of(context).getText(
+                  '83nne55c' /* Enter monthly mortgage repayme... */,
+                ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                       font: GoogleFonts.figtree(
                         fontWeight:

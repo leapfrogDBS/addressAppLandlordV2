@@ -168,7 +168,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   text: TextSpan(
                                                     children: [
                                                       TextSpan(
-                                                        text: 'Welcome back ',
+                                                        text:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          's54ivdp6' /* Welcome back  */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -393,8 +398,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             _model.pvTotals!.liveGainPerSecond,
                                         earningsToDate: _model
                                             .pvTotals!.liveEarningsAsOfNow,
-                                        headingText:
-                                            'Your portfolio has earned an estimated....',
                                         portfolioScore:
                                             functions.computePortfolioScore(
                                                 _model.pvTotals?.capitalValue,
@@ -443,7 +446,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        'Retirement Age',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'i3h215nb' /* Retirement Age */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -545,13 +552,20 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text:
-                                                                  'Predicted portolio value ',
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                '4ze7qdom' /* Predicted portolio value  */,
+                                                              ),
                                                               style:
                                                                   TextStyle(),
                                                             ),
                                                             TextSpan(
-                                                              text: '(',
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                'zyvnup8s' /* ( */,
+                                                              ),
                                                               style: TextStyle(
                                                                 fontSize: 12.0,
                                                               ),
@@ -573,7 +587,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               ),
                                                             ),
                                                             TextSpan(
-                                                              text: ')',
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                'go3rx3kc' /* ) */,
+                                                              ),
                                                               style: TextStyle(
                                                                 fontSize: 12.0,
                                                               ),
@@ -731,8 +749,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text:
-                                                                  'Target of ',
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                'xvzv9y5i' /* Target of  */,
+                                                              ),
                                                               style:
                                                                   TextStyle(),
                                                             ),
@@ -834,12 +855,19 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(
-                                                            text:
-                                                                'Predictd Rental Income ',
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'raytn19v' /* Predicted Rental Income  */,
+                                                            ),
                                                             style: TextStyle(),
                                                           ),
                                                           TextSpan(
-                                                            text: '(',
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              '7qswkojl' /* ( */,
+                                                            ),
                                                             style: TextStyle(
                                                               fontSize: 12.0,
                                                             ),
@@ -861,7 +889,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                             ),
                                                           ),
                                                           TextSpan(
-                                                            text: ')',
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'od03xnb0' /* ) */,
+                                                            ),
                                                             style: TextStyle(
                                                               fontSize: 12.0,
                                                             ),
@@ -1018,7 +1050,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       text: TextSpan(
                                                         children: [
                                                           TextSpan(
-                                                            text: 'Target of ',
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'vne8ecx1' /* Target of  */,
+                                                            ),
                                                             style: TextStyle(),
                                                           ),
                                                           TextSpan(
@@ -1118,7 +1154,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               .routeName);
                                                     },
                                                     child: Text(
-                                                      'Edit Retirement Goals',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        '6iy0gz2d' /* Edit Retirement Goals */,
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1201,7 +1241,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               context.pushNamed(
                                                   PropertiesWidget.routeName);
                                             },
-                                            text: 'All Properties',
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              '9mori5ko' /* All Properties */,
+                                            ),
                                             options: FFButtonOptions(
                                               width: 200.0,
                                               height: 40.0,
@@ -1280,7 +1323,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   Align(
                                     alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Text(
-                                      'Calculating Projections',
+                                      FFLocalizations.of(context).getText(
+                                        'eebsvixx' /* Calculating Projections */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .displayLarge
                                           .override(

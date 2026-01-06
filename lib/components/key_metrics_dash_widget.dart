@@ -116,7 +116,9 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'No of Properties',
+                                    FFLocalizations.of(context).getText(
+                                      'x9ivolo9' /* No of Properties */,
+                                    ),
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
@@ -208,7 +210,9 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Predicted Value at retirement',
+                                FFLocalizations.of(context).getText(
+                                  'g1hyfwj5' /* Predicted Value at retirement */,
+                                ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .titleMedium
@@ -296,7 +300,9 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Cululative Rental Profit',
+                                FFLocalizations.of(context).getText(
+                                  'znmknq0t' /* Cululative Rental Profit */,
+                                ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .titleMedium
@@ -383,7 +389,9 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Daily Gain On Retirement',
+                                FFLocalizations.of(context).getText(
+                                  '1jbskr1g' /* Daily Gain On Retirement */,
+                                ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .titleMedium

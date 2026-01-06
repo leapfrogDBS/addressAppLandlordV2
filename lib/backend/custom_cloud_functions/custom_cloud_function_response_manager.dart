@@ -1,16 +1,5 @@
 import '/backend/schema/structs/index.dart';
 
-class ComputePropertyProjectionCloudFunctionCallResponse {
-  ComputePropertyProjectionCloudFunctionCallResponse({
-    this.errorCode,
-    this.succeeded,
-    this.jsonBody,
-  });
-  String? errorCode;
-  bool? succeeded;
-  dynamic jsonBody;
-}
-
 class RecalculatePropertyDataCloudFunctionCallResponse {
   RecalculatePropertyDataCloudFunctionCallResponse({
     this.errorCode,

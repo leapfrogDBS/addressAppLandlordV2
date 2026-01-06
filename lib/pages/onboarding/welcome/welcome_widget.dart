@@ -56,7 +56,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Onboarding',
+            FFLocalizations.of(context).getText(
+              'ofd3cni6' /* Onboarding */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -99,14 +101,18 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     ),
                     Text(
                       key: ValueKey('onboardingPageTitle'),
-                      'WELCOME TO ADDRESSED',
+                      FFLocalizations.of(context).getText(
+                        '9byjfw8h' /* WELCOME TO ADDRESSED */,
+                      ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily: 'Thunder',
                             letterSpacing: 0.0,
                           ),
                     ),
                     Text(
-                      'Let’s get you set up. Answer a couple of quick, optional questions to help us personalise your dashboard and show how your portfolio is tracking toward your goals.',
+                      FFLocalizations.of(context).getText(
+                        'kror71vo' /* Let’s get you set up. Answer a... */,
+                      ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             font: GoogleFonts.figtree(
@@ -152,7 +158,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                     size: 24.0,
                                   ),
                                   Text(
-                                    'Quick Setup',
+                                    FFLocalizations.of(context).getText(
+                                      'zd70haqy' /* Quick Setup */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -206,7 +214,9 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                   context
                                       .goNamed(PersonalDetailsWidget.routeName);
                                 },
-                                text: 'Let\'s Go',
+                                text: FFLocalizations.of(context).getText(
+                                  'tviq99ao' /* Let's Go */,
+                                ),
                                 options: FFButtonOptions(
                                   width: 200.0,
                                   height: 40.0,

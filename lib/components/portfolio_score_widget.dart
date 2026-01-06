@@ -59,7 +59,9 @@ class _PortfolioScoreWidgetState extends State<PortfolioScoreWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                'PORTFOLIO SCORE',
+                FFLocalizations.of(context).getText(
+                  'x0fcfpoq' /* PORTFOLIO SCORE */,
+                ),
                 style: FlutterFlowTheme.of(context).displayLarge.override(
                       fontFamily: 'Thunder',
                       letterSpacing: 0.0,
@@ -78,7 +80,9 @@ class _PortfolioScoreWidgetState extends State<PortfolioScoreWidget> {
               Align(
                 alignment: AlignmentDirectional(0.0, 0.0),
                 child: Text(
-                  'Based on your estimated portfolio performance and stated retirement goals',
+                  FFLocalizations.of(context).getText(
+                    '0a3ne5k5' /* Based on your estimated portfo... */,
+                  ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).labelSmall.override(
                         font: GoogleFonts.figtree(

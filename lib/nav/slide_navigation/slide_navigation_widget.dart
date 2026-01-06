@@ -133,7 +133,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Dashboard',
+                              FFLocalizations.of(context).getText(
+                                'vhh5r14u' /* Dashboard */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -195,7 +197,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Properties',
+                              FFLocalizations.of(context).getText(
+                                'dhe8x382' /* Properties */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -254,7 +258,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Articles',
+                              FFLocalizations.of(context).getText(
+                                'wj7iw8k3' /* Articles */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -313,7 +319,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Messages',
+                              FFLocalizations.of(context).getText(
+                                'c8aqx3a8' /* Messages */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -372,7 +380,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'Offers',
+                              FFLocalizations.of(context).getText(
+                                'i0d4ms2m' /* Offers */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -513,7 +523,9 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 4.0, 0.0, 0.0),
                                         child: Text(
-                                          'View Profile',
+                                          FFLocalizations.of(context).getText(
+                                            'pvsqyph1' /* View Profile */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodySmall
                                               .override(

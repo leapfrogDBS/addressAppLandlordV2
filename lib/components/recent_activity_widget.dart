@@ -55,7 +55,9 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
           child: Text(
-            'Coming Up',
+            FFLocalizations.of(context).getText(
+              '2lt4g6l9' /* Coming Up */,
+            ),
             style: FlutterFlowTheme.of(context).labelMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -236,7 +238,9 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
           child: Text(
-            'Recent',
+            FFLocalizations.of(context).getText(
+              'dor0aseg' /* Recent */,
+            ),
             style: FlutterFlowTheme.of(context).labelMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:

@@ -76,7 +76,9 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Capital Gain',
+                              FFLocalizations.of(context).getText(
+                                'vl39uz1g' /* Capital Gain */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -132,7 +134,9 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Rental Proft',
+                              FFLocalizations.of(context).getText(
+                                'eonn046i' /* Rental Proft */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -199,7 +203,9 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Total Gain',
+                                FFLocalizations.of(context).getText(
+                                  'ew5qa89e' /* Total Gain */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -263,7 +269,9 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Daily Growth',
+                                FFLocalizations.of(context).getText(
+                                  'xi3ytrwe' /* Daily Growth */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium

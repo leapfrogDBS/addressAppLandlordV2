@@ -16,6 +16,22 @@
 	<string>Addressed  Pro</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+		<string>pl</string>
+		<string>ro</string>
+		<string>ar</string>
+		<string>ur</string>
+		<string>hi</string>
+		<string>ta</string>
+		<string>bn</string>
+		<string>gu</string>
+		<string>pa</string>
+		<string>de</string>
+		<string>fr</string>
+	</array>
 
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>

@@ -525,7 +525,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                           alignment:
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            'Purchase Price',
+                                            FFLocalizations.of(context).getText(
+                                              'dyr7xy16' /* Purchase Price */,
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -593,7 +595,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                           alignment:
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            'Estimated Value',
+                                            FFLocalizations.of(context).getText(
+                                              '97jdzefa' /* Estimated Value */,
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -725,7 +729,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                             alignment:
                                                 AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
-                                              'Time held',
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                'mb0en2t9' /* Time held */,
+                                              ),
                                               textAlign: TextAlign.start,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -842,7 +849,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                       AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
-                                                    'Rent (£pcm)',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'fsnyg0u9' /* Rent (£pcm) */,
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -954,13 +964,19 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   padding: EdgeInsets.all(10.0),
                                   tabs: [
                                     Tab(
-                                      text: 'FINANCIAL',
+                                      text: FFLocalizations.of(context).getText(
+                                        'fugapjno' /* FINANCIAL */,
+                                      ),
                                     ),
                                     Tab(
-                                      text: 'TIMELINE',
+                                      text: FFLocalizations.of(context).getText(
+                                        'fktl2sei' /* TIMELINE */,
+                                      ),
                                     ),
                                     Tab(
-                                      text: 'MEDIA',
+                                      text: FFLocalizations.of(context).getText(
+                                        '6i2uiph5' /* MEDIA */,
+                                      ),
                                     ),
                                   ],
                                   controller: _model.tabBarController,
@@ -1088,12 +1104,21 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               child:
                                                                   FlutterFlowChoiceChips(
                                                                 options: [
-                                                                  ChipData(
-                                                                      'COMBINED'),
-                                                                  ChipData(
-                                                                      'CAPITAL'),
-                                                                  ChipData(
-                                                                      'RENTAL')
+                                                                  ChipData(FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '7aatlv1n' /* COMBINED */,
+                                                                  )),
+                                                                  ChipData(FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '5c8rlpjy' /* CAPITAL */,
+                                                                  )),
+                                                                  ChipData(FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'y4p4283s' /* RENTAL */,
+                                                                  ))
                                                                 ],
                                                                 onChanged:
                                                                     (val) async {
@@ -1215,7 +1240,13 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     FormFieldController<
                                                                         List<
                                                                             String>>(
-                                                                  ['CAPITAL'],
+                                                                  [
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'snzj3dao' /* CAPITAL */,
+                                                                    )
+                                                                  ],
                                                                 ),
                                                                 wrapped: true,
                                                               ),
@@ -1307,8 +1338,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 text: TextSpan(
                                                                   children: [
                                                                     TextSpan(
-                                                                      text:
-                                                                          'PROJECTIONS FOR ',
+                                                                      text: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'jgoafby2' /* PROJECTIONS FOR  */,
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .displayLarge
@@ -1352,12 +1386,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FormFieldController<
                                                                       int>(
                                                                 _model.projectionsYearSelectorValue ??=
-                                                                    valueOrDefault<
-                                                                        int>(
-                                                                  _model
-                                                                      .selectedYear,
-                                                                  2025,
-                                                                ),
+                                                                    _model
+                                                                        .selectedYear,
                                                               ),
                                                               options: List<
                                                                       int>.from(
@@ -1395,7 +1425,12 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                              hintText: '2025',
+                                                              hintText:
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                '9zk45ha9' /* 2025 */,
+                                                              ),
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
@@ -1551,7 +1586,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             0.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  'EQUITY',
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'rgtxj5xs' /* EQUITY */,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .displayMedium
@@ -1598,7 +1637,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         children:
                                                                             [
                                                                           Text(
-                                                                            'Estimated mortage remaing',
+                                                                            FFLocalizations.of(context).getText(
+                                                                              'xpmtf6m2' /* Estimated mortage remaing */,
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelLarge.fontWeight,
@@ -1665,7 +1706,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         children:
                                                                             [
                                                                           Text(
-                                                                            'Mortgage term remaining',
+                                                                            FFLocalizations.of(context).getText(
+                                                                              'xzkeurri' /* Mortgage term remaining */,
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelLarge.fontWeight,
@@ -1704,7 +1747,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         children:
                                                                             [
                                                                           Text(
-                                                                            'Monthly  repayment',
+                                                                            FFLocalizations.of(context).getText(
+                                                                              '9agwbnh4' /* Monthly  repayment */,
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelLarge.fontWeight,
@@ -1745,7 +1790,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         children:
                                                                             [
                                                                           Text(
-                                                                            'Please enter the estimated mortgage remaining on the property to calculate equity.',
+                                                                            FFLocalizations.of(context).getText(
+                                                                              '7sg4a2ja' /* Please enter the estimated mor... */,
+                                                                            ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelLarge.fontWeight,
@@ -1777,7 +1824,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 ],
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
-                                                                                  labelText: 'Enter outstanding mortgage value',
+                                                                                  labelText: FFLocalizations.of(context).getText(
+                                                                                    'ap780vyh' /* Enter outstanding mortgage val... */,
+                                                                                  ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
                                                                                           fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
@@ -1855,7 +1904,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 ],
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
-                                                                                  labelText: 'Enter mortgage term remaining (years)',
+                                                                                  labelText: FFLocalizations.of(context).getText(
+                                                                                    'yznhbxmr' /* Enter mortgage term remaining ... */,
+                                                                                  ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
                                                                                           fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
@@ -1933,7 +1984,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 ],
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
-                                                                                  labelText: 'Enter monthly repayment',
+                                                                                  labelText: FFLocalizations.of(context).getText(
+                                                                                    'nyph20t5' /* Enter monthly repayment */,
+                                                                                  ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
                                                                                           fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
@@ -2005,7 +2058,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 _model.updatingMortgageEstimate = false;
                                                                                 safeSetState(() {});
                                                                               },
-                                                                              text: 'Save',
+                                                                              text: FFLocalizations.of(context).getText(
+                                                                                '9rkpkzks' /* Save */,
+                                                                              ),
                                                                               options: FFButtonOptions(
                                                                                 height: 40.0,
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
@@ -2053,7 +2108,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Text(
-                                                                                'Estimated Value',
+                                                                                FFLocalizations.of(context).getText(
+                                                                                  '86ayc94n' /* Estimated Value */,
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
                                                                                         fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
@@ -2090,7 +2147,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Text(
-                                                                                'Remaing Mortgage',
+                                                                                FFLocalizations.of(context).getText(
+                                                                                  'gmb4t22g' /* Remaing Mortgage */,
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
                                                                                         fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
@@ -2127,7 +2186,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Text(
-                                                                                'Equity',
+                                                                                FFLocalizations.of(context).getText(
+                                                                                  'la5etfg8' /* Equity */,
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
                                                                                         fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
@@ -2164,7 +2225,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 MainAxisAlignment.spaceBetween,
                                                                             children: [
                                                                               Text(
-                                                                                'Equity Share',
+                                                                                FFLocalizations.of(context).getText(
+                                                                                  'xnzvczdj' /* Equity Share */,
+                                                                                ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
                                                                                         fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
@@ -2346,7 +2409,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
-                                                                  'Tenancy Start',
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '4xohe67v' /* Tenancy Start */,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -2421,7 +2488,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
-                                                                  'Next Rent Review',
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'i44fa5n2' /* Next Rent Review */,
+                                                                  ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -2510,7 +2581,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    'Rent Amount',
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'barzxzrk' /* Rent Amount */,
+                                                                    ),
                                                                     textAlign:
                                                                         TextAlign
                                                                             .start,
@@ -2581,7 +2656,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                       ),
                                                                     ),
                                                                     Text(
-                                                                      'per month',
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'qdbo8tuq' /* per month */,
+                                                                      ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .labelSmall
@@ -2623,7 +2702,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    'Rent Due Date',
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'l30vd56s' /* Rent Due Date */,
+                                                                    ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -2694,7 +2777,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ),
                                                                       ),
                                                                       Text(
-                                                                        'of each month',
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'z3anpmop' /* of each month */,
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .labelSmall
                                                                             .override(
@@ -2748,7 +2834,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
-                                                                  'Last Valuation Date',
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'bkm4hwzx' /* Last Valuation Date */,
+                                                                  ),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,
@@ -2915,7 +3005,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 20.0),
                                                     child: Text(
-                                                      'MEDIA GALLERY',
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'opbpdyky' /* MEDIA GALLERY */,
+                                                      ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .displayLarge
@@ -3242,8 +3336,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                           });
                                                         }
                                                       },
-                                                      text:
-                                                          'Add to Image Gallery',
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'rvjx935d' /* Add to Image Gallery */,
+                                                      ),
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
@@ -3346,7 +3443,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   0.0,
                                                                   10.0),
                                                       child: Text(
-                                                        'CERTIFICATES',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'sbcsm5b2' /* CERTIFICATES */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -3411,7 +3512,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               size: 32.0,
                                                             ),
                                                             Text(
-                                                              'ENERGY PERFORMANCE CERTIFICATE',
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'p8tpn8g4' /* ENERGY PERFORMANCE CERTIFICATE */,
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .displaySmall
@@ -3489,7 +3594,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               size: 32.0,
                                                             ),
                                                             Text(
-                                                              'GAS SAFETY CERTIFICATE',
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                'fumt9rxo' /* GAS SAFETY CERTIFICATE */,
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .displaySmall
@@ -3564,7 +3673,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               size: 32.0,
                                                             ),
                                                             Text(
-                                                              'ELECTRICAL INSTALATION REPORT',
+                                                              FFLocalizations.of(
+                                                                      context)
+                                                                  .getText(
+                                                                '03gvg9om' /* ELECTRICAL INSTALATION REPORT */,
+                                                              ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .displaySmall
@@ -3606,7 +3719,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'LOCATION',
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      'hxu5xgru' /* LOCATION */,
+                                                    ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .displayLarge

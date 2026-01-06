@@ -88,7 +88,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Total Invested',
+                                FFLocalizations.of(context).getText(
+                                  'hjpqkwgx' /* Total Invested */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -116,7 +118,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 4.0, 0.0),
                                     child: Text(
-                                      '£900,000',
+                                      FFLocalizations.of(context).getText(
+                                        'mfsrvt65' /* £900,000 */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .override(
@@ -173,7 +177,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Portfolio Value',
+                                FFLocalizations.of(context).getText(
+                                  'pvda1d2i' /* Portfolio Value */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -202,7 +208,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 4.0, 0.0),
                                       child: Text(
-                                        '£1,200,000',
+                                        FFLocalizations.of(context).getText(
+                                          'a2j0opwx' /* £1,200,000 */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .displaySmall
                                             .override(
@@ -218,7 +226,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 4.0, 0.0),
                                 child: Text(
-                                  '+33%',
+                                  FFLocalizations.of(context).getText(
+                                    't5woq4cm' /* +33% */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
@@ -285,7 +295,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Total Gain',
+                                FFLocalizations.of(context).getText(
+                                  'jmsl1ehs' /* Total Gain */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -313,7 +325,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 4.0, 0.0),
                                     child: Text(
-                                      '£300,000',
+                                      FFLocalizations.of(context).getText(
+                                        'j4yy0c8o' /* £300,000 */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .override(
@@ -370,7 +384,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Avg Roi',
+                                FFLocalizations.of(context).getText(
+                                  '90d48b6j' /* Avg Roi */,
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -398,7 +414,9 @@ class _KeyMetricsWidgetState extends State<KeyMetricsWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 4.0, 0.0),
                                     child: Text(
-                                      '33%',
+                                      FFLocalizations.of(context).getText(
+                                        '9jdjl3dk' /* 33% */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .displaySmall
                                           .override(

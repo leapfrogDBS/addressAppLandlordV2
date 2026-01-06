@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_language_selector.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -26,6 +27,8 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   ///  Local state fields for this page.
 
   bool goalsChanged = false;
+
+  bool isEditing = false;
 
   ///  State fields for stateful widgets in this page.
 

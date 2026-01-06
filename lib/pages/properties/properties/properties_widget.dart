@@ -192,7 +192,9 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: 'Add more properties for ',
+                                      text: FFLocalizations.of(context).getText(
+                                        'y4usk888' /* Add more properties for  */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -218,7 +220,9 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                           ),
                                     ),
                                     TextSpan(
-                                      text: 'more dicsounts',
+                                      text: FFLocalizations.of(context).getText(
+                                        'm1e7o25w' /* more dicsounts */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(

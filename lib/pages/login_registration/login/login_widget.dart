@@ -172,7 +172,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 20.0),
                                   child: Text(
-                                    'LOG IN',
+                                    FFLocalizations.of(context).getText(
+                                      'h37uifyc' /* LOG IN */,
+                                    ),
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .displayLarge
@@ -197,7 +199,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'kviber2f' /* Email */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
@@ -309,7 +314,10 @@ class _LoginWidgetState extends State<LoginWidget>
                                       obscureText:
                                           !_model.passwordCreateVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          '54cqpg77' /* Password */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
@@ -450,7 +458,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                             RedirectPageWidget.routeName,
                                             context.mounted);
                                       },
-                                      text: 'Log In',
+                                      text: FFLocalizations.of(context).getText(
+                                        'v2s2ariu' /* Log In */,
+                                      ),
                                       options: FFButtonOptions(
                                         width: 200.0,
                                         height: 40.0,
@@ -509,7 +519,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                             ForgotPasswordWidget.routeName);
                                       },
                                       child: Text(
-                                        'I forgot my password',
+                                        FFLocalizations.of(context).getText(
+                                          '3jj4tncc' /* I forgot my password */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

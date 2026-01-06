@@ -85,7 +85,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
               backgroundColor: FlutterFlowTheme.of(context).primary,
               automaticallyImplyLeading: false,
               title: Text(
-                'Onboarding',
+                FFLocalizations.of(context).getText(
+                  'efpv6z83' /* Onboarding */,
+                ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       font: GoogleFonts.figtree(
                         fontWeight: FlutterFlowTheme.of(context)
@@ -129,7 +131,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                             size: 48.0,
                           ),
                           Text(
-                            'MORTGAGE INFORMATION',
+                            FFLocalizations.of(context).getText(
+                              'ax1eaojb' /* MORTGAGE INFORMATION */,
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
@@ -138,7 +142,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                 ),
                           ),
                           Text(
-                            'To help us track your goals, please enter the outstanding mortgage amount on the following properties. Remember, all fields are optional and can be updated anytime.',
+                            FFLocalizations.of(context).getText(
+                              '8eywg1k3' /* To help us track your goals, p... */,
+                            ),
                             textAlign: TextAlign.center,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
@@ -206,7 +212,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                         size: 24.0,
                                       ),
                                       Text(
-                                        'Tip',
+                                        FFLocalizations.of(context).getText(
+                                          '68bzvo63' /* Tip */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -236,7 +244,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                   Align(
                                     alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
-                                      'You can always update  later as your situation changes',
+                                      FFLocalizations.of(context).getText(
+                                        'rrkegtji' /* You can always update  later a... */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -289,7 +299,9 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                       context.pushNamed(
                                           RedirectPageWidget.routeName);
                                     },
-                                    text: 'Next',
+                                    text: FFLocalizations.of(context).getText(
+                                      'h3x1fxer' /* Next */,
+                                    ),
                                     options: FFButtonOptions(
                                       width: 200.0,
                                       height: 40.0,

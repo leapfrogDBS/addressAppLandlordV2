@@ -67,9 +67,15 @@ class _GraphWidgetState extends State<GraphWidget> {
             ),
             FlutterFlowChoiceChips(
               options: [
-                ChipData('Combined'),
-                ChipData('Capital'),
-                ChipData('Rental')
+                ChipData(FFLocalizations.of(context).getText(
+                  'c80fpy6c' /* Combined */,
+                )),
+                ChipData(FFLocalizations.of(context).getText(
+                  'b5hnmfdd' /* Capital */,
+                )),
+                ChipData(FFLocalizations.of(context).getText(
+                  '7599h0ms' /* Rental */,
+                ))
               ],
               onChanged: (val) => safeSetState(
                   () => _model.choiceChipsValue = val?.firstOrNull),
@@ -123,7 +129,11 @@ class _GraphWidgetState extends State<GraphWidget> {
               alignment: WrapAlignment.start,
               controller: _model.choiceChipsValueController ??=
                   FormFieldController<List<String>>(
-                ['Combined'],
+                [
+                  FFLocalizations.of(context).getText(
+                    'iea1i3cb' /* Combined */,
+                  )
+                ],
               ),
               wrapped: true,
             ),

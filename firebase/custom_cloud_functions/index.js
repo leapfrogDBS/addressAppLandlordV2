@@ -1,9 +1,6 @@
 const admin = require("firebase-admin/app");
 admin.initializeApp();
 
-const computePropertyProjection = require("./compute_property_projection.js");
-exports.computePropertyProjection =
-  computePropertyProjection.computePropertyProjection;
 const recalculatePropertyData = require("./recalculate_property_data.js");
 exports.recalculatePropertyData =
   recalculatePropertyData.recalculatePropertyData;

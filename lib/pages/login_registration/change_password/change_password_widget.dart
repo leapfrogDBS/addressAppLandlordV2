@@ -134,7 +134,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
           title: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
             child: Text(
-              'Back',
+              FFLocalizations.of(context).getText(
+                'ne01up5b' /* Back */,
+              ),
               style: FlutterFlowTheme.of(context).displaySmall.override(
                     fontFamily: 'Thunder',
                     fontSize: 16.0,
@@ -202,7 +204,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                     ),
                                   ),
                                 Text(
-                                  'CHANGE PASSWORD',
+                                  FFLocalizations.of(context).getText(
+                                    'qr1s9cft' /* CHANGE PASSWORD */,
+                                  ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
@@ -226,7 +230,10 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                       obscureText:
                                           !_model.newPasswordVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'New Password',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          '7yetbzvb' /* New Password */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
@@ -355,7 +362,10 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                       obscureText:
                                           !_model.confirmNewPasswordVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Confirm New Password',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          '6zv8shw6' /* Confirm New Password */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
@@ -507,7 +517,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                           ),
                                         );
                                       },
-                                      text: 'Update Password',
+                                      text: FFLocalizations.of(context).getText(
+                                        'si09zw1u' /* Update Password */,
+                                      ),
                                       options: FFButtonOptions(
                                         width: 200.0,
                                         height: 40.0,

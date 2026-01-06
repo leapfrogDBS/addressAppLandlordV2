@@ -83,7 +83,9 @@ class _PdFViewPageWidgetState extends State<PdFViewPageWidget> {
                     ),
                   );
                 },
-                text: 'Download',
+                text: FFLocalizations.of(context).getText(
+                  't8a1mgwf' /* Download */,
+                ),
                 options: FFButtonOptions(
                   height: 40.0,
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),

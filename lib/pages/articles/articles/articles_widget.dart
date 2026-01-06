@@ -90,7 +90,9 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: Text(
-                            'PROPERTY INVESTMENT INTELLIGENCE',
+                            FFLocalizations.of(context).getText(
+                              'nx0btiy5' /* PROPERTY INVESTMENT INTELLIGEN... */,
+                            ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
@@ -101,7 +103,9 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                           ),
                         ),
                         Text(
-                          'Stay ahead of the curve with our carefully curated insights into the rental market, property investment trends, and legislative changes affecting landlords across England.',
+                          FFLocalizations.of(context).getText(
+                            'smzmhxaq' /* Stay ahead of the curve with o... */,
+                          ),
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
                                     font: GoogleFonts.figtree(
@@ -264,7 +268,11 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                   12.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'Read Now',
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'rtppswo9' /* Read Now */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

@@ -170,10 +170,14 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                   FlutterFlowTheme.of(context).primary,
                               tabs: [
                                 Tab(
-                                  text: 'Active',
+                                  text: FFLocalizations.of(context).getText(
+                                    'mdd40rgu' /* Active */,
+                                  ),
                                 ),
                                 Tab(
-                                  text: 'Archived',
+                                  text: FFLocalizations.of(context).getText(
+                                    'ef9j6t93' /* Archived */,
+                                  ),
                                 ),
                               ],
                               controller: _model.tabBarController,
@@ -382,7 +386,10 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           ],
                                                                         ),
                                                                         Text(
-                                                                          'Addressed Admin',
+                                                                          FFLocalizations.of(context)
+                                                                              .getText(
+                                                                            'p0m7mz77' /* Addressed Admin */,
+                                                                          ),
                                                                           textAlign:
                                                                               TextAlign.start,
                                                                           style: FlutterFlowTheme.of(context)
@@ -678,7 +685,10 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           ],
                                                                         ),
                                                                         Text(
-                                                                          'Addressed Admin',
+                                                                          FFLocalizations.of(context)
+                                                                              .getText(
+                                                                            'gsxwzbs2' /* Addressed Admin */,
+                                                                          ),
                                                                           textAlign:
                                                                               TextAlign.start,
                                                                           style: FlutterFlowTheme.of(context)
@@ -793,7 +803,9 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'START NEW CHAT',
+                              FFLocalizations.of(context).getText(
+                                '5yu09zir' /* START NEW CHAT */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
@@ -817,7 +829,10 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                     autofillHints: [AutofillHints.email],
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Convesation Name',
+                                      labelText:
+                                          FFLocalizations.of(context).getText(
+                                        'uewliqvz' /* Convesation Name */,
+                                      ),
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -841,7 +856,10 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                     .labelLarge
                                                     .fontStyle,
                                           ),
-                                      hintText: 'Enter conversation name...',
+                                      hintText:
+                                          FFLocalizations.of(context).getText(
+                                        '2c9jk6wv' /* Enter conversation name... */,
+                                      ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)

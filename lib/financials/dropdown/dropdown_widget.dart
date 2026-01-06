@@ -75,7 +75,9 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Filter results',
+                          FFLocalizations.of(context).getText(
+                            'j2wyikcj' /* Filter results */,
+                          ),
                           style:
                               FlutterFlowTheme.of(context).bodySmall.override(
                                     font: GoogleFonts.figtree(
@@ -113,7 +115,17 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                       ),
                       options: List<String>.from(
                           ['Option 1', 'Option 2', 'Option 3']),
-                      optionLabels: ['All Time', 'Last 12 Months', 'Custom'],
+                      optionLabels: [
+                        FFLocalizations.of(context).getText(
+                          'kg0r83up' /* All Time */,
+                        ),
+                        FFLocalizations.of(context).getText(
+                          'rxlrzucd' /* Last 12 Months */,
+                        ),
+                        FFLocalizations.of(context).getText(
+                          'x24ppv1z' /* Custom */,
+                        )
+                      ],
                       onChanged: (val) async {
                         safeSetState(() => _model.dropDownValue = val);
                         final _datePickedDate = await showDatePicker(
@@ -195,7 +207,9 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                                     .bodyMedium
                                     .fontStyle,
                               ),
-                      hintText: 'Select...',
+                      hintText: FFLocalizations.of(context).getText(
+                        's70afbvf' /* Select... */,
+                      ),
                       icon: Icon(
                         Icons.calendar_month,
                         color: FlutterFlowTheme.of(context).secondary,

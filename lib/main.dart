@@ -28,6 +28,8 @@ void main() async {
 
   await initFirebase();
 
+  await FFLocalizations.initialize();
+
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
 
@@ -59,7 +61,7 @@ class MyAppScrollBehavior extends MaterialScrollBehavior {
 }
 
 class _MyAppState extends State<MyApp> {
-  Locale? _locale;
+  Locale? _locale = FFLocalizations.getStoredLocale();
 
   ThemeMode _themeMode = ThemeMode.system;
 
@@ -109,6 +111,7 @@ class _MyAppState extends State<MyApp> {
 
   void setLocale(String language) {
     safeSetState(() => _locale = createLocale(language));
+    FFLocalizations.storeLocale(language);
   }
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
@@ -132,6 +135,18 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       supportedLocales: const [
         Locale('en'),
+        Locale('es'),
+        Locale('pl'),
+        Locale('ro'),
+        Locale('ar'),
+        Locale('ur'),
+        Locale('hi'),
+        Locale('ta'),
+        Locale('bn'),
+        Locale('gu'),
+        Locale('pa'),
+        Locale('de'),
+        Locale('fr'),
       ],
       theme: ThemeData(
         brightness: Brightness.light,
@@ -220,7 +235,9 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Home',
+                  FFLocalizations.of(context).getText(
+                    '5qiwr1jb' /* Home */,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 0
@@ -244,7 +261,9 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Properties',
+                  FFLocalizations.of(context).getText(
+                    'bbfah1l9' /* Properties */,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1
@@ -268,7 +287,9 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Offers',
+                  FFLocalizations.of(context).getText(
+                    'i5td7qff' /* Offers */,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 2
@@ -292,7 +313,9 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Messages',
+                  FFLocalizations.of(context).getText(
+                    '2z3m88yf' /* Messages */,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 3

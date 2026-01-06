@@ -23,7 +23,9 @@ class RetirementGoalsModel extends FlutterFlowModel<RetirementGoalsWidget> {
   String? _reitementAgeTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Planned retirement age is required';
+      return FFLocalizations.of(context).getText(
+        '0q39mest' /* Planned retirement age is requ... */,
+      );
     }
 
     return null;
@@ -35,7 +37,9 @@ class RetirementGoalsModel extends FlutterFlowModel<RetirementGoalsWidget> {
   String? Function(BuildContext, String?)? equityTextControllerValidator;
   String? _equityTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Target Equity is required';
+      return FFLocalizations.of(context).getText(
+        'tnmg513q' /* Target Equity is required */,
+      );
     }
 
     return null;
@@ -47,7 +51,9 @@ class RetirementGoalsModel extends FlutterFlowModel<RetirementGoalsWidget> {
   String? Function(BuildContext, String?)? incomeTextControllerValidator;
   String? _incomeTextControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Target Income is required';
+      return FFLocalizations.of(context).getText(
+        '43texmea' /* Target Income is required */,
+      );
     }
 
     return null;

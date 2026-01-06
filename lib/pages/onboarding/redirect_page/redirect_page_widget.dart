@@ -102,7 +102,9 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'One moment ....',
+            FFLocalizations.of(context).getText(
+              'ksmmgllu' /* One moment .... */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -134,7 +136,9 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Text(
-                      'Calculating Projections',
+                      FFLocalizations.of(context).getText(
+                        '164a2u9a' /* Calculating Projections */,
+                      ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily: 'Thunder',
                             letterSpacing: 0.0,

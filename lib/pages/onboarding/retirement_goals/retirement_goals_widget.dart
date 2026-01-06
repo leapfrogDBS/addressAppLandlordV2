@@ -88,7 +88,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Onboarding',
+            FFLocalizations.of(context).getText(
+              'qkhx6njz' /* Onboarding */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -132,7 +134,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                           size: 48.0,
                         ),
                         Text(
-                          'YOUR RETIREMENT GOALS',
+                          FFLocalizations.of(context).getText(
+                            'b6ix3dg2' /* YOUR RETIREMENT GOALS */,
+                          ),
                           style: FlutterFlowTheme.of(context)
                               .displayLarge
                               .override(
@@ -141,7 +145,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                               ),
                         ),
                         Text(
-                          'Help us understand your retirement aspirations. Remember, all fields are optional and can be updated anytime.',
+                          FFLocalizations.of(context).getText(
+                            'vk98xigq' /* Help us understand your retire... */,
+                          ),
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
@@ -180,7 +186,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Planned Retirement Age',
+                                      FFLocalizations.of(context).getText(
+                                        'l3vfd7ir' /* Planned Retirement Age */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -203,7 +211,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
-                                        'When do you plan to retire?',
+                                        FFLocalizations.of(context).getText(
+                                          'agb66fg7' /* When do you plan to retire? */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -268,7 +278,10 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'e.g., 65',
+                                    hintText:
+                                        FFLocalizations.of(context).getText(
+                                      't8d1d2xf' /* e.g., 65 */,
+                                    ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -379,7 +392,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Target Equity Goal on Retirement',
+                                      FFLocalizations.of(context).getText(
+                                        'kxrptorv' /* Target Equity Goal on Retireme... */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -402,7 +417,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
-                                        'How much equity would you like to have built up?',
+                                        FFLocalizations.of(context).getText(
+                                          'ivu88da7' /* How much equity would you like... */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -467,7 +484,10 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'e.g., £500,000',
+                                    hintText:
+                                        FFLocalizations.of(context).getText(
+                                      'v5e59aum' /* e.g., £500,000 */,
+                                    ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -578,7 +598,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Target Rental Income Per Annum on Retirement',
+                                      FFLocalizations.of(context).getText(
+                                        '3crhjgmx' /* Target Rental Income Per Annum... */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -601,7 +623,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
-                                        'What annual rental income would you like to achieve?',
+                                        FFLocalizations.of(context).getText(
+                                          'yqsnuw9l' /* What annual rental income woul... */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -666,7 +690,10 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                    hintText: 'e.g., £80,000',
+                                    hintText:
+                                        FFLocalizations.of(context).getText(
+                                      'bvs3wy8z' /* e.g., £80,000 */,
+                                    ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -781,7 +808,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       size: 24.0,
                                     ),
                                     Text(
-                                      'Tip',
+                                      FFLocalizations.of(context).getText(
+                                        '9lgf7lgg' /* Tip */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -811,7 +840,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'You can always update your goals later as your situation changes',
+                                    FFLocalizations.of(context).getText(
+                                      'kjozqv7f' /* You can always update your goa... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -877,7 +908,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                     context.pushNamed(
                                         RedirectPageWidget.routeName);
                                   },
-                                  text: 'Next',
+                                  text: FFLocalizations.of(context).getText(
+                                    'owhamcpv' /* Next */,
+                                  ),
                                   options: FFButtonOptions(
                                     width: 200.0,
                                     height: 40.0,

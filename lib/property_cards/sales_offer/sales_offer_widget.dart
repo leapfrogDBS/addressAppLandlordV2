@@ -189,7 +189,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'Purchase Price',
+                                    FFLocalizations.of(context).getText(
+                                      '36tonq16' /* Purchase Price */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -249,7 +251,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
-                                    'Cashflow PCM',
+                                    FFLocalizations.of(context).getText(
+                                      '77dhqstu' /* Cashflow PCM */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -318,7 +322,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'Gross Yield',
+                                    FFLocalizations.of(context).getText(
+                                      'x7fffbi8' /* Gross Yield */,
+                                    ),
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -383,7 +389,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                     child: Align(
                                       alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
-                                        'Cashflow PA',
+                                        FFLocalizations.of(context).getText(
+                                          'b6k8c2bq' /* Cashflow PA */,
+                                        ),
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -437,7 +445,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                             'I would like to speak about ${widget!.salesOffer?.addressFormatted}',
                       );
                     },
-                    text: 'Enquire',
+                    text: FFLocalizations.of(context).getText(
+                      'cjwi6ppb' /* Enquire */,
+                    ),
                     options: FFButtonOptions(
                       width: 200.0,
                       height: 40.0,

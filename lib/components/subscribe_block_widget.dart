@@ -54,14 +54,18 @@ class _SubscribeBlockWidgetState extends State<SubscribeBlockWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Text(
-              'SUBSCRIBE FOR UPDATES',
+              FFLocalizations.of(context).getText(
+                'zy6qjcuj' /* SUBSCRIBE FOR UPDATES */,
+              ),
               style: FlutterFlowTheme.of(context).displayLarge.override(
                     fontFamily: 'Thunder',
                     letterSpacing: 0.0,
                   ),
             ),
             Text(
-              'Never miss our latest insights. Subscribe to our newsletter and receive regular updates straight to your inbox.',
+              FFLocalizations.of(context).getText(
+                '9u1ulrdg' /* Never miss our latest insights... */,
+              ),
               textAlign: TextAlign.start,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     font: GoogleFonts.figtree(
@@ -85,7 +89,9 @@ class _SubscribeBlockWidgetState extends State<SubscribeBlockWidget> {
                   onPressed: () {
                     print('Button pressed ...');
                   },
-                  text: 'Subscribe',
+                  text: FFLocalizations.of(context).getText(
+                    '9gpcmcbh' /* Subscribe */,
+                  ),
                   options: FFButtonOptions(
                     width: 200.0,
                     height: 40.0,

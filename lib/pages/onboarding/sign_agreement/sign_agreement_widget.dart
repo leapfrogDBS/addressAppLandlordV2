@@ -56,7 +56,9 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Onboarding',
+            FFLocalizations.of(context).getText(
+              '0vux0kbx' /* Onboarding */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
@@ -99,14 +101,18 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                     ),
                     Text(
                       key: ValueKey('signAgreementPageTitle'),
-                      'SIGN YOUR AGREEMENT',
+                      FFLocalizations.of(context).getText(
+                        'b3iwlo5i' /* SIGN YOUR AGREEMENT */,
+                      ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily: 'Thunder',
                             letterSpacing: 0.0,
                           ),
                     ),
                     Text(
-                      'Sign Sign Sign',
+                      FFLocalizations.of(context).getText(
+                        'hg2asxuq' /* Sign Sign Sign */,
+                      ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
                             font: GoogleFonts.figtree(
@@ -152,7 +158,9 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                                     size: 24.0,
                                   ),
                                   Text(
-                                    'Quick Setup',
+                                    FFLocalizations.of(context).getText(
+                                      'snxosyq6' /* Quick Setup */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -182,7 +190,9 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                               Align(
                                 alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
-                                  'All questions are optional - you can skip any that don\'t apply to you right now and update them later.',
+                                  FFLocalizations.of(context).getText(
+                                    'uplldxef' /* All questions are optional - y... */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -234,7 +244,9 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
 
                                   context.goNamed(RedirectPageWidget.routeName);
                                 },
-                                text: 'Signed',
+                                text: FFLocalizations.of(context).getText(
+                                  '3noi3tbz' /* Signed */,
+                                ),
                                 options: FFButtonOptions(
                                   width: 200.0,
                                   height: 40.0,

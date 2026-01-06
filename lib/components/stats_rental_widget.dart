@@ -77,7 +77,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Rental Income',
+                              FFLocalizations.of(context).getText(
+                                '6fizkdie' /* Rental Income */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -133,7 +135,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
-                              'Total Expenses',
+                              FFLocalizations.of(context).getText(
+                                '62d8odrb' /* Total Expenses */,
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -196,7 +200,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
-                                'Total Profit',
+                                FFLocalizations.of(context).getText(
+                                  'biks4521' /* Total Profit */,
+                                ),
                                 textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -256,7 +262,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
-                                    'Gross Yield',
+                                    FFLocalizations.of(context).getText(
+                                      'q2xc34yz' /* Gross Yield */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -289,7 +297,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                   content: Padding(
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Calculated using rental income  against purchase price.',
+                                      FFLocalizations.of(context).getText(
+                                        'qbo7muwn' /* Calculated using rental income... */,
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
@@ -355,7 +365,9 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                         ),
                                   ),
                                   TextSpan(
-                                    text: '%',
+                                    text: FFLocalizations.of(context).getText(
+                                      '60wekbsz' /* % */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .displayLarge
                                         .override(

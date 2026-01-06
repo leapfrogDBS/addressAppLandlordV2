@@ -55,7 +55,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Notifications',
+            FFLocalizations.of(context).getText(
+              '0jovbr2p' /* Notifications */,
+            ),
             style: FlutterFlowTheme.of(context).headlineLarge.override(
                   font: GoogleFonts.figtree(
                     fontWeight:
