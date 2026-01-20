@@ -206,6 +206,16 @@ class PropertiesRecord extends FirestoreRecord {
   String get letType => _letType ?? '';
   bool hasLetType() => _letType != null;
 
+  // "dateAddedToSystem" field.
+  DateTime? _dateAddedToSystem;
+  DateTime? get dateAddedToSystem => _dateAddedToSystem;
+  bool hasDateAddedToSystem() => _dateAddedToSystem != null;
+
+  // "dateJoinedAddressed" field.
+  DateTime? _dateJoinedAddressed;
+  DateTime? get dateJoinedAddressed => _dateJoinedAddressed;
+  bool hasDateJoinedAddressed() => _dateJoinedAddressed != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -250,6 +260,8 @@ class PropertiesRecord extends FirestoreRecord {
     _mortgageTermRemaining =
         castToType<int>(snapshotData['mortgageTermRemaining']);
     _letType = snapshotData['letType'] as String?;
+    _dateAddedToSystem = snapshotData['dateAddedToSystem'] as DateTime?;
+    _dateJoinedAddressed = snapshotData['dateJoinedAddressed'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -324,6 +336,8 @@ Map<String, dynamic> createPropertiesRecordData({
   double? mortgageMonthlyPayment,
   int? mortgageTermRemaining,
   String? letType,
+  DateTime? dateAddedToSystem,
+  DateTime? dateJoinedAddressed,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -364,6 +378,8 @@ Map<String, dynamic> createPropertiesRecordData({
       'mortgageMonthlyPayment': mortgageMonthlyPayment,
       'mortgageTermRemaining': mortgageTermRemaining,
       'letType': letType,
+      'dateAddedToSystem': dateAddedToSystem,
+      'dateJoinedAddressed': dateJoinedAddressed,
     }.withoutNulls,
   );
 
@@ -413,7 +429,9 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.expenseInflationPct == e2?.expenseInflationPct &&
         e1?.mortgageMonthlyPayment == e2?.mortgageMonthlyPayment &&
         e1?.mortgageTermRemaining == e2?.mortgageTermRemaining &&
-        e1?.letType == e2?.letType;
+        e1?.letType == e2?.letType &&
+        e1?.dateAddedToSystem == e2?.dateAddedToSystem &&
+        e1?.dateJoinedAddressed == e2?.dateJoinedAddressed;
   }
 
   @override
@@ -455,7 +473,9 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.expenseInflationPct,
         e?.mortgageMonthlyPayment,
         e?.mortgageTermRemaining,
-        e?.letType
+        e?.letType,
+        e?.dateAddedToSystem,
+        e?.dateJoinedAddressed
       ]);
 
   @override

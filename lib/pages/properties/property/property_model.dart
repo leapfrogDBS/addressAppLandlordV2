@@ -74,15 +74,9 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   PropertyProjectionsRecord? pvProjection;
 
-  String? pvSelectedView;
+  int? selectedYearIndex;
 
-  int? pvSelectedYear = 0;
-
-  int selectedYearIndex = 0;
-
-  int? selectedYear = 0;
-
-  String? selectedYearLabel;
+  int? selectedYear;
 
   int? currentYearIndex = 0;
 

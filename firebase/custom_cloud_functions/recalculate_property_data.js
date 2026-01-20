@@ -7,7 +7,6 @@ const REGION = "us-central1"; // FF default; change only if your FF project is b
 
 // ───────────────────────── TRIGGERS ─────────────────────────
 
-// Firestore trigger: recompute when relevant property fields change
 exports.recalculatePropertyData = functions
   .region(REGION)
   .runWith({ memory: "256MB", timeoutSeconds: 120 })
@@ -193,6 +192,23 @@ async function computePropertyProjectionCore(args) {
     const houseGlobal = toYearPctMap(houseGlobalSnap);
     const rentGlobal = toYearPctMap(rentGlobalSnap);
 
+    // Debug logging
+    functions.logger.info("House price percentage maps loaded", {
+      propertyId,
+      houseOverrideCount: houseOvSnap.size,
+      houseGlobalCount: houseGlobalSnap.size,
+      houseOverrideKeys: Object.keys(houseOverride)
+        .map(Number)
+        .sort((a, b) => a - b),
+      houseGlobalKeys: Object.keys(houseGlobal)
+        .map(Number)
+        .sort((a, b) => a - b),
+      houseOverrideMap: houseOverride,
+      houseGlobalMap: houseGlobal,
+      startYear,
+      endYear,
+    });
+
     const years = [];
     const projectedHousePrice = [];
     const rentalIncome = [];
@@ -213,6 +229,19 @@ async function computePropertyProjectionCore(args) {
     for (let y = startYear; y <= endYear; y++) {
       const housePct = pickPct(y, houseOverride, houseGlobal, 3.0);
       const rentPct = pickPct(y, rentOverride, rentGlobal, 3.0);
+
+      // Debug logging for first few years
+      if (y <= startYear + 2) {
+        functions.logger.info("Year percentage lookup", {
+          year: y,
+          yearType: typeof y,
+          houseOverrideValue: houseOverride[y],
+          houseGlobalValue: houseGlobal[y],
+          selectedHousePct: housePct,
+          overrideMapHasYear: y in houseOverride,
+          globalMapHasYear: y in houseGlobal,
+        });
+      }
 
       const capGainY = rollingCapital * (housePct / 100);
       const nextCap = rollingCapital + capGainY;
@@ -406,9 +435,30 @@ function toYearPctMap(querySnap) {
   const out = {};
   querySnap.forEach((doc) => {
     const d = doc.data() || {};
-    const year = Number.isFinite(+d.year) ? +d.year : Number(doc.id);
-    const pct = Number(d.pct);
-    if (Number.isFinite(year) && Number.isFinite(pct)) out[year] = pct;
+    // Try to get year from field first, fallback to doc ID only if field is missing
+    let year;
+    if (d.year != null) {
+      year = Number(d.year);
+    } else {
+      // Only use doc.id as fallback if it's numeric
+      const docIdNum = Number(doc.id);
+      year = Number.isFinite(docIdNum) ? docIdNum : null;
+    }
+
+    const pct = d.pct != null ? Number(d.pct) : null;
+
+    if (Number.isFinite(year) && Number.isFinite(pct)) {
+      out[year] = pct;
+    } else {
+      // Log skipped documents for debugging
+      functions.logger.warn("Skipped invalid year/pct document", {
+        docId: doc.id,
+        year: d.year,
+        yearParsed: year,
+        pct: d.pct,
+        pctParsed: pct,
+      });
+    }
   });
   return out;
 }

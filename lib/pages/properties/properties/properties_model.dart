@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
+import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,6 +25,8 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
   late MainHeaderModel mainHeaderModel;
   // Models for singleProperty dynamic component.
   late FlutterFlowDynamicModels<SinglePropertyModel> singlePropertyModels;
+  // Model for Offers_CTA component.
+  late OffersCTAModel offersCTAModel;
 
   @override
   void initState(BuildContext context) {
@@ -31,6 +34,7 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     singlePropertyModels =
         FlutterFlowDynamicModels(() => SinglePropertyModel());
+    offersCTAModel = createModel(context, () => OffersCTAModel());
   }
 
   @override
@@ -38,5 +42,6 @@ class PropertiesModel extends FlutterFlowModel<PropertiesWidget> {
     slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     singlePropertyModels.dispose();
+    offersCTAModel.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
+import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -75,40 +76,40 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              wrapWithModel(
-                model: _model.mainHeaderModel,
-                updateCallback: () => safeSetState(() {}),
-                child: MainHeaderWidget(),
-              ),
-              Expanded(
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 80.0),
-                  child: StreamBuilder<List<SalesOffersRecord>>(
-                    stream: querySalesOffersRecord(),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                wrapWithModel(
+                  model: _model.mainHeaderModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: MainHeaderWidget(),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 80.0),
+                    child: StreamBuilder<List<SalesOffersRecord>>(
+                      stream: querySalesOffersRecord(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  FlutterFlowTheme.of(context).primary,
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }
-                      List<SalesOffersRecord> columnSalesOffersRecordList =
-                          snapshot.data!;
+                          );
+                        }
+                        List<SalesOffersRecord> columnSalesOffersRecordList =
+                            snapshot.data!;
 
-                      return SingleChildScrollView(
-                        child: Column(
+                        return Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:
@@ -122,13 +123,18 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                               salesOffer: columnSalesOffersRecord,
                             );
                           }),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-            ],
+                wrapWithModel(
+                  model: _model.offersCTAModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: OffersCTAWidget(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -154,7 +154,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                               ? FlutterFlowTheme.of(context).primaryBackground
                               : Color(0x19153048),
                           border: Border.all(
-                            color: Colors.transparent,
+                            color: FlutterFlowTheme.of(context).alternate,
                             width: 0.0,
                           ),
                         ),

@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/components/main_header_widget.dart';
+import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -17,18 +18,22 @@ class SalesOffersModel extends FlutterFlowModel<SalesOffersWidget> {
 
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
+  // Model for Offers_CTA component.
+  late OffersCTAModel offersCTAModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
+    offersCTAModel = createModel(context, () => OffersCTAModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
     mainHeaderModel.dispose();
+    offersCTAModel.dispose();
     slideNavigationModel.dispose();
   }
 }

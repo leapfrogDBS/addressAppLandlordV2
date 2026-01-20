@@ -222,16 +222,20 @@ class _PropertyWidgetState extends State<PropertyWidget>
                             children: [
                               Align(
                                 alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Hero(
-                                  tag: propertyPropertiesRecord.mainPhoto,
-                                  transitionOnUserGestures: true,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: Image.network(
-                                      propertyPropertiesRecord.mainPhoto,
-                                      width: double.infinity,
-                                      height: 350.0,
-                                      fit: BoxFit.cover,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      1.0, 0.0, 0.0, 0.0),
+                                  child: Hero(
+                                    tag: propertyPropertiesRecord.mainPhoto,
+                                    transitionOnUserGestures: true,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      child: Image.network(
+                                        propertyPropertiesRecord.mainPhoto,
+                                        width: double.infinity,
+                                        height: 200.0,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -242,7 +246,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 250.0,
+                                    height: 200.0,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                         colors: [
@@ -287,7 +291,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   alignment: AlignmentDirectional(0.0, 1.16),
                                   child: Container(
                                     width: double.infinity,
-                                    height: 250.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       gradient: LinearGradient(
                                         colors: [
@@ -1016,7 +1020,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
-                                                                  0.0,
+                                                                  16.0,
                                                                   16.0,
                                                                   0.0),
                                                       child:
@@ -1386,8 +1390,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FormFieldController<
                                                                       int>(
                                                                 _model.projectionsYearSelectorValue ??=
-                                                                    _model
-                                                                        .selectedYear,
+                                                                    functions
+                                                                        .getCurrentYear(),
                                                               ),
                                                               options: List<
                                                                       int>.from(
@@ -1425,12 +1429,6 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                              hintText:
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                '9zk45ha9' /* 2025 */,
-                                                              ),
                                                               icon: Icon(
                                                                 Icons
                                                                     .keyboard_arrow_down_rounded,
@@ -1482,7 +1480,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 StatsCombinedWidget(
                                                               selectedYearIndex:
                                                                   _model
-                                                                      .selectedYearIndex,
+                                                                      .selectedYearIndex!,
                                                               projections: _model
                                                                   .pvProjection!,
                                                             ),

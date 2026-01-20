@@ -382,12 +382,12 @@ class _LoginWidgetState extends State<LoginWidget>
                                             .secondaryBackground,
                                         contentPadding: EdgeInsets.all(24.0),
                                         suffixIcon: InkWell(
-                                          onTap: () => safeSetState(
-                                            () => _model
+                                          onTap: () async {
+                                            safeSetState(() => _model
                                                     .passwordCreateVisibility =
                                                 !_model
-                                                    .passwordCreateVisibility,
-                                          ),
+                                                    .passwordCreateVisibility);
+                                          },
                                           focusNode:
                                               FocusNode(skipTraversal: true),
                                           child: Icon(

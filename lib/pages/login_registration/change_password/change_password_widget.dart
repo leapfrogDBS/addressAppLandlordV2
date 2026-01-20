@@ -298,10 +298,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                             .secondaryBackground,
                                         contentPadding: EdgeInsets.all(24.0),
                                         suffixIcon: InkWell(
-                                          onTap: () => safeSetState(
-                                            () => _model.newPasswordVisibility =
-                                                !_model.newPasswordVisibility,
-                                          ),
+                                          onTap: () async {
+                                            safeSetState(() => _model
+                                                    .newPasswordVisibility =
+                                                !_model.newPasswordVisibility);
+                                          },
                                           focusNode:
                                               FocusNode(skipTraversal: true),
                                           child: Icon(
@@ -430,12 +431,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                             .secondaryBackground,
                                         contentPadding: EdgeInsets.all(24.0),
                                         suffixIcon: InkWell(
-                                          onTap: () => safeSetState(
-                                            () => _model
+                                          onTap: () async {
+                                            safeSetState(() => _model
                                                     .confirmNewPasswordVisibility =
                                                 !_model
-                                                    .confirmNewPasswordVisibility,
-                                          ),
+                                                    .confirmNewPasswordVisibility);
+                                          },
                                           focusNode:
                                               FocusNode(skipTraversal: true),
                                           child: Icon(
