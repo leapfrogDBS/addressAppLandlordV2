@@ -26,7 +26,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'property_widget.dart' show PropertyWidget;
+import 'property_backup_widget.dart' show PropertyBackupWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:expandable/expandable.dart';
@@ -38,7 +38,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-class PropertyModel extends FlutterFlowModel<PropertyWidget> {
+class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
   ///  Local state fields for this page.
 
   double? equity = 66.25;
@@ -82,22 +82,22 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Read Document] action in Property widget.
+  // Stores action output result for [Backend Call - Read Document] action in PropertyBackup widget.
   PropertiesRecord? output;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
   TenanciesRecord? outputTenancy;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
   List<ExpensesRecord>? getExpenses;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
   PropertyProjectionsRecord? projectionDoc;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  bool isDataUploading_userMainImage2 = false;
-  FFUploadedFile uploadedLocalFile_userMainImage2 =
+  bool isDataUploading_userMainImage = false;
+  FFUploadedFile uploadedLocalFile_userMainImage =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_userMainImage2 = '';
+  String uploadedFileUrl_userMainImage = '';
 
   // State field(s) for TabBar widget.
   TabController? tabBarController;
@@ -146,10 +146,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
-
-  bool isDataUploading_userImages2 = false;
-  List<FFUploadedFile> uploadedLocalFiles_userImages2 = [];
-  List<String> uploadedFileUrls_userImages2 = [];
 
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;

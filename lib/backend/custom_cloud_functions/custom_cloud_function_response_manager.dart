@@ -65,3 +65,14 @@ class SendPasswordResetEmailCloudFunctionCallResponse {
   bool? succeeded;
   dynamic jsonBody;
 }
+
+class RecalculatePropertyDataV2CloudFunctionCallResponse {
+  RecalculatePropertyDataV2CloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}

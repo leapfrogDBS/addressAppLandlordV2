@@ -152,6 +152,11 @@ final parametersBuilderMap =
   'mortgageInfo': ParameterData.none(),
   'redirectPage': ParameterData.none(),
   'personalDetails': ParameterData.none(),
+  'PropertyBackup': (data) async => ParameterData(
+        allParams: {
+          'propID': getParameter<DocumentReference>(data, 'propID'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

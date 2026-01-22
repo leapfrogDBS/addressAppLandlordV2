@@ -7,7 +7,7 @@ const REGION = "us-central1"; // FF default; change only if your FF project is b
 
 // ───────────────────────── TRIGGERS ─────────────────────────
 
-exports.recalculatePropertyData = functions
+exports.recalculatePropertyDataV2 = functions
   .region(REGION)
   .runWith({ memory: "256MB", timeoutSeconds: 120 })
   .firestore.document("properties/{propertyId}")
@@ -18,17 +18,26 @@ exports.recalculatePropertyData = functions
 
     const fieldsToWatch = [
       "estimatedValue",
+      "averageYearlyExpenses",
+      "avgYearlyExpenses",
+      "annualExpensesEstimate",
+      "expenseInflationPct",
+      "expensesInflationPct",
       "purchasePrice",
+      "pricePaid",
+      "purchase_price",
+      "retirementAge",
+      "dateOfBirth",
+      "previousRentalIncome",
+      "previousExpenses",
       "ownerID",
+      "ownerId",
       "_recalcTrigger",
-      "dateJoinedAddressed",
+      "_recalcRequestId",
     ];
 
-    const norm = (v) =>
-      v && typeof v.toMillis === "function" ? v.toMillis() : (v ?? null);
-
     const changed = fieldsToWatch.some(
-      (k) => norm(before[k]) !== norm(after[k]),
+      (k) => (before[k] ?? null) !== (after[k] ?? null),
     );
     if (!changed) {
       functions.logger.info("No projection-relevant changes", { propertyId });
@@ -36,16 +45,28 @@ exports.recalculatePropertyData = functions
     }
 
     const db = admin.firestore();
+    const ownerOverride = getOwnerUserIdFromPropertyData(after);
+    const requestId =
+      (typeof after._recalcRequestId === "string" &&
+        after._recalcRequestId.trim()) ||
+      (typeof after._recalcTrigger === "string" &&
+        after._recalcTrigger.trim()) ||
+      null;
 
     try {
-      await computePropertyProjectionCore({ db, propertyId });
+      await computePropertyProjectionCore({
+        db,
+        propertyId,
+        ownerOverride,
+        requestId,
+      });
     } catch (err) {
+      // Log only; background triggers shouldn't throw (avoids retries)
       functions.logger.error("Background projection failed", {
         propertyId,
         error: err && err.message,
       });
     }
-
     return null;
   });
 
@@ -61,11 +82,18 @@ exports.computePropertyProjection = functions
         "propertyId is required",
       );
     }
+    const ownerOverride =
+      (data && typeof data.ownerId === "string" && data.ownerId.trim()) || null;
+    const requestId =
+      (data && typeof data.requestId === "string" && data.requestId.trim()) ||
+      null;
 
     try {
       await computePropertyProjectionCore({
         db: admin.firestore(),
         propertyId,
+        ownerOverride,
+        requestId,
       });
       return { ok: true, propertyId };
     } catch (err) {
@@ -83,7 +111,7 @@ exports.computePropertyProjection = functions
 
 // ───────────────────── CORE PROJECTION LOGIC ─────────────────────
 async function computePropertyProjectionCore(args) {
-  const { db, propertyId } = args;
+  const { db, propertyId, ownerOverride, requestId } = args;
 
   // Load property
   const propRef = db.collection("properties").doc(propertyId);
@@ -92,8 +120,11 @@ async function computePropertyProjectionCore(args) {
   const p = propSnap.data() || {};
 
   // Resolve owner
-  const ownerId = getOwnerUserIdFromPropertyData(p); // reads p.ownerID
-  if (!ownerId) throw new Error("Property ownerID missing");
+  const derivedOwnerId = getOwnerUserIdFromPropertyData(p);
+  const ownerId =
+    (typeof ownerOverride === "string" && ownerOverride.trim()) ||
+    derivedOwnerId ||
+    null;
   const userRef = ownerId ? db.collection("users").doc(ownerId) : null;
 
   // START: atomic increment + set flag
@@ -106,6 +137,7 @@ async function computePropertyProjectionCore(args) {
         calculatingProjectionsCount: cur + 1,
         lastProjectionStartedAt: admin.firestore.FieldValue.serverTimestamp(),
       };
+      if (requestId) update.recalcRequestId = requestId;
       t.set(userRef, update, { merge: true });
     });
   }
@@ -113,39 +145,7 @@ async function computePropertyProjectionCore(args) {
   try {
     // ==== YOUR PROJECTION MATH (unchanged from your working version) ====
 
-    const now = new Date();
-
-    // Pull join day/month (London time)
-    const joinedTs = p.dateJoinedAddressed;
-    let startYear = now.getFullYear(); // fallback if joinedTs missing
-
-    let joinMonth = null;
-    let joinDay = null;
-
-    if (joinedTs && typeof joinedTs.toDate === "function") {
-      const joinYMD = ymdInLondon(joinedTs.toDate());
-      joinMonth = joinYMD.m;
-      joinDay = joinYMD.d;
-
-      const nowYMD = ymdInLondon(now);
-      const annThisYear = makeAnniversaryYMD(nowYMD.y, joinMonth, joinDay);
-
-      // If we've already passed the anniversary this year, startYear = this year, else last year
-      startYear = cmpYMD(nowYMD, annThisYear) >= 0 ? nowYMD.y : nowYMD.y - 1;
-    }
-
-    functions.logger.info("Projection startYear resolved", {
-      propertyId,
-      now: now.toISOString(),
-      joined:
-        joinedTs && typeof joinedTs.toDate === "function"
-          ? joinedTs.toDate().toISOString()
-          : null,
-      joinMonth,
-      joinDay,
-      startYear,
-      hasJoinDate: !!(joinedTs && typeof joinedTs.toDate === "function"),
-    });
+    const startYear = new Date().getFullYear();
 
     const estimatedValue = num(p.estimatedValue, 0);
 
@@ -162,9 +162,20 @@ async function computePropertyProjectionCore(args) {
     }
     const annualRent0 = rentPCM * 12;
 
-    const expenseBase = num(p.averageYearlyExpenses, 0);
-    const expenseInflationPct = num(p.expenseInflationPct, 3.0);
-    const purchasePrice = num(p.purchasePrice, 0);
+    const expenseBase = num(
+      p.averageYearlyExpenses ??
+        p.avgYearlyExpenses ??
+        p.annualExpensesEstimate,
+      0,
+    );
+    const expenseInflationPct = num(
+      p.expenseInflationPct ?? p.expensesInflationPct,
+      3.0,
+    );
+    const purchasePrice = num(
+      p.purchasePrice ?? p.pricePaid ?? p.purchase_price,
+      0,
+    );
 
     const endYear = await resolveEndYear(db, p, startYear);
 
@@ -210,38 +221,12 @@ async function computePropertyProjectionCore(args) {
     const dailyCapitalGain = [];
     const combinedDailyGain = [];
 
-    const periodStartDates = [];
-    const periodEndDates = [];
-    const periodLabels = [];
-
     let rollingCapital = estimatedValue;
     let rollingRent = annualRent0;
     let rollingExpenses = expenseBase;
     let runningRentalProfit = 0;
 
     for (let y = startYear; y <= endYear; y++) {
-      // Build property-year period boundaries (anniversary -> day before next anniversary)
-      let periodStartYMD;
-      let nextStartYMD;
-      let periodEndYMD;
-
-      if (joinMonth && joinDay) {
-        periodStartYMD = makeAnniversaryYMD(y, joinMonth, joinDay);
-        nextStartYMD = makeAnniversaryYMD(y + 1, joinMonth, joinDay);
-        periodEndYMD = ymdMinusOneDay(nextStartYMD);
-
-        periodStartDates.push(ymdToString(periodStartYMD));
-        periodEndDates.push(ymdToString(periodEndYMD));
-        periodLabels.push(
-          `${formatYMDLabel(periodStartYMD)} – ${formatYMDLabel(periodEndYMD)}`,
-        );
-      } else {
-        // Fallback: calendar year period if dateJoinedAddressed missing
-        periodStartDates.push(`${y}-01-01`);
-        periodEndDates.push(`${y}-12-31`);
-        periodLabels.push(`1 Jan ${y} – 31 Dec ${y}`);
-      }
-
       const housePct = pickPct(y, houseOverride, houseGlobal, 3.0);
       const rentPct = pickPct(y, rentOverride, rentGlobal, 3.0);
 
@@ -253,9 +238,6 @@ async function computePropertyProjectionCore(args) {
           houseOverrideValue: houseOverride[y],
           houseGlobalValue: houseGlobal[y],
           selectedHousePct: housePct,
-          periodStart: periodStartDates[periodStartDates.length - 1],
-          periodEnd: periodEndDates[periodEndDates.length - 1],
-          periodLabel: periodLabels[periodLabels.length - 1],
           overrideMapHasYear: y in houseOverride,
           globalMapHasYear: y in houseGlobal,
         });
@@ -305,7 +287,10 @@ async function computePropertyProjectionCore(args) {
     const prevNetRentalProfitToJan1 = prevIncomeToJan1 - prevExpensesToJan1;
 
     const estimatedValueAtStartYear = num(p.estimatedValue, 0);
-    const purchasePriceAnchor = num(p.purchasePrice, 0);
+    const purchasePriceAnchor = num(
+      p.purchasePrice ?? p.pricePaid ?? p.purchase_price,
+      0,
+    );
 
     const historicalNetProfitBaseToJan1 = round2(
       estimatedValueAtStartYear -
@@ -323,9 +308,6 @@ async function computePropertyProjectionCore(args) {
       startYear,
       endYear,
       years,
-      periodStartDates,
-      periodEndDates,
-      periodLabels,
       projectedHousePrice,
       rentalIncome,
       expenses,
@@ -341,8 +323,6 @@ async function computePropertyProjectionCore(args) {
       hasActiveTenancy,
       historicalNetProfitBaseToJan1,
 
-      atRetirementPeriodLabel: periodLabels[periodLabels.length - 1],
-
       atRetirementYear: years[years.length - 1],
       atRetirementCapitalValue:
         projectedHousePrice[projectedHousePrice.length - 1],
@@ -355,6 +335,7 @@ async function computePropertyProjectionCore(args) {
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       schemaVersion: "v3.18-combined-uses-cumRental",
     };
+    if (requestId) projectionPayload.recalcRequestId = requestId;
 
     await projRef.set(projectionPayload, { merge: false });
 
@@ -362,6 +343,7 @@ async function computePropertyProjectionCore(args) {
       propertyId,
       ownerId,
       years: years.length,
+      requestId: requestId || null,
     });
   } finally {
     // END: atomic decrement + flip flag iff last job
@@ -377,6 +359,9 @@ async function computePropertyProjectionCore(args) {
             lastProjectionCompletedAt:
               admin.firestore.FieldValue.serverTimestamp(),
           };
+          if (requestId && next === 0) {
+            update.lastCompletedRequestId = requestId;
+          }
           t.update(userRef, update);
         });
       } catch (err) {
@@ -391,7 +376,12 @@ async function computePropertyProjectionCore(args) {
 
 // ───────────────────────── UTILS ─────────────────────────
 function getOwnerUserIdFromPropertyData(p) {
-  return String(p.ownerID || "").trim() || null;
+  return (
+    String(p.ownerID || p.ownerId || "").trim() ||
+    (p.ownerRef && p.ownerRef.id) ||
+    (p.landlordRef && p.landlordRef.id) ||
+    null
+  );
 }
 
 function num(v, fallback) {
@@ -400,17 +390,26 @@ function num(v, fallback) {
 }
 
 async function resolveEndYear(db, p, startYear) {
-  let dobTs = null; // property doesn't store this
-  let retirementAge = NaN; // property doesn't store this
+  let dobTs = p.dateOfBirth;
+  let retirementAge = num(p.retirementAge, NaN);
 
-  const ownerId = getOwnerUserIdFromPropertyData(p) || "";
+  const ownerId =
+    String(p.ownerID || p.ownerId || "").trim() ||
+    (p.ownerRef && p.ownerRef.id) ||
+    (p.landlordRef && p.landlordRef.id) ||
+    "";
 
-  if (ownerId) {
+  if ((!dobTs || !Number.isFinite(retirementAge)) && ownerId) {
     const userSnap = await db.collection("users").doc(ownerId).get();
     if (userSnap.exists) {
       const u = userSnap.data() || {};
-      dobTs = u.dob || null; // strict
-      retirementAge = num(u.planned_retirement_age, NaN); // strict
+      if (!dobTs) dobTs = u.dateOfBirth || u.dob || u.birthDate;
+      if (!Number.isFinite(retirementAge)) {
+        retirementAge =
+          num(u.planned_retirement_age, NaN) ||
+          num(u.retirementAge, NaN) ||
+          num(u.plannedRetirementAge, NaN);
+      }
     }
   }
 
@@ -423,7 +422,6 @@ async function resolveEndYear(db, p, startYear) {
   ) {
     retirementYear = dobTs.toDate().getFullYear() + retirementAge;
   }
-
   const endYear = Math.max(startYear + 5, retirementYear || startYear + 5);
   functions.logger.info("Retirement horizon", {
     startYear,
@@ -475,66 +473,4 @@ function pickPct(year, overrideMap, globalMap, def) {
 
 function round2(n) {
   return Math.round(n * 100) / 100;
-}
-
-const LONDON_TZ = "Europe/London";
-
-function ymdInLondon(dateObj) {
-  // Returns { y, m, d } as numbers in Europe/London, avoiding timezone off-by-one.
-  const parts = new Intl.DateTimeFormat("en-GB", {
-    timeZone: LONDON_TZ,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).formatToParts(dateObj);
-
-  const get = (type) => Number(parts.find((p) => p.type === type)?.value);
-  return { y: get("year"), m: get("month"), d: get("day") };
-}
-
-function cmpYMD(a, b) {
-  // Returns -1, 0, 1 for date-only comparison
-  if (a.y !== b.y) return a.y < b.y ? -1 : 1;
-  if (a.m !== b.m) return a.m < b.m ? -1 : 1;
-  if (a.d !== b.d) return a.d < b.d ? -1 : 1;
-  return 0;
-}
-
-function clampDay(year, month1to12, day) {
-  // Clamp day for month/year (handles Feb 29 etc.)
-  const daysInMonth = new Date(Date.UTC(year, month1to12, 0)).getUTCDate(); // month is 1-12
-  return Math.min(day, daysInMonth);
-}
-
-function makeAnniversaryYMD(year, joinMonth, joinDay) {
-  return { y: year, m: joinMonth, d: clampDay(year, joinMonth, joinDay) };
-}
-
-function ymdToUTCDate(ymd) {
-  return new Date(Date.UTC(ymd.y, ymd.m - 1, ymd.d));
-}
-
-function ymdMinusOneDay(ymd) {
-  const dt = ymdToUTCDate(ymd);
-  dt.setUTCDate(dt.getUTCDate() - 1);
-  return {
-    y: dt.getUTCFullYear(),
-    m: dt.getUTCMonth() + 1,
-    d: dt.getUTCDate(),
-  };
-}
-
-function ymdToString(ymd) {
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${ymd.y}-${pad(ymd.m)}-${pad(ymd.d)}`; // e.g. 2025-07-01
-}
-
-function formatYMDLabel(ymd) {
-  // e.g. "1 Jul 2025" in UK format
-  return new Intl.DateTimeFormat("en-GB", {
-    timeZone: LONDON_TZ,
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  }).format(ymdToUTCDate(ymd));
 }

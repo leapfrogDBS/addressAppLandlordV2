@@ -36,34 +36,34 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'property_model.dart';
-export 'property_model.dart';
+import 'property_backup_model.dart';
+export 'property_backup_model.dart';
 
-class PropertyWidget extends StatefulWidget {
-  const PropertyWidget({
+class PropertyBackupWidget extends StatefulWidget {
+  const PropertyBackupWidget({
     super.key,
     required this.propID,
   });
 
   final DocumentReference? propID;
 
-  static String routeName = 'Property';
-  static String routePath = '/singleproperty';
+  static String routeName = 'PropertyBackup';
+  static String routePath = '/singlepropertyV2';
 
   @override
-  State<PropertyWidget> createState() => _PropertyWidgetState();
+  State<PropertyBackupWidget> createState() => _PropertyBackupWidgetState();
 }
 
-class _PropertyWidgetState extends State<PropertyWidget>
+class _PropertyBackupWidgetState extends State<PropertyBackupWidget>
     with TickerProviderStateMixin {
-  late PropertyModel _model;
+  late PropertyBackupModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PropertyModel());
+    _model = createModel(context, () => PropertyBackupModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -179,7 +179,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
           );
         }
 
-        final propertyPropertiesRecord = snapshot.data!;
+        final propertyBackupPropertiesRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -226,12 +226,14 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       1.0, 0.0, 0.0, 0.0),
                                   child: Hero(
-                                    tag: propertyPropertiesRecord.mainPhoto,
+                                    tag: propertyBackupPropertiesRecord
+                                        .mainPhoto,
                                     transitionOnUserGestures: true,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(0.0),
                                       child: Image.network(
-                                        propertyPropertiesRecord.mainPhoto,
+                                        propertyBackupPropertiesRecord
+                                            .mainPhoto,
                                         width: double.infinity,
                                         height: 200.0,
                                         fit: BoxFit.cover,
@@ -240,8 +242,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   ),
                                 ),
                               ),
-                              if (propertyPropertiesRecord.title != null &&
-                                  propertyPropertiesRecord.title != '')
+                              if (propertyBackupPropertiesRecord.title !=
+                                      null &&
+                                  propertyBackupPropertiesRecord.title != '')
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: Container(
@@ -266,7 +269,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             50.0, 0.0, 50.0, 30.0),
                                         child: Text(
-                                          propertyPropertiesRecord.title
+                                          propertyBackupPropertiesRecord.title
                                               .maybeHandleOverflow(
                                             maxChars: 50,
                                             replacement: '…',
@@ -285,8 +288,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                     ),
                                   ),
                                 ),
-                              if (propertyPropertiesRecord.title == null ||
-                                  propertyPropertiesRecord.title == '')
+                              if (propertyBackupPropertiesRecord.title ==
+                                      null ||
+                                  propertyBackupPropertiesRecord.title == '')
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.16),
                                   child: Container(
@@ -311,7 +315,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             50.0, 0.0, 50.0, 30.0),
                                         child: Text(
-                                          propertyPropertiesRecord
+                                          propertyBackupPropertiesRecord
                                               .addressFormatted
                                               .maybeHandleOverflow(
                                             maxChars: 50,
@@ -384,7 +388,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                 validateFileFormat(
                                                     m.storagePath, context))) {
                                           safeSetState(() => _model
-                                                  .isDataUploading_userMainImage2 =
+                                                  .isDataUploading_userMainImage =
                                               true);
                                           var selectedUploadedFiles =
                                               <FFUploadedFile>[];
@@ -418,7 +422,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                 .map((u) => u!)
                                                 .toList();
                                           } finally {
-                                            _model.isDataUploading_userMainImage2 =
+                                            _model.isDataUploading_userMainImage =
                                                 false;
                                           }
                                           if (selectedUploadedFiles.length ==
@@ -426,9 +430,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                               downloadUrls.length ==
                                                   selectedMedia.length) {
                                             safeSetState(() {
-                                              _model.uploadedLocalFile_userMainImage2 =
+                                              _model.uploadedLocalFile_userMainImage =
                                                   selectedUploadedFiles.first;
-                                              _model.uploadedFileUrl_userMainImage2 =
+                                              _model.uploadedFileUrl_userMainImage =
                                                   downloadUrls.first;
                                             });
                                           } else {
@@ -440,7 +444,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         await widget!.propID!
                                             .update(createPropertiesRecordData(
                                           mainPhoto: _model
-                                              .uploadedFileUrl_userMainImage2,
+                                              .uploadedFileUrl_userMainImage,
                                         ));
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
@@ -530,7 +534,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              'dyr7xy16' /* Purchase Price */,
+                                              '9pacpwnm' /* Purchase Price */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -570,7 +574,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             formatNumber(
-                                              propertyPropertiesRecord
+                                              propertyBackupPropertiesRecord
                                                   .purchasePrice,
                                               formatType: FormatType.decimal,
                                               decimalType:
@@ -600,7 +604,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              '97jdzefa' /* Estimated Value */,
+                                              'cv65xn2p' /* Estimated Value */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -643,7 +647,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   -1.0, 0.0),
                                               child: Text(
                                                 formatNumber(
-                                                  propertyPropertiesRecord
+                                                  propertyBackupPropertiesRecord
                                                       .estimatedValue,
                                                   formatType:
                                                       FormatType.decimal,
@@ -670,9 +674,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     functions.percentageIncreaseAlltime(
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                             .purchasePrice,
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                             .estimatedValue),
                                                     'Unkown',
                                                   ),
@@ -735,7 +739,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'mb0en2t9' /* Time held */,
+                                                'zy5uxmok' /* Time held */,
                                               ),
                                               textAlign: TextAlign.start,
                                               style: FlutterFlowTheme.of(
@@ -778,7 +782,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                             child: Text(
                                               valueOrDefault<String>(
                                                 functions.timeHeldFunction(
-                                                    propertyPropertiesRecord
+                                                    propertyBackupPropertiesRecord
                                                         .purchaseDate),
                                                 'Unkown',
                                               ),
@@ -855,7 +859,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'fsnyg0u9' /* Rent (£pcm) */,
+                                                      'lim2ptr8' /* Rent (£pcm) */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -969,17 +973,17 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   tabs: [
                                     Tab(
                                       text: FFLocalizations.of(context).getText(
-                                        'fugapjno' /* FINANCIAL */,
+                                        'qqq7h37u' /* FINANCIAL */,
                                       ),
                                     ),
                                     Tab(
                                       text: FFLocalizations.of(context).getText(
-                                        'fktl2sei' /* TIMELINE */,
+                                        'p88cvozw' /* TIMELINE */,
                                       ),
                                     ),
                                     Tab(
                                       text: FFLocalizations.of(context).getText(
-                                        '6i2uiph5' /* MEDIA */,
+                                        '3snwt6a7' /* MEDIA */,
                                       ),
                                     ),
                                   ],
@@ -1111,17 +1115,17 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   ChipData(FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '7aatlv1n' /* COMBINED */,
+                                                                    'jn5d3e1d' /* COMBINED */,
                                                                   )),
                                                                   ChipData(FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '5c8rlpjy' /* CAPITAL */,
+                                                                    '6aua16u0' /* CAPITAL */,
                                                                   )),
                                                                   ChipData(FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'y4p4283s' /* RENTAL */,
+                                                                    'va292u65' /* RENTAL */,
                                                                   ))
                                                                 ],
                                                                 onChanged:
@@ -1248,7 +1252,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'snzj3dao' /* CAPITAL */,
+                                                                      'lsczoata' /* CAPITAL */,
                                                                     )
                                                                   ],
                                                                 ),
@@ -1345,7 +1349,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                       text: FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'jgoafby2' /* PROJECTIONS FOR  */,
+                                                                        'jquhazqe' /* PROJECTIONS FOR  */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -1587,7 +1591,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'rgtxj5xs' /* EQUITY */,
+                                                                    'vyygmetm' /* EQUITY */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1617,7 +1621,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyBackupPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1636,7 +1640,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             [
                                                                           Text(
                                                                             FFLocalizations.of(context).getText(
-                                                                              'xpmtf6m2' /* Estimated mortage remaing */,
+                                                                              '57wcr3pg' /* Estimated mortage remaing */,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
@@ -1650,7 +1654,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           ),
                                                                           Text(
                                                                             formatNumber(
-                                                                              propertyPropertiesRecord.mortgageRemaining,
+                                                                              propertyBackupPropertiesRecord.mortgageRemaining,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.automatic,
                                                                               currency: '£',
@@ -1686,7 +1690,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyBackupPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1705,7 +1709,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             [
                                                                           Text(
                                                                             FFLocalizations.of(context).getText(
-                                                                              'xzkeurri' /* Mortgage term remaining */,
+                                                                              'u9kzdjfg' /* Mortgage term remaining */,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
@@ -1718,7 +1722,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 ),
                                                                           ),
                                                                           Text(
-                                                                            propertyPropertiesRecord.mortgageTermRemaining.toString(),
+                                                                            propertyBackupPropertiesRecord.mortgageTermRemaining.toString(),
                                                                             style: FlutterFlowTheme.of(context).displaySmall.override(
                                                                                   fontFamily: 'Thunder',
                                                                                   letterSpacing: 0.0,
@@ -1727,7 +1731,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyBackupPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1746,7 +1750,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             [
                                                                           Text(
                                                                             FFLocalizations.of(context).getText(
-                                                                              '9agwbnh4' /* Monthly  repayment */,
+                                                                              'ift27so0' /* Monthly  repayment */,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
@@ -1760,7 +1764,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           ),
                                                                           Text(
                                                                             formatNumber(
-                                                                              propertyPropertiesRecord.mortgageMonthlyPayment,
+                                                                              propertyBackupPropertiesRecord.mortgageMonthlyPayment,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.automatic,
                                                                               currency: '£',
@@ -1773,7 +1777,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if (!propertyPropertiesRecord
+                                                                  if (!propertyBackupPropertiesRecord
                                                                           .mortgageEntered ||
                                                                       _model
                                                                           .updatingMortgageEstimate)
@@ -1789,7 +1793,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             [
                                                                           Text(
                                                                             FFLocalizations.of(context).getText(
-                                                                              '7sg4a2ja' /* Please enter the estimated mor... */,
+                                                                              'di46qnyg' /* Please enter the estimated mor... */,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
@@ -1813,7 +1817,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageRemainingTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageRemaining.toString(),
+                                                                                  text: propertyBackupPropertiesRecord.mortgageRemaining.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageRemainingFocusNode,
                                                                                 autofocus: true,
@@ -1823,7 +1827,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   labelText: FFLocalizations.of(context).getText(
-                                                                                    'ap780vyh' /* Enter outstanding mortgage val... */,
+                                                                                    '62v98rsl' /* Enter outstanding mortgage val... */,
                                                                                   ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
@@ -1893,7 +1897,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageTermRemainingTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageTermRemaining.toString(),
+                                                                                  text: propertyBackupPropertiesRecord.mortgageTermRemaining.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageTermRemainingFocusNode,
                                                                                 autofocus: true,
@@ -1903,7 +1907,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   labelText: FFLocalizations.of(context).getText(
-                                                                                    'yznhbxmr' /* Enter mortgage term remaining ... */,
+                                                                                    'e3cabe6w' /* Enter mortgage term remaining ... */,
                                                                                   ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
@@ -1973,7 +1977,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageMonthlyPaymentTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageMonthlyPayment.toString(),
+                                                                                  text: propertyBackupPropertiesRecord.mortgageMonthlyPayment.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageMonthlyPaymentFocusNode,
                                                                                 autofocus: true,
@@ -1983,7 +1987,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 obscureText: false,
                                                                                 decoration: InputDecoration(
                                                                                   labelText: FFLocalizations.of(context).getText(
-                                                                                    'nyph20t5' /* Enter monthly repayment */,
+                                                                                    'qenbu2bg' /* Enter monthly repayment */,
                                                                                   ),
                                                                                   labelStyle: FlutterFlowTheme.of(context).labelSmall.override(
                                                                                         font: GoogleFonts.figtree(
@@ -2057,7 +2061,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 safeSetState(() {});
                                                                               },
                                                                               text: FFLocalizations.of(context).getText(
-                                                                                '9rkpkzks' /* Save */,
+                                                                                'kh41m60h' /* Save */,
                                                                               ),
                                                                               options: FFButtonOptions(
                                                                                 height: 40.0,
@@ -2082,7 +2086,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(height: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyBackupPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -2107,7 +2111,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
-                                                                                  '86ayc94n' /* Estimated Value */,
+                                                                                  'g2r6q31u' /* Estimated Value */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
@@ -2121,7 +2125,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  propertyPropertiesRecord.estimatedValue,
+                                                                                  propertyBackupPropertiesRecord.estimatedValue,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2146,7 +2150,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
-                                                                                  'gmb4t22g' /* Remaing Mortgage */,
+                                                                                  'crtjq8nt' /* Remaing Mortgage */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
@@ -2160,7 +2164,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  propertyPropertiesRecord.mortgageRemaining,
+                                                                                  propertyBackupPropertiesRecord.mortgageRemaining,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2185,7 +2189,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
-                                                                                  'la5etfg8' /* Equity */,
+                                                                                  'bs0x5uzu' /* Equity */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
@@ -2199,7 +2203,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  functions.subtractDoubles(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining),
+                                                                                  functions.subtractDoubles(propertyBackupPropertiesRecord.estimatedValue, propertyBackupPropertiesRecord.mortgageRemaining),
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2224,7 +2228,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
-                                                                                  'xnzvczdj' /* Equity Share */,
+                                                                                  'rbecxjty' /* Equity Share */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(
@@ -2238,7 +2242,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  functions.percentOfDifferenceRelativeToLarge(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining),
+                                                                                  functions.percentOfDifferenceRelativeToLarge(propertyBackupPropertiesRecord.estimatedValue, propertyBackupPropertiesRecord.mortgageRemaining),
                                                                                   formatType: FormatType.percent,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -2265,8 +2269,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               child: FlutterFlowPieChart(
                                                                                 data: FFPieChartData(
                                                                                   values: [
-                                                                                    functions.percentOfDifferenceRelativeToLarge(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining).toString(),
-                                                                                    functions.percentOfDifferenceRelativeToLargeOther(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining).toString()
+                                                                                    functions.percentOfDifferenceRelativeToLarge(propertyBackupPropertiesRecord.estimatedValue, propertyBackupPropertiesRecord.mortgageRemaining).toString(),
+                                                                                    functions.percentOfDifferenceRelativeToLargeOther(propertyBackupPropertiesRecord.estimatedValue, propertyBackupPropertiesRecord.mortgageRemaining).toString()
                                                                                   ],
                                                                                   colors: [
                                                                                     FlutterFlowTheme.of(context).primary,
@@ -2410,7 +2414,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '4xohe67v' /* Tenancy Start */,
+                                                                    'gu21mo4s' /* Tenancy Start */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -2489,7 +2493,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'i44fa5n2' /* Next Rent Review */,
+                                                                    'vq63oouw' /* Next Rent Review */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -2524,7 +2528,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     String>(
                                                                   dateTimeFormat(
                                                                     "d/M/y",
-                                                                    propertyPropertiesRecord
+                                                                    propertyBackupPropertiesRecord
                                                                         .nextRentReviewDate,
                                                                     locale: FFLocalizations.of(
                                                                             context)
@@ -2582,7 +2586,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'barzxzrk' /* Rent Amount */,
+                                                                      'vjdcqhsk' /* Rent Amount */,
                                                                     ),
                                                                     textAlign:
                                                                         TextAlign
@@ -2657,7 +2661,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                       FFLocalizations.of(
                                                                               context)
                                                                           .getText(
-                                                                        'qdbo8tuq' /* per month */,
+                                                                        'z8hs4e5y' /* per month */,
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -2703,7 +2707,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     FFLocalizations.of(
                                                                             context)
                                                                         .getText(
-                                                                      'l30vd56s' /* Rent Due Date */,
+                                                                      'y9qofxmb' /* Rent Due Date */,
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -2777,7 +2781,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                       Text(
                                                                         FFLocalizations.of(context)
                                                                             .getText(
-                                                                          'z3anpmop' /* of each month */,
+                                                                          'gdxklgrq' /* of each month */,
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .labelSmall
@@ -2835,7 +2839,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'bkm4hwzx' /* Last Valuation Date */,
+                                                                    'pe0cvk1o' /* Last Valuation Date */,
                                                                   ),
                                                                   textAlign:
                                                                       TextAlign
@@ -2873,7 +2877,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     String>(
                                                                   dateTimeFormat(
                                                                     "d/M/y",
-                                                                    propertyPropertiesRecord
+                                                                    propertyBackupPropertiesRecord
                                                                         .lastValuationDate,
                                                                     locale: FFLocalizations.of(
                                                                             context)
@@ -2992,7 +2996,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            if (propertyPropertiesRecord
+                                            if (propertyBackupPropertiesRecord
                                                 .gallery.isNotEmpty)
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -3006,7 +3010,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                       FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        'opbpdyky' /* MEDIA GALLERY */,
+                                                        '74u4gjvd' /* MEDIA GALLERY */,
                                                       ),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -3021,7 +3025,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   Builder(
                                                     builder: (context) {
                                                       final galleryImages =
-                                                          propertyPropertiesRecord
+                                                          propertyBackupPropertiesRecord
                                                               .gallery
                                                               .toList();
 
@@ -3223,121 +3227,14 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                         AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        final selectedMedia =
-                                                            await selectMedia(
-                                                          mediaSource:
-                                                              MediaSource
-                                                                  .photoGallery,
-                                                          multiImage: true,
-                                                        );
-                                                        if (selectedMedia !=
-                                                                null &&
-                                                            selectedMedia.every((m) =>
-                                                                validateFileFormat(
-                                                                    m.storagePath,
-                                                                    context))) {
-                                                          safeSetState(() =>
-                                                              _model.isDataUploading_userImages2 =
-                                                                  true);
-                                                          var selectedUploadedFiles =
-                                                              <FFUploadedFile>[];
-
-                                                          var downloadUrls =
-                                                              <String>[];
-                                                          try {
-                                                            selectedUploadedFiles =
-                                                                selectedMedia
-                                                                    .map((m) =>
-                                                                        FFUploadedFile(
-                                                                          name: m
-                                                                              .storagePath
-                                                                              .split('/')
-                                                                              .last,
-                                                                          bytes:
-                                                                              m.bytes,
-                                                                          height: m
-                                                                              .dimensions
-                                                                              ?.height,
-                                                                          width: m
-                                                                              .dimensions
-                                                                              ?.width,
-                                                                          blurHash:
-                                                                              m.blurHash,
-                                                                          originalFilename:
-                                                                              m.originalFilename,
-                                                                        ))
-                                                                    .toList();
-
-                                                            downloadUrls =
-                                                                (await Future
-                                                                        .wait(
-                                                              selectedMedia.map(
-                                                                (m) async =>
-                                                                    await uploadData(
-                                                                        m.storagePath,
-                                                                        m.bytes),
-                                                              ),
-                                                            ))
-                                                                    .where((u) =>
-                                                                        u !=
-                                                                        null)
-                                                                    .map((u) =>
-                                                                        u!)
-                                                                    .toList();
-                                                          } finally {
-                                                            _model.isDataUploading_userImages2 =
-                                                                false;
-                                                          }
-                                                          if (selectedUploadedFiles
-                                                                      .length ==
-                                                                  selectedMedia
-                                                                      .length &&
-                                                              downloadUrls
-                                                                      .length ==
-                                                                  selectedMedia
-                                                                      .length) {
-                                                            safeSetState(() {
-                                                              _model.uploadedLocalFiles_userImages2 =
-                                                                  selectedUploadedFiles;
-                                                              _model.uploadedFileUrls_userImages2 =
-                                                                  downloadUrls;
-                                                            });
-                                                          } else {
-                                                            safeSetState(() {});
-                                                            return;
-                                                          }
-                                                        }
-
-                                                        for (int loop1Index = 0;
-                                                            loop1Index <
-                                                                _model
-                                                                    .uploadedFileUrls_userImages2
-                                                                    .length;
-                                                            loop1Index++) {
-                                                          final currentLoop1Item =
-                                                              _model.uploadedFileUrls_userImages2[
-                                                                  loop1Index];
-
-                                                          await widget!.propID!
-                                                              .update({
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'gallery':
-                                                                    FieldValue
-                                                                        .arrayUnion([
-                                                                  currentLoop1Item
-                                                                      .toString()
-                                                                ]),
-                                                              },
-                                                            ),
-                                                          });
-                                                        }
+                                                      onPressed: () {
+                                                        print(
+                                                            'Button pressed ...');
                                                       },
                                                       text: FFLocalizations.of(
                                                               context)
                                                           .getText(
-                                                        'rvjx935d' /* Add to Image Gallery */,
+                                                        'ewm064z5' /* Add to Image Gallery */,
                                                       ),
                                                       options: FFButtonOptions(
                                                         height: 40.0,
@@ -3406,22 +3303,22 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                             ),
-                                            if ((propertyPropertiesRecord
+                                            if ((propertyBackupPropertiesRecord
                                                             .energyCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyBackupPropertiesRecord
                                                             .energyCert !=
                                                         '') ||
-                                                (propertyPropertiesRecord
+                                                (propertyBackupPropertiesRecord
                                                             .gasCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyBackupPropertiesRecord
                                                             .gasCert !=
                                                         '') ||
-                                                (propertyPropertiesRecord
+                                                (propertyBackupPropertiesRecord
                                                             .elecCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyBackupPropertiesRecord
                                                             .elecCert !=
                                                         ''))
                                               Padding(
@@ -3444,7 +3341,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'sbcsm5b2' /* CERTIFICATES */,
+                                                          'tjvtqrsd' /* CERTIFICATES */,
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -3458,10 +3355,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 ),
                                                       ),
                                                     ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyBackupPropertiesRecord
                                                                 .energyCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                                 .energyCert !=
                                                             '')
                                                       InkWell(
@@ -3480,7 +3377,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyBackupPropertiesRecord
                                                                     .energyCert,
                                                                 ParamType
                                                                     .String,
@@ -3513,7 +3410,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                                'p8tpn8g4' /* ENERGY PERFORMANCE CERTIFICATE */,
+                                                                'af7r131k' /* ENERGY PERFORMANCE CERTIFICATE */,
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -3540,10 +3437,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               width: 13.0)),
                                                         ),
                                                       ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyBackupPropertiesRecord
                                                                 .gasCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                                 .gasCert !=
                                                             '')
                                                       InkWell(
@@ -3562,7 +3459,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyBackupPropertiesRecord
                                                                     .gasCert,
                                                                 ParamType
                                                                     .String,
@@ -3595,7 +3492,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                                'fumt9rxo' /* GAS SAFETY CERTIFICATE */,
+                                                                '30cuiyu2' /* GAS SAFETY CERTIFICATE */,
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -3619,10 +3516,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               width: 13.0)),
                                                         ),
                                                       ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyBackupPropertiesRecord
                                                                 .elecCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                                 .elecCert !=
                                                             '')
                                                       InkWell(
@@ -3641,7 +3538,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyBackupPropertiesRecord
                                                                     .elecCert,
                                                                 ParamType
                                                                     .String,
@@ -3674,7 +3571,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               FFLocalizations.of(
                                                                       context)
                                                                   .getText(
-                                                                '03gvg9om' /* ELECTRICAL INSTALATION REPORT */,
+                                                                'son9p8rn' /* ELECTRICAL INSTALATION REPORT */,
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -3719,7 +3616,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   child: Text(
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                      'hxu5xgru' /* LOCATION */,
+                                                      'm6ropito' /* LOCATION */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -3740,7 +3637,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 10.0),
                                                     child: Text(
-                                                      propertyPropertiesRecord
+                                                      propertyBackupPropertiesRecord
                                                           .addressFormatted,
                                                       textAlign:
                                                           TextAlign.start,
@@ -3778,13 +3675,13 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   height: 300.0,
                                                   child: Visibility(
                                                     visible:
-                                                        propertyPropertiesRecord
+                                                        propertyBackupPropertiesRecord
                                                                 .latLng !=
                                                             null,
                                                     child: Builder(
                                                         builder: (context) {
                                                       final _googleMapMarker =
-                                                          propertyPropertiesRecord
+                                                          propertyBackupPropertiesRecord
                                                               .latLng;
                                                       return FlutterFlowGoogleMap(
                                                         controller: _model
@@ -3794,7 +3691,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 latLng,
                                                         initialLocation: _model
                                                                 .googleMapsCenter ??=
-                                                            propertyPropertiesRecord
+                                                            propertyBackupPropertiesRecord
                                                                 .latLng!,
                                                         markers: [
                                                           if (_googleMapMarker !=
