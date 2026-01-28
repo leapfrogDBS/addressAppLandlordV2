@@ -1023,54 +1023,49 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   16.0,
                                                                   16.0,
                                                                   0.0),
-                                                      child:
-                                                          AuthUserStreamWidget(
-                                                        builder: (context) =>
-                                                            wrapWithModel(
-                                                          model: _model
-                                                              .liveEarningsPropertyModel,
-                                                          updateCallback: () =>
-                                                              safeSetState(
-                                                                  () {}),
-                                                          child:
-                                                              LiveEarningsPropertyWidget(
-                                                            yearlyGain:
-                                                                valueOrDefault<
-                                                                    double>(
-                                                              _model
-                                                                  .financialSummary
-                                                                  ?.gainThisYear,
-                                                              0.0,
-                                                            ),
-                                                            dailyGain:
-                                                                valueOrDefault<
-                                                                    double>(
-                                                              _model
-                                                                  .financialSummary
-                                                                  ?.gainPerDay,
-                                                              0.0,
-                                                            ),
-                                                            secondGain:
-                                                                valueOrDefault<
-                                                                    double>(
-                                                              _model
-                                                                  .financialSummary
-                                                                  ?.gainPerSecond,
-                                                              0.0,
-                                                            ),
-                                                            earningsToDate: _model
-                                                                .financialSummary!
-                                                                .earningsAsOfNow,
-                                                            headingText:
-                                                                'This property has earned you since ${dateTimeFormat(
-                                                              "yyyy",
-                                                              currentUserDocument
-                                                                  ?.createdTime,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
-                                                            )}.....',
+                                                      child: wrapWithModel(
+                                                        model: _model
+                                                            .liveEarningsPropertyModel,
+                                                        updateCallback: () =>
+                                                            safeSetState(() {}),
+                                                        child:
+                                                            LiveEarningsPropertyWidget(
+                                                          yearlyGain:
+                                                              valueOrDefault<
+                                                                  double>(
+                                                            _model
+                                                                .financialSummary
+                                                                ?.gainThisYear,
+                                                            0.0,
                                                           ),
+                                                          dailyGain:
+                                                              valueOrDefault<
+                                                                  double>(
+                                                            _model
+                                                                .financialSummary
+                                                                ?.gainPerDay,
+                                                            0.0,
+                                                          ),
+                                                          secondGain:
+                                                              valueOrDefault<
+                                                                  double>(
+                                                            _model
+                                                                .financialSummary
+                                                                ?.gainPerSecond,
+                                                            0.0,
+                                                          ),
+                                                          earningsToDate: _model
+                                                              .financialSummary!
+                                                              .earningsAsOfNow,
+                                                          headingText:
+                                                              'This property has earned you since ${dateTimeFormat(
+                                                            "y",
+                                                            propertyPropertiesRecord
+                                                                .dateJoinedAddressed,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          )}.....',
                                                         ),
                                                       ),
                                                     ),
@@ -2379,177 +2374,6 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   if (_model.hasActiveTenancy)
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, 0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '4xohe67v' /* Tenancy Start */,
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .greyBlue,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  dateTimeFormat(
-                                                                    "d/M/y",
-                                                                    _model
-                                                                        .outputTenancy
-                                                                        ?.tenancyStartDate,
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  ),
-                                                                  'N/A',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displayLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Thunder',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                height: 8.0)),
-                                                          ),
-                                                        ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  -1.0, 0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child: Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'i44fa5n2' /* Next Rent Review */,
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .greyBlue,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                              Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  dateTimeFormat(
-                                                                    "d/M/y",
-                                                                    propertyPropertiesRecord
-                                                                        .nextRentReviewDate,
-                                                                    locale: FFLocalizations.of(
-                                                                            context)
-                                                                        .languageCode,
-                                                                  ),
-                                                                  'N/A',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displayLarge
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Thunder',
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                            ].divide(SizedBox(
-                                                                height: 8.0)),
-                                                          ),
-                                                        ),
-                                                      ].divide(
-                                                          SizedBox(width: 4.0)),
-                                                    ),
-                                                  if (_model.hasActiveTenancy)
                                                     Align(
                                                       alignment:
                                                           AlignmentDirectional(
@@ -2803,16 +2627,16 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             width: 4.0)),
                                                       ),
                                                     ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 0.0),
-                                                    child: Row(
+                                                  if (_model.hasActiveTenancy)
+                                                    Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
                                                               .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Align(
                                                           alignment:
@@ -2835,11 +2659,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'bkm4hwzx' /* Last Valuation Date */,
+                                                                    '4xohe67v' /* Tenancy Start */,
                                                                   ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -2873,8 +2694,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     String>(
                                                                   dateTimeFormat(
                                                                     "d/M/y",
-                                                                    propertyPropertiesRecord
-                                                                        .lastValuationDate,
+                                                                    _model
+                                                                        .outputTenancy
+                                                                        ?.tenancyStartDate,
                                                                     locale: FFLocalizations.of(
                                                                             context)
                                                                         .languageCode,
@@ -2898,7 +2720,6 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                       ].divide(
                                                           SizedBox(width: 4.0)),
                                                     ),
-                                                  ),
                                                 ].divide(
                                                     SizedBox(height: 17.0)),
                                               ),

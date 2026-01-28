@@ -216,6 +216,21 @@ class PropertiesRecord extends FirestoreRecord {
   DateTime? get dateJoinedAddressed => _dateJoinedAddressed;
   bool hasDateJoinedAddressed() => _dateJoinedAddressed != null;
 
+  // "lastAccruedPeriodStart" field.
+  DateTime? _lastAccruedPeriodStart;
+  DateTime? get lastAccruedPeriodStart => _lastAccruedPeriodStart;
+  bool hasLastAccruedPeriodStart() => _lastAccruedPeriodStart != null;
+
+  // "lastAccruedAt" field.
+  DateTime? _lastAccruedAt;
+  DateTime? get lastAccruedAt => _lastAccruedAt;
+  bool hasLastAccruedAt() => _lastAccruedAt != null;
+
+  // "lastAccruedAmount" field.
+  double? _lastAccruedAmount;
+  double get lastAccruedAmount => _lastAccruedAmount ?? 0.0;
+  bool hasLastAccruedAmount() => _lastAccruedAmount != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -262,6 +277,10 @@ class PropertiesRecord extends FirestoreRecord {
     _letType = snapshotData['letType'] as String?;
     _dateAddedToSystem = snapshotData['dateAddedToSystem'] as DateTime?;
     _dateJoinedAddressed = snapshotData['dateJoinedAddressed'] as DateTime?;
+    _lastAccruedPeriodStart =
+        snapshotData['lastAccruedPeriodStart'] as DateTime?;
+    _lastAccruedAt = snapshotData['lastAccruedAt'] as DateTime?;
+    _lastAccruedAmount = castToType<double>(snapshotData['lastAccruedAmount']);
   }
 
   static CollectionReference get collection =>
@@ -338,6 +357,9 @@ Map<String, dynamic> createPropertiesRecordData({
   String? letType,
   DateTime? dateAddedToSystem,
   DateTime? dateJoinedAddressed,
+  DateTime? lastAccruedPeriodStart,
+  DateTime? lastAccruedAt,
+  double? lastAccruedAmount,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -380,6 +402,9 @@ Map<String, dynamic> createPropertiesRecordData({
       'letType': letType,
       'dateAddedToSystem': dateAddedToSystem,
       'dateJoinedAddressed': dateJoinedAddressed,
+      'lastAccruedPeriodStart': lastAccruedPeriodStart,
+      'lastAccruedAt': lastAccruedAt,
+      'lastAccruedAmount': lastAccruedAmount,
     }.withoutNulls,
   );
 
@@ -431,7 +456,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.mortgageTermRemaining == e2?.mortgageTermRemaining &&
         e1?.letType == e2?.letType &&
         e1?.dateAddedToSystem == e2?.dateAddedToSystem &&
-        e1?.dateJoinedAddressed == e2?.dateJoinedAddressed;
+        e1?.dateJoinedAddressed == e2?.dateJoinedAddressed &&
+        e1?.lastAccruedPeriodStart == e2?.lastAccruedPeriodStart &&
+        e1?.lastAccruedAt == e2?.lastAccruedAt &&
+        e1?.lastAccruedAmount == e2?.lastAccruedAmount;
   }
 
   @override
@@ -475,7 +503,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.mortgageTermRemaining,
         e?.letType,
         e?.dateAddedToSystem,
-        e?.dateJoinedAddressed
+        e?.dateJoinedAddressed,
+        e?.lastAccruedPeriodStart,
+        e?.lastAccruedAt,
+        e?.lastAccruedAmount
       ]);
 
   @override

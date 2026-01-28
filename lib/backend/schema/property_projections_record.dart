@@ -158,6 +158,21 @@ class PropertyProjectionsRecord extends FirestoreRecord {
   bool hasHistoricalNetProfitBaseToJan1() =>
       _historicalNetProfitBaseToJan1 != null;
 
+  // "periodEndDates" field.
+  List<String>? _periodEndDates;
+  List<String> get periodEndDates => _periodEndDates ?? const [];
+  bool hasPeriodEndDates() => _periodEndDates != null;
+
+  // "periodStartDates" field.
+  List<String>? _periodStartDates;
+  List<String> get periodStartDates => _periodStartDates ?? const [];
+  bool hasPeriodStartDates() => _periodStartDates != null;
+
+  // "periodLabels" field.
+  List<String>? _periodLabels;
+  List<String> get periodLabels => _periodLabels ?? const [];
+  bool hasPeriodLabels() => _periodLabels != null;
+
   void _initializeFields() {
     _propertyRef = snapshotData['propertyRef'] as DocumentReference?;
     _startYear = castToType<int>(snapshotData['startYear']);
@@ -193,6 +208,9 @@ class PropertyProjectionsRecord extends FirestoreRecord {
         getDataList(snapshotData['cumulativeRentalProfit']);
     _historicalNetProfitBaseToJan1 =
         castToType<double>(snapshotData['historicalNetProfitBaseToJan1']);
+    _periodEndDates = getDataList(snapshotData['periodEndDates']);
+    _periodStartDates = getDataList(snapshotData['periodStartDates']);
+    _periodLabels = getDataList(snapshotData['periodLabels']);
   }
 
   static CollectionReference get collection =>
@@ -304,7 +322,11 @@ class PropertyProjectionsRecordDocumentEquality
             e2?.atRetirementCombinedDailyGain &&
         listEquality.equals(
             e1?.cumulativeRentalProfit, e2?.cumulativeRentalProfit) &&
-        e1?.historicalNetProfitBaseToJan1 == e2?.historicalNetProfitBaseToJan1;
+        e1?.historicalNetProfitBaseToJan1 ==
+            e2?.historicalNetProfitBaseToJan1 &&
+        listEquality.equals(e1?.periodEndDates, e2?.periodEndDates) &&
+        listEquality.equals(e1?.periodStartDates, e2?.periodStartDates) &&
+        listEquality.equals(e1?.periodLabels, e2?.periodLabels);
   }
 
   @override
@@ -335,7 +357,10 @@ class PropertyProjectionsRecordDocumentEquality
         e?.ownerRef,
         e?.atRetirementCombinedDailyGain,
         e?.cumulativeRentalProfit,
-        e?.historicalNetProfitBaseToJan1
+        e?.historicalNetProfitBaseToJan1,
+        e?.periodEndDates,
+        e?.periodStartDates,
+        e?.periodLabels
       ]);
 
   @override

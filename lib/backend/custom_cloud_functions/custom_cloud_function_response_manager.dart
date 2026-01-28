@@ -66,8 +66,8 @@ class SendPasswordResetEmailCloudFunctionCallResponse {
   dynamic jsonBody;
 }
 
-class RecalculatePropertyDataV2CloudFunctionCallResponse {
-  RecalculatePropertyDataV2CloudFunctionCallResponse({
+class AccrueRentalIncomeOnValuationUpdateCloudFunctionCallResponse {
+  AccrueRentalIncomeOnValuationUpdateCloudFunctionCallResponse({
     this.errorCode,
     this.succeeded,
     this.jsonBody,

@@ -353,7 +353,7 @@ async function computePropertyProjectionCore(args) {
 
       lastComputedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      schemaVersion: "v3.18-combined-uses-cumRental",
+      schemaVersion: "recalculatePropertyData@2026-01-22",
     };
 
     await projRef.set(projectionPayload, { merge: false });

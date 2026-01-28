@@ -17,6 +17,6 @@ exports.onRentOverrideWritepoke =
   onRentOverrideWritepoke.onRentOverrideWritepoke;
 const sendPasswordResetEmail = require("./send_password_reset_email.js");
 exports.sendPasswordResetEmail = sendPasswordResetEmail.sendPasswordResetEmail;
-const recalculatePropertyDataV2 = require("./recalculate_property_data_v2.js");
-exports.recalculatePropertyDataV2 =
-  recalculatePropertyDataV2.recalculatePropertyDataV2;
+const accrueRentalIncomeOnValuationUpdate = require("./accrue_rental_income_on_valuation_update.js");
+exports.accrueRentalIncomeOnValuationUpdate =
+  accrueRentalIncomeOnValuationUpdate.accrueRentalIncomeOnValuationUpdate;
