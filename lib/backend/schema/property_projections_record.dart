@@ -173,6 +173,11 @@ class PropertyProjectionsRecord extends FirestoreRecord {
   List<String> get periodLabels => _periodLabels ?? const [];
   bool hasPeriodLabels() => _periodLabels != null;
 
+  // "periodLabelsShort" field.
+  List<String>? _periodLabelsShort;
+  List<String> get periodLabelsShort => _periodLabelsShort ?? const [];
+  bool hasPeriodLabelsShort() => _periodLabelsShort != null;
+
   void _initializeFields() {
     _propertyRef = snapshotData['propertyRef'] as DocumentReference?;
     _startYear = castToType<int>(snapshotData['startYear']);
@@ -211,6 +216,7 @@ class PropertyProjectionsRecord extends FirestoreRecord {
     _periodEndDates = getDataList(snapshotData['periodEndDates']);
     _periodStartDates = getDataList(snapshotData['periodStartDates']);
     _periodLabels = getDataList(snapshotData['periodLabels']);
+    _periodLabelsShort = getDataList(snapshotData['periodLabelsShort']);
   }
 
   static CollectionReference get collection =>
@@ -326,7 +332,8 @@ class PropertyProjectionsRecordDocumentEquality
             e2?.historicalNetProfitBaseToJan1 &&
         listEquality.equals(e1?.periodEndDates, e2?.periodEndDates) &&
         listEquality.equals(e1?.periodStartDates, e2?.periodStartDates) &&
-        listEquality.equals(e1?.periodLabels, e2?.periodLabels);
+        listEquality.equals(e1?.periodLabels, e2?.periodLabels) &&
+        listEquality.equals(e1?.periodLabelsShort, e2?.periodLabelsShort);
   }
 
   @override
@@ -360,7 +367,8 @@ class PropertyProjectionsRecordDocumentEquality
         e?.historicalNetProfitBaseToJan1,
         e?.periodEndDates,
         e?.periodStartDates,
-        e?.periodLabels
+        e?.periodLabels,
+        e?.periodLabelsShort
       ]);
 
   @override

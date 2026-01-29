@@ -213,6 +213,7 @@ async function computePropertyProjectionCore(args) {
     const periodStartDates = [];
     const periodEndDates = [];
     const periodLabels = [];
+    const periodLabelsShort = [];
 
     let rollingCapital = estimatedValue;
     let rollingRent = annualRent0;
@@ -235,11 +236,19 @@ async function computePropertyProjectionCore(args) {
         periodLabels.push(
           `${formatYMDLabel(periodStartYMD)} – ${formatYMDLabel(periodEndYMD)}`,
         );
+
+        const startY = periodStartYMD.y;
+        const endY = periodEndYMD.y;
+        const fmtYY = (v) => String(v % 100).padStart(2, "0");
+        periodLabelsShort.push(`${fmtYY(startY)}/${fmtYY(endY)}`);
       } else {
         // Fallback: calendar year period if dateJoinedAddressed missing
         periodStartDates.push(`${y}-01-01`);
         periodEndDates.push(`${y}-12-31`);
         periodLabels.push(`1 Jan ${y} – 31 Dec ${y}`);
+
+        const fmtYY = (v) => String(v % 100).padStart(2, "0");
+        periodLabelsShort.push(`${fmtYY(y)}/${fmtYY(y + 1)}`);
       }
 
       const housePct = pickPct(y, houseOverride, houseGlobal, 3.0);
@@ -326,6 +335,7 @@ async function computePropertyProjectionCore(args) {
       periodStartDates,
       periodEndDates,
       periodLabels,
+      periodLabelsShort,
       projectedHousePrice,
       rentalIncome,
       expenses,

@@ -115,9 +115,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
       ).then((s) => s.firstOrNull);
       _model.pvProjection = _model.projectionDoc;
       safeSetState(() {});
-      _model.selectedYear = functions.getCurrentYear();
-      _model.selectedYearIndex = functions.yearIndex(
-          _model.pvProjection?.years?.toList(), functions.getCurrentYear()!);
+      _model.selectedYearIndex = 0;
       _model.currentYearIndex = functions.yearIndex(
           _model.projectionDoc?.years?.toList(), functions.getCurrentYear()!);
       safeSetState(() {});
@@ -1066,6 +1064,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     .of(context)
                                                                 .languageCode,
                                                           )}.....',
+                                                          periodLabel: _model
+                                                              .pvProjection!
+                                                              .periodLabels
+                                                              .firstOrNull!,
                                                         ),
                                                       ),
                                                     ),
@@ -1304,162 +1306,188 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    40.0,
-                                                                    0.0,
-                                                                    40.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
+                                                      Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        40.0,
+                                                                        0.0,
+                                                                        40.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           6.0,
                                                                           0.0),
-                                                              child: RichText(
-                                                                textScaler: MediaQuery.of(
-                                                                        context)
-                                                                    .textScaler,
-                                                                text: TextSpan(
-                                                                  children: [
-                                                                    TextSpan(
-                                                                      text: FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'jgoafby2' /* PROJECTIONS FOR  */,
-                                                                      ),
+                                                                  child:
+                                                                      RichText(
+                                                                    textScaler:
+                                                                        MediaQuery.of(context)
+                                                                            .textScaler,
+                                                                    text:
+                                                                        TextSpan(
+                                                                      children: [
+                                                                        TextSpan(
+                                                                          text:
+                                                                              FFLocalizations.of(context).getText(
+                                                                            'jgoafby2' /* PROJECTIONS FOR  */,
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .displayLarge
+                                                                              .override(
+                                                                                fontFamily: 'Thunder',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        )
+                                                                      ],
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .displayLarge
+                                                                          .bodyMedium
                                                                           .override(
-                                                                            fontFamily:
-                                                                                'Thunder',
+                                                                            font:
+                                                                                GoogleFonts.figtree(
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                    )
-                                                                  ],
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
+                                                                    ),
+                                                                  ),
                                                                 ),
-                                                              ),
+                                                              ],
                                                             ),
-                                                            FlutterFlowDropDown<
-                                                                int>(
-                                                              controller: _model
-                                                                      .projectionsYearSelectorValueController ??=
-                                                                  FormFieldController<
-                                                                      int>(
-                                                                _model.projectionsYearSelectorValue ??=
-                                                                    functions
-                                                                        .getCurrentYear(),
-                                                              ),
-                                                              options: List<
-                                                                      int>.from(
-                                                                  _model
-                                                                      .pvProjection!
-                                                                      .years),
-                                                              optionLabels: <String>[],
-                                                              onChanged:
-                                                                  (val) async {
-                                                                safeSetState(() =>
-                                                                    _model.projectionsYearSelectorValue =
-                                                                        val);
-                                                                _model.selectedYear =
-                                                                    _model
-                                                                        .projectionsYearSelectorValue;
-                                                                _model.selectedYearIndex = functions.yearIndex(
-                                                                    _model
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        40.0,
+                                                                        0.0,
+                                                                        40.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .end,
+                                                              children: [
+                                                                FlutterFlowDropDown<
+                                                                    int>(
+                                                                  controller: _model
+                                                                          .projectionsYearSelectorValueController ??=
+                                                                      FormFieldController<
+                                                                          int>(
+                                                                    _model.projectionsYearSelectorValue ??= _model
                                                                         .pvProjection
                                                                         ?.years
-                                                                        ?.toList(),
-                                                                    _model
-                                                                        .projectionsYearSelectorValue!);
-                                                                safeSetState(
-                                                                    () {});
-                                                              },
-                                                              width: 120.0,
-                                                              height: 36.0,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
+                                                                        ?.firstOrNull,
+                                                                  ),
+                                                                  options: List<
+                                                                          int>.from(
+                                                                      _model
+                                                                          .pvProjection!
+                                                                          .years),
+                                                                  optionLabels: _model
+                                                                      .pvProjection!
+                                                                      .periodLabels,
+                                                                  onChanged:
+                                                                      (val) async {
+                                                                    safeSetState(() =>
+                                                                        _model.projectionsYearSelectorValue =
+                                                                            val);
+                                                                    _model.selectedYear =
+                                                                        _model
+                                                                            .projectionsYearSelectorValue;
+                                                                    _model.selectedYearIndex = functions.yearIndex(
+                                                                        _model
+                                                                            .pvProjection
+                                                                            ?.years
+                                                                            ?.toList(),
+                                                                        _model
+                                                                            .projectionsYearSelectorValue!);
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  },
+                                                                  width: 250.0,
+                                                                  height: 36.0,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .displayLarge
                                                                       .override(
                                                                         fontFamily:
                                                                             'Thunder',
+                                                                        fontSize:
+                                                                            18.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                       ),
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                size: 32.0,
-                                                              ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor:
-                                                                  FlutterFlowTheme.of(
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .keyboard_arrow_down_rounded,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    size: 32.0,
+                                                                  ),
+                                                                  fillColor: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryText,
-                                                              borderWidth: 2.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  EdgeInsetsDirectional
+                                                                      .secondaryBackground,
+                                                                  elevation:
+                                                                      2.0,
+                                                                  borderColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                  borderWidth:
+                                                                      2.0,
+                                                                  borderRadius:
+                                                                      8.0,
+                                                                  margin: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          12.0,
+                                                                          16.0,
                                                                           6.0,
-                                                                          12.0,
+                                                                          16.0,
                                                                           6.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isOverButton:
-                                                                  false,
-                                                              isSearchable:
-                                                                  false,
-                                                              isMultiSelect:
-                                                                  false,
+                                                                  hidesUnderline:
+                                                                      true,
+                                                                  isOverButton:
+                                                                      false,
+                                                                  isSearchable:
+                                                                      false,
+                                                                  isMultiSelect:
+                                                                      false,
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],
-                                                        ),
+                                                          ),
+                                                        ],
                                                       ),
                                                       if (_model
                                                               .selectedValue ==

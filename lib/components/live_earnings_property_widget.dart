@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:ui';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,7 @@ class LiveEarningsPropertyWidget extends StatefulWidget {
     double? secondGain,
     double? earningsToDate,
     String? headingText,
+    required this.periodLabel,
   })  : this.yearlyGain = yearlyGain ?? 0.00,
         this.dailyGain = dailyGain ?? 0.00,
         this.secondGain = secondGain ?? 0.00,
@@ -29,6 +31,7 @@ class LiveEarningsPropertyWidget extends StatefulWidget {
   final double secondGain;
   final double earningsToDate;
   final String headingText;
+  final String? periodLabel;
 
   @override
   State<LiveEarningsPropertyWidget> createState() =>
@@ -155,12 +158,52 @@ class _LiveEarningsPropertyWidgetState
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    FFLocalizations.of(context).getText(
-                      'x2wysgaj' /* Esitmated gain this year */,
-                    ),
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                          font: GoogleFonts.figtree(
+                  RichText(
+                    textScaler: MediaQuery.of(context).textScaler,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: FFLocalizations.of(context).getText(
+                            'je9kehmp' /* Esitmated gain for the period  */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                        TextSpan(
+                          text: widget!.periodLabel!,
+                          style: TextStyle(),
+                        )
+                      ],
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .fontStyle,
+                            ),
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .fontWeight,
@@ -168,15 +211,7 @@ class _LiveEarningsPropertyWidgetState
                                 .labelMedium
                                 .fontStyle,
                           ),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .fontWeight,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .fontStyle,
-                        ),
+                    ),
                   ),
                   Text(
                     formatNumber(

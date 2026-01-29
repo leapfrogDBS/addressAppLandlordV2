@@ -117,6 +117,10 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
       (proj.years ?? const <dynamic>[]).map((e) => _toDouble(e)),
     );
 
+    // Read the period labels //
+    final periodLabelsShort =
+        List<String>.from(proj.periodLabelsShort ?? const <String>[]);
+
     // Per-year capital gain (not total house price)
     final capitalGainsRaw = (proj.capitalGains ??
         proj.snapshotData['capitalGains'] ??
@@ -142,6 +146,8 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
     final capGain = List<double>.from(
       (capitalGainsRaw as Iterable).take(coreLen).map((e) => _toDouble(e)),
     );
+
+    final labels = periodLabelsShort.take(coreLen).toList();
 
     // Rental (yearly profit)
     final rentalRaw = widget.hasActiveTenancy
@@ -227,8 +233,11 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
         maxY *= 1.05;
       }
     } else {
-      if (minY > 0) minY *= 0.9;
-      maxY *= 1.1;
+      final range = (maxY - minY).abs();
+      // Add ~10% of the range below the min, but don’t go below 0 if all values are positive
+      final pad = range * 0.1;
+      minY = (minY > 0) ? math.max(0, minY - pad) : (minY - pad);
+      maxY = maxY + pad; // keep a bit of headroom on top
     }
 
     final axisText = TextStyle(color: theme.secondaryText, fontSize: 11);
@@ -254,6 +263,9 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
       final year = val.toInt();
       final firstYear = y.first.toInt();
       final lastYear = y.last.toInt();
+      final idx = _indexForX(y, val);
+      final label =
+          (idx >= 0 && idx < labels.length) ? labels[idx] : year.toString();
 
       Alignment align;
       EdgeInsets insets = const EdgeInsets.only(top: 6);
@@ -271,7 +283,7 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
       return Container(
         alignment: align,
         padding: insets,
-        child: Text(year.toString(), style: axisText),
+        child: Text(label, style: axisText),
       );
     }
 
@@ -367,7 +379,9 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
               getTooltipItems: (spots) {
                 return spots.map((s) {
                   final idx = _indexForX(y, s.x);
-                  final yearLabel = s.x.toInt().toString();
+                  final yearLabel = (idx >= 0 && idx < labels.length)
+                      ? labels[idx]
+                      : s.x.toInt().toString();
 
                   if (effectiveViewType == 'COMBINED') {
                     final total = (idx < combinedAnnual.length)

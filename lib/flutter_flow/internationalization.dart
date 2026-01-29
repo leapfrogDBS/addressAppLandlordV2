@@ -825,7 +825,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': 'திட்டங்கள்',
       'ur': 'کے لیے پروجیکشنز',
     },
-    '9zk45ha9': {
+    'ocjhd3eg': {
       'en': '',
       'ar': '2025',
       'bn': '২০২৫',
@@ -840,7 +840,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': '2025',
       'ur': '2025',
     },
-    'pnort8eo': {
+    'mspemwh3': {
       'en': 'Search...',
       'ar': 'يبحث...',
       'bn': 'অনুসন্ধান...',
@@ -4700,6 +4700,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // liveEarningsProperty
   {
+    'je9kehmp': {
+      'en': 'Esitmated gain for the period ',
+      'ar': '',
+      'bn': '',
+      'de': '',
+      'es': '',
+      'fr': '',
+      'gu': '',
+      'hi': '',
+      'pa': '',
+      'pl': '',
+      'ro': '',
+      'ta': '',
+      'ur': '',
+    },
     'x2wysgaj': {
       'en': 'Esitmated gain this year',
       'ar': 'المكاسب المتوقعة هذا العام',
