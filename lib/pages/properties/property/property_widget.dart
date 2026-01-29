@@ -116,12 +116,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
       _model.pvProjection = _model.projectionDoc;
       safeSetState(() {});
       _model.selectedYearIndex = 0;
-      _model.currentYearIndex = functions.yearIndex(
-          _model.projectionDoc?.years?.toList(), functions.getCurrentYear()!);
+      _model.currentYearIndex = 0;
       safeSetState(() {});
       _model.financialSummary = functions.calculateEstimatedAnnualGain(
           _model.output!.estimatedValue,
-          _model.output!.purchasePrice,
+          _model.output!.priceValuationOnJoiningAddressed,
           _model.output!.previousRentalIncome,
           _model.output!.previousExpenses,
           _model.pvProjection,
@@ -1064,10 +1063,15 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     .of(context)
                                                                 .languageCode,
                                                           )}.....',
-                                                          periodLabel: _model
-                                                              .pvProjection!
-                                                              .periodLabels
-                                                              .firstOrNull!,
+                                                          periodLabel:
+                                                              dateTimeFormat(
+                                                            "MMM y",
+                                                            propertyPropertiesRecord
+                                                                .dateJoinedAddressed!,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),

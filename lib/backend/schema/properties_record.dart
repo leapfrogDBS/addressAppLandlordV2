@@ -231,6 +231,13 @@ class PropertiesRecord extends FirestoreRecord {
   double get lastAccruedAmount => _lastAccruedAmount ?? 0.0;
   bool hasLastAccruedAmount() => _lastAccruedAmount != null;
 
+  // "priceValuationOnJoiningAddressed" field.
+  double? _priceValuationOnJoiningAddressed;
+  double get priceValuationOnJoiningAddressed =>
+      _priceValuationOnJoiningAddressed ?? 0.0;
+  bool hasPriceValuationOnJoiningAddressed() =>
+      _priceValuationOnJoiningAddressed != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -281,6 +288,8 @@ class PropertiesRecord extends FirestoreRecord {
         snapshotData['lastAccruedPeriodStart'] as DateTime?;
     _lastAccruedAt = snapshotData['lastAccruedAt'] as DateTime?;
     _lastAccruedAmount = castToType<double>(snapshotData['lastAccruedAmount']);
+    _priceValuationOnJoiningAddressed =
+        castToType<double>(snapshotData['priceValuationOnJoiningAddressed']);
   }
 
   static CollectionReference get collection =>
@@ -360,6 +369,7 @@ Map<String, dynamic> createPropertiesRecordData({
   DateTime? lastAccruedPeriodStart,
   DateTime? lastAccruedAt,
   double? lastAccruedAmount,
+  double? priceValuationOnJoiningAddressed,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -405,6 +415,7 @@ Map<String, dynamic> createPropertiesRecordData({
       'lastAccruedPeriodStart': lastAccruedPeriodStart,
       'lastAccruedAt': lastAccruedAt,
       'lastAccruedAmount': lastAccruedAmount,
+      'priceValuationOnJoiningAddressed': priceValuationOnJoiningAddressed,
     }.withoutNulls,
   );
 
@@ -459,7 +470,9 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.dateJoinedAddressed == e2?.dateJoinedAddressed &&
         e1?.lastAccruedPeriodStart == e2?.lastAccruedPeriodStart &&
         e1?.lastAccruedAt == e2?.lastAccruedAt &&
-        e1?.lastAccruedAmount == e2?.lastAccruedAmount;
+        e1?.lastAccruedAmount == e2?.lastAccruedAmount &&
+        e1?.priceValuationOnJoiningAddressed ==
+            e2?.priceValuationOnJoiningAddressed;
   }
 
   @override
@@ -506,7 +519,8 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.dateJoinedAddressed,
         e?.lastAccruedPeriodStart,
         e?.lastAccruedAt,
-        e?.lastAccruedAmount
+        e?.lastAccruedAmount,
+        e?.priceValuationOnJoiningAddressed
       ]);
 
   @override

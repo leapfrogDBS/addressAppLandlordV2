@@ -4585,7 +4585,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'مجموعی پیداوار',
     },
     'qbo7muwn': {
-      'en': 'Calculated using rental income  against purchase price.',
+      'en': 'Calculated using rental income against purchase price.',
       'ar': 'تم حسابها باستخدام دخل الإيجار مقابل سعر الشراء.',
       'bn': 'ক্রয় মূল্যের বিপরীতে ভাড়া আয় ব্যবহার করে গণনা করা হয়েছে।',
       'de': 'Berechnet anhand der Mieteinnahmen im Verhältnis zum Kaufpreis.',
@@ -4700,8 +4700,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // liveEarningsProperty
   {
-    'je9kehmp': {
-      'en': 'Esitmated gain for the period ',
+    '4afb697w': {
+      'en': 'Estimated gain for the year',
       'ar': '',
       'bn': '',
       'de': '',
@@ -4714,21 +4714,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ro': '',
       'ta': '',
       'ur': '',
-    },
-    'x2wysgaj': {
-      'en': 'Esitmated gain this year',
-      'ar': 'المكاسب المتوقعة هذا العام',
-      'bn': 'এই বছর আনুমানিক লাভ',
-      'de': 'Geschätzter Gewinn in diesem Jahr',
-      'es': 'Ganancia estimada este año',
-      'fr': 'Gain estimé cette année',
-      'gu': 'આ વર્ષે અંદાજિત વધારો',
-      'hi': 'इस वर्ष अनुमानित लाभ',
-      'pa': 'ਇਸ ਸਾਲ ਅਨੁਮਾਨਿਤ ਲਾਭ',
-      'pl': 'Szacowany zysk w tym roku',
-      'ro': 'Câștig estimat în acest an',
-      'ta': 'இந்த ஆண்டு மதிப்பிடப்பட்ட லாபம்',
-      'ur': 'اس سال متوقع فائدہ',
     },
     'ak9pv36y': {
       'en': 'Based on rental profit and capital appreciation',

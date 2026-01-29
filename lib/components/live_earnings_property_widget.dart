@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:ui';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -158,60 +157,56 @@ class _LiveEarningsPropertyWidgetState
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  RichText(
-                    textScaler: MediaQuery.of(context).textScaler,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: FFLocalizations.of(context).getText(
-                            'je9kehmp' /* Esitmated gain for the period  */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          '4afb697w' /* Estimated gain for the year */,
                         ),
-                        TextSpan(
-                          text: widget!.periodLabel!,
-                          style: TextStyle(),
-                        )
-                      ],
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                            font: GoogleFonts.figtree(
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.figtree(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              letterSpacing: 0.0,
                               fontWeight: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .bodySmall
                                   .fontWeight,
                               fontStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .bodySmall
                                   .fontStyle,
                             ),
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .fontStyle,
-                          ),
-                    ),
+                      ),
+                      Text(
+                        valueOrDefault<String>(
+                          widget!.periodLabel,
+                          'this year',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.figtree(
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              fontSize: 15.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                      ),
+                    ].divide(SizedBox(height: 3.0)),
                   ),
                   Text(
                     formatNumber(
@@ -250,7 +245,7 @@ class _LiveEarningsPropertyWidgetState
                               .fontStyle,
                         ),
                   ),
-                ].divide(SizedBox(height: 12.0)),
+                ].divide(SizedBox(height: 17.0)),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),

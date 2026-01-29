@@ -78,59 +78,112 @@ String? timeHeldFunction(DateTime? purchaseDate) {
 
 EstimatedGainResultsStruct? calculateEstimatedAnnualGain(
   double estimatedValue,
-  double purchasePrice,
+  double priceValuationOnJoiningAddressed,
   double totalHistoricalRentalIncome,
   double totalHistoricalExpenses,
   PropertyProjectionsRecord? projection,
   int currentYearIndex,
 ) {
-  // 1. Initial Defaults and Time Calculation
+  // Treat purchasePrice as the "priceValuationOnJoiningAddressed" anchor (for now).
+  final joiningValuation = priceValuationOnJoiningAddressed;
+
+// Defaults
   double gainPerDay = 0.0;
   double gainPerSecond = 0.0;
   double gainThisYear = 0.0;
-  double annualCapitalGain = 0.0;
-  double netRentalProfit = 0.0;
 
   final now = DateTime.now();
-  final startOfYear = DateTime(now.year, 1, 1);
-  // Calculate seconds passed since start of year (for accurate real-time display)
-  final secondsPassed = now.difference(startOfYear).inSeconds.toDouble();
-  final secondsInYear =
-      (365 * 86400).toDouble(); // Assuming 365 days for projection period
 
-  // 2. Extract Projection Data (if available)
-  if (projection != null &&
-      projection.combinedDailyGain.isNotEmpty &&
-      currentYearIndex >= 0 &&
-      currentYearIndex < projection.combinedDailyGain.length) {
-    final index = currentYearIndex;
-
-    // a) Get Projected Annual Components (CORRECTED FIELD NAMES)
-    // Using 'capitalGains' (plural) to match the Cloud Function output.
-    annualCapitalGain = projection.capitalGains[index];
-    netRentalProfit = projection.rentalProfit[index];
-
-    // b) Get Per-Day/Second Values from Projection
-    gainPerDay = projection.combinedDailyGain[index];
-    gainPerSecond = gainPerDay / 86400.0;
-
-    // c) Calculate Projected Annual Gain
-    gainThisYear = annualCapitalGain + netRentalProfit;
+// Parse "YYYY-MM-DD" into LOCAL midnight (avoids UTC offset issues)
+  DateTime _parseYmdLocal(String ymd, DateTime fallback) {
+    try {
+      final parts = ymd.split('-');
+      if (parts.length != 3) return fallback;
+      final y = int.parse(parts[0]);
+      final m = int.parse(parts[1]);
+      final d = int.parse(parts[2]);
+      return DateTime(y, m, d);
+    } catch (_) {
+      return fallback;
+    }
   }
 
-  // 3. Calculate Historical Net Profit (Base for cumulative earnings)
+// Default fallback = calendar year window
+  DateTime periodStart = DateTime(now.year, 1, 1);
+  DateTime periodEndExclusive = DateTime(now.year + 1, 1, 1);
+
+// Use property-year boundaries when available
+  if (projection != null &&
+      currentYearIndex >= 0 &&
+      projection.periodStartDates.length > currentYearIndex &&
+      projection.periodEndDates.length > currentYearIndex) {
+    final startStr = projection.periodStartDates[currentYearIndex];
+    final endStr = projection.periodEndDates[currentYearIndex];
+
+    final startLocal = _parseYmdLocal(startStr, DateTime(now.year, 1, 1));
+    final endLocalInclusive =
+        _parseYmdLocal(endStr, DateTime(now.year, 12, 31));
+
+    // Stored end date is inclusive -> make exclusive by adding 1 day
+    final endLocalExclusive = endLocalInclusive.add(const Duration(days: 1));
+
+    if (endLocalExclusive.isAfter(startLocal)) {
+      periodStart = startLocal;
+      periodEndExclusive = endLocalExclusive;
+    }
+  }
+
+  final secondsInPeriod = periodEndExclusive
+      .difference(periodStart)
+      .inSeconds
+      .toDouble()
+      .clamp(1, double.infinity);
+
+  final secondsPassed = now
+      .difference(periodStart)
+      .inSeconds
+      .toDouble()
+      .clamp(0, secondsInPeriod);
+
+// Projection annual gain for this period index
+  if (projection != null && currentYearIndex >= 0) {
+    final idx = currentYearIndex;
+
+    final hasCapAndRent = projection.capitalGains.length > idx &&
+        projection.rentalProfit.length > idx;
+
+    if (hasCapAndRent) {
+      final annualCapitalGain = projection.capitalGains[idx];
+      final netRentalProfit = projection.rentalProfit[idx];
+
+      gainThisYear = annualCapitalGain + netRentalProfit;
+
+      // Pro-rata using actual seconds in this property-year period
+      gainPerSecond = gainThisYear / secondsInPeriod;
+      gainPerDay = gainPerSecond * 86400.0;
+    } else if (projection.combinedDailyGain.length > idx) {
+      // Older schema fallback
+      gainPerDay = projection.combinedDailyGain[idx];
+      gainThisYear = gainPerDay * 365.0; // you said 365 is fine
+      gainPerSecond = gainThisYear / secondsInPeriod;
+    }
+  }
+
+// Since joining Addressed (as per your property fields)
   final historicalNetProfitBase =
       totalHistoricalRentalIncome - totalHistoricalExpenses;
 
-  // 4. Calculate Earnings As Of Now (All-time cumulative earnings)
+// Capital gain since joining Addressed (anchor = joining valuation)
+  final capitalGainSinceJoining = estimatedValue - joiningValuation;
 
-  // Real-time gain accrued this year (Capital + Rental)
-  final realTimeGainThisYear = gainPerSecond * secondsPassed;
+// Live pro-rata gain within the current property-year period
+  final realTimeGainThisPeriod = gainPerSecond * secondsPassed;
 
-  // Total earnings = Historical Base + Real-Time Accrual This Year
-  final earningsAsOfNowValue = historicalNetProfitBase + realTimeGainThisYear;
+// Total earnings as of now (since joining Addressed)
+  final earningsAsOfNowValue = capitalGainSinceJoining +
+      historicalNetProfitBase +
+      realTimeGainThisPeriod;
 
-  // 5. Final Struct Assembly (Outputting only the 4 required fields with correct mapping)
   return EstimatedGainResultsStruct(
     earningsAsOfNow: earningsAsOfNowValue,
     gainPerDay: gainPerDay,
