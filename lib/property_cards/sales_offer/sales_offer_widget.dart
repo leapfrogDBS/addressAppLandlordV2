@@ -46,6 +46,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.projectionsDocument = await queryProjectionsRecordOnce(
+        parent: widget!.salesOffer?.reference,
         singleRecord: true,
       ).then((s) => s.firstOrNull);
       _model.projections = _model.projectionsDocument;
