@@ -141,6 +141,7 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                               key: Key(
                                   'Keybgm_${columnIndex}_of_${columnSalesOffersRecordList.length}'),
                               salesOffer: columnSalesOffersRecord,
+                              pvTotals: _model.pvTotals!,
                             );
                           }),
                         );
