@@ -76,3 +76,14 @@ class AccrueRentalIncomeOnValuationUpdateCloudFunctionCallResponse {
   bool? succeeded;
   dynamic jsonBody;
 }
+
+class ComputeSalesOfferProjectionCloudFunctionCallResponse {
+  ComputeSalesOfferProjectionCloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}

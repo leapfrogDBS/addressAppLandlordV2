@@ -131,6 +131,11 @@ class SalesOffersRecord extends FirestoreRecord {
   int get noOfBedrooms => _noOfBedrooms ?? 0;
   bool hasNoOfBedrooms() => _noOfBedrooms != null;
 
+  // "estimatedYearlyExpenses" field.
+  double? _estimatedYearlyExpenses;
+  double get estimatedYearlyExpenses => _estimatedYearlyExpenses ?? 0.0;
+  bool hasEstimatedYearlyExpenses() => _estimatedYearlyExpenses != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _mainPhoto = snapshotData['mainPhoto'] as String?;
@@ -155,6 +160,8 @@ class SalesOffersRecord extends FirestoreRecord {
     _gallery = getDataList(snapshotData['gallery']);
     _monthlyRental = castToType<double>(snapshotData['monthlyRental']);
     _noOfBedrooms = castToType<int>(snapshotData['noOfBedrooms']);
+    _estimatedYearlyExpenses =
+        castToType<double>(snapshotData['estimatedYearlyExpenses']);
   }
 
   static CollectionReference get collection =>
@@ -214,6 +221,7 @@ Map<String, dynamic> createSalesOffersRecordData({
   LatLng? latLng,
   double? monthlyRental,
   int? noOfBedrooms,
+  double? estimatedYearlyExpenses,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -239,6 +247,7 @@ Map<String, dynamic> createSalesOffersRecordData({
       'latLng': latLng,
       'monthlyRental': monthlyRental,
       'noOfBedrooms': noOfBedrooms,
+      'estimatedYearlyExpenses': estimatedYearlyExpenses,
     }.withoutNulls,
   );
 
@@ -273,7 +282,8 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
         e1?.latLng == e2?.latLng &&
         listEquality.equals(e1?.gallery, e2?.gallery) &&
         e1?.monthlyRental == e2?.monthlyRental &&
-        e1?.noOfBedrooms == e2?.noOfBedrooms;
+        e1?.noOfBedrooms == e2?.noOfBedrooms &&
+        e1?.estimatedYearlyExpenses == e2?.estimatedYearlyExpenses;
   }
 
   @override
@@ -300,7 +310,8 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
         e?.latLng,
         e?.gallery,
         e?.monthlyRental,
-        e?.noOfBedrooms
+        e?.noOfBedrooms,
+        e?.estimatedYearlyExpenses
       ]);
 
   @override

@@ -1,4 +1,6 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/main_header_widget.dart';
 import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,7 +9,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import '/property_cards/sales_offer/sales_offer_widget.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -34,6 +40,20 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SalesOffersModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.projectionDocs = await queryPropertyProjectionsRecordOnce(
+        queryBuilder: (propertyProjectionsRecord) =>
+            propertyProjectionsRecord.where(
+          'ownerRef',
+          isEqualTo: currentUserReference,
+        ),
+      );
+      _model.pvTotals =
+          functions.aggregateAtRetirement(_model.projectionDocs!.toList());
+      safeSetState(() {});
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

@@ -21,3 +21,6 @@ exports.sendPasswordResetEmail = sendPasswordResetEmail.sendPasswordResetEmail;
 const accrueRentalIncomeOnValuationUpdate = require("./accrue_rental_income_on_valuation_update.js");
 exports.accrueRentalIncomeOnValuationUpdate =
   accrueRentalIncomeOnValuationUpdate.accrueRentalIncomeOnValuationUpdate;
+const computeSalesOfferProjection = require("./compute_sales_offer_projection.js");
+exports.computeSalesOfferProjection =
+  computeSalesOfferProjection.computeSalesOfferProjection;
