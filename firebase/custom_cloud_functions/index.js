@@ -7,8 +7,9 @@ exports.recalculatePropertyData =
 const onUserRetirementChangepoke = require("./on_user_retirement_changepoke.js");
 exports.onUserRetirementChangepoke =
   onUserRetirementChangepoke.onUserRetirementChangepoke;
-const onTenancyWritepoke = require("./on_tenancy_writepoke.js");
-exports.onTenancyWritepoke = onTenancyWritepoke.onTenancyWritepoke;
+const onTenancyWriteSyncCurrentRent = require("./on_tenancy_write_sync_current_rent.js");
+exports.onTenancyWriteSyncCurrentRent =
+  onTenancyWriteSyncCurrentRent.onTenancyWriteSyncCurrentRent;
 const onHouseOverrideWritepoke = require("./on_house_override_writepoke.js");
 exports.onHouseOverrideWritepoke =
   onHouseOverrideWritepoke.onHouseOverrideWritepoke;

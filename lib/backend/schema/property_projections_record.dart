@@ -178,6 +178,28 @@ class PropertyProjectionsRecord extends FirestoreRecord {
   List<String> get periodLabelsShort => _periodLabelsShort ?? const [];
   bool hasPeriodLabelsShort() => _periodLabelsShort != null;
 
+  // "estimatedValueNow" field.
+  double? _estimatedValueNow;
+  double get estimatedValueNow => _estimatedValueNow ?? 0.0;
+  bool hasEstimatedValueNow() => _estimatedValueNow != null;
+
+  // "priceValuationOnJoiningAddressed" field.
+  double? _priceValuationOnJoiningAddressed;
+  double get priceValuationOnJoiningAddressed =>
+      _priceValuationOnJoiningAddressed ?? 0.0;
+  bool hasPriceValuationOnJoiningAddressed() =>
+      _priceValuationOnJoiningAddressed != null;
+
+  // "previousRentalIncome" field.
+  double? _previousRentalIncome;
+  double get previousRentalIncome => _previousRentalIncome ?? 0.0;
+  bool hasPreviousRentalIncome() => _previousRentalIncome != null;
+
+  // "previousExpenses" field.
+  double? _previousExpenses;
+  double get previousExpenses => _previousExpenses ?? 0.0;
+  bool hasPreviousExpenses() => _previousExpenses != null;
+
   void _initializeFields() {
     _propertyRef = snapshotData['propertyRef'] as DocumentReference?;
     _startYear = castToType<int>(snapshotData['startYear']);
@@ -217,6 +239,12 @@ class PropertyProjectionsRecord extends FirestoreRecord {
     _periodStartDates = getDataList(snapshotData['periodStartDates']);
     _periodLabels = getDataList(snapshotData['periodLabels']);
     _periodLabelsShort = getDataList(snapshotData['periodLabelsShort']);
+    _estimatedValueNow = castToType<double>(snapshotData['estimatedValueNow']);
+    _priceValuationOnJoiningAddressed =
+        castToType<double>(snapshotData['priceValuationOnJoiningAddressed']);
+    _previousRentalIncome =
+        castToType<double>(snapshotData['previousRentalIncome']);
+    _previousExpenses = castToType<double>(snapshotData['previousExpenses']);
   }
 
   static CollectionReference get collection =>
@@ -269,6 +297,10 @@ Map<String, dynamic> createPropertyProjectionsRecordData({
   DocumentReference? ownerRef,
   double? atRetirementCombinedDailyGain,
   double? historicalNetProfitBaseToJan1,
+  double? estimatedValueNow,
+  double? priceValuationOnJoiningAddressed,
+  double? previousRentalIncome,
+  double? previousExpenses,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -286,6 +318,10 @@ Map<String, dynamic> createPropertyProjectionsRecordData({
       'ownerRef': ownerRef,
       'atRetirementCombinedDailyGain': atRetirementCombinedDailyGain,
       'historicalNetProfitBaseToJan1': historicalNetProfitBaseToJan1,
+      'estimatedValueNow': estimatedValueNow,
+      'priceValuationOnJoiningAddressed': priceValuationOnJoiningAddressed,
+      'previousRentalIncome': previousRentalIncome,
+      'previousExpenses': previousExpenses,
     }.withoutNulls,
   );
 
@@ -333,7 +369,12 @@ class PropertyProjectionsRecordDocumentEquality
         listEquality.equals(e1?.periodEndDates, e2?.periodEndDates) &&
         listEquality.equals(e1?.periodStartDates, e2?.periodStartDates) &&
         listEquality.equals(e1?.periodLabels, e2?.periodLabels) &&
-        listEquality.equals(e1?.periodLabelsShort, e2?.periodLabelsShort);
+        listEquality.equals(e1?.periodLabelsShort, e2?.periodLabelsShort) &&
+        e1?.estimatedValueNow == e2?.estimatedValueNow &&
+        e1?.priceValuationOnJoiningAddressed ==
+            e2?.priceValuationOnJoiningAddressed &&
+        e1?.previousRentalIncome == e2?.previousRentalIncome &&
+        e1?.previousExpenses == e2?.previousExpenses;
   }
 
   @override
@@ -368,7 +409,11 @@ class PropertyProjectionsRecordDocumentEquality
         e?.periodEndDates,
         e?.periodStartDates,
         e?.periodLabels,
-        e?.periodLabelsShort
+        e?.periodLabelsShort,
+        e?.estimatedValueNow,
+        e?.priceValuationOnJoiningAddressed,
+        e?.previousRentalIncome,
+        e?.previousExpenses
       ]);
 
   @override

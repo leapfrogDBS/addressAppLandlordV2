@@ -1063,15 +1063,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     .of(context)
                                                                 .languageCode,
                                                           )}.....',
-                                                          periodLabel:
-                                                              dateTimeFormat(
-                                                            "MMM y",
-                                                            propertyPropertiesRecord
-                                                                .dateJoinedAddressed!,
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
+                                                          periodLabel: _model
+                                                              .pvProjection!
+                                                              .periodLabels
+                                                              .firstOrNull!,
                                                         ),
                                                       ),
                                                     ),

@@ -22,6 +22,7 @@ exports.recalculatePropertyData = functions
       "ownerID",
       "_recalcTrigger",
       "dateJoinedAddressed",
+      "currentRentAmount",
     ];
 
     const norm = (v) =>
@@ -149,17 +150,9 @@ async function computePropertyProjectionCore(args) {
 
     const estimatedValue = num(p.estimatedValue, 0);
 
-    const activeSnap = await propRef
-      .collection("tenancies")
-      .where("isActive", "==", true)
-      .limit(1)
-      .get();
-    const hasActiveTenancy = !activeSnap.empty;
-    let rentPCM = 0;
-    if (hasActiveTenancy) {
-      rentPCM = num(activeSnap.docs[0].get("rentAmount"), 0);
-      if (!Number.isFinite(rentPCM) || rentPCM < 0) rentPCM = 0;
-    }
+    // NEW: rent assumption comes from the property doc only (no tenancy reads)
+    let rentPCM = num(p.currentRentAmount, 0);
+    if (!Number.isFinite(rentPCM) || rentPCM < 0) rentPCM = 0;
     const annualRent0 = rentPCM * 12;
 
     const expenseBase = num(p.averageYearlyExpenses, 0);
@@ -273,9 +266,7 @@ async function computePropertyProjectionCore(args) {
       const capGainY = rollingCapital * (housePct / 100);
       const nextCap = rollingCapital + capGainY;
 
-      const annualProfitY = hasActiveTenancy
-        ? rollingRent - rollingExpenses
-        : 0;
+      const annualProfitY = rollingRent - rollingExpenses;
 
       years.push(y);
       projectedHousePrice.push(round2(nextCap));
@@ -287,9 +278,7 @@ async function computePropertyProjectionCore(args) {
       cumulativeRentalProfit.push(round2(runningRentalProfit));
 
       yieldPct.push(
-        purchasePrice > 0 && hasActiveTenancy
-          ? round2((rollingRent / purchasePrice) * 100)
-          : 0,
+        purchasePrice > 0 ? round2((rollingRent / purchasePrice) * 100) : 0,
       );
 
       housePctUsed.push(round2(housePct));
@@ -300,7 +289,7 @@ async function computePropertyProjectionCore(args) {
 
       if (y < endYear) {
         rollingCapital = nextCap;
-        rollingRent = hasActiveTenancy ? rollingRent * (1 + rentPct / 100) : 0;
+        rollingRent = rollingRent * (1 + rentPct / 100);
         rollingExpenses = rollingExpenses * (1 + expenseInflationPct / 100);
       }
     }
@@ -309,17 +298,18 @@ async function computePropertyProjectionCore(args) {
       round2(cap + (cumulativeRentalProfit[i] || 0)),
     );
 
-    const prevIncomeToJan1 = num(p.previousRentalIncome, 0);
-    const prevExpensesToJan1 = num(p.previousExpenses, 0);
-    const prevNetRentalProfitToJan1 = prevIncomeToJan1 - prevExpensesToJan1;
+    const prevIncomeCompletedPeriods = num(p.previousRentalIncome, 0);
+    const prevExpensesCompletedPeriods = num(p.previousExpenses, 0);
+    const prevNetRentalProfitCompletedPeriods =
+      prevIncomeCompletedPeriods - prevExpensesCompletedPeriods;
 
     const estimatedValueAtStartYear = num(p.estimatedValue, 0);
     const purchasePriceAnchor = num(p.purchasePrice, 0);
 
-    const historicalNetProfitBaseToJan1 = round2(
+    const historicalNetProfitBase = round2(
       estimatedValueAtStartYear -
         purchasePriceAnchor +
-        prevNetRentalProfitToJan1,
+        prevNetRentalProfitCompletedPeriods,
     );
 
     const projRef = db.collection("propertyProjections").doc(propertyId);
@@ -348,8 +338,8 @@ async function computePropertyProjectionCore(args) {
       capitalGains,
       housePctUsed,
       dailyCapitalGain,
-      hasActiveTenancy,
-      historicalNetProfitBaseToJan1,
+      currentRentAmount: rentPCM,
+      historicalNetProfitBase,
 
       atRetirementPeriodLabel: periodLabels[periodLabels.length - 1],
 
@@ -361,9 +351,17 @@ async function computePropertyProjectionCore(args) {
         combinedDailyGain[combinedDailyGain.length - 1],
       atRetirementCumulativeRentalProfit: round2(runningRentalProfit),
 
+      estimatedValueNow: num(p.estimatedValue, 0),
+      priceValuationOnJoiningAddressed: num(
+        p.priceValuationOnJoiningAddressed,
+        num(p.purchasePrice, 0),
+      ),
+      previousRentalIncome: num(p.previousRentalIncome, 0),
+      previousExpenses: num(p.previousExpenses, 0),
+
       lastComputedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      schemaVersion: "recalculatePropertyData@2026-01-22",
+      schemaVersion: "recalculatePropertyData@2026-01-30",
     };
 
     await projRef.set(projectionPayload, { merge: false });

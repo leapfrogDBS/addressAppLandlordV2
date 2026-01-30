@@ -414,8 +414,6 @@ PortfolioTotalsStruct aggregateAtRetirement(
     required double combinedDailyGain,
     required double cumulativeRentalProfit,
     required int? retirementYear,
-
-    // NEW live fields
     double? liveGainPerDay,
     double? liveGainPerSecond,
     double? liveGainThisYear,
@@ -472,36 +470,147 @@ PortfolioTotalsStruct aggregateAtRetirement(
     return 0.0;
   }
 
-  // At-retirement sums
+  double r2(double v) => (v * 100).roundToDouble() / 100;
+
+  // Parse "YYYY-MM-DD" -> LOCAL midnight (avoids UTC offset surprises)
+  DateTime _parseYmdLocal(String ymd, DateTime fallback) {
+    try {
+      final parts = ymd.split('-');
+      if (parts.length != 3) return fallback;
+      final y = int.parse(parts[0]);
+      final m = int.parse(parts[1]);
+      final d = int.parse(parts[2]);
+      return DateTime(y, m, d);
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  // Returns {start, endExclusive} for a property period index, or null if missing/bad.
+  ({DateTime start, DateTime endExcl})? _periodBounds(
+      PropertyProjectionsRecord rec, int idx, DateTime now) {
+    if (idx < 0) return null;
+    if (rec.periodStartDates.length <= idx) return null;
+    if (rec.periodEndDates.length <= idx) return null;
+
+    final startStr = rec.periodStartDates[idx];
+    final endStr = rec.periodEndDates[idx];
+
+    final start = _parseYmdLocal(startStr, DateTime(now.year, 1, 1));
+    final endInclusive = _parseYmdLocal(endStr, DateTime(now.year, 12, 31));
+    final endExcl = endInclusive.add(const Duration(days: 1));
+
+    if (!endExcl.isAfter(start)) return null;
+    return (start: start, endExcl: endExcl);
+  }
+
+  // Annual gain for a period index (capital + rent). Falls back to combinedDailyGain*365 if needed.
+  double _annualGainForIndex(PropertyProjectionsRecord rec, int idx) {
+    final hasCapRent =
+        rec.capitalGains.length > idx && rec.rentalProfit.length > idx;
+    if (hasCapRent) {
+      return _toDouble(rec.capitalGains[idx]) +
+          _toDouble(rec.rentalProfit[idx]);
+    }
+
+    if (rec.combinedDailyGain.length > idx) {
+      // You said 365 is fine here
+      return _toDouble(rec.combinedDailyGain[idx]) * 365.0;
+    }
+
+    return 0.0;
+  }
+
+  // Calendar-year projected gain for ONE property by overlapping periods with [calStart, calEndExcl).
+  double _calendarYearGainForProperty(PropertyProjectionsRecord rec,
+      DateTime calStart, DateTime calEndExcl, DateTime now) {
+    double total = 0.0;
+
+    final maxIdx =
+        math.min(rec.periodStartDates.length, rec.periodEndDates.length);
+
+    for (var idx = 0; idx < maxIdx; idx++) {
+      final b = _periodBounds(rec, idx, now);
+      if (b == null) continue;
+
+      final start = b.start;
+      final endExcl = b.endExcl;
+
+      // overlap window
+      final overlapStart = start.isAfter(calStart) ? start : calStart;
+      final overlapEnd = endExcl.isBefore(calEndExcl) ? endExcl : calEndExcl;
+
+      if (!overlapEnd.isAfter(overlapStart)) continue;
+
+      final secondsInPeriod = endExcl.difference(start).inSeconds.toDouble();
+      if (secondsInPeriod <= 0) continue;
+
+      final annualGain = _annualGainForIndex(rec, idx);
+      if (annualGain == 0.0) continue;
+
+      final perSecond = annualGain / secondsInPeriod;
+      final overlapSeconds =
+          overlapEnd.difference(overlapStart).inSeconds.toDouble();
+
+      total += perSecond * overlapSeconds;
+    }
+
+    return total;
+  }
+
+  // Pro-rata gain accrued so far within the CURRENT property-year period (for earnings-as-of-now).
+  double _gainSoFarInCurrentPropertyPeriod(
+      PropertyProjectionsRecord rec, DateTime now) {
+    final maxIdx =
+        math.min(rec.periodStartDates.length, rec.periodEndDates.length);
+
+    for (var idx = 0; idx < maxIdx; idx++) {
+      final b = _periodBounds(rec, idx, now);
+      if (b == null) continue;
+
+      final start = b.start;
+      final endExcl = b.endExcl;
+
+      if (now.isBefore(start) || !now.isBefore(endExcl)) continue;
+
+      final secondsInPeriod = endExcl.difference(start).inSeconds.toDouble();
+      if (secondsInPeriod <= 0) return 0.0;
+
+      final annualGain = _annualGainForIndex(rec, idx);
+      if (annualGain == 0.0) return 0.0;
+
+      final secondsPassed = now
+          .difference(start)
+          .inSeconds
+          .toDouble()
+          .clamp(0.0, secondsInPeriod);
+
+      final perSecond = annualGain / secondsInPeriod;
+      return perSecond * secondsPassed;
+    }
+
+    return 0.0;
+  }
+
+  // ───────────────────────── At-retirement sums ─────────────────────────
   double sumAnnualRent = 0.0;
   double sumCapitalValue = 0.0;
   double sumCombinedDailyGain = 0.0;
   double sumCumulativeRentalProfit = 0.0;
   int? retirementYear;
 
-  // Live-this-year aggregates
-  int? detectedYearIndex;
+  // ───────────────────────── Live stats (calendar year) ─────────────────────────
   final now = DateTime.now();
-  final startOfYear = DateTime(now.year, 1, 1);
-  final secondsPassed = now.difference(startOfYear).inSeconds.toDouble();
+  final calStart = DateTime(now.year, 1, 1);
+  final calEndExcl = DateTime(now.year + 1, 1, 1);
+  final secondsInCalendarYear = calEndExcl
+      .difference(calStart)
+      .inSeconds
+      .toDouble()
+      .clamp(1.0, double.infinity);
 
-  double liveSumGainPerDay = 0.0; // Σ combinedDailyGain[idx]
-  double liveSumGainThisYear = 0.0; // Σ (capitalGains[idx] + rentalProfit[idx])
-  double sumHistoricalBaseToJan1 = 0.0; // Σ historicalNetProfitBaseToJan1
-
-  // Detect currentYearIndex from absolute years if present; else assume 0
-  for (final rec in projections) {
-    if (rec == null) continue;
-    final years = rec.years;
-    if (years is List && years.isNotEmpty) {
-      final i = years.indexOf(now.year);
-      if (i != -1) {
-        detectedYearIndex = i;
-        break;
-      }
-    }
-  }
-  detectedYearIndex ??= 0;
+  double liveCalendarYearGain = 0.0;
+  double liveEarningsAsOfNow = 0.0;
 
   for (final rec in projections) {
     if (rec == null) continue;
@@ -522,40 +631,39 @@ PortfolioTotalsStruct aggregateAtRetirement(
         ? rec.atRetirementYear as int
         : int.tryParse('${rec.atRetirementYear}');
 
-    // NEW: sum the persisted historical base
-    sumHistoricalBaseToJan1 += _toDouble(rec.historicalNetProfitBaseToJan1);
+    // Calendar-year gain (projection, pro-rated across overlapping property periods)
+    liveCalendarYearGain +=
+        _calendarYearGainForProperty(rec, calStart, calEndExcl, now);
 
-    // Live-this-year aggregation from arrays
-    final idx = detectedYearIndex!;
-    final hasIdx = rec.combinedDailyGain.length > idx &&
-        rec.capitalGains.length > idx &&
-        rec.rentalProfit.length > idx;
+    // Earnings-as-of-now since joining Addressed (requires these fields to exist on the projection doc)
+    final estimatedValueNow = _toDouble(rec.estimatedValueNow);
+    final joinValuation = _toDouble(rec.priceValuationOnJoiningAddressed);
+    final prevIncome = _toDouble(rec.previousRentalIncome);
+    final prevExpenses = _toDouble(rec.previousExpenses);
 
-    if (hasIdx) {
-      final gpd = _toDouble(rec.combinedDailyGain[idx]);
-      final cap = _toDouble(rec.capitalGains[idx]);
-      final rent = _toDouble(rec.rentalProfit[idx]);
+    final capitalGainSinceJoining = estimatedValueNow - joinValuation;
+    final historicalNetRent = prevIncome - prevExpenses;
+    final proRataCurrentPeriod = _gainSoFarInCurrentPropertyPeriod(rec, now);
 
-      liveSumGainPerDay += gpd;
-      liveSumGainThisYear += (cap + rent);
-    }
+    liveEarningsAsOfNow +=
+        (capitalGainSinceJoining + historicalNetRent + proRataCurrentPeriod);
   }
 
-  final liveGainPerSecond = liveSumGainPerDay / 86400.0;
-  final liveEarningsAsOfNow =
-      sumHistoricalBaseToJan1 + (liveGainPerSecond * secondsPassed);
+  // IMPORTANT: do NOT round per-second values (counters will stutter or stick)
+  final liveGainPerSecond = liveCalendarYearGain / secondsInCalendarYear;
+  final liveGainPerDay = liveGainPerSecond * 86400.0;
 
   return _makeTotals(
-    annualRent: sumAnnualRent,
-    capitalValue: sumCapitalValue,
-    combinedDailyGain: sumCombinedDailyGain,
-    cumulativeRentalProfit: sumCumulativeRentalProfit,
+    annualRent: r2(sumAnnualRent),
+    capitalValue: r2(sumCapitalValue),
+    combinedDailyGain: r2(sumCombinedDailyGain),
+    cumulativeRentalProfit: r2(sumCumulativeRentalProfit),
     retirementYear: retirementYear,
-    liveGainPerDay: liveSumGainPerDay,
-    liveGainPerSecond: liveGainPerSecond,
-    liveGainThisYear: liveSumGainThisYear,
-    liveEarningsAsOfNow: liveEarningsAsOfNow,
-    currentYearIndex: detectedYearIndex,
+    liveGainPerDay: r2(liveGainPerDay),
+    liveGainPerSecond: liveGainPerSecond, // <- keep full precision
+    liveGainThisYear: r2(liveCalendarYearGain),
+    liveEarningsAsOfNow: r2(liveEarningsAsOfNow),
+    currentYearIndex: null,
   );
 }
 

@@ -6,13 +6,8 @@ const admin = require("firebase-admin");
 const REGION = "us-central1";
 const LONDON_TZ = "Europe/London";
 const RENT_PAYMENTS_COLLECTION = "rentPayments";
+const EXPENSES_COLLECTION = "expenses";
 
-/**
- * Runs ONLY when properties.estimatedValue changes.
- * If a property-year boundary (anniversary) has been crossed since lastAccruedPeriodStart,
- * it adds rentPayments from the elapsed period into properties.previousRentalIncome,
- * then advances lastAccruedPeriodStart to the current period start.
- */
 exports.accrueRentalIncomeOnValuationUpdate = functions
   .region(REGION)
   .runWith({ memory: "256MB", timeoutSeconds: 120 })
@@ -41,10 +36,10 @@ exports.accrueRentalIncomeOnValuationUpdate = functions
 
     try {
       const result = await accrueRentalIncomeForProperty({ db, propertyId });
-      functions.logger.info("Rental accrual result", { propertyId, ...result });
+      functions.logger.info("Accrual result", { propertyId, ...result });
     } catch (err) {
       // Background trigger: log only to avoid retries spiralling
-      functions.logger.error("Rental accrual failed", {
+      functions.logger.error("Accrual failed", {
         propertyId,
         error: err && err.message ? err.message : String(err),
       });
@@ -76,21 +71,30 @@ async function accrueRentalIncomeForProperty({ db, propertyId }) {
 
     // Initialise older/test properties (no accrual on init)
     if (!lastStart || typeof lastStart.toMillis !== "function") {
-      const prev = snap.get("previousRentalIncome");
-      const prevNum =
-        typeof prev === "number" && Number.isFinite(prev) ? prev : 0;
+      const prevRent = snap.get("previousRentalIncome");
+      const prevRentNum =
+        typeof prevRent === "number" && Number.isFinite(prevRent)
+          ? prevRent
+          : 0;
+
+      const prevExp = snap.get("previousExpenses");
+      const prevExpNum =
+        typeof prevExp === "number" && Number.isFinite(prevExp) ? prevExp : 0;
 
       t.update(propRef, {
         lastAccruedPeriodStart: currentPeriodStartTs,
-        lastAccruedAmount: 0,
+        lastAccruedRentalAmount: 0,
+        lastAccruedExpenseAmount: 0,
         lastAccruedAt: admin.firestore.FieldValue.serverTimestamp(),
-        previousRentalIncome: prevNum,
+        previousRentalIncome: prevRentNum,
+        previousExpenses: prevExpNum,
       });
 
       return {
         action: "initialised",
         currentPeriodStart: currentPeriodStartTs.toDate().toISOString(),
-        previousRentalIncome: prevNum,
+        previousRentalIncome: prevRentNum,
+        previousExpenses: prevExpNum,
       };
     }
 
@@ -115,13 +119,14 @@ async function accrueRentalIncomeForProperty({ db, propertyId }) {
   const fromTs = admin.firestore.Timestamp.fromMillis(decision.lastMs);
   const toTs = admin.firestore.Timestamp.fromMillis(decision.currentMs);
 
-  // Sum rent payments for the elapsed period(s): [from, to)
-  const sumResult = await sumRentPaymentsBetween({
+  // Sum rent + expenses for the elapsed period(s): [from, to)
+  const rentSum = await sumRentPaymentsBetween({
     db,
     propertyId,
     fromTs,
     toTs,
   });
+  const expenseSum = await sumExpensesBetween({ db, propertyId, fromTs, toTs });
 
   // Apply update with an idempotency guard:
   // only update if lastAccruedPeriodStart is still exactly what we used.
@@ -135,16 +140,31 @@ async function accrueRentalIncomeForProperty({ db, propertyId }) {
     // If another execution already advanced it, skip (prevents double counting)
     if (lastStart.toMillis() !== decision.lastMs) return;
 
-    const prev = snap.get("previousRentalIncome");
-    const prevNum =
-      typeof prev === "number" && Number.isFinite(prev) ? prev : 0;
-    const nextPrev = round2(prevNum + sumResult.sum);
+    const prevRent = snap.get("previousRentalIncome");
+    const prevRentNum =
+      typeof prevRent === "number" && Number.isFinite(prevRent) ? prevRent : 0;
+
+    const prevExp = snap.get("previousExpenses");
+    const prevExpNum =
+      typeof prevExp === "number" && Number.isFinite(prevExp) ? prevExp : 0;
+
+    const nextPrevRent = round2(prevRentNum + rentSum.sum);
+    const nextPrevExp = round2(prevExpNum + expenseSum.sum);
 
     t.update(propRef, {
-      previousRentalIncome: nextPrev,
+      previousRentalIncome: nextPrevRent,
+      previousExpenses: nextPrevExp,
+
       lastAccruedPeriodStart: toTs,
-      lastAccruedAmount: sumResult.sum,
+
+      // Debug-friendly fields
+      lastAccruedRentalAmount: rentSum.sum,
+      lastAccruedExpenseAmount: expenseSum.sum,
+
       lastAccruedAt: admin.firestore.FieldValue.serverTimestamp(),
+
+      // Poke recalc (same pattern as your onRentOverrideWritepoke)
+      _recalcTrigger: admin.firestore.FieldValue.serverTimestamp(),
     });
   });
 
@@ -152,15 +172,18 @@ async function accrueRentalIncomeForProperty({ db, propertyId }) {
     action: "accrued",
     periodFrom: fromTs.toDate().toISOString(),
     periodTo: toTs.toDate().toISOString(),
-    paymentsCount: sumResult.count,
-    accruedAmount: sumResult.sum,
+    rentPaymentsCount: rentSum.count,
+    rentAccruedAmount: rentSum.sum,
+    expensesCount: expenseSum.count,
+    expensesAccruedAmount: expenseSum.sum,
   };
 }
 
 // ───────────────────────── SUM PAYMENTS ─────────────────────────
-// NOTE: This query will likely require a composite index on:
+// NOTE: These queries will likely require composite indexes on:
 // rentPayments(propertyId ASC, occurredAt ASC)
-// Firebase will give you a link to create it if needed.
+// expenses(propertyId ASC, occurredAt ASC)
+// Firebase will give you a link to create them if needed.
 
 async function sumRentPaymentsBetween({ db, propertyId, fromTs, toTs }) {
   let total = 0;
@@ -170,6 +193,41 @@ async function sumRentPaymentsBetween({ db, propertyId, fromTs, toTs }) {
   while (true) {
     let q = db
       .collection(RENT_PAYMENTS_COLLECTION)
+      .where("propertyId", "==", propertyId)
+      .where("occurredAt", ">=", fromTs)
+      .where("occurredAt", "<", toTs)
+      .orderBy("occurredAt", "asc")
+      .limit(500);
+
+    if (lastDoc) q = q.startAfter(lastDoc);
+
+    const snap = await q.get();
+    if (snap.empty) break;
+
+    for (const doc of snap.docs) {
+      const amtRaw = doc.get("amount");
+      const amt = typeof amtRaw === "number" ? amtRaw : Number(amtRaw);
+      if (Number.isFinite(amt)) {
+        total += amt;
+        count += 1;
+      }
+    }
+
+    lastDoc = snap.docs[snap.docs.length - 1];
+    if (snap.size < 500) break;
+  }
+
+  return { sum: round2(total), count };
+}
+
+async function sumExpensesBetween({ db, propertyId, fromTs, toTs }) {
+  let total = 0;
+  let count = 0;
+  let lastDoc = null;
+
+  while (true) {
+    let q = db
+      .collection(EXPENSES_COLLECTION)
       .where("propertyId", "==", propertyId)
       .where("occurredAt", ">=", fromTs)
       .where("occurredAt", "<", toTs)

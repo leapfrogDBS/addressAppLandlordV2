@@ -238,6 +238,21 @@ class PropertiesRecord extends FirestoreRecord {
   bool hasPriceValuationOnJoiningAddressed() =>
       _priceValuationOnJoiningAddressed != null;
 
+  // "currentRentAmount" field.
+  double? _currentRentAmount;
+  double get currentRentAmount => _currentRentAmount ?? 0.0;
+  bool hasCurrentRentAmount() => _currentRentAmount != null;
+
+  // "hasActiveTenancy" field.
+  bool? _hasActiveTenancy;
+  bool get hasActiveTenancy => _hasActiveTenancy ?? false;
+  bool hasHasActiveTenancy() => _hasActiveTenancy != null;
+
+  // "currentTenancyId" field.
+  String? _currentTenancyId;
+  String get currentTenancyId => _currentTenancyId ?? '';
+  bool hasCurrentTenancyId() => _currentTenancyId != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -290,6 +305,9 @@ class PropertiesRecord extends FirestoreRecord {
     _lastAccruedAmount = castToType<double>(snapshotData['lastAccruedAmount']);
     _priceValuationOnJoiningAddressed =
         castToType<double>(snapshotData['priceValuationOnJoiningAddressed']);
+    _currentRentAmount = castToType<double>(snapshotData['currentRentAmount']);
+    _hasActiveTenancy = snapshotData['hasActiveTenancy'] as bool?;
+    _currentTenancyId = snapshotData['currentTenancyId'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -370,6 +388,9 @@ Map<String, dynamic> createPropertiesRecordData({
   DateTime? lastAccruedAt,
   double? lastAccruedAmount,
   double? priceValuationOnJoiningAddressed,
+  double? currentRentAmount,
+  bool? hasActiveTenancy,
+  String? currentTenancyId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -416,6 +437,9 @@ Map<String, dynamic> createPropertiesRecordData({
       'lastAccruedAt': lastAccruedAt,
       'lastAccruedAmount': lastAccruedAmount,
       'priceValuationOnJoiningAddressed': priceValuationOnJoiningAddressed,
+      'currentRentAmount': currentRentAmount,
+      'hasActiveTenancy': hasActiveTenancy,
+      'currentTenancyId': currentTenancyId,
     }.withoutNulls,
   );
 
@@ -472,7 +496,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.lastAccruedAt == e2?.lastAccruedAt &&
         e1?.lastAccruedAmount == e2?.lastAccruedAmount &&
         e1?.priceValuationOnJoiningAddressed ==
-            e2?.priceValuationOnJoiningAddressed;
+            e2?.priceValuationOnJoiningAddressed &&
+        e1?.currentRentAmount == e2?.currentRentAmount &&
+        e1?.hasActiveTenancy == e2?.hasActiveTenancy &&
+        e1?.currentTenancyId == e2?.currentTenancyId;
   }
 
   @override
@@ -520,7 +547,10 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.lastAccruedPeriodStart,
         e?.lastAccruedAt,
         e?.lastAccruedAmount,
-        e?.priceValuationOnJoiningAddressed
+        e?.priceValuationOnJoiningAddressed,
+        e?.currentRentAmount,
+        e?.hasActiveTenancy,
+        e?.currentTenancyId
       ]);
 
   @override

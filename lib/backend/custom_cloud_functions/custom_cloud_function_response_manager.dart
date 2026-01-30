@@ -22,8 +22,8 @@ class OnUserRetirementChangepokeCloudFunctionCallResponse {
   dynamic jsonBody;
 }
 
-class OnTenancyWritepokeCloudFunctionCallResponse {
-  OnTenancyWritepokeCloudFunctionCallResponse({
+class OnTenancyWriteSyncCurrentRentCloudFunctionCallResponse {
+  OnTenancyWriteSyncCurrentRentCloudFunctionCallResponse({
     this.errorCode,
     this.succeeded,
     this.jsonBody,

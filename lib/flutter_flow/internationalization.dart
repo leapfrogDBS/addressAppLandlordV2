@@ -4873,6 +4873,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // liveEarningsDash
   {
     '5pll7ff5': {
+      'en': 'Since joining Addressed',
+      'ar': 'حققت محفظتك الاستثمارية أرباحاً تقديرية قدرها...',
+      'bn': 'আপনার পোর্টফোলিও আনুমানিক আয় করেছে....',
+      'de': 'Ihr Portfolio hat schätzungsweise ... erwirtschaftet.',
+      'es': 'Su cartera ha obtenido un estimado de...',
+      'fr': 'Votre portefeuille a généré un rendement estimé à...',
+      'gu': 'તમારા પોર્ટફોલિયોએ અંદાજિત કમાણી કરી છે....',
+      'hi': 'आपके पोर्टफोलियो ने अनुमानित रूप से इतनी कमाई की है...',
+      'pa': 'ਤੁਹਾਡੇ ਪੋਰਟਫੋਲੀਓ ਨੇ ਅੰਦਾਜ਼ਨ ਕਮਾਈ ਕੀਤੀ ਹੈ....',
+      'pl': 'Twoje portfolio zarobiło szacunkowo....',
+      'ro': 'Portofoliul dumneavoastră a câștigat aproximativ...',
+      'ta': 'உங்கள் போர்ட்ஃபோலியோ மதிப்பிடப்பட்ட.... ஈட்டியுள்ளது.',
+      'ur': 'آپ کے پورٹ فولیو نے تخمینہ لگایا ہے....',
+    },
+    'e90oyoxy': {
       'en': 'Your portfolio has earned an estimated....',
       'ar': 'حققت محفظتك الاستثمارية أرباحاً تقديرية قدرها...',
       'bn': 'আপনার পোর্টফোলিও আনুমানিক আয় করেছে....',
