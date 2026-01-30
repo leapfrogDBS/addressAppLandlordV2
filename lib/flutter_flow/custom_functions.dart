@@ -753,3 +753,35 @@ double getRatio(
   // Round to 2 decimal places
   return double.parse(ratio.toStringAsFixed(2));
 }
+
+PortfolioTotalsStruct? getSalesOfferProjectionAtRetirement(
+  ProjectionsRecord? projection,
+  PortfolioTotalsStruct? pvTotals,
+) {
+  final retirementYear = pvTotals?.retirementYear;
+  if (projection == null || retirementYear == null) return null;
+  final years = projection.years;
+  if (years.isEmpty) return null;
+
+  int i = years.indexOf(retirementYear);
+  if (i < 0) i = years.length - 1;
+
+  final cap = projection.projectedHousePrice.length > i
+      ? projection.projectedHousePrice[i]
+      : 0.0;
+  final rent =
+      projection.rentalIncome.length > i ? projection.rentalIncome[i] : 0.0;
+  final cum = projection.cumulativeRentalProfit.length > i
+      ? projection.cumulativeRentalProfit[i]
+      : 0.0;
+  final daily = projection.combinedDailyGain.length > i
+      ? projection.combinedDailyGain[i]
+      : 0.0;
+
+  return createPortfolioTotalsStruct(
+    capitalValue: cap,
+    annualRent: rent,
+    cumulativeRentalProfit: cum,
+    combinedDailyGain: daily,
+  );
+}

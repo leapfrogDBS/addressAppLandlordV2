@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'sales_offer_widget.dart' show SalesOfferWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -18,6 +19,11 @@ class SalesOfferModel extends FlutterFlowModel<SalesOfferWidget> {
   ///  Local state fields for this component.
 
   ProjectionsRecord? projections;
+
+  PortfolioTotalsStruct? offerAtRetirement;
+  void updateOfferAtRetirementStruct(Function(PortfolioTotalsStruct) updateFn) {
+    updateFn(offerAtRetirement ??= PortfolioTotalsStruct());
+  }
 
   ///  State fields for stateful widgets in this component.
 
