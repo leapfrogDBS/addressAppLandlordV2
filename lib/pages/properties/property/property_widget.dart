@@ -1076,184 +1076,182 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    if (_model.hasActiveTenancy)
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  1.0,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                              child:
-                                                                  FlutterFlowChoiceChips(
-                                                                options: [
-                                                                  ChipData(FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '7aatlv1n' /* COMBINED */,
-                                                                  )),
-                                                                  ChipData(FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    '5c8rlpjy' /* CAPITAL */,
-                                                                  )),
-                                                                  ChipData(FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'y4p4283s' /* RENTAL */,
-                                                                  ))
-                                                                ],
-                                                                onChanged:
-                                                                    (val) async {
-                                                                  safeSetState(() =>
-                                                                      _model.choiceChipsValue =
-                                                                          val?.firstOrNull);
-                                                                  _model.selectedValue =
-                                                                      _model
-                                                                          .choiceChipsValue!;
-                                                                  safeSetState(
-                                                                      () {});
-                                                                },
-                                                                selectedChipStyle:
-                                                                    ChipStyle(
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiary,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                  iconColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .info,
-                                                                  iconSize:
-                                                                      14.0,
-                                                                  labelPadding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              10.0),
-                                                                  elevation:
-                                                                      0.0,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                ),
-                                                                unselectedChipStyle:
-                                                                    ChipStyle(
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                  iconColor: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  iconSize:
-                                                                      16.0,
-                                                                  labelPadding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              10.0),
-                                                                  elevation:
-                                                                      0.0,
-                                                                  borderColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                  borderWidth:
-                                                                      1.0,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                ),
-                                                                chipSpacing:
-                                                                    8.0,
-                                                                rowSpacing: 8.0,
-                                                                multiselect:
-                                                                    false,
-                                                                initialized:
-                                                                    _model.choiceChipsValue !=
-                                                                        null,
-                                                                alignment:
-                                                                    WrapAlignment
-                                                                        .start,
-                                                                controller: _model
-                                                                        .choiceChipsValueController ??=
-                                                                    FormFieldController<
-                                                                        List<
-                                                                            String>>(
-                                                                  [
-                                                                    FFLocalizations.of(
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Container(
+                                                        width:
+                                                            MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width *
+                                                                1.0,
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0),
+                                                            child:
+                                                                FlutterFlowChoiceChips(
+                                                              options: [
+                                                                ChipData(FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '7aatlv1n' /* COMBINED */,
+                                                                )),
+                                                                ChipData(FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  '5c8rlpjy' /* CAPITAL */,
+                                                                )),
+                                                                ChipData(FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  'y4p4283s' /* RENTAL */,
+                                                                ))
+                                                              ],
+                                                              onChanged:
+                                                                  (val) async {
+                                                                safeSetState(() =>
+                                                                    _model.choiceChipsValue =
+                                                                        val?.firstOrNull);
+                                                                _model.selectedValue =
+                                                                    _model
+                                                                        .choiceChipsValue!;
+                                                                safeSetState(
+                                                                    () {});
+                                                              },
+                                                              selectedChipStyle:
+                                                                  ChipStyle(
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
                                                                             context)
-                                                                        .getText(
-                                                                      'snzj3dao' /* CAPITAL */,
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                wrapped: true,
+                                                                        .tertiary,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .figtree(
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      fontSize:
+                                                                          12.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                iconColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                iconSize: 14.0,
+                                                                labelPadding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10.0),
+                                                                elevation: 0.0,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
                                                               ),
+                                                              unselectedChipStyle:
+                                                                  ChipStyle(
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .figtree(
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                iconColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                iconSize: 16.0,
+                                                                labelPadding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10.0),
+                                                                elevation: 0.0,
+                                                                borderColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                borderWidth:
+                                                                    1.0,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              ),
+                                                              chipSpacing: 8.0,
+                                                              rowSpacing: 8.0,
+                                                              multiselect:
+                                                                  false,
+                                                              initialized: _model
+                                                                      .choiceChipsValue !=
+                                                                  null,
+                                                              alignment:
+                                                                  WrapAlignment
+                                                                      .start,
+                                                              controller: _model
+                                                                      .choiceChipsValueController ??=
+                                                                  FormFieldController<
+                                                                      List<
+                                                                          String>>(
+                                                                [
+                                                                  FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'snzj3dao' /* CAPITAL */,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              wrapped: true,
                                                             ),
                                                           ),
                                                         ),
                                                       ),
+                                                    ),
                                                     Container(
                                                       decoration:
                                                           BoxDecoration(),
