@@ -21,9 +21,10 @@ class SalesOfferModel extends FlutterFlowModel<SalesOfferWidget> {
 
   ProjectionsRecord? projections;
 
-  PortfolioTotalsStruct? offerAtRetirement;
-  void updateOfferAtRetirementStruct(Function(PortfolioTotalsStruct) updateFn) {
-    updateFn(offerAtRetirement ??= PortfolioTotalsStruct());
+  SalesOfferAtRetirementStruct? offerAtRetirement;
+  void updateOfferAtRetirementStruct(
+      Function(SalesOfferAtRetirementStruct) updateFn) {
+    updateFn(offerAtRetirement ??= SalesOfferAtRetirementStruct());
   }
 
   ///  State fields for stateful widgets in this component.

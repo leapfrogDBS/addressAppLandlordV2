@@ -754,34 +754,36 @@ double getRatio(
   return double.parse(ratio.toStringAsFixed(2));
 }
 
-PortfolioTotalsStruct? getSalesOfferProjectionAtRetirement(
+SalesOfferAtRetirementStruct? getSalesOfferProjectionAtRetirement(
   ProjectionsRecord? projection,
   PortfolioTotalsStruct? pvTotals,
+  SalesOffersRecord? salesOfferDoc,
 ) {
   final retirementYear = pvTotals?.retirementYear;
-  if (projection == null || retirementYear == null) return null;
+  if (projection == null || retirementYear == null || pvTotals == null) {
+    return null;
+  }
   final years = projection.years;
   if (years.isEmpty) return null;
 
-  int i = years.indexOf(retirementYear);
-  if (i < 0) i = years.length - 1;
+  final i = years.indexOf(retirementYear);
+  final idx = i >= 0 ? i : years.length - 1;
 
-  final cap = projection.projectedHousePrice.length > i
-      ? projection.projectedHousePrice[i]
+  final purchasePrice = salesOfferDoc?.price ?? 0.0;
+  final projectedValueAtRetirement = projection.projectedHousePrice.length > idx
+      ? projection.projectedHousePrice[idx]
       : 0.0;
-  final rent =
-      projection.rentalIncome.length > i ? projection.rentalIncome[i] : 0.0;
-  final cum = projection.cumulativeRentalProfit.length > i
-      ? projection.cumulativeRentalProfit[i]
-      : 0.0;
-  final daily = projection.combinedDailyGain.length > i
-      ? projection.combinedDailyGain[i]
-      : 0.0;
+  final capitalValueIncrease = projectedValueAtRetirement - purchasePrice;
+  final newCapitalValue = pvTotals.capitalValue + capitalValueIncrease;
 
-  return createPortfolioTotalsStruct(
-    capitalValue: cap,
-    annualRent: rent,
-    cumulativeRentalProfit: cum,
-    combinedDailyGain: daily,
+  final annualRentIncrease =
+      projection.rentalIncome.length > idx ? projection.rentalIncome[idx] : 0.0;
+  final newAnnualRent = pvTotals.annualRent + annualRentIncrease;
+
+  return SalesOfferAtRetirementStruct(
+    newCapitalValue: newCapitalValue,
+    capitalValueIncrease: capitalValueIncrease,
+    newAnnualRent: newAnnualRent,
+    annualRentIncrease: annualRentIncrease,
   );
 }
