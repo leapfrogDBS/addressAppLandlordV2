@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -500,6 +501,58 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
+                ),
+              ),
+              RichText(
+                textScaler: MediaQuery.of(context).textScaler,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: FFLocalizations.of(context).getText(
+                        'rniw0p2i' /* New portfolio Value:  */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                    ),
+                    TextSpan(
+                      text: formatNumber(
+                        _model.offerAtRetirement!.capitalValue,
+                        formatType: FormatType.decimal,
+                        decimalType: DecimalType.automatic,
+                        currency: '£',
+                      ),
+                      style: TextStyle(),
+                    )
+                  ],
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.figtree(
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .fontWeight,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight:
+                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
                 ),
               ),
             ].divide(SizedBox(height: 5.0)),

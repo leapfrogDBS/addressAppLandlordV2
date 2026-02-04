@@ -19,7 +19,7 @@ function toYearPctMap(querySnap) {
   const out = {};
   querySnap.forEach((doc) => {
     const d = doc.data() || {};
-    let year = d.year != null ? Number(d.year) : Number(doc.id);
+    const year = d.year != null ? Number(d.year) : Number(doc.id);
     const pct = d.pct != null ? Number(d.pct) : null;
     if (Number.isFinite(year) && Number.isFinite(pct)) out[year] = pct;
   });
@@ -46,6 +46,7 @@ exports.computeSalesOfferProjection = functions
     const offerId = context.params.offerId;
     const db = admin.firestore();
 
+    // On create
     if (!change.before.exists) {
       try {
         await computeSalesOfferProjectionCore(db, offerId, change.after.data());
@@ -58,6 +59,7 @@ exports.computeSalesOfferProjection = functions
       return null;
     }
 
+    // On update (only if relevant fields changed)
     const before = change.before.data() || {};
     const after = change.after.data() || {};
     const changed = fieldsToWatch.some(
@@ -67,6 +69,7 @@ exports.computeSalesOfferProjection = functions
       functions.logger.info("No projection-relevant changes", { offerId });
       return null;
     }
+
     try {
       await computeSalesOfferProjectionCore(db, offerId, after);
     } catch (err) {
@@ -103,6 +106,9 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
   const rentalProfit = [];
   const cumulativeRentalProfit = [];
   const combinedDailyGain = [];
+  const capitalGains = [];
+  const combined = [];
+  const combinedYearlyGain = [];
 
   let rollingCapital = price;
   let rollingRent = annualRent0;
@@ -117,17 +123,27 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
     const nextCap = rollingCapital + capGainY;
     const annualProfitY = rollingRent - rollingExpenses;
 
+    // Push year-aligned arrays
     years.push(y);
     projectedHousePrice.push(round2(nextCap));
     rentalIncome.push(round2(rollingRent));
     expenses.push(round2(rollingExpenses));
     rentalProfit.push(round2(annualProfitY));
+    capitalGains.push(round2(capGainY));
+
+    // Cumulative profit (includes this year)
     runningRentalProfit += annualProfitY;
     cumulativeRentalProfit.push(round2(runningRentalProfit));
 
+    // "Net worth style" combined (house value + cumulative rental profit)
+    combined.push(round2(nextCap + runningRentalProfit));
+
+    // Yearly combined gain (capital gain + rental profit) + daily version
     const totalAnnualGainY = capGainY + annualProfitY;
+    combinedYearlyGain.push(round2(totalAnnualGainY));
     combinedDailyGain.push(round2(totalAnnualGainY / 365));
 
+    // Roll forward for next year
     if (y < endYear) {
       rollingCapital = nextCap;
       rollingRent = rollingRent * (1 + rentPct / 100);
@@ -152,8 +168,11 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
     rentalProfit,
     cumulativeRentalProfit,
     combinedDailyGain,
+    capitalGains,
+    combined,
+    combinedYearlyGain,
     lastComputedAt: admin.firestore.FieldValue.serverTimestamp(),
-    schemaVersion: "computeSalesOfferProjection@2026-01-30",
+    schemaVersion: "computeSalesOfferProjection@2026-02-04",
   };
 
   await projRef.set(payload, { merge: false });
