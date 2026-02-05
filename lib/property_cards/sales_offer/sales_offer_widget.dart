@@ -51,10 +51,10 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
         parent: widget!.salesOffer?.reference,
         singleRecord: true,
       ).then((s) => s.firstOrNull);
+      _model.projections = _model.projectionsDocument;
+      safeSetState(() {});
       _model.offerAtRetirement = functions.getSalesOfferProjectionAtRetirement(
           _model.projections, widget!.pvTotals, widget!.salesOffer);
-      safeSetState(() {});
-      _model.projections = _model.projectionsDocument;
       safeSetState(() {});
     });
 
