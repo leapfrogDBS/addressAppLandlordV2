@@ -656,7 +656,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                   children: [
                     TextSpan(
                       text: FFLocalizations.of(context).getText(
-                        'wz3vn64x' /* New Annual Rent */,
+                        'wz3vn64x' /* New Annual Rent  */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             font: GoogleFonts.figtree(
@@ -683,6 +683,114 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                         decimalType: DecimalType.automatic,
                         currency: '£',
                       ),
+                      style: TextStyle(),
+                    )
+                  ],
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.figtree(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                ),
+              ),
+              RichText(
+                textScaler: MediaQuery.of(context).textScaler,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: FFLocalizations.of(context).getText(
+                        'sbvu1u3y' /* Portfolio Score  */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                    ),
+                    TextSpan(
+                      text: functions
+                          .computePortfolioScore(
+                              widget!.pvTotals?.capitalValue,
+                              widget!.pvTotals?.annualRent,
+                              valueOrDefault(
+                                      currentUserDocument?.targetEquity, 0)
+                                  .toDouble(),
+                              valueOrDefault(
+                                      currentUserDocument?.targetIncome, 0)
+                                  .toDouble())
+                          .toString(),
+                      style: TextStyle(),
+                    )
+                  ],
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        font: GoogleFonts.figtree(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                      ),
+                ),
+              ),
+              RichText(
+                textScaler: MediaQuery.of(context).textScaler,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: FFLocalizations.of(context).getText(
+                        'c9jje2uy' /* New Portfolio Score  */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .fontStyle,
+                            ),
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
+                    ),
+                    TextSpan(
+                      text: functions
+                          .computePortfolioScore(
+                              _model.offerAtRetirement?.newCapitalValue,
+                              _model.offerAtRetirement?.newAnnualRent,
+                              valueOrDefault(
+                                      currentUserDocument?.targetEquity, 0)
+                                  .toDouble(),
+                              valueOrDefault(
+                                      currentUserDocument?.targetIncome, 0)
+                                  .toDouble())
+                          .toString(),
                       style: TextStyle(),
                     )
                   ],

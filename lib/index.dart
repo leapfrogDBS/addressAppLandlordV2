@@ -14,8 +14,7 @@ export '/pages/login_registration/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/pages/messages/all_messages/all_messages_widget.dart'
     show AllMessagesWidget;
-export '/pages/properties/sales_offers/sales_offers_widget.dart'
-    show SalesOffersWidget;
+export '/pages/sales_offers/sales_offers_widget.dart' show SalesOffersWidget;
 export '/pages/onboarding/welcome/welcome_widget.dart' show WelcomeWidget;
 export '/pages/onboarding/retirement_goals/retirement_goals_widget.dart'
     show RetirementGoalsWidget;
