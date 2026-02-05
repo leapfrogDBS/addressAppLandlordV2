@@ -6,8 +6,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -505,211 +505,6 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                   ),
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [],
-                  ),
-                ],
-              ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'rniw0p2i' /* Capital Increase  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: formatNumber(
-                        _model.offerAtRetirement!.capitalValueIncrease,
-                        formatType: FormatType.decimal,
-                        decimalType: DecimalType.automatic,
-                        currency: '£',
-                      ),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'ixh36wj9' /* New capital Value:  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: formatNumber(
-                        _model.offerAtRetirement!.newCapitalValue,
-                        formatType: FormatType.decimal,
-                        decimalType: DecimalType.automatic,
-                        currency: '£',
-                      ),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'cfmfxw2v' /* Rental Increase:  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: formatNumber(
-                        _model.offerAtRetirement!.annualRentIncrease,
-                        formatType: FormatType.decimal,
-                        decimalType: DecimalType.automatic,
-                        currency: '£',
-                      ),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'wz3vn64x' /* New Annual Rent  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: formatNumber(
-                        _model.offerAtRetirement!.newAnnualRent,
-                        formatType: FormatType.decimal,
-                        decimalType: DecimalType.automatic,
-                        currency: '£',
-                      ),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
               RichText(
                 textScaler: MediaQuery.of(context).textScaler,
                 text: TextSpan(
@@ -840,31 +635,6 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                       'k1ils7p9' /* Predicted portolio value  */,
                                     ),
                                     style: TextStyle(),
-                                  ),
-                                  TextSpan(
-                                    text: FFLocalizations.of(context).getText(
-                                      'mzt86kdk' /* ( */,
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: widget!.pvTotals!.retirementYear
-                                        .toString(),
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text: FFLocalizations.of(context).getText(
-                                      'w7cjttxp' /* ) */,
-                                    ),
-                                    style: TextStyle(
-                                      fontSize: 12.0,
-                                    ),
                                   )
                                 ],
                                 style: FlutterFlowTheme.of(context)
@@ -884,61 +654,181 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                     ),
                               ),
                             ),
-                            RichText(
-                              textScaler: MediaQuery.of(context).textScaler,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: formatNumber(
-                                      widget!.pvTotals!.capitalValue,
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.automatic,
-                                      currency: '£',
+                          ].divide(SizedBox(width: 6.0)),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
+                              Icons.add,
+                              color: FlutterFlowTheme.of(context).secondary,
+                              size: 24.0,
+                            ),
+                            Text(
+                              formatNumber(
+                                _model.offerAtRetirement!.capitalValueIncrease,
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.automatic,
+                                currency: '£',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontStyle,
                                     ),
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                RichText(
+                                  textScaler: MediaQuery.of(context).textScaler,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: formatNumber(
+                                          widget!.pvTotals!.capitalValue,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                          currency: '£',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              font: GoogleFonts.figtree(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                      )
+                                    ],
                                     style: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .override(
                                           font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleLarge
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          fontSize: 16.0,
                                           letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleLarge
                                                   .fontStyle,
                                         ),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FlutterFlowTheme.of(context)
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.arrow_right_alt_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                                RichText(
+                                  textScaler: MediaQuery.of(context).textScaler,
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: formatNumber(
+                                          _model.offerAtRetirement!
+                                              .newCapitalValue,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                          currency: '£',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
                                             .titleLarge
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontStyle,
-                                    ),
-                              ),
+                                            .override(
+                                              font: GoogleFonts.figtree(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                      )
+                                    ],
+                                    style: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                              ].divide(SizedBox(width: 4.0)),
                             ),
-                          ].divide(SizedBox(width: 6.0)),
+                          ],
                         ),
                         Stack(
                           children: [
@@ -956,8 +846,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 lineHeight: 15.0,
                                 animation: true,
                                 animateFromLastPercent: true,
-                                progressColor:
-                                    FlutterFlowTheme.of(context).primary,
+                                progressColor: Color(0x5133B56B),
                                 backgroundColor:
                                     FlutterFlowTheme.of(context).alternate,
                                 barRadius: Radius.circular(50.0),
@@ -1020,6 +909,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                           ),
                                           color: FlutterFlowTheme.of(context)
                                               .greyBlue,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
@@ -1042,6 +932,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                       ),
                                       color:
                                           FlutterFlowTheme.of(context).greyBlue,
+                                      fontSize: 14.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleSmall
@@ -1070,39 +961,9 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                               children: [
                                 TextSpan(
                                   text: FFLocalizations.of(context).getText(
-                                    't35dhfm2' /* Predicted Annual 
-Rental Incom... */
-                                    ,
+                                    't35dhfm2' /* Predicted Annual Rental Income... */,
                                   ),
                                   style: TextStyle(),
-                                ),
-                                TextSpan(
-                                  text: FFLocalizations.of(context).getText(
-                                    'kwtbj1dg' /* ( */,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: valueOrDefault<String>(
-                                    widget!.pvTotals?.retirementYear
-                                        ?.toString(),
-                                    '2025',
-                                  ),
-                                  style: TextStyle(
-                                    color:
-                                        FlutterFlowTheme.of(context).secondary,
-                                    fontSize: 12.0,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: FFLocalizations.of(context).getText(
-                                    'nahkjiek' /* ) */,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                  ),
                                 )
                               ],
                               style: FlutterFlowTheme.of(context)
@@ -1122,60 +983,172 @@ Rental Incom... */
                                   ),
                             ),
                           ),
-                          RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: formatNumber(
-                                    widget!.pvTotals!.annualRent,
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.automatic,
-                                    currency: '£',
+                        ].divide(SizedBox(width: 6.0)),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: FlutterFlowTheme.of(context).secondary,
+                            size: 24.0,
+                          ),
+                          Text(
+                            formatNumber(
+                              _model.offerAtRetirement!.annualRentIncrease,
+                              formatType: FormatType.decimal,
+                              decimalType: DecimalType.automatic,
+                              currency: '£',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  font: GoogleFonts.figtree(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .fontStyle,
                                   ),
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineSmall
+                                      .fontStyle,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: formatNumber(
+                                        widget!.pvTotals!.annualRent,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '£',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                    )
+                                  ],
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
                                         font: GoogleFonts.figtree(
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleLarge
                                                   .fontStyle,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        fontSize: 16.0,
                                         letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .fontStyle,
                                       ),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_right_alt_sharp,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
+                              ),
+                              RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: formatNumber(
+                                        _model.offerAtRetirement!.newAnnualRent,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '£',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
                                           .titleLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                            ),
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        font: GoogleFonts.figtree(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                            ].divide(SizedBox(width: 4.0)),
                           ),
-                        ].divide(SizedBox(width: 6.0)),
+                        ],
                       ),
                       Stack(
                         children: [
@@ -1193,7 +1166,7 @@ Rental Incom... */
                               lineHeight: 15.0,
                               animation: true,
                               animateFromLastPercent: true,
-                              progressColor: Color(0xFFB42328),
+                              progressColor: Color(0x75F2CB00),
                               backgroundColor:
                                   FlutterFlowTheme.of(context).alternate,
                               barRadius: Radius.circular(50.0),
@@ -1256,6 +1229,7 @@ Rental Incom... */
                                         ),
                                         color: FlutterFlowTheme.of(context)
                                             .greyBlue,
+                                        fontSize: 14.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
                                         fontStyle: FlutterFlowTheme.of(context)
@@ -1277,6 +1251,7 @@ Rental Incom... */
                                     ),
                                     color:
                                         FlutterFlowTheme.of(context).greyBlue,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -1289,48 +1264,39 @@ Rental Incom... */
                           ),
                         ].divide(SizedBox(width: 6.0)),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(ProfileWidget.routeName);
-                          },
-                          child: Text(
-                            FFLocalizations.of(context).getText(
-                              '0hozdlcj' /* Edit Retirement Goals */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.figtree(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
-                                  decoration: TextDecoration.underline,
-                                ),
-                          ),
-                        ),
-                      ),
                     ].divide(SizedBox(height: 8.0)),
                   ),
                 ].divide(SizedBox(height: 16.0)),
+              ),
+              AuthUserStreamWidget(
+                builder: (context) => Container(
+                  width: 90.0,
+                  height: 90.0,
+                  child: custom_widgets.PortfolioScoreIncreaseGauge(
+                    width: 90.0,
+                    height: 90.0,
+                    startScore: functions.computePortfolioScore(
+                        widget!.pvTotals?.capitalValue,
+                        widget!.pvTotals?.annualRent,
+                        valueOrDefault(currentUserDocument?.targetEquity, 0)
+                            .toDouble(),
+                        valueOrDefault(currentUserDocument?.targetIncome, 0)
+                            .toDouble()),
+                    endScore: functions.computePortfolioScore(
+                        _model.offerAtRetirement?.newCapitalValue,
+                        _model.offerAtRetirement?.newAnnualRent,
+                        valueOrDefault(currentUserDocument?.targetEquity, 0)
+                            .toDouble(),
+                        valueOrDefault(currentUserDocument?.targetIncome, 0)
+                            .toDouble()),
+                    maxScore: 999,
+                    durationMs: 3500,
+                    delayMs: 1000,
+                    sweepDegrees: 300.0,
+                    strokeWidth: 10.0,
+                    animateWhenVisible: true,
+                  ),
+                ),
               ),
             ].divide(SizedBox(height: 5.0)),
           ),

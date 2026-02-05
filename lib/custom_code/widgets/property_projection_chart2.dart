@@ -21,6 +21,7 @@ import '/flutter_flow/place.dart';
 import '/flutter_flow/uploaded_file.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'package:fl_chart/fl_chart.dart';
 
