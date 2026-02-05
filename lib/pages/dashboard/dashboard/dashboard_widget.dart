@@ -854,7 +854,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           text: FFLocalizations
                                                                   .of(context)
                                                               .getText(
-                                                            'raytn19v' /* Predicted Rental Income  */,
+                                                            'raytn19v' /* Predicted Annual 
+Rental Incom... */
+                                                            ,
                                                           ),
                                                           style: TextStyle(),
                                                         ),
