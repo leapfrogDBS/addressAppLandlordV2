@@ -787,3 +787,46 @@ SalesOfferAtRetirementStruct? getSalesOfferProjectionAtRetirement(
     annualRentIncrease: annualRentIncrease,
   );
 }
+
+double? releasableEquityForProperty(
+  double? estimatedValue,
+  double? mortgageRemaining,
+  bool? mortgageEntered,
+) {
+  if (mortgageEntered != true) return 0.0;
+  final val = (estimatedValue ?? 0.0) * 0.75;
+  final mortgage = mortgageRemaining ?? 0.0;
+  final releasable = val - mortgage;
+  return releasable > 0 ? releasable : 0.0;
+}
+
+CapitalAvailableToInvestStruct? sumReleasableEquityAboveThreshold(
+  List<PropertiesRecord>? properties,
+  double? threshold,
+  double? availableCapital,
+) {
+  final own = availableCapital ?? 0.0;
+
+  // Parse threshold: if your parameter is double, use: final th = threshold ?? 15000.0;
+  final th = threshold ?? 15000.0;
+
+  double releasable = 0.0;
+  final list = properties ?? [];
+  for (final p in list) {
+    if (p.mortgageEntered != true) continue;
+    final val = (p.estimatedValue ?? 0.0) * 0.75;
+    final mortgage = p.mortgageRemaining ?? 0.0;
+    final eq = val - mortgage;
+    if (eq > 0 && eq >= th) {
+      releasable += eq;
+    }
+  }
+
+  final total = own + releasable;
+
+  return CapitalAvailableToInvestStruct(
+    ownCapital: own,
+    releasableEquity: releasable,
+    totalCapitalAvailable: total,
+  );
+}

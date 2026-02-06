@@ -2245,6 +2245,45 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
+                                                                                  'xqac6s9f' /* Releasable Equity */,
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                      font: GoogleFonts.figtree(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                              Text(
+                                                                                formatNumber(
+                                                                                  functions.releasableEquityForProperty(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining, propertyPropertiesRecord.mortgageEntered),
+                                                                                  formatType: FormatType.decimal,
+                                                                                  decimalType: DecimalType.automatic,
+                                                                                  currency: '£',
+                                                                                ),
+                                                                                style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                      font: GoogleFonts.figtree(
+                                                                                        fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                        fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                      ),
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                    ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            children: [
+                                                                              Text(
+                                                                                FFLocalizations.of(context).getText(
                                                                                   'xnzvczdj' /* Equity Share */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
