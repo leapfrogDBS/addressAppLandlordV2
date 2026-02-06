@@ -804,10 +804,10 @@ CapitalAvailableToInvestStruct? sumReleasableEquityAboveThreshold(
   List<PropertiesRecord>? properties,
   double? threshold,
   double? availableCapital,
+  List<PropertyProjectionsRecord>? projections,
+  double? targetForUpgradeDate,
 ) {
   final own = availableCapital ?? 0.0;
-
-  // Parse threshold: if your parameter is double, use: final th = threshold ?? 15000.0;
   final th = threshold ?? 15000.0;
 
   double releasable = 0.0;
@@ -824,9 +824,104 @@ CapitalAvailableToInvestStruct? sumReleasableEquityAboveThreshold(
 
   final total = own + releasable;
 
+  // Upgrade date: only when target and projections provided
+  bool hasUpgradeDate = false;
+  DateTime? upgradeDate;
+  final target = targetForUpgradeDate ?? 35000.0;
+  final projList = projections ?? [];
+
+  if (projList.isNotEmpty && total < target) {
+    final shortfall = target - total;
+    final now = DateTime.now();
+
+    DateTime parseYmd(String ymd, DateTime fallback) {
+      try {
+        final parts = ymd.split('-');
+        if (parts.length != 3) return fallback;
+        return DateTime(
+            int.parse(parts[0]), int.parse(parts[1]), int.parse(parts[2]));
+      } catch (_) {
+        return fallback;
+      }
+    }
+
+    // Use first projection for period timeline; combine daily gain across all projections
+    final first = projList.first;
+    final starts = first.periodStartDates;
+    final ends = first.periodEndDates;
+    if (starts.isNotEmpty && ends.isNotEmpty) {
+      double combinedDailyForPeriod(int idx) {
+        double sum = 0.0;
+        for (final pr in projList) {
+          if (idx < pr.dailyCapitalGain.length) {
+            sum += 0.75 * pr.dailyCapitalGain[idx];
+          }
+        }
+        return sum;
+      }
+
+      int currentPeriodIdx = -1;
+      for (int i = 0; i < starts.length && i < ends.length; i++) {
+        final start = parseYmd(starts[i], now);
+        final endInclusive = parseYmd(ends[i], now);
+        final endExcl = endInclusive.add(const Duration(days: 1));
+        if (!now.isBefore(start) && now.isBefore(endExcl)) {
+          currentPeriodIdx = i;
+          break;
+        }
+      }
+
+      if (currentPeriodIdx >= 0) {
+        double remainingGap = shortfall;
+        int totalDays = 0;
+
+        for (int idx = currentPeriodIdx;
+            idx < starts.length && idx < ends.length;
+            idx++) {
+          final dailyGain = combinedDailyForPeriod(idx);
+          if (dailyGain <= 0) continue;
+
+          final start = parseYmd(starts[idx], now);
+          final endInclusive = parseYmd(ends[idx], now);
+          final endExcl = endInclusive.add(const Duration(days: 1));
+
+          int daysInPeriod;
+          if (idx == currentPeriodIdx) {
+            daysInPeriod = endExcl.difference(now).inDays;
+            if (daysInPeriod < 0) daysInPeriod = 0;
+          } else {
+            daysInPeriod = endExcl.difference(start).inDays;
+          }
+
+          final gainInPeriod = daysInPeriod * dailyGain;
+
+          if (remainingGap <= gainInPeriod) {
+            final daysNeeded = (remainingGap / dailyGain).round();
+            totalDays += daysNeeded;
+            remainingGap = 0;
+            break;
+          } else {
+            remainingGap -= gainInPeriod;
+            totalDays += daysInPeriod;
+          }
+        }
+
+        if (remainingGap <= 0) {
+          hasUpgradeDate = true;
+          upgradeDate = now.add(Duration(days: totalDays));
+        }
+      }
+    }
+  } else if (targetForUpgradeDate != null && total >= target) {
+    hasUpgradeDate = true;
+    upgradeDate = DateTime.now();
+  }
+
   return CapitalAvailableToInvestStruct(
     ownCapital: own,
     releasableEquity: releasable,
     totalCapitalAvailable: total,
+    hasUpgradeDate: hasUpgradeDate,
+    upgradeDate: upgradeDate,
   );
 }

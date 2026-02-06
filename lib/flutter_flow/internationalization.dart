@@ -4818,6 +4818,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ta': 'ஓய்வூதியத்தில் தினசரி ஆதாயம்',
       'ur': 'ریٹائرمنٹ پر روزانہ کا فائدہ',
     },
+    'wgocfm63': {
+      'en': 'Next Upgrade Date',
+      'ar': 'الربح اليومي عند التقاعد',
+      'bn': 'অবসরকালীন দৈনিক লাভ',
+      'de': 'Täglicher Gewinn bei Renteneintritt',
+      'es': 'Ganancia diaria en la jubilación',
+      'fr': 'Gain quotidien à la retraite',
+      'gu': 'નિવૃત્તિ પર દૈનિક લાભ',
+      'hi': 'सेवानिवृत्ति पर दैनिक लाभ',
+      'pa': 'ਰਿਟਾਇਰਮੈਂਟ \'ਤੇ ਰੋਜ਼ਾਨਾ ਲਾਭ',
+      'pl': 'Dzienny zysk na emeryturze',
+      'ro': 'Câștig zilnic la pensionare',
+      'ta': 'ஓய்வூதியத்தில் தினசரி ஆதாயம்',
+      'ur': 'ریٹائرمنٹ پر روزانہ کا فائدہ',
+    },
   },
   // statsCombined
   {

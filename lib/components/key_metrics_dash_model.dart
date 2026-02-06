@@ -27,6 +27,8 @@ class KeyMetricsDashModel extends FlutterFlowModel<KeyMetricsDashWidget> {
 
   // Stores action output result for [Firestore Query - Query a collection] action in keyMetricsDash widget.
   List<PropertiesRecord>? allProperties;
+  // Stores action output result for [Firestore Query - Query a collection] action in keyMetricsDash widget.
+  List<PropertyProjectionsRecord>? allProjections;
 
   @override
   void initState(BuildContext context) {}

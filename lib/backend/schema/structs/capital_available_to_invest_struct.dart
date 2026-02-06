@@ -13,10 +13,14 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
     double? ownCapital,
     double? releasableEquity,
     double? totalCapitalAvailable,
+    DateTime? upgradeDate,
+    bool? hasUpgradeDate,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _ownCapital = ownCapital,
         _releasableEquity = releasableEquity,
         _totalCapitalAvailable = totalCapitalAvailable,
+        _upgradeDate = upgradeDate,
+        _hasUpgradeDate = hasUpgradeDate,
         super(firestoreUtilData);
 
   // "ownCapital" field.
@@ -48,12 +52,28 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
 
   bool hasTotalCapitalAvailable() => _totalCapitalAvailable != null;
 
+  // "upgradeDate" field.
+  DateTime? _upgradeDate;
+  DateTime? get upgradeDate => _upgradeDate;
+  set upgradeDate(DateTime? val) => _upgradeDate = val;
+
+  bool hasUpgradeDateField() => _upgradeDate != null;
+
+  // "hasUpgradeDate" field.
+  bool? _hasUpgradeDate;
+  bool get hasUpgradeDate => _hasUpgradeDate ?? false;
+  set hasUpgradeDate(bool? val) => _hasUpgradeDate = val;
+
+  bool hasHasUpgradeDate() => _hasUpgradeDate != null;
+
   static CapitalAvailableToInvestStruct fromMap(Map<String, dynamic> data) =>
       CapitalAvailableToInvestStruct(
         ownCapital: castToType<double>(data['ownCapital']),
         releasableEquity: castToType<double>(data['releasableEquity']),
         totalCapitalAvailable:
             castToType<double>(data['totalCapitalAvailable']),
+        upgradeDate: data['upgradeDate'] as DateTime?,
+        hasUpgradeDate: data['hasUpgradeDate'] as bool?,
       );
 
   static CapitalAvailableToInvestStruct? maybeFromMap(dynamic data) =>
@@ -65,6 +85,8 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
         'ownCapital': _ownCapital,
         'releasableEquity': _releasableEquity,
         'totalCapitalAvailable': _totalCapitalAvailable,
+        'upgradeDate': _upgradeDate,
+        'hasUpgradeDate': _hasUpgradeDate,
       }.withoutNulls;
 
   @override
@@ -80,6 +102,14 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
         'totalCapitalAvailable': serializeParam(
           _totalCapitalAvailable,
           ParamType.double,
+        ),
+        'upgradeDate': serializeParam(
+          _upgradeDate,
+          ParamType.DateTime,
+        ),
+        'hasUpgradeDate': serializeParam(
+          _hasUpgradeDate,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -101,6 +131,16 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
           ParamType.double,
           false,
         ),
+        upgradeDate: deserializeParam(
+          data['upgradeDate'],
+          ParamType.DateTime,
+          false,
+        ),
+        hasUpgradeDate: deserializeParam(
+          data['hasUpgradeDate'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -111,18 +151,27 @@ class CapitalAvailableToInvestStruct extends FFFirebaseStruct {
     return other is CapitalAvailableToInvestStruct &&
         ownCapital == other.ownCapital &&
         releasableEquity == other.releasableEquity &&
-        totalCapitalAvailable == other.totalCapitalAvailable;
+        totalCapitalAvailable == other.totalCapitalAvailable &&
+        upgradeDate == other.upgradeDate &&
+        hasUpgradeDate == other.hasUpgradeDate;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([ownCapital, releasableEquity, totalCapitalAvailable]);
+  int get hashCode => const ListEquality().hash([
+        ownCapital,
+        releasableEquity,
+        totalCapitalAvailable,
+        upgradeDate,
+        hasUpgradeDate
+      ]);
 }
 
 CapitalAvailableToInvestStruct createCapitalAvailableToInvestStruct({
   double? ownCapital,
   double? releasableEquity,
   double? totalCapitalAvailable,
+  DateTime? upgradeDate,
+  bool? hasUpgradeDate,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -132,6 +181,8 @@ CapitalAvailableToInvestStruct createCapitalAvailableToInvestStruct({
       ownCapital: ownCapital,
       releasableEquity: releasableEquity,
       totalCapitalAvailable: totalCapitalAvailable,
+      upgradeDate: upgradeDate,
+      hasUpgradeDate: hasUpgradeDate,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

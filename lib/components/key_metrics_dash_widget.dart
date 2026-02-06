@@ -52,14 +52,23 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
       _model.allProperties = await queryPropertiesRecordOnce(
         queryBuilder: (propertiesRecord) => propertiesRecord.where(
           'ownerID',
-          isEqualTo: '',
+          isEqualTo: currentUserReference?.id,
+        ),
+      );
+      _model.allProjections = await queryPropertyProjectionsRecordOnce(
+        queryBuilder: (propertyProjectionsRecord) =>
+            propertyProjectionsRecord.where(
+          'ownerId',
+          isEqualTo: currentUserReference?.id,
         ),
       );
       _model.capitalAvailableToInvest =
           functions.sumReleasableEquityAboveThreshold(
               _model.allProperties?.toList(),
               15000.0,
-              valueOrDefault(currentUserDocument?.availableCapital, 0.0));
+              valueOrDefault(currentUserDocument?.availableCapital, 0.0),
+              _model.allProjections?.toList(),
+              35000.0);
       safeSetState(() {});
     });
 
@@ -477,10 +486,10 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     maxWidth: 270.0,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).primary,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FlutterFlowTheme.of(context).primary,
                       width: 1.0,
                     ),
                   ),
@@ -512,6 +521,8 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                             .titleMedium
                                             .fontStyle,
                                       ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleMedium
@@ -541,7 +552,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                           .override(
                                             fontFamily: 'Thunder',
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -565,10 +576,10 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     maxWidth: 270.0,
                   ),
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).secondary,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FlutterFlowTheme.of(context).secondary,
                       width: 1.0,
                     ),
                   ),
@@ -600,6 +611,8 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                             .titleMedium
                                             .fontStyle,
                                       ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleMedium
@@ -629,7 +642,97 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                           .override(
                                             fontFamily: 'Thunder',
                                             color: FlutterFlowTheme.of(context)
-                                                .primary,
+                                                .primaryBackground,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].divide(SizedBox(height: 20.0)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                child: Container(
+                  width: 180.0,
+                  height: 180.0,
+                  constraints: BoxConstraints(
+                    maxWidth: 270.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).tertiary,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                FFLocalizations.of(context).getText(
+                                  'ra2g8ccm' /* Total Capital Available to Inv... */,
+                                ),
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 4.0, 0.0),
+                                    child: Text(
+                                      formatNumber(
+                                        _model.capitalAvailableToInvest!
+                                            .totalCapitalAvailable,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '£',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .override(
+                                            fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -674,7 +777,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'ra2g8ccm' /* Total Capital Available to Inv... */,
+                                  'wgocfm63' /* Next Upgrade Date */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
@@ -705,12 +808,12 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 4.0, 4.0, 0.0),
                                     child: Text(
-                                      formatNumber(
+                                      dateTimeFormat(
+                                        "d/M/y",
                                         _model.capitalAvailableToInvest!
-                                            .totalCapitalAvailable,
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.automatic,
-                                        currency: '£',
+                                            .upgradeDate!,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .displayLarge
