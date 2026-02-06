@@ -138,7 +138,8 @@ class _PropertyBackupWidgetState extends State<PropertyBackupWidget>
     )..addListener(() => safeSetState(() {}));
 
     _model.expandableExpandableController =
-        ExpandableController(initialExpanded: false);
+        ExpandableController(initialExpanded: false)
+          ..addListener(() => safeSetState(() {}));
 
     _model.mortgageRemainingFocusNode ??= FocusNode();
 

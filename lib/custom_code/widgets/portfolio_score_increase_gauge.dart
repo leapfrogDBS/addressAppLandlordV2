@@ -196,7 +196,6 @@ class _IncreaseRingPainter extends CustomPainter {
     required this.sweepRadians,
     required this.startAngle,
     required this.yellowAt,
-    this.markerAtPct,
   });
 
   final double pct;
@@ -205,7 +204,6 @@ class _IncreaseRingPainter extends CustomPainter {
   final double sweepRadians;
   final double startAngle;
   final double yellowAt;
-  final double? markerAtPct;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -258,25 +256,6 @@ class _IncreaseRingPainter extends CustomPainter {
         false,
         capPaint,
       );
-    }
-    // Marker at original score: small circle on the ring so "you were here" is obvious
-    if (markerAtPct != null && markerAtPct! > 0 && markerAtPct! < 1) {
-      final markerAngle = startAngle + sweepRadians * markerAtPct!;
-      final markerRadius = radius + (stroke * 0.1);
-      final markerCenter = Offset(
-        center.dx + markerRadius * math.cos(markerAngle),
-        center.dy + markerRadius * math.sin(markerAngle),
-      );
-      final markerRadiusPx = (stroke * 0.55).clamp(3.0, 12.0);
-      final markerPaint = Paint()
-        ..color = const Color(0xFF274256)
-        ..style = PaintingStyle.fill;
-      canvas.drawCircle(markerCenter, markerRadiusPx, markerPaint);
-      final markerBorder = Paint()
-        ..color = const Color(0xFFE8E8E8)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 1.5;
-      canvas.drawCircle(markerCenter, markerRadiusPx, markerBorder);
     }
   }
 

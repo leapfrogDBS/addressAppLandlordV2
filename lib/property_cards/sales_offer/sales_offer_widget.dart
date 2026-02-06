@@ -505,117 +505,141 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                   ),
                 ),
               ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'sbvu1u3y' /* Portfolio Score  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: functions
-                          .computePortfolioScore(
-                              widget!.pvTotals?.capitalValue,
-                              widget!.pvTotals?.annualRent,
-                              valueOrDefault(
-                                      currentUserDocument?.targetEquity, 0)
-                                  .toDouble(),
-                              valueOrDefault(
-                                      currentUserDocument?.targetIncome, 0)
-                                  .toDouble())
-                          .toString(),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
-              RichText(
-                textScaler: MediaQuery.of(context).textScaler,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: FFLocalizations.of(context).getText(
-                        'c9jje2uy' /* New Portfolio Score  */,
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                            letterSpacing: 0.0,
-                            fontWeight: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontWeight,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                    ),
-                    TextSpan(
-                      text: functions
-                          .computePortfolioScore(
-                              _model.offerAtRetirement?.newCapitalValue,
-                              _model.offerAtRetirement?.newAnnualRent,
-                              valueOrDefault(
-                                      currentUserDocument?.targetEquity, 0)
-                                  .toDouble(),
-                              valueOrDefault(
-                                      currentUserDocument?.targetIncome, 0)
-                                  .toDouble())
-                          .toString(),
-                      style: TextStyle(),
-                    )
-                  ],
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: GoogleFonts.figtree(
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        fontStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                      ),
-                ),
-              ),
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      AuthUserStreamWidget(
+                        builder: (context) => Container(
+                          width: 90.0,
+                          height: 90.0,
+                          child: custom_widgets.PortfolioScoreIncreaseGauge(
+                            width: 90.0,
+                            height: 90.0,
+                            startScore: functions.computePortfolioScore(
+                                widget!.pvTotals?.capitalValue,
+                                widget!.pvTotals?.annualRent,
+                                valueOrDefault(
+                                        currentUserDocument?.targetEquity, 0)
+                                    .toDouble(),
+                                valueOrDefault(
+                                        currentUserDocument?.targetIncome, 0)
+                                    .toDouble()),
+                            endScore: functions.computePortfolioScore(
+                                _model.offerAtRetirement?.newCapitalValue,
+                                _model.offerAtRetirement?.newAnnualRent,
+                                valueOrDefault(
+                                        currentUserDocument?.targetEquity, 0)
+                                    .toDouble(),
+                                valueOrDefault(
+                                        currentUserDocument?.targetIncome, 0)
+                                    .toDouble()),
+                            maxScore: 999,
+                            durationMs: 3500,
+                            delayMs: 1000,
+                            sweepDegrees: 300.0,
+                            strokeWidth: 10.0,
+                            animateWhenVisible: true,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: functions
+                                      .computePortfolioScore(
+                                          widget!.pvTotals?.capitalValue,
+                                          widget!.pvTotals?.annualRent,
+                                          valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.targetEquity,
+                                                  0)
+                                              .toDouble(),
+                                          valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.targetIncome,
+                                                  0)
+                                              .toDouble())
+                                      .toString(),
+                                  style: TextStyle(),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_sharp,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          RichText(
+                            textScaler: MediaQuery.of(context).textScaler,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: functions
+                                      .computePortfolioScore(
+                                          _model.offerAtRetirement
+                                              ?.newCapitalValue,
+                                          _model
+                                              .offerAtRetirement?.newAnnualRent,
+                                          valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.targetEquity,
+                                                  0)
+                                              .toDouble(),
+                                          valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.targetIncome,
+                                                  0)
+                                              .toDouble())
+                                      .toString(),
+                                  style: TextStyle(),
+                                )
+                              ],
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ].divide(SizedBox(width: 4.0)),
+                      ),
+                    ],
+                  ),
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
@@ -1267,36 +1291,6 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                     ].divide(SizedBox(height: 8.0)),
                   ),
                 ].divide(SizedBox(height: 16.0)),
-              ),
-              AuthUserStreamWidget(
-                builder: (context) => Container(
-                  width: 90.0,
-                  height: 90.0,
-                  child: custom_widgets.PortfolioScoreIncreaseGauge(
-                    width: 90.0,
-                    height: 90.0,
-                    startScore: functions.computePortfolioScore(
-                        widget!.pvTotals?.capitalValue,
-                        widget!.pvTotals?.annualRent,
-                        valueOrDefault(currentUserDocument?.targetEquity, 0)
-                            .toDouble(),
-                        valueOrDefault(currentUserDocument?.targetIncome, 0)
-                            .toDouble()),
-                    endScore: functions.computePortfolioScore(
-                        _model.offerAtRetirement?.newCapitalValue,
-                        _model.offerAtRetirement?.newAnnualRent,
-                        valueOrDefault(currentUserDocument?.targetEquity, 0)
-                            .toDouble(),
-                        valueOrDefault(currentUserDocument?.targetIncome, 0)
-                            .toDouble()),
-                    maxScore: 999,
-                    durationMs: 3500,
-                    delayMs: 1000,
-                    sweepDegrees: 300.0,
-                    strokeWidth: 10.0,
-                    animateWhenVisible: true,
-                  ),
-                ),
               ),
             ].divide(SizedBox(height: 5.0)),
           ),
