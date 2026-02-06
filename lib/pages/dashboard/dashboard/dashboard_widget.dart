@@ -555,7 +555,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                             text: FFLocalizations
                                                                     .of(context)
                                                                 .getText(
-                                                              '4ze7qdom' /* Predicted portolio value  */,
+                                                              '4ze7qdom' /* Predicted Portolio
+Capital Gai... */
+                                                              ,
                                                             ),
                                                             style: TextStyle(),
                                                           ),

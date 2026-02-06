@@ -108,7 +108,7 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 80.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 20.0),
                     child: StreamBuilder<List<SalesOffersRecord>>(
                       stream: querySalesOffersRecord(),
                       builder: (context, snapshot) {

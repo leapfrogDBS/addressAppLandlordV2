@@ -117,9 +117,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                   .headlineLarge
                                   .override(
                                     font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .fontWeight,
+                                      fontWeight: FontWeight.normal,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .headlineLarge
                                           .fontStyle,
@@ -128,9 +126,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                         .primaryBackground,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .fontWeight,
+                                    fontWeight: FontWeight.normal,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .headlineLarge
                                         .fontStyle,
@@ -147,9 +143,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                   .headlineLarge
                                   .override(
                                     font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .fontWeight,
+                                      fontWeight: FontWeight.normal,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .headlineLarge
                                           .fontStyle,
@@ -158,16 +152,14 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                         .primaryBackground,
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .fontWeight,
+                                    fontWeight: FontWeight.normal,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .headlineLarge
                                         .fontStyle,
                                   ),
                             ),
                           ),
-                        ].divide(SizedBox(height: 6.0)),
+                        ].divide(SizedBox(height: 2.0)),
                       ),
                     ),
                     Padding(

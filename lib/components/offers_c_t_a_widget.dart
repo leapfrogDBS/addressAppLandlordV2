@@ -62,14 +62,14 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).bodyLarge.override(
                       font: GoogleFonts.figtree(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.normal,
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                       ),
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       fontSize: 14.0,
                       letterSpacing: 0.0,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.normal,
                       fontStyle:
                           FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                     ),
