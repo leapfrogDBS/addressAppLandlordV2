@@ -185,18 +185,48 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                     child: Container(
                       width: 150.0,
                       decoration: BoxDecoration(),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                        child: Text(
-                          valueOrDefault<String>(
-                            widget!.propTitle != null && widget!.propTitle != ''
-                                ? widget!.propTitle
-                                : widget!.propFormattedAddress,
-                            'Flat 9, 48 Southcote Road, Bournemouth, Bournemouth, BH1 3SR',
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                widget!.propTitle,
+                                'Property Title',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    font: GoogleFonts.figtree(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xA53C444C),
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
+                            ),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).titleLarge.override(
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                widget!.propFormattedAddress,
+                                '10 Any Street',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
                                     font: GoogleFonts.figtree(
                                       fontWeight: FontWeight.w300,
                                       fontStyle: FlutterFlowTheme.of(context)
@@ -211,7 +241,9 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                        ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

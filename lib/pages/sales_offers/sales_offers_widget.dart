@@ -152,7 +152,11 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                 wrapWithModel(
                   model: _model.offersCTAModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: OffersCTAWidget(),
+                  child: OffersCTAWidget(
+                    message:
+                        'Talk through your requirements with one of our friendly team. ',
+                    buttonLabel: 'Talk to us',
+                  ),
                 ),
               ],
             ),

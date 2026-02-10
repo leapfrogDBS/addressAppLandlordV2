@@ -10,7 +10,14 @@ import 'offers_c_t_a_model.dart';
 export 'offers_c_t_a_model.dart';
 
 class OffersCTAWidget extends StatefulWidget {
-  const OffersCTAWidget({super.key});
+  const OffersCTAWidget({
+    super.key,
+    required this.message,
+    required this.buttonLabel,
+  });
+
+  final String? message;
+  final String? buttonLabel;
 
   @override
   State<OffersCTAWidget> createState() => _OffersCTAWidgetState();
@@ -56,8 +63,9 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                FFLocalizations.of(context).getText(
-                  'lbyaio1p' /* Talk through your requirements... */,
+                valueOrDefault<String>(
+                  widget!.message,
+                  'message',
                 ),
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).bodyLarge.override(
@@ -86,9 +94,7 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
                             'I would like to speak about increasing my portfolio',
                       );
                     },
-                    text: FFLocalizations.of(context).getText(
-                      'jupoh28n' /* Enquire */,
-                    ),
+                    text: widget!.buttonLabel!,
                     options: FFButtonOptions(
                       width: 200.0,
                       height: 40.0,

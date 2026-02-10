@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/capital_upgrade_widget.dart';
 import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
+import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -556,7 +558,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                     .of(context)
                                                                 .getText(
                                                               '4ze7qdom' /* Predicted Portolio
-Capital Gai... */
+Capital Val... */
                                                               ,
                                                             ),
                                                             style: TextStyle(),
@@ -1197,95 +1199,143 @@ Rental Incom... */
                                   ),
                                 ),
                               ),
-                              wrapWithModel(
-                                model: _model.keyMetricsDashModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: KeyMetricsDashWidget(
-                                  predictedValue: _model.pvTotals?.capitalValue,
-                                  cumulativeRentalProfit:
-                                      _model.pvTotals?.cumulativeRentalProfit,
-                                  dailyGainOnRetirement:
-                                      _model.pvTotals?.combinedDailyGain,
-                                  retirementYear:
-                                      _model.pvTotals!.retirementYear,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
+                                child: wrapWithModel(
+                                  model: _model.keyMetricsDashModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: KeyMetricsDashWidget(
+                                    predictedValue:
+                                        _model.pvTotals?.capitalValue,
+                                    cumulativeRentalProfit:
+                                        _model.pvTotals?.cumulativeRentalProfit,
+                                    dailyGainOnRetirement:
+                                        _model.pvTotals?.combinedDailyGain,
+                                    retirementYear:
+                                        _model.pvTotals!.retirementYear,
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 100.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    wrapWithModel(
-                                      model: _model.propertySliderModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: PropertySliderWidget(),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 16.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                                PropertiesWidget.routeName);
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '9mori5ko' /* All Properties */,
-                                          ),
-                                          options: FFButtonOptions(
-                                            width: 200.0,
-                                            height: 40.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 12.0, 24.0, 12.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
+                                    16.0, 0.0, 16.0, 0.0),
+                                child: wrapWithModel(
+                                  model: _model.capitalUpgradeModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: CapitalUpgradeWidget(),
+                                ),
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 16.0, 0.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'shsbx041' /* Your Properties */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
                                             color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                            textStyle:
+                                                .primaryText,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts.figtree(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                    .headlineLarge
+                                                    .fontStyle,
                                           ),
+                                    ),
+                                  ),
+                                  wrapWithModel(
+                                    model: _model.propertySliderModel,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: PropertySliderWidget(),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 16.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                              PropertiesWidget.routeName);
+                                        },
+                                        text:
+                                            FFLocalizations.of(context).getText(
+                                          '9mori5ko' /* All Properties */,
+                                        ),
+                                        options: FFButtonOptions(
+                                          width: 200.0,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 12.0, 24.0, 12.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                font: GoogleFonts.figtree(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(height: 16.0)),
+                                  ),
+                                ].divide(SizedBox(height: 16.0)),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 100.0),
+                                child: wrapWithModel(
+                                  model: _model.offersCTAModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: OffersCTAWidget(
+                                    message:
+                                        'Our friendly team are available to discsuss your investment options. ',
+                                    buttonLabel: 'Talk to us',
+                                  ),
                                 ),
                               ),
                             ]

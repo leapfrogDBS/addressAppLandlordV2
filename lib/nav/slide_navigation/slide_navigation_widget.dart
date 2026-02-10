@@ -126,7 +126,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.dashboard_rounded,
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 28.0,
                           ),
                           Padding(
@@ -190,7 +190,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.business_rounded,
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 28.0,
                           ),
                           Padding(
@@ -251,7 +251,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.document_scanner_rounded,
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 28.0,
                           ),
                           Padding(
@@ -312,7 +312,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.groups,
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 28.0,
                           ),
                           Padding(
@@ -373,7 +373,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                         children: [
                           Icon(
                             Icons.local_offer_outlined,
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: FlutterFlowTheme.of(context).secondary,
                             size: 28.0,
                           ),
                           Padding(

@@ -1,9 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/capital_upgrade_widget.dart';
 import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
+import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -42,8 +44,12 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late LiveEarningsDashModel liveEarningsDashModel;
   // Model for keyMetricsDash component.
   late KeyMetricsDashModel keyMetricsDashModel;
+  // Model for capitalUpgrade component.
+  late CapitalUpgradeModel capitalUpgradeModel;
   // Model for PropertySlider component.
   late PropertySliderModel propertySliderModel;
+  // Model for Offers_CTA component.
+  late OffersCTAModel offersCTAModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
 
@@ -52,7 +58,9 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsDashModel = createModel(context, () => LiveEarningsDashModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
+    capitalUpgradeModel = createModel(context, () => CapitalUpgradeModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
+    offersCTAModel = createModel(context, () => OffersCTAModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
@@ -61,7 +69,9 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     mainHeaderModel.dispose();
     liveEarningsDashModel.dispose();
     keyMetricsDashModel.dispose();
+    capitalUpgradeModel.dispose();
     propertySliderModel.dispose();
+    offersCTAModel.dispose();
     slideNavigationModel.dispose();
   }
 }

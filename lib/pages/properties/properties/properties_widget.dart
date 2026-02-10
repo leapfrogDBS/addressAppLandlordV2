@@ -280,7 +280,11 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                         wrapWithModel(
                           model: _model.offersCTAModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: OffersCTAWidget(),
+                          child: OffersCTAWidget(
+                            message:
+                                'Our friendly team are available to discsuss your investment options. ',
+                            buttonLabel: 'Talk to us',
+                          ),
                         ),
                       ].divide(SizedBox(height: 20.0)),
                     ),
