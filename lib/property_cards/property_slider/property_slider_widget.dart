@@ -47,7 +47,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
       child: Container(
         width: double.infinity,
-        height: 320.0,
+        height: 370.0,
         decoration: BoxDecoration(),
         child: StreamBuilder<List<PropertiesRecord>>(
           stream: queryPropertiesRecord(
@@ -84,7 +84,6 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                     listViewPropertiesRecordList[listViewIndex];
                 return Container(
                   width: 260.0,
-                  height: 226.9,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),

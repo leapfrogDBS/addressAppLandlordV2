@@ -112,92 +112,162 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      if (valueOrDefault<bool>(
-                        _model.capitalAvailableToInvest?.hasUpgradeDate,
-                        false,
-                      ))
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'pgf9sj0b' /* Next Upgrade Date */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Row(
+                      Builder(
+                        builder: (context) {
+                          if (valueOrDefault<bool>(
+                            _model.capitalAvailableToInvest?.hasUpgradeDate,
+                            false,
+                          )) {
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    dateTimeFormat(
-                                      "d MMMM y",
-                                      _model.capitalAvailableToInvest!
-                                          .upgradeDate!,
-                                      locale: FFLocalizations.of(context)
-                                          .languageCode,
+                                    FFLocalizations.of(context).getText(
+                                      'pgf9sj0b' /* Next Upgrade Date */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleLarge
                                         .override(
-                                          fontFamily: 'Thunder',
+                                          font: GoogleFonts.figtree(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
                                         ),
                                   ),
-                                  AlignedTooltip(
-                                    content: Padding(
-                                      padding: EdgeInsets.all(4.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'fruo5wi7' /* We estimate you’ll reach the c... */,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        dateTimeFormat(
+                                          "d MMMM y",
+                                          _model.capitalAvailableToInvest!
+                                              .upgradeDate!,
+                                          locale: FFLocalizations.of(context)
+                                              .languageCode,
                                         ),
-                                        style: TextStyle(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .displayLarge
+                                            .override(
+                                              fontFamily: 'Thunder',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
-                                    ),
-                                    offset: 4.0,
-                                    preferredDirection: AxisDirection.down,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    elevation: 4.0,
-                                    tailBaseWidth: 24.0,
-                                    tailLength: 12.0,
-                                    waitDuration: Duration(milliseconds: 100),
-                                    showDuration: Duration(milliseconds: 1500),
-                                    triggerMode: TooltipTriggerMode.tap,
-                                    child: Icon(
-                                      Icons.info_outlined,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      size: 16.0,
-                                    ),
+                                      AlignedTooltip(
+                                        content: Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'fruo5wi7' /* We estimate you’ll reach the c... */,
+                                            ),
+                                            style: TextStyle(),
+                                          ),
+                                        ),
+                                        offset: 4.0,
+                                        preferredDirection: AxisDirection.down,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        elevation: 4.0,
+                                        tailBaseWidth: 24.0,
+                                        tailLength: 12.0,
+                                        waitDuration:
+                                            Duration(milliseconds: 100),
+                                        showDuration:
+                                            Duration(milliseconds: 1500),
+                                        triggerMode: TooltipTriggerMode.tap,
+                                        child: Icon(
+                                          Icons.info_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          size: 16.0,
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 3.0)),
                                   ),
-                                ].divide(SizedBox(width: 3.0)),
+                                ].divide(SizedBox(height: 8.0)),
                               ),
-                            ].divide(SizedBox(height: 8.0)),
-                          ),
-                        ),
+                            );
+                          } else {
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 20.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'b5lghj49' /* Eligible for Upgrade Today */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .displayLarge
+                                            .override(
+                                              fontFamily: 'Thunder',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      AlignedTooltip(
+                                        content: Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'dyhrt6re' /* We estimate you’ll reach the c... */,
+                                            ),
+                                            style: TextStyle(),
+                                          ),
+                                        ),
+                                        offset: 4.0,
+                                        preferredDirection: AxisDirection.down,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        elevation: 4.0,
+                                        tailBaseWidth: 24.0,
+                                        tailLength: 12.0,
+                                        waitDuration:
+                                            Duration(milliseconds: 100),
+                                        showDuration:
+                                            Duration(milliseconds: 1500),
+                                        triggerMode: TooltipTriggerMode.tap,
+                                        child: Icon(
+                                          Icons.info_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          size: 16.0,
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 3.0)),
+                                  ),
+                                ].divide(SizedBox(height: 8.0)),
+                              ),
+                            );
+                          }
+                        },
+                      ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

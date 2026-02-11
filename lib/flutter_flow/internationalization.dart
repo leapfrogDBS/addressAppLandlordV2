@@ -6369,6 +6369,57 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'ہمارا اندازہ ہے کہ آپ اپنی بچت اور متوقع جائیداد کی ترقی کی بنیاد پر اس تاریخ کو اپنے اگلے اپ گریڈ کے لیے درکار سرمائے تک پہنچ جائیں گے۔',
       'zh_Hant': '根據您的儲蓄和預計房產的成長情況，我們估計您將在當天達到下次升級所需的資金。',
     },
+    'b5lghj49': {
+      'en': 'Eligible for Upgrade Today',
+      'ar': '',
+      'bn': '',
+      'de': '',
+      'es': '',
+      'fr': '',
+      'gu': '',
+      'hi': '',
+      'nl': '',
+      'pa': '',
+      'pl': '',
+      'ro': '',
+      'ta': '',
+      'tr': '',
+      'ur': '',
+      'zh_Hant': '',
+    },
+    'dyhrt6re': {
+      'en':
+          'We estimate you’ll reach the capital needed for your next upgrade on this date, based on your savings and projected property growth.',
+      'ar':
+          'نحن نقدر أنك ستصل إلى رأس المال اللازم لعملية الترقية التالية في هذا التاريخ، بناءً على مدخراتك ونمو العقارات المتوقع.',
+      'bn':
+          'আপনার সঞ্চয় এবং সম্ভাব্য সম্পত্তি বৃদ্ধির উপর ভিত্তি করে, আমরা অনুমান করছি যে আপনি এই তারিখে আপনার পরবর্তী আপগ্রেডের জন্য প্রয়োজনীয় মূলধনে পৌঁছাবেন।',
+      'de':
+          'Wir gehen davon aus, dass Sie auf Basis Ihrer Ersparnisse und des prognostizierten Wertzuwachses Ihrer Immobilie bis zu diesem Datum das für Ihre nächste Modernisierung benötigte Kapital erreichen werden.',
+      'es':
+          'Estimamos que alcanzará el capital necesario para su próxima actualización en esta fecha, en función de sus ahorros y el crecimiento proyectado de la propiedad.',
+      'fr':
+          'Nous estimons que vous disposerez du capital nécessaire pour votre prochaine mise à niveau à cette date, en fonction de votre épargne et de la croissance prévue de votre propriété.',
+      'gu':
+          'તમારી બચત અને અંદાજિત મિલકત વૃદ્ધિના આધારે, અમે અંદાજ લગાવીએ છીએ કે તમે આ તારીખે તમારા આગામી અપગ્રેડ માટે જરૂરી મૂડી સુધી પહોંચી જશો.',
+      'hi':
+          'आपकी बचत और संपत्ति के अनुमानित मूल्य वृद्धि के आधार पर, हमारा अनुमान है कि आप इस तिथि तक अपने अगले उन्नयन के लिए आवश्यक पूंजी जुटा लेंगे।',
+      'nl':
+          'Op basis van uw spaargeld en de verwachte waardestijging van uw woning schatten we dat u op deze datum het benodigde kapitaal voor uw volgende verbouwing of renovatie bij elkaar hebt gespaard.',
+      'pa':
+          'ਸਾਡਾ ਅੰਦਾਜ਼ਾ ਹੈ ਕਿ ਤੁਸੀਂ ਆਪਣੀ ਬੱਚਤ ਅਤੇ ਅਨੁਮਾਨਿਤ ਜਾਇਦਾਦ ਦੇ ਵਾਧੇ ਦੇ ਆਧਾਰ \'ਤੇ, ਇਸ ਮਿਤੀ ਨੂੰ ਆਪਣੇ ਅਗਲੇ ਅੱਪਗ੍ਰੇਡ ਲਈ ਲੋੜੀਂਦੀ ਪੂੰਜੀ ਤੱਕ ਪਹੁੰਚ ਜਾਓਗੇ।',
+      'pl':
+          'Szacujemy, że w tym dniu zgromadzisz kapitał potrzebny na kolejną modernizację, biorąc pod uwagę Twoje oszczędności i przewidywany wzrost wartości nieruchomości.',
+      'ro':
+          'Estimăm că veți ajunge la capitalul necesar pentru următoarea modernizare la această dată, pe baza economiilor dvs. și a creșterii preconizate a proprietății.',
+      'ta':
+          'உங்கள் சேமிப்பு மற்றும் திட்டமிடப்பட்ட சொத்து வளர்ச்சியின் அடிப்படையில், இந்த தேதியில் உங்கள் அடுத்த மேம்படுத்தலுக்குத் தேவையான மூலதனத்தை நீங்கள் அடைவீர்கள் என்று நாங்கள் மதிப்பிடுகிறோம்.',
+      'tr':
+          'Tahminimizce, birikimleriniz ve gayrimenkulünüzün beklenen değer artışına bağlı olarak, bir sonraki yenileme için gerekli sermayeye bu tarihte ulaşacaksınız.',
+      'ur':
+          'ہمارا اندازہ ہے کہ آپ اپنی بچت اور متوقع جائیداد کی ترقی کی بنیاد پر اس تاریخ کو اپنے اگلے اپ گریڈ کے لیے درکار سرمائے تک پہنچ جائیں گے۔',
+      'zh_Hant': '根據您的儲蓄和預計房產的成長情況，我們估計您將在當天達到下次升級所需的資金。',
+    },
     'ricj2mu5': {
       'en': 'Capital To Invest',
       'ar': 'رأس المال للاستثمار',

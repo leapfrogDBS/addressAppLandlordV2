@@ -917,6 +917,18 @@ CapitalAvailableToInvestStruct? sumReleasableEquityAboveThreshold(
     upgradeDate = DateTime.now();
   }
 
+  // Don't show upgrade date if over threshold, or if the calculated date is today
+  if (total >= target) {
+    hasUpgradeDate = false;
+  } else if (hasUpgradeDate && upgradeDate != null) {
+    final today = DateTime.now();
+    if (upgradeDate!.year == today.year &&
+        upgradeDate!.month == today.month &&
+        upgradeDate!.day == today.day) {
+      hasUpgradeDate = false;
+    }
+  }
+
   return CapitalAvailableToInvestStruct(
     ownCapital: own,
     releasableEquity: releasable,

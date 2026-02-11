@@ -56,6 +56,7 @@ class RentDueCalendar extends StatefulWidget {
     this.rentDueDates, // List<DateTime> of rent days
     this.otherEventDates, // List<DateTime> of other single‑day events
     this.events, // List<EventsRecord> for popup details
+    this.rentAmount,
   });
 
   final double? width;
@@ -63,6 +64,7 @@ class RentDueCalendar extends StatefulWidget {
   final List<DateTime>? rentDueDates;
   final List<DateTime>? otherEventDates;
   final List<EventsRecord>? events;
+  final double? rentAmount;
 
   @override
   State<RentDueCalendar> createState() => _RentDueCalendarState();
@@ -114,6 +116,7 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
           if (isRentDue(selectedDay))
             _PopupItem(
               title: 'Rent Due',
+              amount: widget.rentAmount,
               icon: Icons.payments_outlined,
             ),
           ...dayEvents.map((e) => _PopupItem(

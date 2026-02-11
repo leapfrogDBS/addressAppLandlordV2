@@ -153,6 +153,7 @@ class ApiCallResponse {
     this.response,
     this.streamedResponse,
     this.exception,
+    this.requestOptions,
   });
   final dynamic jsonBody;
   final Map<String, String> headers;
@@ -160,6 +161,11 @@ class ApiCallResponse {
   final http.Response? response;
   final http.StreamedResponse? streamedResponse;
   final Object? exception;
+
+  /// The original request options used to make the API call.
+  /// Available in interceptor's onResponse callback to access request details
+  /// like URL, HTTP method, headers, params, and request body.
+  final ApiCallOptions? requestOptions;
   // Whether we received a 2xx status (which generally marks success).
   bool get succeeded => statusCode >= 200 && statusCode < 300;
   String getHeader(String headerName) => headers[headerName] ?? '';
@@ -182,6 +188,7 @@ class ApiCallResponse {
     http.Response? response,
     http.StreamedResponse? streamedResponse,
     Object? exception,
+    ApiCallOptions? requestOptions,
   }) {
     return ApiCallResponse(
       jsonBody ?? this.jsonBody,
@@ -190,6 +197,7 @@ class ApiCallResponse {
       response: response ?? this.response,
       streamedResponse: streamedResponse ?? this.streamedResponse,
       exception: exception ?? this.exception,
+      requestOptions: requestOptions ?? this.requestOptions,
     );
   }
 

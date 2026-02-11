@@ -136,7 +136,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 5.0, 16.0, 5.0),
+                                    16.0, 10.0, 16.0, 5.0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: Color(0x8BE0E3E7),
