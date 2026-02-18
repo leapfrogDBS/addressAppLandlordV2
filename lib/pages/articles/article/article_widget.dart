@@ -69,7 +69,7 @@ class _ArticleWidgetState extends State<ArticleWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                   child: Container(
                     decoration: BoxDecoration(),
                     child: FlutterFlowWebView(

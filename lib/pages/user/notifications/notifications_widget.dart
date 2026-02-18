@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -146,6 +147,11 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                           readAt: getCurrentTimestamp,
                           viewed: true,
                         ));
+                        await actions.navigateFromNotificationLink(
+                          context,
+                          listViewNotificationsRecord.linkType,
+                          listViewNotificationsRecord.linkRef,
+                        );
                       },
                       child: Container(
                         width: double.infinity,
@@ -227,11 +233,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                 .bodyLarge
                                                 .override(
                                                   font: GoogleFonts.figtree(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontWeight,
+                                                    fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -239,11 +241,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLarge
-                                                          .fontWeight,
+                                                  fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -255,7 +253,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                       ),
                                       Text(
                                         listViewNotificationsRecord.body,
-                                        maxLines: 1,
+                                        maxLines: 3,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
