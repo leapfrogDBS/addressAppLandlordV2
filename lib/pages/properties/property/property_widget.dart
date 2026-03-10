@@ -1658,7 +1658,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             [
                                                                           Text(
                                                                             FFLocalizations.of(context).getText(
-                                                                              'xpmtf6m2' /* Estimated mortage remaing */,
+                                                                              'xpmtf6m2' /* Estimated mortage remaining */,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
                                                                                   font: GoogleFonts.figtree(
@@ -2168,7 +2168,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                             children: [
                                                                               Text(
                                                                                 FFLocalizations.of(context).getText(
-                                                                                  'gmb4t22g' /* Remaing Mortgage */,
+                                                                                  'gmb4t22g' /* Remaining Mortgage */,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
                                                                                       font: GoogleFonts.figtree(

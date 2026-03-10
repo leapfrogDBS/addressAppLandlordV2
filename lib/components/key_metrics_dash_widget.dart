@@ -18,12 +18,14 @@ class KeyMetricsDashWidget extends StatefulWidget {
     this.cumulativeRentalProfit,
     this.dailyGainOnRetirement,
     required this.retirementYear,
+    required this.retirementAge,
   });
 
   final double? predictedValue;
   final double? cumulativeRentalProfit;
   final double? dailyGainOnRetirement;
   final int? retirementYear;
+  final int? retirementAge;
 
   @override
   State<KeyMetricsDashWidget> createState() => _KeyMetricsDashWidgetState();
@@ -64,6 +66,91 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                child: Container(
+                  width: 180.0,
+                  height: 180.0,
+                  constraints: BoxConstraints(
+                    maxWidth: 270.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: FlutterFlowTheme.of(context).primary,
+                      width: 1.0,
+                    ),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Flexible(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                FFLocalizations.of(context).getText(
+                                  'odn742wi' /* Planned Retirement Age */,
+                                ),
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .titleMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 4.0, 4.0, 0.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        widget!.retirementAge?.toString(),
+                                        '65',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .override(
+                                            fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ].divide(SizedBox(height: 20.0)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                 child: FutureBuilder<int>(
@@ -212,7 +299,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'g1hyfwj5' /* Predicted Value at retirement */,
+                                  'g1hyfwj5' /* Predicted Value at Retirement */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
@@ -302,7 +389,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'znmknq0t' /* Cululative Rental Profit */,
+                                  'znmknq0t' /* Cumulative Rental Profit */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
@@ -373,7 +460,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                      color: FlutterFlowTheme.of(context).primary,
                       width: 1.0,
                     ),
                   ),
@@ -391,7 +478,7 @@ class _KeyMetricsDashWidgetState extends State<KeyMetricsDashWidget> {
                             children: [
                               Text(
                                 FFLocalizations.of(context).getText(
-                                  'odn742wi' /* Daily Gain On Retirement */,
+                                  'ywl9phce' /* Daily Gain On Retirement */,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
