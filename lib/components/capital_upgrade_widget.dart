@@ -82,7 +82,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
           child: Container(
             width: 100.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).alternate,
+              color: FlutterFlowTheme.of(context).primary,
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Padding(
@@ -92,7 +92,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                 children: [
                   Text(
                     FFLocalizations.of(context).getText(
-                      'm6sbhbcg' /* Your Available Capital */,
+                      'm6sbhbcg' /* Reinvestment Potential */,
                     ),
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
                           font: GoogleFonts.figtree(
@@ -101,7 +101,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                 .headlineLarge
                                 .fontStyle,
                           ),
-                          color: FlutterFlowTheme.of(context).primaryText,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.bold,
                           fontStyle: FlutterFlowTheme.of(context)
@@ -225,6 +225,10 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                             .displayLarge
                                             .override(
                                               fontFamily: 'Thunder',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 24.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -260,7 +264,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                           size: 16.0,
                                         ),
                                       ),
-                                    ].divide(SizedBox(width: 3.0)),
+                                    ].divide(SizedBox(width: 5.0)),
                                   ),
                                 ].divide(SizedBox(height: 8.0)),
                               ),
@@ -285,7 +289,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: Color(0xCDFFFFFF),
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -311,7 +316,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleLarge
@@ -321,7 +327,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                       .fontStyle,
                                 ),
                           ),
-                        ].divide(SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 10.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -340,7 +346,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: Color(0xCCFFFFFF),
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -366,7 +373,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: FlutterFlowTheme.of(context).alternate,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleLarge
@@ -376,7 +383,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                       .fontStyle,
                                 ),
                           ),
-                        ].divide(SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 10.0)),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
@@ -395,7 +402,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: Color(0xCCFFFFFF),
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -420,7 +428,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .titleLarge
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -428,7 +437,124 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                       .fontStyle,
                                 ),
                           ),
-                        ].divide(SizedBox(width: 4.0)),
+                        ].divide(SizedBox(width: 10.0)),
+                      ),
+                      Divider(
+                        thickness: 2.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              'xuu6mlth' /* Total Purchasing Power */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  font: GoogleFonts.figtree(
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontStyle,
+                                ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                formatNumber(
+                                  functions.calculatePurchasingPower(
+                                      _model.capitalAvailableToInvest!
+                                          .totalCapitalAvailable,
+                                      75.0),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                  currency: '£',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      fontSize: 18.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
+                              ),
+                              AlignedTooltip(
+                                content: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      '96gxjalm' /* Based on a 75% loan-to-value m... */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                offset: 4.0,
+                                preferredDirection: AxisDirection.down,
+                                borderRadius: BorderRadius.circular(8.0),
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                tailBaseWidth: 24.0,
+                                tailLength: 12.0,
+                                waitDuration: Duration(milliseconds: 100),
+                                showDuration: Duration(milliseconds: 1500),
+                                triggerMode: TooltipTriggerMode.tap,
+                                child: Icon(
+                                  Icons.info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  size: 16.0,
+                                ),
+                              ),
+                            ].divide(SizedBox(width: 6.0)),
+                          ),
+                        ].divide(SizedBox(width: 10.0)),
                       ),
                     ].divide(SizedBox(height: 10.0)),
                   ),
@@ -436,13 +562,13 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                     alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 16.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           context.pushNamed(SalesOffersWidget.routeName);
                         },
                         text: FFLocalizations.of(context).getText(
-                          '9ga0jrg5' /* View Sales Offers */,
+                          '9ga0jrg5' /* Explore New Deals */,
                         ),
                         options: FFButtonOptions(
                           width: 200.0,

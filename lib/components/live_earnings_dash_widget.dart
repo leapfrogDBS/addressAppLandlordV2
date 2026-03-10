@@ -100,6 +100,67 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 6.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              '5pll7ff5' /* Since joining Addressed */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .override(
+                                  font: GoogleFonts.figtree(
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontStyle,
+                                ),
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'e90oyoxy' /* Your portfolio has earned an e... */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .headlineLarge
+                                .override(
+                                  font: GoogleFonts.figtree(
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontStyle,
+                                ),
+                          ),
+                        ),
+                      ].divide(SizedBox(height: 2.0)),
+                    ),
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,72 +172,6 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 12.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        '5pll7ff5' /* Since joining Addressed */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.normal,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            fontSize: 11.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'e90oyoxy' /* Your portfolio has earned an e... */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .override(
-                                            font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.normal,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            fontSize: 11.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
-                                ].divide(SizedBox(height: 2.0)),
-                              ),
-                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 10.0),
@@ -201,7 +196,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             fontFamily: 'Thunder',
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
-                                            fontSize: 52.0,
+                                            fontSize: 40.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -446,7 +441,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                           ),
                         ],
                       ),
-                    ],
+                    ].divide(SizedBox(width: 10.0)),
                   ),
                 ],
               ),

@@ -937,3 +937,13 @@ CapitalAvailableToInvestStruct? sumReleasableEquityAboveThreshold(
     upgradeDate: upgradeDate,
   );
 }
+
+double? calculatePurchasingPower(
+  double totalCapital,
+  double ltvPercent,
+) {
+  if (totalCapital <= 0) return 0;
+  double depositPercent = (100 - ltvPercent) / 100;
+  if (depositPercent <= 0) return 0;
+  return totalCapital / depositPercent;
+}

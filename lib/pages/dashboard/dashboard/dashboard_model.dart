@@ -42,10 +42,10 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late MainHeaderModel mainHeaderModel;
   // Model for liveEarningsDash component.
   late LiveEarningsDashModel liveEarningsDashModel;
-  // Model for keyMetricsDash component.
-  late KeyMetricsDashModel keyMetricsDashModel;
   // Model for capitalUpgrade component.
   late CapitalUpgradeModel capitalUpgradeModel;
+  // Model for keyMetricsDash component.
+  late KeyMetricsDashModel keyMetricsDashModel;
   // Model for PropertySlider component.
   late PropertySliderModel propertySliderModel;
   // Model for Offers_CTA component.
@@ -57,8 +57,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   void initState(BuildContext context) {
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsDashModel = createModel(context, () => LiveEarningsDashModel());
-    keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     capitalUpgradeModel = createModel(context, () => CapitalUpgradeModel());
+    keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
     offersCTAModel = createModel(context, () => OffersCTAModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
@@ -68,8 +68,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   void dispose() {
     mainHeaderModel.dispose();
     liveEarningsDashModel.dispose();
-    keyMetricsDashModel.dispose();
     capitalUpgradeModel.dispose();
+    keyMetricsDashModel.dispose();
     propertySliderModel.dispose();
     offersCTAModel.dispose();
     slideNavigationModel.dispose();
