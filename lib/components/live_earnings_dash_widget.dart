@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -93,7 +94,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
               borderRadius: BorderRadius.circular(18.0),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 40.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -101,161 +102,180 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      '5pll7ff5' /* Since joining Addressed */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 11.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Text(
-                                    FFLocalizations.of(context).getText(
-                                      'e90oyoxy' /* Your portfolio has earned an e... */,
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 11.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ),
-                              ].divide(SizedBox(height: 2.0)),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 10.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 3.0, 0.0, 0.0),
-                                  child: Text(
-                                    formatNumber(
-                                      _model.liveEarningsTotal,
-                                      formatType: FormatType.custom,
-                                      currency: '£',
-                                      format: '#,##0.00',
-                                      locale: 'en_GB',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .override(
-                                          fontFamily: 'Thunder',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          fontSize: 70.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/Clip_path_group.png',
-                                    width: 215.0,
-                                    height: 10.0,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
+                      Expanded(
+                        flex: 3,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 12.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
                                       FFLocalizations.of(context).getText(
-                                        '9oa1xhyi' /* Estimated gain this year */,
+                                        '5pll7ff5' /* Since joining Addressed */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .headlineLarge
                                           .override(
                                             font: GoogleFonts.figtree(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .fontWeight,
+                                              fontWeight: FontWeight.normal,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium
+                                                      .headlineLarge
                                                       .fontStyle,
                                             ),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
+                                            fontSize: 11.0,
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium
-                                                    .fontWeight,
+                                            fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .labelMedium
+                                                    .headlineLarge
                                                     .fontStyle,
                                           ),
                                     ),
-                                    Text(
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'e90oyoxy' /* Your portfolio has earned an e... */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight: FontWeight.normal,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            fontSize: 11.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ),
+                                ].divide(SizedBox(height: 2.0)),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 10.0, 0.0, 10.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 3.0, 0.0, 0.0),
+                                    child: Text(
                                       formatNumber(
-                                        widget!.yearlyGain,
+                                        _model.liveEarningsTotal,
                                         formatType: FormatType.custom,
                                         currency: '£',
                                         format: '#,##0.00',
                                         locale: 'en_GB',
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .titleSmall
+                                          .displayLarge
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            fontFamily: 'Thunder',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
+                                            fontSize: 52.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/Clip_path_group.png',
+                                      width: 120.0,
+                                      height: 6.0,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          '9oa1xhyi' /* Estimated gain this year */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              font: GoogleFonts.figtree(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                      Text(
+                                        formatNumber(
+                                          widget!.yearlyGain,
+                                          formatType: FormatType.custom,
+                                          currency: '£',
+                                          format: '#,##0.00',
+                                          locale: 'en_GB',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              font: GoogleFonts.figtree(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -265,95 +285,164 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
+                                      ),
+                                    ].divide(SizedBox(height: 6.0)),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Text(
+                                      '(+${formatNumber(
+                                        widget!.dailyGain,
+                                        formatType: FormatType.custom,
+                                        currency: '£',
+                                        format: '#,##0.00',
+                                        locale: 'en_GB',
+                                      )} /day)',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
+                                            fontSize: 13.0,
                                             letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ].divide(SizedBox(height: 6.0)),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: Text(
-                                    '(+${formatNumber(
-                                      widget!.dailyGain,
-                                      formatType: FormatType.custom,
-                                      currency: '£',
-                                      format: '#,##0.00',
-                                      locale: 'en_GB',
-                                    )} /day)',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .override(
-                                          font: GoogleFonts.figtree(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleLarge
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLarge
-                                                  .fontStyle,
-                                        ),
+                                    ),
                                   ),
-                                ),
-                              ].divide(SizedBox(height: 10.0)),
+                                ].divide(SizedBox(height: 6.0)),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(350.0),
-                                  bottomRight: Radius.circular(350.0),
-                                  topLeft: Radius.circular(350.0),
-                                  topRight: Radius.circular(350.0),
-                                ),
-                                shape: BoxShape.rectangle,
-                              ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(1.0, 0.0),
                                 child: Container(
-                                  width: 90.0,
-                                  height: 90.0,
-                                  child: custom_widgets.PortfolioGauge(
-                                    width: 90.0,
-                                    height: 90.0,
-                                    score: widget!.portfolioScore,
-                                    maxScore: 999,
-                                    durationMs: 3500,
-                                    delayMs: 1000,
-                                    sweepDegrees: 300.0,
-                                    strokeWidth: 10.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(350.0),
+                                      bottomRight: Radius.circular(350.0),
+                                      topLeft: Radius.circular(350.0),
+                                      topRight: Radius.circular(350.0),
+                                    ),
+                                    shape: BoxShape.rectangle,
+                                  ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Container(
+                                      width: 90.0,
+                                      height: 90.0,
+                                      child: custom_widgets.PortfolioGauge(
+                                        width: 90.0,
+                                        height: 90.0,
+                                        score: widget!.portfolioScore,
+                                        maxScore: 999,
+                                        durationMs: 3500,
+                                        delayMs: 1000,
+                                        sweepDegrees: 300.0,
+                                        strokeWidth: 10.0,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'zh6kzakr' /* ADDRESSED SCORE */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          fontSize: 9.0,
+                                          letterSpacing: 1.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                  AlignedTooltip(
+                                    content: Padding(
+                                      padding: EdgeInsets.all(4.0),
+                                      child: Text(
+                                        FFLocalizations.of(context).getText(
+                                          'm2uleu8k' /* Your Addressed Score reflects ... */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              font: GoogleFonts.figtree(
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .fontStyle,
+                                              ),
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ),
+                                    offset: 4.0,
+                                    preferredDirection: AxisDirection.down,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    backgroundColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    elevation: 4.0,
+                                    tailBaseWidth: 24.0,
+                                    tailLength: 12.0,
+                                    waitDuration: Duration(milliseconds: 100),
+                                    showDuration: Duration(milliseconds: 1500),
+                                    triggerMode: TooltipTriggerMode.tap,
+                                    child: Icon(
+                                      Icons.info,
+                                      color: Color(0xB3FFFFFF),
+                                      size: 13.0,
+                                    ),
+                                  ),
+                                ].divide(SizedBox(width: 4.0)),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
                           ),
                         ],
                       ),

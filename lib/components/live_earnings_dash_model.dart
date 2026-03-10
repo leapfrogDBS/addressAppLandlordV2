@@ -5,6 +5,7 @@ import '/flutter_flow/instant_timer.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'live_earnings_dash_widget.dart' show LiveEarningsDashWidget;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
