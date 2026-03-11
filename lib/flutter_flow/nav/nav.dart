@@ -239,11 +239,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => PersonalDetailsWidget(),
         ),
         FFRoute(
-            name: PropertyBackupWidget.routeName,
-            path: PropertyBackupWidget.routePath,
+            name: PropertyV2Widget.routeName,
+            path: PropertyV2Widget.routePath,
             builder: (context, params) => NavBarPage(
                   initialPage: '',
-                  page: PropertyBackupWidget(
+                  page: PropertyV2Widget(
                     propID: params.getParam(
                       'propID',
                       ParamType.DocumentReference,

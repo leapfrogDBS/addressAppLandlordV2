@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/live_earnings_property_widget.dart';
 import '/components/main_header_widget.dart';
@@ -8,28 +7,25 @@ import '/components/recent_activity_widget.dart';
 import '/components/stats_capital_widget.dart';
 import '/components/stats_combined_widget.dart';
 import '/components/stats_rental_widget.dart';
-import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'property_backup_widget.dart' show PropertyBackupWidget;
+import 'package:sticky_headers/sticky_headers.dart';
+import 'property_v2_widget.dart' show PropertyV2Widget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -38,7 +34,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
+class PropertyV2Model extends FlutterFlowModel<PropertyV2Widget> {
   ///  Local state fields for this page.
 
   double? equity = 66.25;
@@ -80,34 +76,33 @@ class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
 
   int? currentYearIndex = 0;
 
+  String tabView = 'overview';
+
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Read Document] action in PropertyBackup widget.
+  // Stores action output result for [Backend Call - Read Document] action in PropertyV2 widget.
   PropertiesRecord? output;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
   TenanciesRecord? outputTenancy;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
   List<ExpensesRecord>? getExpenses;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyBackup widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
   PropertyProjectionsRecord? projectionDoc;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  bool isDataUploading_userMainImage = false;
-  FFUploadedFile uploadedLocalFile_userMainImage =
-      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_userMainImage = '';
-
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-  int get tabBarPreviousIndex =>
-      tabBarController != null ? tabBarController!.previousIndex : 0;
-
   // Model for liveEarningsProperty component.
   late LiveEarningsPropertyModel liveEarningsPropertyModel;
+  // State field(s) for Carousel widget.
+  CarouselSliderController? carouselController;
+  int carouselCurrentIndex = 1;
+
+  // State field(s) for GoogleMap widget.
+  LatLng? googleMapsCenter;
+  final googleMapsController = Completer<GoogleMapController>();
   // State field(s) for ChoiceChips widget.
   FormFieldController<List<String>>? choiceChipsValueController;
   String? get choiceChipsValue =>
@@ -123,9 +118,6 @@ class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
   late StatsRentalModel statsRentalModel;
   // Model for statsCapital component.
   late StatsCapitalModel statsCapitalModel;
-  // State field(s) for Expandable widget.
-  late ExpandableController expandableExpandableController;
-
   // State field(s) for mortgageRemaining widget.
   FocusNode? mortgageRemainingFocusNode;
   TextEditingController? mortgageRemainingTextController;
@@ -143,17 +135,11 @@ class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
       mortgageMonthlyPaymentTextControllerValidator;
   // Model for recentActivity component.
   late RecentActivityModel recentActivityModel;
-  // State field(s) for Carousel widget.
-  CarouselSliderController? carouselController;
-  int carouselCurrentIndex = 1;
-
-  // State field(s) for GoogleMap widget.
-  LatLng? googleMapsCenter;
-  final googleMapsController = Completer<GoogleMapController>();
 
   @override
   void initState(BuildContext context) {
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
+    columnController = ScrollController();
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsPropertyModel =
         createModel(context, () => LiveEarningsPropertyModel());
@@ -166,13 +152,12 @@ class PropertyBackupModel extends FlutterFlowModel<PropertyBackupWidget> {
   @override
   void dispose() {
     slideNavigationModel.dispose();
+    columnController?.dispose();
     mainHeaderModel.dispose();
-    tabBarController?.dispose();
     liveEarningsPropertyModel.dispose();
     statsCombinedModel.dispose();
     statsRentalModel.dispose();
     statsCapitalModel.dispose();
-    expandableExpandableController.dispose();
     mortgageRemainingFocusNode?.dispose();
     mortgageRemainingTextController?.dispose();
 

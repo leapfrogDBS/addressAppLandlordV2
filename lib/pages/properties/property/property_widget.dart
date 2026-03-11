@@ -3140,7 +3140,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     m.storagePath,
                                                                     context))) {
                                                           safeSetState(() =>
-                                                              _model.isDataUploading_userImages2 =
+                                                              _model.isDataUploading_userImages3 =
                                                                   true);
                                                           var selectedUploadedFiles =
                                                               <FFUploadedFile>[];
@@ -3188,7 +3188,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         u!)
                                                                     .toList();
                                                           } finally {
-                                                            _model.isDataUploading_userImages2 =
+                                                            _model.isDataUploading_userImages3 =
                                                                 false;
                                                           }
                                                           if (selectedUploadedFiles
@@ -3200,9 +3200,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                   selectedMedia
                                                                       .length) {
                                                             safeSetState(() {
-                                                              _model.uploadedLocalFiles_userImages2 =
+                                                              _model.uploadedLocalFiles_userImages3 =
                                                                   selectedUploadedFiles;
-                                                              _model.uploadedFileUrls_userImages2 =
+                                                              _model.uploadedFileUrls_userImages3 =
                                                                   downloadUrls;
                                                             });
                                                           } else {
@@ -3214,11 +3214,11 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                         for (int loop1Index = 0;
                                                             loop1Index <
                                                                 _model
-                                                                    .uploadedFileUrls_userImages2
+                                                                    .uploadedFileUrls_userImages3
                                                                     .length;
                                                             loop1Index++) {
                                                           final currentLoop1Item =
-                                                              _model.uploadedFileUrls_userImages2[
+                                                              _model.uploadedFileUrls_userImages3[
                                                                   loop1Index];
 
                                                           await widget!.propID!

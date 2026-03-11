@@ -93,7 +93,7 @@ class _LiveEarningsPropertyWidgetState
           borderRadius: BorderRadius.circular(50.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 10.0, 20.0),
+          padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -137,7 +137,7 @@ class _LiveEarningsPropertyWidgetState
                                   fontFamily: 'Thunder',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  fontSize: 80.0,
+                                  fontSize: 64.0,
                                   letterSpacing: 0.0,
                                 ),
                       ),
@@ -146,7 +146,7 @@ class _LiveEarningsPropertyWidgetState
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                         'assets/images/Clip_path_group.png',
-                        width: 215.0,
+                        width: 160.0,
                         height: 10.0,
                         fit: BoxFit.contain,
                       ),
@@ -270,7 +270,7 @@ class _LiveEarningsPropertyWidgetState
                       ),
                 ),
               ),
-            ].divide(SizedBox(height: 30.0)),
+            ].divide(SizedBox(height: 20.0)),
           ),
         ),
       ),

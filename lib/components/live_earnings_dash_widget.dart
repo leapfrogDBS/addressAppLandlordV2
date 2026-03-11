@@ -298,7 +298,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                           .titleLarge
                                           .override(
                                             font: GoogleFonts.figtree(
-                                              fontWeight: FontWeight.bold,
+                                              fontWeight: FontWeight.w500,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .titleLarge
@@ -306,9 +306,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             ),
                                             color: FlutterFlowTheme.of(context)
                                                 .primaryBackground,
-                                            fontSize: 13.0,
+                                            fontSize: 11.0,
                                             letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.w500,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .titleLarge

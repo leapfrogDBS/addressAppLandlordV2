@@ -56,13 +56,30 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primaryBackground,
+            color: FlutterFlowTheme.of(context).alternate,
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
+                Text(
+                  FFLocalizations.of(context).getText(
+                    'ufmc471u' /* Rental Return */,
+                  ),
+                  style: FlutterFlowTheme.of(context).titleSmall.override(
+                        font: GoogleFonts.figtree(
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                        ),
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                      ),
+                ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,7 +89,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                       alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
@@ -120,17 +137,18 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 .displayLarge
                                 .override(
                                   fontFamily: 'Thunder',
+                                  fontSize: 24.0,
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 8.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                     Align(
                       alignment: AlignmentDirectional(-1.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
@@ -177,10 +195,11 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 .displayLarge
                                 .override(
                                   fontFamily: 'Thunder',
+                                  fontSize: 24.0,
                                   letterSpacing: 0.0,
                                 ),
                           ),
-                        ].divide(SizedBox(height: 8.0)),
+                        ].divide(SizedBox(height: 4.0)),
                       ),
                     ),
                   ].divide(SizedBox(width: 4.0)),
@@ -195,7 +214,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
@@ -244,17 +263,18 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                   .displayLarge
                                   .override(
                                     fontFamily: 'Thunder',
+                                    fontSize: 24.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
                       Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
@@ -361,6 +381,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                         .displayLarge
                                         .override(
                                           fontFamily: 'Thunder',
+                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -372,6 +393,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                         .displayLarge
                                         .override(
                                           fontFamily: 'Thunder',
+                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
                                         ),
                                   )
@@ -387,6 +409,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
+                                      fontSize: 24.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -397,13 +420,13 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
                     ].divide(SizedBox(width: 4.0)),
                   ),
                 ),
-              ].divide(SizedBox(height: 17.0)),
+              ].divide(SizedBox(height: 12.0)),
             ),
           ),
         ),

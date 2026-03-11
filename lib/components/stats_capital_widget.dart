@@ -50,189 +50,55 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).primaryBackground,
-          ),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'kw4solyj' /* Capital Gain */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color:
-                                        FlutterFlowTheme.of(context).greyBlue,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                          Text(
-                            formatNumber(
-                              widget!.projections!.capitalGains
-                                  .elementAtOrNull(widget!.selectedYearIndex),
-                              formatType: FormatType.decimal,
-                              decimalType: DecimalType.automatic,
-                              currency: '£',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .displayLarge
-                                .override(
-                                  fontFamily: 'Thunder',
-                                  letterSpacing: 0.0,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 8.0)),
-                      ),
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).alternate,
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(50.0, 16.0, 50.0, 16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    FFLocalizations.of(context).getText(
+                      'gd9x3xpz' /* Capital Growth */,
                     ),
-                    Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'cnh3mg8n' /* Price Incease */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color:
-                                        FlutterFlowTheme.of(context).greyBlue,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          font: GoogleFonts.figtree(
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .fontStyle,
                           ),
-                          RichText(
-                            textScaler: MediaQuery.of(context).textScaler,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: valueOrDefault<String>(
-                                    (widget!.projections?.housePctUsed
-                                            ?.elementAtOrNull(
-                                                widget!.selectedYearIndex))
-                                        ?.toString(),
-                                    '0',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .override(
-                                        fontFamily: 'Thunder',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: FFLocalizations.of(context).getText(
-                                    'ekwv7t08' /* % */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .override(
-                                        fontFamily: 'Thunder',
-                                        letterSpacing: 0.0,
-                                      ),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.figtree(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                        ].divide(SizedBox(height: 8.0)),
-                      ),
-                    ),
-                  ].divide(SizedBox(width: 4.0)),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Row(
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.bold,
+                          fontStyle:
+                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                        ),
+                  ),
+                  Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'hs052s18' /* Daily Growth */,
+                                  'kw4solyj' /* Capital Gain */,
                                 ),
-                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -258,40 +124,36 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                               ),
                             ),
                             Text(
-                              valueOrDefault<String>(
-                                formatNumber(
-                                  widget!.projections?.dailyCapitalGain
-                                      ?.elementAtOrNull(
-                                          widget!.selectedYearIndex),
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.automatic,
-                                  currency: '£',
-                                ),
-                                '0',
+                              formatNumber(
+                                widget!.projections!.capitalGains
+                                    .elementAtOrNull(widget!.selectedYearIndex),
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.automatic,
+                                currency: '£',
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .displayLarge
                                   .override(
                                     fontFamily: 'Thunder',
+                                    fontSize: 24.0,
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
                       Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Align(
                               alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'ohhlt338' /* Property Value  */,
+                                  'cnh3mg8n' /* Price Incease */,
                                 ),
-                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -316,36 +178,204 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                     ),
                               ),
                             ),
-                            Text(
-                              valueOrDefault<String>(
-                                formatNumber(
-                                  widget!.projections?.projectedHousePrice
-                                      ?.elementAtOrNull(
-                                          widget!.selectedYearIndex),
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.automatic,
-                                  currency: '£',
-                                ),
-                                '0',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .displayLarge
-                                  .override(
-                                    fontFamily: 'Thunder',
-                                    letterSpacing: 0.0,
+                            RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: valueOrDefault<String>(
+                                      (widget!.projections?.housePctUsed
+                                              ?.elementAtOrNull(
+                                                  widget!.selectedYearIndex))
+                                          ?.toString(),
+                                      '0',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .override(
+                                          fontFamily: 'Thunder',
+                                          fontSize: 24.0,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
+                                  TextSpan(
+                                    text: FFLocalizations.of(context).getText(
+                                      'ekwv7t08' /* % */,
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .override(
+                                          fontFamily: 'Thunder',
+                                          fontSize: 24.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
                             ),
-                          ].divide(SizedBox(height: 8.0)),
+                          ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
                     ].divide(SizedBox(width: 4.0)),
                   ),
-                ),
-              ].divide(SizedBox(height: 17.0)),
+                  Align(
+                    alignment: AlignmentDirectional(-1.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'hs052s18' /* Daily Growth */,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.figtree(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .greyBlue,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    widget!.projections?.dailyCapitalGain
+                                        ?.elementAtOrNull(
+                                            widget!.selectedYearIndex),
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  '0',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .override(
+                                      fontFamily: 'Thunder',
+                                      fontSize: 24.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'ohhlt338' /* Property Value  */,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.figtree(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .greyBlue,
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                valueOrDefault<String>(
+                                  formatNumber(
+                                    widget!.projections?.projectedHousePrice
+                                        ?.elementAtOrNull(
+                                            widget!.selectedYearIndex),
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  '0',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .override(
+                                      fontFamily: 'Thunder',
+                                      fontSize: 24.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
+                          ),
+                        ),
+                      ].divide(SizedBox(width: 4.0)),
+                    ),
+                  ),
+                ].divide(SizedBox(height: 12.0)),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
