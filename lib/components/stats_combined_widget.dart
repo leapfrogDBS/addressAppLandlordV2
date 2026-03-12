@@ -57,11 +57,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
         Container(
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
-            borderRadius: BorderRadius.circular(16.0),
-            border: Border.all(
-              color: FlutterFlowTheme.of(context).primary,
-              width: 1.0,
-            ),
+            borderRadius: BorderRadius.circular(0.0),
           ),
           child: Padding(
             padding: EdgeInsets.all(16.0),
@@ -76,7 +72,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
                             'zi2ge1zv' /* For the selected period, this ... */,
@@ -109,60 +105,160 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
-                        child: RichText(
-                          textScaler: MediaQuery.of(context).textScaler,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: valueOrDefault<String>(
-                                  formatNumber(
-                                    functions.sum2(
-                                        widget!.projections!.capitalGains
-                                            .elementAtOrNull(
-                                                widget!.selectedYearIndex!)!,
-                                        widget!.projections!.rentalProfit
-                                            .elementAtOrNull(
-                                                widget!.selectedYearIndex!)!),
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.automatic,
-                                    currency: '£',
-                                  ),
-                                  '0',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              'set7r45w' /* Annual Gain */,
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
                                       font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontStyle,
+                                    ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: valueOrDefault<String>(
+                                      formatNumber(
+                                        functions.sum2(
+                                            widget!.projections!.capitalGains
+                                                .elementAtOrNull(widget!
+                                                    .selectedYearIndex!)!,
+                                            widget!.projections!.rentalProfit
+                                                .elementAtOrNull(widget!
+                                                    .selectedYearIndex!)!),
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '£',
+                                      ),
+                                      '0',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          fontSize: 24.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontStyle,
+                                        ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontStyle,
+                                      ),
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .fontStyle,
                                     ),
                               ),
-                              TextSpan(
-                                text: FFLocalizations.of(context).getText(
-                                  'dlohynqx' /*  Total Gain */,
-                                ),
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              )
-                            ],
+                            ),
+                          ),
+                        ].divide(SizedBox(height: 2.0)),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              'mfyopa8i' /* Daily Gain */,
+                            ),
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .fontStyle,
+                                    ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: RichText(
+                              textScaler: MediaQuery.of(context).textScaler,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: valueOrDefault<String>(
+                                      formatNumber(
+                                        widget!.projections?.combinedDailyGain
+                                            ?.elementAtOrNull(
+                                                widget!.selectedYearIndex!),
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.automatic,
+                                        currency: '£',
+                                      ),
+                                      '0',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLarge
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondary,
+                                          fontSize: 24.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontStyle,
+                                        ),
+                                  )
+                                ],
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
                                       font: GoogleFonts.figtree(
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
@@ -176,72 +272,12 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                           .bodyLarge
                                           .fontStyle,
                                     ),
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
-                        child: RichText(
-                          textScaler: MediaQuery.of(context).textScaler,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: valueOrDefault<String>(
-                                  formatNumber(
-                                    widget!.projections?.combinedDailyGain
-                                        ?.elementAtOrNull(
-                                            widget!.selectedYearIndex!),
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.automatic,
-                                    currency: '£',
-                                  ),
-                                  '0',
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .fontStyle,
-                                    ),
                               ),
-                              TextSpan(
-                                text: FFLocalizations.of(context).getText(
-                                  'fr1m2j4s' /*  Daily Gain */,
-                                ),
-                                style: TextStyle(),
-                              )
-                            ],
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.figtree(
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .fontStyle,
-                                    ),
+                            ),
                           ),
-                        ),
+                        ].divide(SizedBox(height: 2.0)),
                       ),
-                    ],
+                    ].divide(SizedBox(width: 30.0)),
                   ),
                 ),
               ].divide(SizedBox(height: 5.0)),

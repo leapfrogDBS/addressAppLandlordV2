@@ -47,7 +47,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
       child: Container(
         width: double.infinity,
-        height: 370.0,
+        height: 400.0,
         decoration: BoxDecoration(),
         child: StreamBuilder<List<PropertiesRecord>>(
           stream: queryPropertiesRecord(
@@ -85,7 +85,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                 return Container(
                   width: 260.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: FlutterFlowTheme.of(context).alternate,
                   ),
                   child: wrapWithModel(
                     model: _model.singlePropertyModels.getModel(
@@ -104,6 +104,9 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                       propFormattedAddress:
                           listViewPropertiesRecord.addressFormatted,
                       propLetType: listViewPropertiesRecord.letType,
+                      hasActiveTenancy:
+                          listViewPropertiesRecord.hasActiveTenancy,
+                      rentAmount: listViewPropertiesRecord.currentRentAmount,
                     ),
                   ),
                 );

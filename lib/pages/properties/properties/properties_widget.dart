@@ -140,6 +140,12 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                       propFormattedAddress:
                                           columnPropertiesRecord
                                               .addressFormatted,
+                                      propLetType:
+                                          columnPropertiesRecord.letType,
+                                      hasActiveTenancy: columnPropertiesRecord
+                                          .hasActiveTenancy,
+                                      rentAmount: columnPropertiesRecord
+                                          .currentRentAmount,
                                     ),
                                   );
                                 }).divide(SizedBox(height: 0.0)),

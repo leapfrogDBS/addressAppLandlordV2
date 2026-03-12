@@ -57,30 +57,34 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).alternate,
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(0.0),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(50.0, 16.0, 50.0, 16.0),
+              padding: EdgeInsetsDirectional.fromSTEB(50.0, 12.0, 50.0, 12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    FFLocalizations.of(context).getText(
-                      'gd9x3xpz' /* Capital Growth */,
-                    ),
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.figtree(
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'gd9x3xpz' /* Capital Growth */,
+                      ),
+                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                            font: GoogleFonts.figtree(
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                            fontSize: 14.0,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                             fontStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .fontStyle,
                           ),
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                        ),
+                    ),
                   ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -139,7 +143,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(SizedBox(height: 4.0)),
+                          ].divide(SizedBox(height: 2.0)),
                         ),
                       ),
                       Align(
@@ -232,7 +236,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                     ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 4.0)),
+                          ].divide(SizedBox(height: 2.0)),
                         ),
                       ),
                     ].divide(SizedBox(width: 4.0)),
@@ -302,7 +306,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 2.0)),
                           ),
                         ),
                         Align(
@@ -364,13 +368,13 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                       letterSpacing: 0.0,
                                     ),
                               ),
-                            ].divide(SizedBox(height: 4.0)),
+                            ].divide(SizedBox(height: 2.0)),
                           ),
                         ),
                       ].divide(SizedBox(width: 4.0)),
                     ),
                   ),
-                ].divide(SizedBox(height: 12.0)),
+                ].divide(SizedBox(height: 6.0)),
               ),
             ),
           ),

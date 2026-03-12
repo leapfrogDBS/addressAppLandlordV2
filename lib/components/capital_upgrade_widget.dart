@@ -96,14 +96,15 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
                           font: GoogleFonts.figtree(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                             fontStyle: FlutterFlowTheme.of(context)
                                 .headlineLarge
                                 .fontStyle,
                           ),
                           color: FlutterFlowTheme.of(context).primaryBackground,
+                          fontSize: 18.0,
                           letterSpacing: 0.0,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontStyle: FlutterFlowTheme.of(context)
                               .headlineLarge
                               .fontStyle,
@@ -222,14 +223,25 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                           'b5lghj49' /* Eligible for Upgrade Today */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .displayLarge
+                                            .headlineLarge
                                             .override(
-                                              fontFamily: 'Thunder',
+                                              font: GoogleFonts.figtree(
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
-                                              fontSize: 24.0,
+                                              fontSize: 20.0,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
                                             ),
                                       ),
                                       AlignedTooltip(
@@ -290,7 +302,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .fontStyle,
                                   ),
                                   color: Color(0xCDFFFFFF),
-                                  fontSize: 14.0,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -318,6 +330,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                   ),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleLarge
@@ -347,7 +360,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .fontStyle,
                                   ),
                                   color: Color(0xCCFFFFFF),
-                                  fontSize: 14.0,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -374,6 +387,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .fontStyle,
                                   ),
                                   color: FlutterFlowTheme.of(context).alternate,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleLarge
@@ -403,7 +417,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         .fontStyle,
                                   ),
                                   color: Color(0xCCFFFFFF),
-                                  fontSize: 14.0,
+                                  fontSize: 12.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -430,6 +444,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                   ),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -462,7 +477,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                   ),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  fontSize: 16.0,
+                                  fontSize: 14.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
@@ -494,7 +509,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                       ),
                                       color: FlutterFlowTheme.of(context)
                                           .primaryBackground,
-                                      fontSize: 18.0,
+                                      fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                       fontStyle: FlutterFlowTheme.of(context)
@@ -556,7 +571,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                           ),
                         ].divide(SizedBox(width: 10.0)),
                       ),
-                    ].divide(SizedBox(height: 10.0)),
+                    ].divide(SizedBox(height: 6.0)),
                   ),
                   Align(
                     alignment: AlignmentDirectional(0.0, 0.0),

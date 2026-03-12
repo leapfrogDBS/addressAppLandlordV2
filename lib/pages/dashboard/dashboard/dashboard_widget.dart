@@ -429,7 +429,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 10.0, 20.0, 20.0),
+                                      20.0, 0.0, 20.0, 0.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(18.0),
@@ -1179,90 +1179,102 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 10.0),
-                                  child: wrapWithModel(
-                                    model: _model.keyMetricsDashModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: KeyMetricsDashWidget(
-                                      predictedValue:
-                                          _model.pvTotals?.capitalValue,
-                                      cumulativeRentalProfit: _model
-                                          .pvTotals?.cumulativeRentalProfit,
-                                      dailyGainOnRetirement:
-                                          _model.pvTotals?.combinedDailyGain,
-                                      retirementYear:
-                                          _model.pvTotals!.retirementYear,
-                                      retirementAge:
-                                          stackUsersRecord.plannedRetirementAge,
-                                    ),
+                                wrapWithModel(
+                                  model: _model.keyMetricsDashModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: KeyMetricsDashWidget(
+                                    predictedValue:
+                                        _model.pvTotals?.capitalValue,
+                                    cumulativeRentalProfit:
+                                        _model.pvTotals?.cumulativeRentalProfit,
+                                    dailyGainOnRetirement:
+                                        _model.pvTotals?.combinedDailyGain,
+                                    retirementYear:
+                                        _model.pvTotals!.retirementYear,
+                                    retirementAge:
+                                        stackUsersRecord.plannedRetirementAge,
                                   ),
                                 ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 16.0, 0.0, 0.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'shsbx041' /* Your Properties */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .override(
-                                              font: GoogleFonts.figtree(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .fontStyle,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 16.0, 0.0, 0.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'shsbx041' /* My Properties */,
                                             ),
-                                      ),
-                                    ),
-                                    wrapWithModel(
-                                      model: _model.propertySliderModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: PropertySliderWidget(),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 16.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            context.pushNamed(
-                                                PropertiesWidget.routeName);
-                                          },
-                                          text: FFLocalizations.of(context)
-                                              .getText(
-                                            '9mori5ko' /* All Properties */,
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineLarge
+                                                .override(
+                                                  font: GoogleFonts.figtree(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .headlineLarge
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLarge
+                                                          .fontStyle,
+                                                ),
                                           ),
-                                          options: FFButtonOptions(
-                                            width: 200.0,
-                                            height: 40.0,
+                                        ),
+                                        wrapWithModel(
+                                          model: _model.propertySliderModel,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: PropertySliderWidget(),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 12.0, 24.0, 12.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .tertiary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
+                                                    0.0, 0.0, 0.0, 16.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                context.pushNamed(
+                                                    PropertiesWidget.routeName);
+                                              },
+                                              text: FFLocalizations.of(context)
+                                                  .getText(
+                                                '9mori5ko' /* View All */,
+                                              ),
+                                              options: FFButtonOptions(
+                                                width: 200.0,
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 12.0, 24.0, 12.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
                                                     .titleSmall
                                                     .override(
                                                       font: GoogleFonts.figtree(
@@ -1293,14 +1305,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               .titleSmall
                                                               .fontStyle,
                                                     ),
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
+                                                elevation: 0.0,
+                                                borderRadius:
+                                                    BorderRadius.circular(24.0),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
-                                  ].divide(SizedBox(height: 16.0)),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(

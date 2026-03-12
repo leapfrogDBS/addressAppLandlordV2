@@ -60,14 +60,13 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
             ),
             style: FlutterFlowTheme.of(context).labelMedium.override(
                   font: GoogleFonts.figtree(
-                    fontWeight:
-                        FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                    fontWeight: FontWeight.bold,
                     fontStyle:
                         FlutterFlowTheme.of(context).labelMedium.fontStyle,
                   ),
+                  fontSize: 14.0,
                   letterSpacing: 0.0,
-                  fontWeight:
-                      FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                  fontWeight: FontWeight.bold,
                   fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                 ),
           ),
@@ -117,8 +116,8 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                       final listViewEventsRecord =
                           listViewEventsRecordList[listViewIndex];
                       return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 0.0, 16.0, 12.0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                         child: Container(
                           width: 100.0,
                           decoration: BoxDecoration(
@@ -310,7 +309,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                       listViewEventsRecordList[listViewIndex];
                   return Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 12.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                     child: Container(
                       width: 100.0,
                       decoration: BoxDecoration(
