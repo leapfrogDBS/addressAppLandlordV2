@@ -75,7 +75,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
         highlightColor: Colors.transparent,
         onTap: () async {
           context.pushNamed(
-            PropertyV2Widget.routeName,
+            PropertyWidget.routeName,
             queryParameters: {
               'propID': serializeParam(
                 widget!.propID,

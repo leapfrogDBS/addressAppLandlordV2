@@ -33,33 +33,33 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'property_v2_model.dart';
-export 'property_v2_model.dart';
+import 'property_model.dart';
+export 'property_model.dart';
 
-class PropertyV2Widget extends StatefulWidget {
-  const PropertyV2Widget({
+class PropertyWidget extends StatefulWidget {
+  const PropertyWidget({
     super.key,
     required this.propID,
   });
 
   final DocumentReference? propID;
 
-  static String routeName = 'PropertyV2';
+  static String routeName = 'Property';
   static String routePath = '/singleproperty';
 
   @override
-  State<PropertyV2Widget> createState() => _PropertyV2WidgetState();
+  State<PropertyWidget> createState() => _PropertyWidgetState();
 }
 
-class _PropertyV2WidgetState extends State<PropertyV2Widget> {
-  late PropertyV2Model _model;
+class _PropertyWidgetState extends State<PropertyWidget> {
+  late PropertyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PropertyV2Model());
+    _model = createModel(context, () => PropertyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -165,7 +165,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
           );
         }
 
-        final propertyV2PropertiesRecord = snapshot.data!;
+        final propertyPropertiesRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -228,7 +228,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                           alignment:
                                               AlignmentDirectional(-1.0, 1.0),
                                           child: Text(
-                                            propertyV2PropertiesRecord
+                                            propertyPropertiesRecord
                                                 .addressLine1
                                                 .maybeHandleOverflow(
                                               maxChars: 50,
@@ -282,9 +282,8 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                             text: TextSpan(
                                               children: [
                                                 TextSpan(
-                                                  text:
-                                                      propertyV2PropertiesRecord
-                                                          .addressTown,
+                                                  text: propertyPropertiesRecord
+                                                      .addressTown,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .headlineMedium
@@ -320,11 +319,10 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                   style: TextStyle(),
                                                 ),
                                                 TextSpan(
-                                                  text:
-                                                      propertyV2PropertiesRecord
-                                                              .hasActiveTenancy
-                                                          ? 'Occupied'
-                                                          : 'Unoccupied',
+                                                  text: propertyPropertiesRecord
+                                                          .hasActiveTenancy
+                                                      ? 'Occupied'
+                                                      : 'Unoccupied',
                                                   style: TextStyle(),
                                                 ),
                                                 TextSpan(
@@ -347,7 +345,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                   text: valueOrDefault<String>(
                                                     dateTimeFormat(
                                                       "relative",
-                                                      propertyV2PropertiesRecord
+                                                      propertyPropertiesRecord
                                                           .dateJoinedAddressed,
                                                       locale:
                                                           FFLocalizations.of(
@@ -819,7 +817,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(1.0, 0.0, 0.0, 0.0),
                                               child: Hero(
-                                                tag: propertyV2PropertiesRecord
+                                                tag: propertyPropertiesRecord
                                                     .mainPhoto,
                                                 transitionOnUserGestures: true,
                                                 child: ClipRRect(
@@ -827,7 +825,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                       BorderRadius.circular(
                                                           16.0),
                                                   child: Image.network(
-                                                    propertyV2PropertiesRecord
+                                                    propertyPropertiesRecord
                                                         .mainPhoto,
                                                     width: double.infinity,
                                                     height: 180.0,
@@ -927,7 +925,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                           0.0),
                                                                   child: Text(
                                                                     formatNumber(
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .estimatedValue,
                                                                       formatType:
                                                                           FormatType
@@ -968,8 +966,8 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                       valueOrDefault<
                                                                           String>(
                                                                         functions.percentageIncreaseAlltime(
-                                                                            propertyV2PropertiesRecord.purchasePrice,
-                                                                            propertyV2PropertiesRecord.estimatedValue),
+                                                                            propertyPropertiesRecord.purchasePrice,
+                                                                            propertyPropertiesRecord.estimatedValue),
                                                                         'Unkown',
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
@@ -1361,7 +1359,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                               headingText:
                                                   'This property has earned you since ${dateTimeFormat(
                                                 "y",
-                                                propertyV2PropertiesRecord
+                                                propertyPropertiesRecord
                                                     .dateJoinedAddressed,
                                                 locale:
                                                     FFLocalizations.of(context)
@@ -2120,7 +2118,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (propertyV2PropertiesRecord
+                                              if (propertyPropertiesRecord
                                                   .gallery.isNotEmpty)
                                                 Column(
                                                   mainAxisSize:
@@ -2177,7 +2175,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                     Builder(
                                                       builder: (context) {
                                                         final galleryImages =
-                                                            propertyV2PropertiesRecord
+                                                            propertyPropertiesRecord
                                                                 .gallery
                                                                 .toList();
 
@@ -2367,7 +2365,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 10.0),
                                                   child: Text(
-                                                    propertyV2PropertiesRecord
+                                                    propertyPropertiesRecord
                                                         .addressFormatted,
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
@@ -2409,13 +2407,13 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                 height: 300.0,
                                                 child: Visibility(
                                                   visible:
-                                                      propertyV2PropertiesRecord
+                                                      propertyPropertiesRecord
                                                               .latLng !=
                                                           null,
                                                   child: Builder(
                                                       builder: (context) {
                                                     final _googleMapMarker =
-                                                        propertyV2PropertiesRecord
+                                                        propertyPropertiesRecord
                                                             .latLng;
                                                     return FlutterFlowGoogleMap(
                                                       controller: _model
@@ -2425,7 +2423,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               latLng,
                                                       initialLocation: _model
                                                               .googleMapsCenter ??=
-                                                          propertyV2PropertiesRecord
+                                                          propertyPropertiesRecord
                                                               .latLng!,
                                                       markers: [
                                                         if (_googleMapMarker !=
@@ -2546,7 +2544,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                               decoration: BoxDecoration(),
                                               child: Visibility(
                                                 visible:
-                                                    propertyV2PropertiesRecord
+                                                    propertyPropertiesRecord
                                                         .hasActiveTenancy,
                                                 child: Align(
                                                   alignment:
@@ -2944,7 +2942,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                 projections:
                                                     _model.pvProjection!,
                                                 hasActiveTenancy:
-                                                    propertyV2PropertiesRecord
+                                                    propertyPropertiesRecord
                                                         .hasActiveTenancy,
                                               ),
                                             ),
@@ -2958,7 +2956,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                if (propertyV2PropertiesRecord
+                                                if (propertyPropertiesRecord
                                                     .hasActiveTenancy)
                                                   wrapWithModel(
                                                     model:
@@ -3058,7 +3056,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  if ((propertyV2PropertiesRecord
+                                                  if ((propertyPropertiesRecord
                                                               .mortgageRemaining >
                                                           0.0) &&
                                                       !_model
@@ -3110,7 +3108,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                           ),
                                                           Text(
                                                             formatNumber(
-                                                              propertyV2PropertiesRecord
+                                                              propertyPropertiesRecord
                                                                   .mortgageRemaining,
                                                               formatType:
                                                                   FormatType
@@ -3167,7 +3165,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                             width: 10.0)),
                                                       ),
                                                     ),
-                                                  if ((propertyV2PropertiesRecord
+                                                  if ((propertyPropertiesRecord
                                                               .mortgageRemaining >
                                                           0.0) &&
                                                       !_model
@@ -3218,7 +3216,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                 ),
                                                           ),
                                                           Text(
-                                                            propertyV2PropertiesRecord
+                                                            propertyPropertiesRecord
                                                                 .mortgageTermRemaining
                                                                 .toString(),
                                                             style: FlutterFlowTheme
@@ -3235,7 +3233,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                             width: 10.0)),
                                                       ),
                                                     ),
-                                                  if ((propertyV2PropertiesRecord
+                                                  if ((propertyPropertiesRecord
                                                               .mortgageRemaining >
                                                           0.0) &&
                                                       !_model
@@ -3287,7 +3285,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                           ),
                                                           Text(
                                                             formatNumber(
-                                                              propertyV2PropertiesRecord
+                                                              propertyPropertiesRecord
                                                                   .mortgageMonthlyPayment,
                                                               formatType:
                                                                   FormatType
@@ -3311,7 +3309,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                             width: 10.0)),
                                                       ),
                                                     ),
-                                                  if (!propertyV2PropertiesRecord
+                                                  if (!propertyPropertiesRecord
                                                           .mortgageEntered ||
                                                       _model
                                                           .updatingMortgageEstimate)
@@ -3374,7 +3372,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                 controller: _model
                                                                         .mortgageRemainingTextController ??=
                                                                     TextEditingController(
-                                                                  text: propertyV2PropertiesRecord
+                                                                  text: propertyPropertiesRecord
                                                                       .mortgageRemaining
                                                                       .toString(),
                                                                 ),
@@ -3537,7 +3535,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                 controller: _model
                                                                         .mortgageTermRemainingTextController ??=
                                                                     TextEditingController(
-                                                                  text: propertyV2PropertiesRecord
+                                                                  text: propertyPropertiesRecord
                                                                       .mortgageTermRemaining
                                                                       .toString(),
                                                                 ),
@@ -3700,7 +3698,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                 controller: _model
                                                                         .mortgageMonthlyPaymentTextController ??=
                                                                     TextEditingController(
-                                                                  text: propertyV2PropertiesRecord
+                                                                  text: propertyPropertiesRecord
                                                                       .mortgageMonthlyPayment
                                                                       .toString(),
                                                                 ),
@@ -3939,7 +3937,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                             height: 10.0)),
                                                       ),
                                                     ),
-                                                  if ((propertyV2PropertiesRecord
+                                                  if ((propertyPropertiesRecord
                                                               .mortgageRemaining >
                                                           0.0) &&
                                                       !_model
@@ -3995,7 +3993,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               ),
                                                               Text(
                                                                 formatNumber(
-                                                                  propertyV2PropertiesRecord
+                                                                  propertyPropertiesRecord
                                                                       .estimatedValue,
                                                                   formatType:
                                                                       FormatType
@@ -4073,7 +4071,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               ),
                                                               Text(
                                                                 formatNumber(
-                                                                  propertyV2PropertiesRecord
+                                                                  propertyPropertiesRecord
                                                                       .mortgageRemaining,
                                                                   formatType:
                                                                       FormatType
@@ -4152,9 +4150,9 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               Text(
                                                                 formatNumber(
                                                                   functions.subtractDoubles(
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .estimatedValue,
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .mortgageRemaining),
                                                                   formatType:
                                                                       FormatType
@@ -4233,11 +4231,11 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               Text(
                                                                 formatNumber(
                                                                   functions.releasableEquityForProperty(
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .estimatedValue,
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .mortgageRemaining,
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .mortgageEntered),
                                                                   formatType:
                                                                       FormatType
@@ -4316,9 +4314,9 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                               Text(
                                                                 formatNumber(
                                                                   functions.percentOfDifferenceRelativeToLarge(
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .estimatedValue,
-                                                                      propertyV2PropertiesRecord
+                                                                      propertyPropertiesRecord
                                                                           .mortgageRemaining),
                                                                   formatType:
                                                                       FormatType
@@ -4366,13 +4364,13 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                                   values: [
                                                                     functions
                                                                         .percentOfDifferenceRelativeToLarge(
-                                                                            propertyV2PropertiesRecord.estimatedValue,
-                                                                            propertyV2PropertiesRecord.mortgageRemaining)
+                                                                            propertyPropertiesRecord.estimatedValue,
+                                                                            propertyPropertiesRecord.mortgageRemaining)
                                                                         .toString(),
                                                                     functions
                                                                         .percentOfDifferenceRelativeToLargeOther(
-                                                                            propertyV2PropertiesRecord.estimatedValue,
-                                                                            propertyV2PropertiesRecord.mortgageRemaining)
+                                                                            propertyPropertiesRecord.estimatedValue,
+                                                                            propertyPropertiesRecord.mortgageRemaining)
                                                                         .toString()
                                                                   ],
                                                                   colors: [
@@ -4798,21 +4796,20 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                           ),
                                         ].divide(SizedBox(height: 4.0)),
                                       ),
-                                      if ((propertyV2PropertiesRecord
+                                      if ((propertyPropertiesRecord
                                                       .energyCert !=
                                                   null &&
-                                              propertyV2PropertiesRecord
+                                              propertyPropertiesRecord
                                                       .energyCert !=
                                                   '') ||
-                                          (propertyV2PropertiesRecord.gasCert !=
+                                          (propertyPropertiesRecord.gasCert !=
                                                   null &&
-                                              propertyV2PropertiesRecord
+                                              propertyPropertiesRecord
                                                       .gasCert !=
                                                   '') ||
-                                          (propertyV2PropertiesRecord
-                                                      .elecCert !=
+                                          (propertyPropertiesRecord.elecCert !=
                                                   null &&
-                                              propertyV2PropertiesRecord
+                                              propertyPropertiesRecord
                                                       .elecCert !=
                                                   ''))
                                         Padding(
@@ -4822,10 +4819,10 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (propertyV2PropertiesRecord
+                                              if (propertyPropertiesRecord
                                                           .energyCert !=
                                                       null &&
-                                                  propertyV2PropertiesRecord
+                                                  propertyPropertiesRecord
                                                           .energyCert !=
                                                       '')
                                                 InkWell(
@@ -4844,7 +4841,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                       queryParameters: {
                                                         'pdfUrl':
                                                             serializeParam(
-                                                          propertyV2PropertiesRecord
+                                                          propertyPropertiesRecord
                                                               .energyCert,
                                                           ParamType.String,
                                                         ),
@@ -4906,10 +4903,10 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                         SizedBox(width: 13.0)),
                                                   ),
                                                 ),
-                                              if (propertyV2PropertiesRecord
+                                              if (propertyPropertiesRecord
                                                           .gasCert !=
                                                       null &&
-                                                  propertyV2PropertiesRecord
+                                                  propertyPropertiesRecord
                                                           .gasCert !=
                                                       '')
                                                 InkWell(
@@ -4928,7 +4925,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                       queryParameters: {
                                                         'pdfUrl':
                                                             serializeParam(
-                                                          propertyV2PropertiesRecord
+                                                          propertyPropertiesRecord
                                                               .gasCert,
                                                           ParamType.String,
                                                         ),
@@ -4985,10 +4982,10 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                         SizedBox(width: 13.0)),
                                                   ),
                                                 ),
-                                              if (propertyV2PropertiesRecord
+                                              if (propertyPropertiesRecord
                                                           .elecCert !=
                                                       null &&
-                                                  propertyV2PropertiesRecord
+                                                  propertyPropertiesRecord
                                                           .elecCert !=
                                                       '')
                                                 InkWell(
@@ -5007,7 +5004,7 @@ class _PropertyV2WidgetState extends State<PropertyV2Widget> {
                                                       queryParameters: {
                                                         'pdfUrl':
                                                             serializeParam(
-                                                          propertyV2PropertiesRecord
+                                                          propertyPropertiesRecord
                                                               .elecCert,
                                                           ParamType.String,
                                                         ),

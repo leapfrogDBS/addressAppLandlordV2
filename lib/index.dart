@@ -32,5 +32,4 @@ export '/pages/onboarding/redirect_page/redirect_page_widget.dart'
     show RedirectPageWidget;
 export '/pages/onboarding/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
-export '/pages/properties/property_v2/property_v2_widget.dart'
-    show PropertyV2Widget;
+export '/pages/properties/property/property_widget.dart' show PropertyWidget;

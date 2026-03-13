@@ -152,7 +152,7 @@ final parametersBuilderMap =
   'mortgageInfo': ParameterData.none(),
   'redirectPage': ParameterData.none(),
   'personalDetails': ParameterData.none(),
-  'PropertyV2': (data) async => ParameterData(
+  'Property': (data) async => ParameterData(
         allParams: {
           'propID': getParameter<DocumentReference>(data, 'propID'),
         },

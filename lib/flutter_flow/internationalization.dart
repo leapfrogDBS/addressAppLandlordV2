@@ -3781,7 +3781,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '家',
     },
   },
-  // PropertyV2
+  // Property
   {
     'lxyhfsn1': {
       'en': '• ',

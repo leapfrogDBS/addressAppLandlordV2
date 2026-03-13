@@ -24,7 +24,7 @@ import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'property_v2_widget.dart' show PropertyV2Widget;
+import 'property_widget.dart' show PropertyWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -35,7 +35,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-class PropertyV2Model extends FlutterFlowModel<PropertyV2Widget> {
+class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   ///  Local state fields for this page.
 
   double? equity = 66.25;
@@ -81,13 +81,13 @@ class PropertyV2Model extends FlutterFlowModel<PropertyV2Widget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Read Document] action in PropertyV2 widget.
+  // Stores action output result for [Backend Call - Read Document] action in Property widget.
   PropertiesRecord? output;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   TenanciesRecord? outputTenancy;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   List<ExpensesRecord>? getExpenses;
-  // Stores action output result for [Firestore Query - Query a collection] action in PropertyV2 widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   PropertyProjectionsRecord? projectionDoc;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
