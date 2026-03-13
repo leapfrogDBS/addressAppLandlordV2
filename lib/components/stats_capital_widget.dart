@@ -77,7 +77,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                   .titleSmall
                                   .fontStyle,
                             ),
-                            fontSize: 14.0,
+                            fontSize: 16.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.bold,
                             fontStyle: FlutterFlowTheme.of(context)

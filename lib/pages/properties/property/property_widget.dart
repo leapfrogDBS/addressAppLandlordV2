@@ -2953,46 +2953,57 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(16.0),
                                             ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                if (propertyPropertiesRecord
-                                                    .hasActiveTenancy)
-                                                  wrapWithModel(
-                                                    model:
-                                                        _model.statsRentalModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child: StatsRentalWidget(
-                                                      selectedYearIndex:
-                                                          valueOrDefault<int>(
-                                                        _model
-                                                            .selectedYearIndex,
-                                                        0,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 4.0, 0.0, 4.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  if (propertyPropertiesRecord
+                                                      .hasActiveTenancy)
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .statsRentalModel,
+                                                      updateCallback: () =>
+                                                          safeSetState(() {}),
+                                                      child: StatsRentalWidget(
+                                                        selectedYearIndex:
+                                                            valueOrDefault<int>(
+                                                          _model
+                                                              .selectedYearIndex,
+                                                          0,
+                                                        ),
+                                                        projections: _model
+                                                            .pvProjection!,
                                                       ),
-                                                      projections:
-                                                          _model.pvProjection!,
+                                                    ),
+                                                  SizedBox(
+                                                    width: 200.0,
+                                                    child: Divider(
+                                                      thickness: 2.0,
+                                                      color: Color(0x393C444C),
                                                     ),
                                                   ),
-                                                Expanded(
-                                                  child: wrapWithModel(
-                                                    model: _model
-                                                        .statsCapitalModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child: StatsCapitalWidget(
-                                                      selectedYearIndex:
-                                                          valueOrDefault<int>(
-                                                        _model
-                                                            .selectedYearIndex,
-                                                        0,
+                                                  Expanded(
+                                                    child: wrapWithModel(
+                                                      model: _model
+                                                          .statsCapitalModel,
+                                                      updateCallback: () =>
+                                                          safeSetState(() {}),
+                                                      child: StatsCapitalWidget(
+                                                        selectedYearIndex:
+                                                            valueOrDefault<int>(
+                                                          _model
+                                                              .selectedYearIndex,
+                                                          0,
+                                                        ),
+                                                        projections: _model
+                                                            .pvProjection!,
                                                       ),
-                                                      projections:
-                                                          _model.pvProjection!,
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ].divide(SizedBox(height: 14.0)),

@@ -77,7 +77,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 .titleSmall
                                 .fontStyle,
                           ),
-                          fontSize: 14.0,
+                          fontSize: 16.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.w600,
                           fontStyle:
