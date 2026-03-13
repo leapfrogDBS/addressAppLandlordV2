@@ -8,8 +8,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'sales_offer_widget.dart' show SalesOfferWidget;
+import 'sales_offer_copy_widget.dart' show SalesOfferCopyWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
@@ -18,7 +17,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class SalesOfferModel extends FlutterFlowModel<SalesOfferWidget> {
+class SalesOfferCopyModel extends FlutterFlowModel<SalesOfferCopyWidget> {
   ///  Local state fields for this component.
 
   ProjectionsRecord? projections;
@@ -31,7 +30,7 @@ class SalesOfferModel extends FlutterFlowModel<SalesOfferWidget> {
 
   ///  State fields for stateful widgets in this component.
 
-  // Stores action output result for [Firestore Query - Query a collection] action in salesOffer widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in salesOfferCopy widget.
   ProjectionsRecord? projectionsDocument;
 
   @override

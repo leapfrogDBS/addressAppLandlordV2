@@ -118,7 +118,7 @@ final parametersBuilderMap =
   'Login': ParameterData.none(),
   'dashboard': ParameterData.none(),
   'Properties': ParameterData.none(),
-  'Property': (data) async => ParameterData(
+  'PropertyOld': (data) async => ParameterData(
         allParams: {
           'propID': getParameter<DocumentReference>(data, 'propID'),
         },

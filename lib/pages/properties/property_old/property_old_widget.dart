@@ -36,34 +36,34 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'property_model.dart';
-export 'property_model.dart';
+import 'property_old_model.dart';
+export 'property_old_model.dart';
 
-class PropertyWidget extends StatefulWidget {
-  const PropertyWidget({
+class PropertyOldWidget extends StatefulWidget {
+  const PropertyOldWidget({
     super.key,
     required this.propID,
   });
 
   final DocumentReference? propID;
 
-  static String routeName = 'Property';
-  static String routePath = '/singleproperty';
+  static String routeName = 'PropertyOld';
+  static String routePath = '/singlepropertyOld';
 
   @override
-  State<PropertyWidget> createState() => _PropertyWidgetState();
+  State<PropertyOldWidget> createState() => _PropertyOldWidgetState();
 }
 
-class _PropertyWidgetState extends State<PropertyWidget>
+class _PropertyOldWidgetState extends State<PropertyOldWidget>
     with TickerProviderStateMixin {
-  late PropertyModel _model;
+  late PropertyOldModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PropertyModel());
+    _model = createModel(context, () => PropertyOldModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -177,7 +177,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
           );
         }
 
-        final propertyPropertiesRecord = snapshot.data!;
+        final propertyOldPropertiesRecord = snapshot.data!;
 
         return GestureDetector(
           onTap: () {
@@ -224,12 +224,12 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       1.0, 0.0, 0.0, 0.0),
                                   child: Hero(
-                                    tag: propertyPropertiesRecord.mainPhoto,
+                                    tag: propertyOldPropertiesRecord.mainPhoto,
                                     transitionOnUserGestures: true,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(0.0),
                                       child: Image.network(
-                                        propertyPropertiesRecord.mainPhoto,
+                                        propertyOldPropertiesRecord.mainPhoto,
                                         width: double.infinity,
                                         height: 200.0,
                                         fit: BoxFit.cover,
@@ -238,8 +238,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                   ),
                                 ),
                               ),
-                              if (propertyPropertiesRecord.title != null &&
-                                  propertyPropertiesRecord.title != '')
+                              if (propertyOldPropertiesRecord.title != null &&
+                                  propertyOldPropertiesRecord.title != '')
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: Container(
@@ -264,7 +264,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             50.0, 0.0, 50.0, 30.0),
                                         child: Text(
-                                          propertyPropertiesRecord.title
+                                          propertyOldPropertiesRecord.title
                                               .maybeHandleOverflow(
                                             maxChars: 50,
                                             replacement: '…',
@@ -283,8 +283,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                     ),
                                   ),
                                 ),
-                              if (propertyPropertiesRecord.title == null ||
-                                  propertyPropertiesRecord.title == '')
+                              if (propertyOldPropertiesRecord.title == null ||
+                                  propertyOldPropertiesRecord.title == '')
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.16),
                                   child: Container(
@@ -309,7 +309,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             50.0, 0.0, 50.0, 30.0),
                                         child: Text(
-                                          propertyPropertiesRecord
+                                          propertyOldPropertiesRecord
                                               .addressFormatted
                                               .maybeHandleOverflow(
                                             maxChars: 50,
@@ -568,7 +568,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                               AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             formatNumber(
-                                              propertyPropertiesRecord
+                                              propertyOldPropertiesRecord
                                                   .purchasePrice,
                                               formatType: FormatType.decimal,
                                               decimalType:
@@ -641,7 +641,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   -1.0, 0.0),
                                               child: Text(
                                                 formatNumber(
-                                                  propertyPropertiesRecord
+                                                  propertyOldPropertiesRecord
                                                       .estimatedValue,
                                                   formatType:
                                                       FormatType.decimal,
@@ -668,9 +668,9 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                 child: Text(
                                                   valueOrDefault<String>(
                                                     functions.percentageIncreaseAlltime(
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                             .purchasePrice,
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                             .estimatedValue),
                                                     'Unkown',
                                                   ),
@@ -776,7 +776,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                             child: Text(
                                               valueOrDefault<String>(
                                                 functions.timeHeldFunction(
-                                                    propertyPropertiesRecord
+                                                    propertyOldPropertiesRecord
                                                         .purchaseDate),
                                                 'Unkown',
                                               ),
@@ -1058,7 +1058,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                           headingText:
                                                               'This property has earned you since ${dateTimeFormat(
                                                             "y",
-                                                            propertyPropertiesRecord
+                                                            propertyOldPropertiesRecord
                                                                 .dateJoinedAddressed,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -1639,7 +1639,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyOldPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1672,7 +1672,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           ),
                                                                           Text(
                                                                             formatNumber(
-                                                                              propertyPropertiesRecord.mortgageRemaining,
+                                                                              propertyOldPropertiesRecord.mortgageRemaining,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.automatic,
                                                                               currency: '£',
@@ -1708,7 +1708,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyOldPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1740,7 +1740,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                                 ),
                                                                           ),
                                                                           Text(
-                                                                            propertyPropertiesRecord.mortgageTermRemaining.toString(),
+                                                                            propertyOldPropertiesRecord.mortgageTermRemaining.toString(),
                                                                             style: FlutterFlowTheme.of(context).displaySmall.override(
                                                                                   fontFamily: 'Thunder',
                                                                                   letterSpacing: 0.0,
@@ -1749,7 +1749,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyOldPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -1782,7 +1782,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                           ),
                                                                           Text(
                                                                             formatNumber(
-                                                                              propertyPropertiesRecord.mortgageMonthlyPayment,
+                                                                              propertyOldPropertiesRecord.mortgageMonthlyPayment,
                                                                               formatType: FormatType.decimal,
                                                                               decimalType: DecimalType.automatic,
                                                                               currency: '£',
@@ -1795,7 +1795,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(width: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if (!propertyPropertiesRecord
+                                                                  if (!propertyOldPropertiesRecord
                                                                           .mortgageEntered ||
                                                                       _model
                                                                           .updatingMortgageEstimate)
@@ -1835,7 +1835,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageRemainingTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageRemaining.toString(),
+                                                                                  text: propertyOldPropertiesRecord.mortgageRemaining.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageRemainingFocusNode,
                                                                                 autofocus: true,
@@ -1915,7 +1915,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageTermRemainingTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageTermRemaining.toString(),
+                                                                                  text: propertyOldPropertiesRecord.mortgageTermRemaining.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageTermRemainingFocusNode,
                                                                                 autofocus: true,
@@ -1995,7 +1995,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               width: double.infinity,
                                                                               child: TextFormField(
                                                                                 controller: _model.mortgageMonthlyPaymentTextController ??= TextEditingController(
-                                                                                  text: propertyPropertiesRecord.mortgageMonthlyPayment.toString(),
+                                                                                  text: propertyOldPropertiesRecord.mortgageMonthlyPayment.toString(),
                                                                                 ),
                                                                                 focusNode: _model.mortgageMonthlyPaymentFocusNode,
                                                                                 autofocus: true,
@@ -2104,7 +2104,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                         ].divide(SizedBox(height: 10.0)),
                                                                       ),
                                                                     ),
-                                                                  if ((propertyPropertiesRecord
+                                                                  if ((propertyOldPropertiesRecord
                                                                               .mortgageRemaining >
                                                                           0.0) &&
                                                                       !_model
@@ -2143,7 +2143,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  propertyPropertiesRecord.estimatedValue,
+                                                                                  propertyOldPropertiesRecord.estimatedValue,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2182,7 +2182,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  propertyPropertiesRecord.mortgageRemaining,
+                                                                                  propertyOldPropertiesRecord.mortgageRemaining,
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2221,7 +2221,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  functions.subtractDoubles(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining),
+                                                                                  functions.subtractDoubles(propertyOldPropertiesRecord.estimatedValue, propertyOldPropertiesRecord.mortgageRemaining),
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2260,7 +2260,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  functions.releasableEquityForProperty(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining, propertyPropertiesRecord.mortgageEntered),
+                                                                                  functions.releasableEquityForProperty(propertyOldPropertiesRecord.estimatedValue, propertyOldPropertiesRecord.mortgageRemaining, propertyOldPropertiesRecord.mortgageEntered),
                                                                                   formatType: FormatType.decimal,
                                                                                   decimalType: DecimalType.automatic,
                                                                                   currency: '£',
@@ -2299,7 +2299,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               ),
                                                                               Text(
                                                                                 formatNumber(
-                                                                                  functions.percentOfDifferenceRelativeToLarge(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining),
+                                                                                  functions.percentOfDifferenceRelativeToLarge(propertyOldPropertiesRecord.estimatedValue, propertyOldPropertiesRecord.mortgageRemaining),
                                                                                   formatType: FormatType.percent,
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -2326,8 +2326,8 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                               child: FlutterFlowPieChart(
                                                                                 data: FFPieChartData(
                                                                                   values: [
-                                                                                    functions.percentOfDifferenceRelativeToLarge(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining).toString(),
-                                                                                    functions.percentOfDifferenceRelativeToLargeOther(propertyPropertiesRecord.estimatedValue, propertyPropertiesRecord.mortgageRemaining).toString()
+                                                                                    functions.percentOfDifferenceRelativeToLarge(propertyOldPropertiesRecord.estimatedValue, propertyOldPropertiesRecord.mortgageRemaining).toString(),
+                                                                                    functions.percentOfDifferenceRelativeToLargeOther(propertyOldPropertiesRecord.estimatedValue, propertyOldPropertiesRecord.mortgageRemaining).toString()
                                                                                   ],
                                                                                   colors: [
                                                                                     FlutterFlowTheme.of(context).primary,
@@ -2894,7 +2894,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            if (propertyPropertiesRecord
+                                            if (propertyOldPropertiesRecord
                                                 .gallery.isNotEmpty)
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -2923,7 +2923,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   Builder(
                                                     builder: (context) {
                                                       final galleryImages =
-                                                          propertyPropertiesRecord
+                                                          propertyOldPropertiesRecord
                                                               .gallery
                                                               .toList();
 
@@ -3308,22 +3308,22 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   FlutterFlowTheme.of(context)
                                                       .alternate,
                                             ),
-                                            if ((propertyPropertiesRecord
+                                            if ((propertyOldPropertiesRecord
                                                             .energyCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyOldPropertiesRecord
                                                             .energyCert !=
                                                         '') ||
-                                                (propertyPropertiesRecord
+                                                (propertyOldPropertiesRecord
                                                             .gasCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyOldPropertiesRecord
                                                             .gasCert !=
                                                         '') ||
-                                                (propertyPropertiesRecord
+                                                (propertyOldPropertiesRecord
                                                             .elecCert !=
                                                         null &&
-                                                    propertyPropertiesRecord
+                                                    propertyOldPropertiesRecord
                                                             .elecCert !=
                                                         ''))
                                               Padding(
@@ -3360,10 +3360,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 ),
                                                       ),
                                                     ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyOldPropertiesRecord
                                                                 .energyCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                                 .energyCert !=
                                                             '')
                                                       InkWell(
@@ -3382,7 +3382,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyOldPropertiesRecord
                                                                     .energyCert,
                                                                 ParamType
                                                                     .String,
@@ -3442,10 +3442,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               width: 13.0)),
                                                         ),
                                                       ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyOldPropertiesRecord
                                                                 .gasCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                                 .gasCert !=
                                                             '')
                                                       InkWell(
@@ -3464,7 +3464,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyOldPropertiesRecord
                                                                     .gasCert,
                                                                 ParamType
                                                                     .String,
@@ -3521,10 +3521,10 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                               width: 13.0)),
                                                         ),
                                                       ),
-                                                    if (propertyPropertiesRecord
+                                                    if (propertyOldPropertiesRecord
                                                                 .elecCert !=
                                                             null &&
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                                 .elecCert !=
                                                             '')
                                                       InkWell(
@@ -3543,7 +3543,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             queryParameters: {
                                                               'pdfUrl':
                                                                   serializeParam(
-                                                                propertyPropertiesRecord
+                                                                propertyOldPropertiesRecord
                                                                     .elecCert,
                                                                 ParamType
                                                                     .String,
@@ -3642,7 +3642,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 10.0),
                                                     child: Text(
-                                                      propertyPropertiesRecord
+                                                      propertyOldPropertiesRecord
                                                           .addressFormatted,
                                                       textAlign:
                                                           TextAlign.start,
@@ -3680,13 +3680,13 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                   height: 300.0,
                                                   child: Visibility(
                                                     visible:
-                                                        propertyPropertiesRecord
+                                                        propertyOldPropertiesRecord
                                                                 .latLng !=
                                                             null,
                                                     child: Builder(
                                                         builder: (context) {
                                                       final _googleMapMarker =
-                                                          propertyPropertiesRecord
+                                                          propertyOldPropertiesRecord
                                                               .latLng;
                                                       return FlutterFlowGoogleMap(
                                                         controller: _model
@@ -3696,7 +3696,7 @@ class _PropertyWidgetState extends State<PropertyWidget>
                                                                 latLng,
                                                         initialLocation: _model
                                                                 .googleMapsCenter ??=
-                                                            propertyPropertiesRecord
+                                                            propertyOldPropertiesRecord
                                                                 .latLng!,
                                                         markers: [
                                                           if (_googleMapMarker !=

@@ -3,7 +3,8 @@ export '/pages/login_registration/login/login_widget.dart' show LoginWidget;
 export '/pages/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/pages/properties/properties/properties_widget.dart'
     show PropertiesWidget;
-export '/pages/properties/property/property_widget.dart' show PropertyWidget;
+export '/pages/properties/property_old/property_old_widget.dart'
+    show PropertyOldWidget;
 export '/pages/user/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/messages/message/message_widget.dart' show MessageWidget;
 export '/pages/user/notifications/notifications_widget.dart'
@@ -14,7 +15,8 @@ export '/pages/login_registration/forgot_password/forgot_password_widget.dart'
     show ForgotPasswordWidget;
 export '/pages/messages/all_messages/all_messages_widget.dart'
     show AllMessagesWidget;
-export '/pages/sales_offers/sales_offers_widget.dart' show SalesOffersWidget;
+export '/pages/properties/sales_offers/sales_offers_widget.dart'
+    show SalesOffersWidget;
 export '/pages/onboarding/welcome/welcome_widget.dart' show WelcomeWidget;
 export '/pages/onboarding/retirement_goals/retirement_goals_widget.dart'
     show RetirementGoalsWidget;

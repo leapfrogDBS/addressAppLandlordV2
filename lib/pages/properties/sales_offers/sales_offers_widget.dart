@@ -105,48 +105,45 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                   updateCallback: () => safeSetState(() {}),
                   child: MainHeaderWidget(),
                 ),
-                Expanded(
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 20.0),
-                    child: StreamBuilder<List<SalesOffersRecord>>(
-                      stream: querySalesOffersRecord(),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  FlutterFlowTheme.of(context).primary,
-                                ),
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 20.0),
+                  child: StreamBuilder<List<SalesOffersRecord>>(
+                    stream: querySalesOffersRecord(),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
                               ),
                             ),
-                          );
-                        }
-                        List<SalesOffersRecord> columnSalesOffersRecordList =
-                            snapshot.data!;
-
-                        return Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children:
-                              List.generate(columnSalesOffersRecordList.length,
-                                  (columnIndex) {
-                            final columnSalesOffersRecord =
-                                columnSalesOffersRecordList[columnIndex];
-                            return SalesOfferWidget(
-                              key: Key(
-                                  'Keybgm_${columnIndex}_of_${columnSalesOffersRecordList.length}'),
-                              salesOffer: columnSalesOffersRecord,
-                              pvTotals: _model.pvTotals!,
-                            );
-                          }),
+                          ),
                         );
-                      },
-                    ),
+                      }
+                      List<SalesOffersRecord> columnSalesOffersRecordList =
+                          snapshot.data!;
+
+                      return Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                            columnSalesOffersRecordList.length, (columnIndex) {
+                          final columnSalesOffersRecord =
+                              columnSalesOffersRecordList[columnIndex];
+                          return SalesOfferWidget(
+                            key: Key(
+                                'Keybgm_${columnIndex}_of_${columnSalesOffersRecordList.length}'),
+                            salesOffer: columnSalesOffersRecord,
+                            pvTotals: _model.pvTotals!,
+                          );
+                        }),
+                      );
+                    },
                   ),
                 ),
                 Padding(

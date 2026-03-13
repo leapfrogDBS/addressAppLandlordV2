@@ -45,7 +45,7 @@ class PropertyV2Widget extends StatefulWidget {
   final DocumentReference? propID;
 
   static String routeName = 'PropertyV2';
-  static String routePath = '/singlepropertyV2';
+  static String routePath = '/singleproperty';
 
   @override
   State<PropertyV2Widget> createState() => _PropertyV2WidgetState();

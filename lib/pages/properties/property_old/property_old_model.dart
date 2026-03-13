@@ -26,7 +26,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'property_widget.dart' show PropertyWidget;
+import 'property_old_widget.dart' show PropertyOldWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:expandable/expandable.dart';
@@ -38,7 +38,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 
-class PropertyModel extends FlutterFlowModel<PropertyWidget> {
+class PropertyOldModel extends FlutterFlowModel<PropertyOldWidget> {
   ///  Local state fields for this page.
 
   double? equity = 66.25;
@@ -82,13 +82,13 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Read Document] action in Property widget.
+  // Stores action output result for [Backend Call - Read Document] action in PropertyOld widget.
   PropertiesRecord? output;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyOld widget.
   TenanciesRecord? outputTenancy;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyOld widget.
   List<ExpensesRecord>? getExpenses;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in PropertyOld widget.
   PropertyProjectionsRecord? projectionDoc;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
