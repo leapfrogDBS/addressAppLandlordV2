@@ -215,7 +215,7 @@ Map<String, dynamic> getEstimatedGainResultsFirestoreData(
   final firestoreData = mapToFirestore(estimatedGainResults.toMap());
 
   // Add any Firestore field values
-  estimatedGainResults.firestoreUtilData.fieldValues
+  mapToFirestore(estimatedGainResults.firestoreUtilData.fieldValues)
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;

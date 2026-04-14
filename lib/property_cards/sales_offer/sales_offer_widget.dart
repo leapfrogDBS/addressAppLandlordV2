@@ -92,7 +92,10 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
-                  widget!.salesOffer!.mainPhoto,
+                  valueOrDefault<String>(
+                    widget!.salesOffer?.mainPhoto,
+                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/9trt90hix19a/360_F_276422232_RTzQ3ATAs1gOYAjfvD2tsbRgdOeLjIq0.jpg',
+                  ),
                   width: double.infinity,
                   height: 172.0,
                   fit: BoxFit.cover,

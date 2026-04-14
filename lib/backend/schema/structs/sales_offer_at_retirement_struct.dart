@@ -220,7 +220,7 @@ Map<String, dynamic> getSalesOfferAtRetirementFirestoreData(
   final firestoreData = mapToFirestore(salesOfferAtRetirement.toMap());
 
   // Add any Firestore field values
-  salesOfferAtRetirement.firestoreUtilData.fieldValues
+  mapToFirestore(salesOfferAtRetirement.firestoreUtilData.fieldValues)
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;

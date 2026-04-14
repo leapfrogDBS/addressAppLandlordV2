@@ -97,8 +97,6 @@ class _MainHeaderWidgetState extends State<MainHeaderWidget> {
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(32.0),
                       bottomRight: Radius.circular(32.0),
-                      topLeft: Radius.circular(0.0),
-                      topRight: Radius.circular(0.0),
                     ),
                   ),
                   child: Padding(

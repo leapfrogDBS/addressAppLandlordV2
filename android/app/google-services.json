@@ -16,6 +16,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyAtqAODiWtyk-B6oJGVmES8Opn_WeK0bV8"
+        },
+        {
+          "current_key": "AIzaSyCGNHwGuARf1GKdK6x0iQAF_-q3OTt1REM"
         }
       ],
       "services": {
@@ -35,6 +38,31 @@
       "api_key": [
         {
           "current_key": "AIzaSyAtqAODiWtyk-B6oJGVmES8Opn_WeK0bV8"
+        },
+        {
+          "current_key": "AIzaSyCGNHwGuARf1GKdK6x0iQAF_-q3OTt1REM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193876818360:android:d2214877962dca898e374d",
+        "android_client_info": {
+          "package_name": "uk.co.addressed.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtqAODiWtyk-B6oJGVmES8Opn_WeK0bV8"
+        },
+        {
+          "current_key": "AIzaSyCGNHwGuARf1GKdK6x0iQAF_-q3OTt1REM"
         }
       ],
       "services": {

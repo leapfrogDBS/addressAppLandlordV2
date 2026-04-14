@@ -336,10 +336,10 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
                                     borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(350.0),
-                                      bottomRight: Radius.circular(350.0),
                                       topLeft: Radius.circular(350.0),
                                       topRight: Radius.circular(350.0),
+                                      bottomLeft: Radius.circular(350.0),
+                                      bottomRight: Radius.circular(350.0),
                                     ),
                                     shape: BoxShape.rectangle,
                                   ),

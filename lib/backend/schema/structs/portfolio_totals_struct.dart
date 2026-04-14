@@ -380,7 +380,7 @@ Map<String, dynamic> getPortfolioTotalsFirestoreData(
   final firestoreData = mapToFirestore(portfolioTotals.toMap());
 
   // Add any Firestore field values
-  portfolioTotals.firestoreUtilData.fieldValues
+  mapToFirestore(portfolioTotals.firestoreUtilData.fieldValues)
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;

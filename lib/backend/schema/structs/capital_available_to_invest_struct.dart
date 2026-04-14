@@ -242,7 +242,7 @@ Map<String, dynamic> getCapitalAvailableToInvestFirestoreData(
   final firestoreData = mapToFirestore(capitalAvailableToInvest.toMap());
 
   // Add any Firestore field values
-  capitalAvailableToInvest.firestoreUtilData.fieldValues
+  mapToFirestore(capitalAvailableToInvest.firestoreUtilData.fieldValues)
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;

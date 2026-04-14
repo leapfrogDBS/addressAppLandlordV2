@@ -1,4 +1,4 @@
-package com.mycompany.addressedappdesign
+package uk.co.addressed.app
 
 import io.flutter.embedding.android.FlutterActivity
 

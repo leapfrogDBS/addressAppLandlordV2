@@ -154,7 +154,7 @@ Map<String, dynamic> getCardStatsFirestoreData(
   final firestoreData = mapToFirestore(cardStats.toMap());
 
   // Add any Firestore field values
-  cardStats.firestoreUtilData.fieldValues
+  mapToFirestore(cardStats.firestoreUtilData.fieldValues)
       .forEach((k, v) => firestoreData[k] = v);
 
   return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;

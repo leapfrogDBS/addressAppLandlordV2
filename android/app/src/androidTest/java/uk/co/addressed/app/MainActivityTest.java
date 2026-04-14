@@ -1,4 +1,4 @@
-package com.mycompany.addressedappdesign;
+package uk.co.addressed.app;
 
 import androidx.test.rule.ActivityTestRule;
 import dev.flutter.plugins.integration_test.FlutterTestRunner;
