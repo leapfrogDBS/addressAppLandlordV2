@@ -13,18 +13,40 @@ exports.onUserRetirementChangepoke = functions
     const before = change.before.data() || {};
     const after = change.after.data() || {};
 
-    // Only react if one of these changed
-    const watched = [
-      "dob",
-      "planned_retirement_age",
-      "target_equity",
-      "target_income",
-    ];
+    // Skip while not active
+    if (after.status !== "active") {
+      functions.logger.info("[user-poke] skipped because user not active", {
+        userId,
+        status: after.status || null,
+      });
+      return null;
+    }
+
+    // Watch these two fields for changes
+    const watched = ["dob", "planned_retirement_age"];
     const changed = watched.some(
       (k) => JSON.stringify(before[k]) !== JSON.stringify(after[k]),
     );
     if (!changed) {
       functions.logger.debug("[user-poke] no relevant change", { userId });
+      return null;
+    }
+
+    // Only trigger if BOTH values are present/valid
+    const hasDob = !!after.dob;
+    const retirementAgeNum = Number(after.planned_retirement_age);
+    const hasRetirementAge =
+      Number.isFinite(retirementAgeNum) && retirementAgeNum > 0;
+
+    if (!hasDob || !hasRetirementAge) {
+      functions.logger.info(
+        "[user-poke] skipped because required fields missing",
+        {
+          userId,
+          hasDob,
+          hasRetirementAge,
+        },
+      );
       return null;
     }
 
@@ -49,8 +71,10 @@ exports.onUserRetirementChangepoke = functions
     );
 
     functions.logger.info("[user-poke] triggering properties", {
+      userId,
       count: updates.length,
     });
+
     if (updates.length) await Promise.all(updates);
     return null;
   });

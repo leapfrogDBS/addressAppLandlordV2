@@ -947,3 +947,14 @@ double? calculatePurchasingPower(
   if (depositPercent <= 0) return 0;
   return totalCapital / depositPercent;
 }
+
+int? parseMoneyToInt(String? raw) {
+  if (raw == null) return null;
+  final cleaned = raw.replaceAll(RegExp(r'[^0-9\.-]'), '');
+  if (cleaned.isEmpty || cleaned == '-' || cleaned == '.' || cleaned == '-.') {
+    return null;
+  }
+  final value = double.tryParse(cleaned);
+  if (value == null) return null;
+  return value.round();
+}
