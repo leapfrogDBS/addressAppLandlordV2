@@ -44,20 +44,11 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
       _model.userCollection =
           await UsersRecord.getDocumentOnce(currentUserReference!);
       if (_model.userCollection?.status != 'active') {
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
-        context.pushNamed(WelcomeWidget.routeName);
+        context.goNamed(WelcomeWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
-        context.pushNamed(RetirementGoalsWidget.routeName);
+        context.goNamed(RetirementGoalsWidget.routeName);
       } else if (!_model.userCollection!.shownMortgageOnboarding) {
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
-        context.pushNamed(MortgageInfoWidget.routeName);
+        context.goNamed(MortgageInfoWidget.routeName);
       } else {
         while (valueOrDefault<bool>(
             currentUserDocument?.calculatingProjections, false)) {
@@ -71,10 +62,8 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
         }
         _model.isCalculatingProjections = false;
         safeSetState(() {});
-        if (Navigator.of(context).canPop()) {
-          context.pop();
-        }
-        context.pushNamed(DashboardWidget.routeName);
+
+        context.goNamed(DashboardWidget.routeName);
       }
     });
 

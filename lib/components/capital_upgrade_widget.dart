@@ -141,7 +141,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                                     .fontStyle,
                                           ),
                                           color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                              .primaryBackground,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                           fontStyle:
@@ -166,6 +166,9 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                             .displayLarge
                                             .override(
                                               fontFamily: 'Thunder',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
                                               letterSpacing: 0.0,
                                             ),
                                       ),

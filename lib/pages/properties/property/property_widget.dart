@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/live_earnings_property_widget.dart';
 import '/components/main_header_widget.dart';
@@ -16,6 +17,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -421,19 +423,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        _model.tabView = 'overview';
-                                        safeSetState(() {});
-                                        await Future.delayed(
-                                          Duration(
-                                            milliseconds: 100,
-                                          ),
-                                        );
                                         await _model.columnController
                                             ?.animateTo(
                                           0,
                                           duration: Duration(milliseconds: 100),
                                           curve: Curves.ease,
                                         );
+                                        _model.tabView = 'overview';
+                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -515,19 +512,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        _model.tabView = 'financial';
-                                        safeSetState(() {});
-                                        await Future.delayed(
-                                          Duration(
-                                            milliseconds: 100,
-                                          ),
-                                        );
                                         await _model.columnController
                                             ?.animateTo(
                                           0,
                                           duration: Duration(milliseconds: 100),
                                           curve: Curves.ease,
                                         );
+                                        _model.tabView = 'financial';
+                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -609,19 +601,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        _model.tabView = 'timeline';
-                                        safeSetState(() {});
-                                        await Future.delayed(
-                                          Duration(
-                                            milliseconds: 100,
-                                          ),
-                                        );
                                         await _model.columnController
                                             ?.animateTo(
                                           0,
                                           duration: Duration(milliseconds: 100),
                                           curve: Curves.ease,
                                         );
+                                        _model.tabView = 'timeline';
+                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -703,19 +690,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        _model.tabView = 'documents';
-                                        safeSetState(() {});
-                                        await Future.delayed(
-                                          Duration(
-                                            milliseconds: 100,
-                                          ),
-                                        );
                                         await _model.columnController
                                             ?.animateTo(
                                           0,
                                           duration: Duration(milliseconds: 100),
                                           curve: Curves.ease,
                                         );
+                                        _model.tabView = 'documents';
+                                        safeSetState(() {});
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -810,30 +792,252 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Align(
+                                          Stack(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(1.0, 0.0, 0.0, 0.0),
-                                              child: Hero(
-                                                tag: propertyPropertiesRecord
-                                                    .mainPhoto,
-                                                transitionOnUserGestures: true,
-                                                child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16.0),
-                                                  child: Image.network(
-                                                    propertyPropertiesRecord
-                                                        .mainPhoto,
-                                                    width: double.infinity,
-                                                    height: 180.0,
-                                                    fit: BoxFit.cover,
+                                                AlignmentDirectional(1.0, 1.0),
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          1.0, 0.0, 0.0, 0.0),
+                                                  child: Hero(
+                                                    tag: valueOrDefault<String>(
+                                                      propertyPropertiesRecord
+                                                          .mainPhoto,
+                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/data-shema-changes-phnljo/assets/osnyemfa80kf/house-placeholder-300x213.jpg',
+                                                    ),
+                                                    transitionOnUserGestures:
+                                                        true,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
+                                                      child: Image.network(
+                                                        valueOrDefault<String>(
+                                                          propertyPropertiesRecord
+                                                              .mainPhoto,
+                                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/data-shema-changes-phnljo/assets/osnyemfa80kf/house-placeholder-300x213.jpg',
+                                                        ),
+                                                        width: double.infinity,
+                                                        height: 180.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    1.0, 1.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 12.0, 12.0),
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Change Image'),
+                                                                      content: Text(
+                                                                          'Do you want to change the main image for this property?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              Text('No'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              Text('Yes'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                      if (confirmDialogResponse) {
+                                                        final selectedMedia =
+                                                            await selectMediaWithSourceBottomSheet(
+                                                          context: context,
+                                                          allowPhoto: true,
+                                                        );
+                                                        if (selectedMedia !=
+                                                                null &&
+                                                            selectedMedia.every((m) =>
+                                                                validateFileFormat(
+                                                                    m.storagePath,
+                                                                    context))) {
+                                                          safeSetState(() =>
+                                                              _model.isDataUploading_userMainImage3 =
+                                                                  true);
+                                                          var selectedUploadedFiles =
+                                                              <FFUploadedFile>[];
+
+                                                          var downloadUrls =
+                                                              <String>[];
+                                                          try {
+                                                            selectedUploadedFiles =
+                                                                selectedMedia
+                                                                    .map((m) =>
+                                                                        FFUploadedFile(
+                                                                          name: m
+                                                                              .storagePath
+                                                                              .split('/')
+                                                                              .last,
+                                                                          bytes:
+                                                                              m.bytes,
+                                                                          height: m
+                                                                              .dimensions
+                                                                              ?.height,
+                                                                          width: m
+                                                                              .dimensions
+                                                                              ?.width,
+                                                                          blurHash:
+                                                                              m.blurHash,
+                                                                          originalFilename:
+                                                                              m.originalFilename,
+                                                                        ))
+                                                                    .toList();
+
+                                                            downloadUrls =
+                                                                (await Future
+                                                                        .wait(
+                                                              selectedMedia.map(
+                                                                (m) async =>
+                                                                    await uploadData(
+                                                                        m.storagePath,
+                                                                        m.bytes),
+                                                              ),
+                                                            ))
+                                                                    .where((u) =>
+                                                                        u !=
+                                                                        null)
+                                                                    .map((u) =>
+                                                                        u!)
+                                                                    .toList();
+                                                          } finally {
+                                                            _model.isDataUploading_userMainImage3 =
+                                                                false;
+                                                          }
+                                                          if (selectedUploadedFiles
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length &&
+                                                              downloadUrls
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                            safeSetState(() {
+                                                              _model.uploadedLocalFile_userMainImage3 =
+                                                                  selectedUploadedFiles
+                                                                      .first;
+                                                              _model.uploadedFileUrl_userMainImage3 =
+                                                                  downloadUrls
+                                                                      .first;
+                                                            });
+                                                          } else {
+                                                            safeSetState(() {});
+                                                            return;
+                                                          }
+                                                        }
+
+                                                        await widget!.propID!
+                                                            .update(
+                                                                createPropertiesRecordData(
+                                                          mainPhoto: _model
+                                                              .uploadedFileUrl_userMainImage3,
+                                                        ));
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Image Updated!',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .figtree(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondary,
+                                                          ),
+                                                        );
+                                                      } else {
+                                                        await Future.delayed(
+                                                          Duration(
+                                                            milliseconds: 10,
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
+                                                    child: Icon(
+                                                      Icons.edit,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                      size: 28.0,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Container(
                                             decoration: BoxDecoration(
@@ -2977,13 +3181,16 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             .pvProjection!,
                                                       ),
                                                     ),
-                                                  SizedBox(
-                                                    width: 200.0,
-                                                    child: Divider(
-                                                      thickness: 2.0,
-                                                      color: Color(0x393C444C),
+                                                  if (propertyPropertiesRecord
+                                                      .hasActiveTenancy)
+                                                    SizedBox(
+                                                      width: 200.0,
+                                                      child: Divider(
+                                                        thickness: 2.0,
+                                                        color:
+                                                            Color(0x393C444C),
+                                                      ),
                                                     ),
-                                                  ),
                                                   Expanded(
                                                     child: wrapWithModel(
                                                       model: _model
@@ -3389,7 +3596,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 ),
                                                                 focusNode: _model
                                                                     .mortgageRemainingFocusNode,
-                                                                autofocus: true,
+                                                                autofocus:
+                                                                    false,
                                                                 autofillHints: [
                                                                   AutofillHints
                                                                       .email

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/live_earnings_property_widget.dart';
 import '/components/main_header_widget.dart';
@@ -16,6 +17,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
 import '/nav/slide_navigation/slide_navigation_widget.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -95,6 +97,11 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   ScrollController? columnController;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
+  bool isDataUploading_userMainImage3 = false;
+  FFUploadedFile uploadedLocalFile_userMainImage3 =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+  String uploadedFileUrl_userMainImage3 = '';
+
   // Model for liveEarningsProperty component.
   late LiveEarningsPropertyModel liveEarningsPropertyModel;
   // State field(s) for Carousel widget.
