@@ -2593,7 +2593,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                               enlargeFactor:
                                                                   0.25,
                                                               enableInfiniteScroll:
-                                                                  true,
+                                                                  false,
                                                               scrollDirection:
                                                                   Axis.horizontal,
                                                               autoPlay: false,
@@ -4047,7 +4047,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 ),
                                                                 focusNode: _model
                                                                     .mortgageTermRemainingFocusNode,
-                                                                autofocus: true,
+                                                                autofocus:
+                                                                    false,
                                                                 autofillHints: [
                                                                   AutofillHints
                                                                       .email
@@ -4210,7 +4211,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 ),
                                                                 focusNode: _model
                                                                     .mortgageMonthlyPaymentFocusNode,
-                                                                autofocus: true,
+                                                                autofocus:
+                                                                    false,
                                                                 autofillHints: [
                                                                   AutofillHints
                                                                       .email

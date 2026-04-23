@@ -70,7 +70,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
