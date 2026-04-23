@@ -34,6 +34,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     updateFn(pvTotals ??= PortfolioTotalsStruct());
   }
 
+  bool canShowDashboard = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
