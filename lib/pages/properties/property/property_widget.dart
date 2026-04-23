@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -1059,7 +1060,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
-                                                            .spaceBetween,
+                                                            .spaceEvenly,
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
                                                             .start,
@@ -2322,12 +2323,55 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (propertyPropertiesRecord
-                                                  .gallery.isNotEmpty)
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 6.0),
+                                                    child: Text(
+                                                      FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'elq4wrah' /* Media Gallery */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .figtree(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  if (!(propertyPropertiesRecord
+                                                      .gallery.isNotEmpty))
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
@@ -2340,42 +2384,39 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'elq4wrah' /* Media Gallery */,
+                                                          'v3szhqo7' /* No images added to gallery */,
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .headlineMedium
+                                                                .bodyMedium
                                                                 .override(
                                                                   font: GoogleFonts
                                                                       .figtree(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .headlineMedium
+                                                                        .bodyMedium
                                                                         .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .headlineMedium
+                                                                        .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      18.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .headlineMedium
+                                                                      .bodyMedium
                                                                       .fontWeight,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .headlineMedium
+                                                                      .bodyMedium
                                                                       .fontStyle,
                                                                 ),
                                                       ),
                                                     ),
+                                                  if (propertyPropertiesRecord
+                                                      .gallery.isNotEmpty)
                                                     Builder(
                                                       builder: (context) {
                                                         final galleryImages =
@@ -2460,6 +2501,74 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       ),
                                                                     ),
                                                                   ),
+                                                                  if (galleryImagesItem !=
+                                                                          null &&
+                                                                      galleryImagesItem !=
+                                                                          '')
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              1.0,
+                                                                              -1.0),
+                                                                      child:
+                                                                          FlutterFlowIconButton(
+                                                                        borderRadius:
+                                                                            8.0,
+                                                                        buttonSize:
+                                                                            48.0,
+                                                                        icon:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .delete_forever,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).error,
+                                                                          size:
+                                                                              28.0,
+                                                                        ),
+                                                                        onPressed:
+                                                                            () async {
+                                                                          var confirmDialogResponse = await showDialog<bool>(
+                                                                                context: context,
+                                                                                builder: (alertDialogContext) {
+                                                                                  return WebViewAware(
+                                                                                    child: AlertDialog(
+                                                                                      title: Text('Confirm Deletion'),
+                                                                                      content: Text('Are you sure you want to delete this image?'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                          child: Text('No'),
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                          child: Text('Yes'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  );
+                                                                                },
+                                                                              ) ??
+                                                                              false;
+                                                                          if (confirmDialogResponse) {
+                                                                            await widget!.propID!.update({
+                                                                              ...mapToFirestore(
+                                                                                {
+                                                                                  'gallery': FieldValue.arrayRemove([
+                                                                                    galleryImagesItem
+                                                                                  ]),
+                                                                                },
+                                                                              ),
+                                                                            });
+                                                                          } else {
+                                                                            await Future.delayed(
+                                                                              Duration(
+                                                                                milliseconds: 10,
+                                                                              ),
+                                                                            );
+                                                                          }
+                                                                        },
+                                                                      ),
+                                                                    ),
                                                                 ],
                                                               );
                                                             },
@@ -2497,16 +2606,194 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         );
                                                       },
                                                     ),
-                                                  ].divide(
-                                                      SizedBox(height: 8.0)),
-                                                ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        final selectedMedia =
+                                                            await selectMedia(
+                                                          mediaSource:
+                                                              MediaSource
+                                                                  .photoGallery,
+                                                          multiImage: true,
+                                                        );
+                                                        if (selectedMedia !=
+                                                                null &&
+                                                            selectedMedia.every((m) =>
+                                                                validateFileFormat(
+                                                                    m.storagePath,
+                                                                    context))) {
+                                                          safeSetState(() =>
+                                                              _model.isDataUploading_userImages3 =
+                                                                  true);
+                                                          var selectedUploadedFiles =
+                                                              <FFUploadedFile>[];
+
+                                                          var downloadUrls =
+                                                              <String>[];
+                                                          try {
+                                                            selectedUploadedFiles =
+                                                                selectedMedia
+                                                                    .map((m) =>
+                                                                        FFUploadedFile(
+                                                                          name: m
+                                                                              .storagePath
+                                                                              .split('/')
+                                                                              .last,
+                                                                          bytes:
+                                                                              m.bytes,
+                                                                          height: m
+                                                                              .dimensions
+                                                                              ?.height,
+                                                                          width: m
+                                                                              .dimensions
+                                                                              ?.width,
+                                                                          blurHash:
+                                                                              m.blurHash,
+                                                                          originalFilename:
+                                                                              m.originalFilename,
+                                                                        ))
+                                                                    .toList();
+
+                                                            downloadUrls =
+                                                                (await Future
+                                                                        .wait(
+                                                              selectedMedia.map(
+                                                                (m) async =>
+                                                                    await uploadData(
+                                                                        m.storagePath,
+                                                                        m.bytes),
+                                                              ),
+                                                            ))
+                                                                    .where((u) =>
+                                                                        u !=
+                                                                        null)
+                                                                    .map((u) =>
+                                                                        u!)
+                                                                    .toList();
+                                                          } finally {
+                                                            _model.isDataUploading_userImages3 =
+                                                                false;
+                                                          }
+                                                          if (selectedUploadedFiles
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length &&
+                                                              downloadUrls
+                                                                      .length ==
+                                                                  selectedMedia
+                                                                      .length) {
+                                                            safeSetState(() {
+                                                              _model.uploadedLocalFiles_userImages3 =
+                                                                  selectedUploadedFiles;
+                                                              _model.uploadedFileUrls_userImages3 =
+                                                                  downloadUrls;
+                                                            });
+                                                          } else {
+                                                            safeSetState(() {});
+                                                            return;
+                                                          }
+                                                        }
+
+                                                        for (int loop1Index = 0;
+                                                            loop1Index <
+                                                                _model
+                                                                    .uploadedFileUrls_userImages3
+                                                                    .length;
+                                                            loop1Index++) {
+                                                          final currentLoop1Item =
+                                                              _model.uploadedFileUrls_userImages3[
+                                                                  loop1Index];
+
+                                                          await widget!.propID!
+                                                              .update({
+                                                            ...mapToFirestore(
+                                                              {
+                                                                'gallery':
+                                                                    FieldValue
+                                                                        .arrayUnion([
+                                                                  currentLoop1Item
+                                                                ]),
+                                                              },
+                                                            ),
+                                                          });
+                                                        }
+                                                      },
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'addll7bt' /* Add Images */,
+                                                      ),
+                                                      options: FFButtonOptions(
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    16.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .figtree(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                        elevation: 0.0,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
                                             ],
                                           ),
                                         ),
                                       ),
                                       Container(
                                         decoration: BoxDecoration(
-                                          color: Color(0xC7F2CB00),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
                                           borderRadius:
                                               BorderRadius.circular(16.0),
                                         ),

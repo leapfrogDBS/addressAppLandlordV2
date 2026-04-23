@@ -63,6 +63,10 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
         _model.isCalculatingProjections = false;
         safeSetState(() {});
 
+        await currentUserReference!.update(createUsersRecordData(
+          completedOnboarding: true,
+        ));
+
         context.goNamed(DashboardWidget.routeName);
       }
     });

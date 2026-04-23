@@ -49,20 +49,26 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await currentUserReference!.update(createUsersRecordData(
-        lastActive: getCurrentTimestamp,
-        status: 'active',
-      ));
-      _model.projectionDocs = await queryPropertyProjectionsRecordOnce(
-        queryBuilder: (propertyProjectionsRecord) =>
-            propertyProjectionsRecord.where(
-          'ownerRef',
-          isEqualTo: currentUserReference,
-        ),
-      );
-      _model.pvTotals =
-          functions.aggregateAtRetirement(_model.projectionDocs!.toList());
-      safeSetState(() {});
+      if (valueOrDefault<bool>(
+              currentUserDocument?.completedOnboarding, false) ==
+          true) {
+        await currentUserReference!.update(createUsersRecordData(
+          lastActive: getCurrentTimestamp,
+          status: 'active',
+        ));
+        _model.projectionDocs = await queryPropertyProjectionsRecordOnce(
+          queryBuilder: (propertyProjectionsRecord) =>
+              propertyProjectionsRecord.where(
+            'ownerRef',
+            isEqualTo: currentUserReference,
+          ),
+        );
+        _model.pvTotals =
+            functions.aggregateAtRetirement(_model.projectionDocs!.toList());
+        safeSetState(() {});
+      } else {
+        context.goNamed(RedirectPageWidget.routeName);
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

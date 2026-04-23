@@ -622,7 +622,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 20.0)),
+                ].divide(SizedBox(height: 10.0)),
               ),
             ),
           ),

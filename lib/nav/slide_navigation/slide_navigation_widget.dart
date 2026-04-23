@@ -70,7 +70,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,8 +101,13 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                   ],
                 ),
               ),
+              Divider(
+                height: 12.0,
+                thickness: 2.0,
+                color: Color(0xFFE5E7EB),
+              ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,

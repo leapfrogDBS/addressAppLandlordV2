@@ -131,6 +131,11 @@ class UsersRecord extends FirestoreRecord {
   bool get shownMortgageOnboarding => _shownMortgageOnboarding ?? false;
   bool hasShownMortgageOnboarding() => _shownMortgageOnboarding != null;
 
+  // "completedOnboarding" field.
+  bool? _completedOnboarding;
+  bool get completedOnboarding => _completedOnboarding ?? false;
+  bool hasCompletedOnboarding() => _completedOnboarding != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -157,6 +162,7 @@ class UsersRecord extends FirestoreRecord {
     _calculatingProjections = snapshotData['calculatingProjections'] as bool?;
     _availableCapital = castToType<double>(snapshotData['availableCapital']);
     _shownMortgageOnboarding = snapshotData['shownMortgageOnboarding'] as bool?;
+    _completedOnboarding = snapshotData['completedOnboarding'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -216,6 +222,7 @@ Map<String, dynamic> createUsersRecordData({
   bool? calculatingProjections,
   double? availableCapital,
   bool? shownMortgageOnboarding,
+  bool? completedOnboarding,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -242,6 +249,7 @@ Map<String, dynamic> createUsersRecordData({
       'calculatingProjections': calculatingProjections,
       'availableCapital': availableCapital,
       'shownMortgageOnboarding': shownMortgageOnboarding,
+      'completedOnboarding': completedOnboarding,
     }.withoutNulls,
   );
 
@@ -275,7 +283,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.portfolioRating == e2?.portfolioRating &&
         e1?.calculatingProjections == e2?.calculatingProjections &&
         e1?.availableCapital == e2?.availableCapital &&
-        e1?.shownMortgageOnboarding == e2?.shownMortgageOnboarding;
+        e1?.shownMortgageOnboarding == e2?.shownMortgageOnboarding &&
+        e1?.completedOnboarding == e2?.completedOnboarding;
   }
 
   @override
@@ -302,7 +311,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.portfolioRating,
         e?.calculatingProjections,
         e?.availableCapital,
-        e?.shownMortgageOnboarding
+        e?.shownMortgageOnboarding,
+        e?.completedOnboarding
       ]);
 
   @override

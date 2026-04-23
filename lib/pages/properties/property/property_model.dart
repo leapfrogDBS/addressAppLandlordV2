@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -107,6 +108,10 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 1;
+
+  bool isDataUploading_userImages3 = false;
+  List<FFUploadedFile> uploadedLocalFiles_userImages3 = [];
+  List<String> uploadedFileUrls_userImages3 = [];
 
   // State field(s) for GoogleMap widget.
   LatLng? googleMapsCenter;
