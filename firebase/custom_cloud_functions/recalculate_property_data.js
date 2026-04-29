@@ -150,13 +150,16 @@ async function computePropertyProjectionCore(args) {
 
     const estimatedValue = num(p.estimatedValue, 0);
 
-    // NEW: rent assumption comes from the property doc only (no tenancy reads)
+    // rent assumption comes from the property doc only (no tenancy reads)
     let rentPCM = num(p.currentRentAmount, 0);
     if (!Number.isFinite(rentPCM) || rentPCM < 0) rentPCM = 0;
     const annualRent0 = rentPCM * 12;
 
     const expenseBase = num(p.averageYearlyExpenses, 0);
-    const expenseInflationPct = num(p.expenseInflationPct, 3.0);
+    const expenseInflationPct = await resolveGlobalExpenseInflationPct({
+      db,
+      contextId: propertyId,
+    });
     const purchasePrice = num(p.purchasePrice, 0);
 
     const endYear = await resolveEndYear(db, p, startYear);
@@ -174,7 +177,6 @@ async function computePropertyProjectionCore(args) {
     const houseGlobal = toYearPctMap(houseGlobalSnap);
     const rentGlobal = toYearPctMap(rentGlobalSnap);
 
-    // Debug logging
     functions.logger.info("House price percentage maps loaded", {
       propertyId,
       houseOverrideCount: houseOvSnap.size,
@@ -247,7 +249,6 @@ async function computePropertyProjectionCore(args) {
       const housePct = pickPct(y, houseOverride, houseGlobal, 3.0);
       const rentPct = pickPct(y, rentOverride, rentGlobal, 3.0);
 
-      // Debug logging for first few years
       if (y <= startYear + 2) {
         functions.logger.info("Year percentage lookup", {
           year: y,
@@ -370,6 +371,7 @@ async function computePropertyProjectionCore(args) {
       propertyId,
       ownerId,
       years: years.length,
+      expenseInflationPctUsed: expenseInflationPct,
     });
   } finally {
     // END: atomic decrement + flip flag iff last job
@@ -405,6 +407,42 @@ function getOwnerUserIdFromPropertyData(p) {
 function num(v, fallback) {
   const n = typeof v === "string" ? Number(v) : typeof v === "number" ? v : NaN;
   return Number.isFinite(n) ? n : fallback;
+}
+
+async function resolveGlobalExpenseInflationPct(args) {
+  const { db, contextId } = args;
+  const DEFAULT_PCT = 3.0;
+
+  try {
+    const cfgSnap = await db.collection("appConfig").doc("projections").get();
+
+    if (!cfgSnap.exists) {
+      functions.logger.warn(
+        "Global projections config missing; using default expenseInflationPct",
+        { contextId, fallback: DEFAULT_PCT },
+      );
+      return DEFAULT_PCT;
+    }
+
+    const raw = cfgSnap.get("expenseInflationPct");
+    const pct = num(raw, NaN);
+
+    if (!Number.isFinite(pct) || pct <= 0) {
+      functions.logger.warn(
+        "Invalid global expenseInflationPct; using default",
+        { contextId, raw, parsed: pct, fallback: DEFAULT_PCT },
+      );
+      return DEFAULT_PCT;
+    }
+
+    return pct;
+  } catch (err) {
+    functions.logger.error(
+      "Failed reading global expenseInflationPct; using default",
+      { contextId, error: err && err.message, fallback: DEFAULT_PCT },
+    );
+    return DEFAULT_PCT;
+  }
 }
 
 async function resolveEndYear(db, p, startYear) {
@@ -460,7 +498,6 @@ function toYearPctMap(querySnap) {
     if (Number.isFinite(year) && Number.isFinite(pct)) {
       out[year] = pct;
     } else {
-      // Log skipped documents for debugging
       functions.logger.warn("Skipped invalid year/pct document", {
         docId: doc.id,
         year: d.year,
@@ -501,7 +538,6 @@ function ymdInLondon(dateObj) {
 }
 
 function cmpYMD(a, b) {
-  // Returns -1, 0, 1 for date-only comparison
   if (a.y !== b.y) return a.y < b.y ? -1 : 1;
   if (a.m !== b.m) return a.m < b.m ? -1 : 1;
   if (a.d !== b.d) return a.d < b.d ? -1 : 1;
@@ -509,8 +545,7 @@ function cmpYMD(a, b) {
 }
 
 function clampDay(year, month1to12, day) {
-  // Clamp day for month/year (handles Feb 29 etc.)
-  const daysInMonth = new Date(Date.UTC(year, month1to12, 0)).getUTCDate(); // month is 1-12
+  const daysInMonth = new Date(Date.UTC(year, month1to12, 0)).getUTCDate();
   return Math.min(day, daysInMonth);
 }
 
@@ -534,11 +569,10 @@ function ymdMinusOneDay(ymd) {
 
 function ymdToString(ymd) {
   const pad = (n) => String(n).padStart(2, "0");
-  return `${ymd.y}-${pad(ymd.m)}-${pad(ymd.d)}`; // e.g. 2025-07-01
+  return `${ymd.y}-${pad(ymd.m)}-${pad(ymd.d)}`;
 }
 
 function formatYMDLabel(ymd) {
-  // e.g. "1 Jul 2025" in UK format
   return new Intl.DateTimeFormat("en-GB", {
     timeZone: LONDON_TZ,
     day: "numeric",

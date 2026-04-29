@@ -24,6 +24,7 @@ import 'schema/email_record.dart';
 import 'schema/property_projections_record.dart';
 import 'schema/articles_record.dart';
 import 'schema/projections_record.dart';
+import 'schema/app_config_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -51,6 +52,7 @@ export 'schema/email_record.dart';
 export 'schema/property_projections_record.dart';
 export 'schema/articles_record.dart';
 export 'schema/projections_record.dart';
+export 'schema/app_config_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -769,6 +771,43 @@ Future<List<ProjectionsRecord>> queryProjectionsRecordOnce({
     queryCollectionOnce(
       ProjectionsRecord.collection(parent),
       ProjectionsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query AppConfigRecords (as a Stream and as a Future).
+Future<int> queryAppConfigRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      AppConfigRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<AppConfigRecord>> queryAppConfigRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      AppConfigRecord.collection,
+      AppConfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<AppConfigRecord>> queryAppConfigRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      AppConfigRecord.collection,
+      AppConfigRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

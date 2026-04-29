@@ -26,11 +26,6 @@ class TenanciesRecord extends FirestoreRecord {
   DateTime? get tenancyStartDate => _tenancyStartDate;
   bool hasTenancyStartDate() => _tenancyStartDate != null;
 
-  // "tenancyEndDate" field.
-  DateTime? _tenancyEndDate;
-  DateTime? get tenancyEndDate => _tenancyEndDate;
-  bool hasTenancyEndDate() => _tenancyEndDate != null;
-
   // "rentAmount" field.
   double? _rentAmount;
   double get rentAmount => _rentAmount ?? 0.0;
@@ -61,7 +56,6 @@ class TenanciesRecord extends FirestoreRecord {
   void _initializeFields() {
     _tenantName = snapshotData['tenantName'] as String?;
     _tenancyStartDate = snapshotData['tenancyStartDate'] as DateTime?;
-    _tenancyEndDate = snapshotData['tenancyEndDate'] as DateTime?;
     _rentAmount = castToType<double>(snapshotData['rentAmount']);
     _rentDueDay = castToType<int>(snapshotData['rentDueDay']);
     _isActive = snapshotData['isActive'] as bool?;
@@ -111,7 +105,6 @@ class TenanciesRecord extends FirestoreRecord {
 Map<String, dynamic> createTenanciesRecordData({
   String? tenantName,
   DateTime? tenancyStartDate,
-  DateTime? tenancyEndDate,
   double? rentAmount,
   int? rentDueDay,
   bool? isActive,
@@ -122,7 +115,6 @@ Map<String, dynamic> createTenanciesRecordData({
     <String, dynamic>{
       'tenantName': tenantName,
       'tenancyStartDate': tenancyStartDate,
-      'tenancyEndDate': tenancyEndDate,
       'rentAmount': rentAmount,
       'rentDueDay': rentDueDay,
       'isActive': isActive,
@@ -141,7 +133,6 @@ class TenanciesRecordDocumentEquality implements Equality<TenanciesRecord> {
   bool equals(TenanciesRecord? e1, TenanciesRecord? e2) {
     return e1?.tenantName == e2?.tenantName &&
         e1?.tenancyStartDate == e2?.tenancyStartDate &&
-        e1?.tenancyEndDate == e2?.tenancyEndDate &&
         e1?.rentAmount == e2?.rentAmount &&
         e1?.rentDueDay == e2?.rentDueDay &&
         e1?.isActive == e2?.isActive &&
@@ -153,7 +144,6 @@ class TenanciesRecordDocumentEquality implements Equality<TenanciesRecord> {
   int hash(TenanciesRecord? e) => const ListEquality().hash([
         e?.tenantName,
         e?.tenancyStartDate,
-        e?.tenancyEndDate,
         e?.rentAmount,
         e?.rentDueDay,
         e?.isActive,

@@ -46,11 +46,6 @@ class PropertiesRecord extends FirestoreRecord {
   DateTime? get purchaseDate => _purchaseDate;
   bool hasPurchaseDate() => _purchaseDate != null;
 
-  // "earningsToDate" field.
-  double? _earningsToDate;
-  double get earningsToDate => _earningsToDate ?? 0.0;
-  bool hasEarningsToDate() => _earningsToDate != null;
-
   // "nextRentReviewDate" field.
   DateTime? _nextRentReviewDate;
   DateTime? get nextRentReviewDate => _nextRentReviewDate;
@@ -260,7 +255,6 @@ class PropertiesRecord extends FirestoreRecord {
     _purchasePrice = castToType<double>(snapshotData['purchasePrice']);
     _estimatedValue = castToType<double>(snapshotData['estimatedValue']);
     _purchaseDate = snapshotData['purchaseDate'] as DateTime?;
-    _earningsToDate = castToType<double>(snapshotData['earningsToDate']);
     _nextRentReviewDate = snapshotData['nextRentReviewDate'] as DateTime?;
     _lastValuationDate = snapshotData['lastValuationDate'] as DateTime?;
     _energyCert = snapshotData['energyCert'] as String?;
@@ -351,7 +345,6 @@ Map<String, dynamic> createPropertiesRecordData({
   double? purchasePrice,
   double? estimatedValue,
   DateTime? purchaseDate,
-  double? earningsToDate,
   DateTime? nextRentReviewDate,
   DateTime? lastValuationDate,
   String? energyCert,
@@ -400,7 +393,6 @@ Map<String, dynamic> createPropertiesRecordData({
       'purchasePrice': purchasePrice,
       'estimatedValue': estimatedValue,
       'purchaseDate': purchaseDate,
-      'earningsToDate': earningsToDate,
       'nextRentReviewDate': nextRentReviewDate,
       'lastValuationDate': lastValuationDate,
       'energyCert': energyCert,
@@ -458,7 +450,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.purchasePrice == e2?.purchasePrice &&
         e1?.estimatedValue == e2?.estimatedValue &&
         e1?.purchaseDate == e2?.purchaseDate &&
-        e1?.earningsToDate == e2?.earningsToDate &&
         e1?.nextRentReviewDate == e2?.nextRentReviewDate &&
         e1?.lastValuationDate == e2?.lastValuationDate &&
         e1?.energyCert == e2?.energyCert &&
@@ -510,7 +501,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.purchasePrice,
         e?.estimatedValue,
         e?.purchaseDate,
-        e?.earningsToDate,
         e?.nextRentReviewDate,
         e?.lastValuationDate,
         e?.energyCert,

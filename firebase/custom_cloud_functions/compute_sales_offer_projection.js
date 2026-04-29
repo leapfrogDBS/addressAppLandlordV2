@@ -15,6 +15,42 @@ function num(v, fallback) {
   return Number.isFinite(n) ? n : fallback;
 }
 
+async function resolveGlobalExpenseInflationPct(args) {
+  const { db, contextId } = args;
+  const DEFAULT_PCT = 3.0;
+
+  try {
+    const cfgSnap = await db.collection("appConfig").doc("projections").get();
+
+    if (!cfgSnap.exists) {
+      functions.logger.warn(
+        "Global projections config missing; using default expenseInflationPct",
+        { contextId, fallback: DEFAULT_PCT },
+      );
+      return DEFAULT_PCT;
+    }
+
+    const raw = cfgSnap.get("expenseInflationPct");
+    const pct = num(raw, NaN);
+
+    if (!Number.isFinite(pct) || pct <= 0) {
+      functions.logger.warn(
+        "Invalid global expenseInflationPct; using default",
+        { contextId, raw, parsed: pct, fallback: DEFAULT_PCT },
+      );
+      return DEFAULT_PCT;
+    }
+
+    return pct;
+  } catch (err) {
+    functions.logger.error(
+      "Failed reading global expenseInflationPct; using default",
+      { contextId, error: err && err.message, fallback: DEFAULT_PCT },
+    );
+    return DEFAULT_PCT;
+  }
+}
+
 function toYearPctMap(querySnap) {
   const out = {};
   querySnap.forEach((doc) => {
@@ -90,7 +126,10 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
   const monthlyRental = num(offer.monthlyRental, 0);
   const annualRent0 = monthlyRental * 12;
   const expenseBase = num(offer.estimatedYearlyExpenses, 0);
-  const expenseInflationPct = 3.0;
+  const expenseInflationPct = await resolveGlobalExpenseInflationPct({
+    db,
+    contextId: offerId,
+  });
 
   const [houseGlobalSnap, rentGlobalSnap] = await Promise.all([
     db.collection("housePriceYears").get(),
@@ -123,7 +162,6 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
     const nextCap = rollingCapital + capGainY;
     const annualProfitY = rollingRent - rollingExpenses;
 
-    // Push year-aligned arrays
     years.push(y);
     projectedHousePrice.push(round2(nextCap));
     rentalIncome.push(round2(rollingRent));
@@ -131,19 +169,14 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
     rentalProfit.push(round2(annualProfitY));
     capitalGains.push(round2(capGainY));
 
-    // Cumulative profit (includes this year)
     runningRentalProfit += annualProfitY;
     cumulativeRentalProfit.push(round2(runningRentalProfit));
-
-    // "Net worth style" combined (house value + cumulative rental profit)
     combined.push(round2(nextCap + runningRentalProfit));
 
-    // Yearly combined gain (capital gain + rental profit) + daily version
     const totalAnnualGainY = capGainY + annualProfitY;
     combinedYearlyGain.push(round2(totalAnnualGainY));
     combinedDailyGain.push(round2(totalAnnualGainY / 365));
 
-    // Roll forward for next year
     if (y < endYear) {
       rollingCapital = nextCap;
       rollingRent = rollingRent * (1 + rentPct / 100);
@@ -182,5 +215,6 @@ async function computeSalesOfferProjectionCore(db, offerId, offer) {
     startYear,
     endYear,
     yearsCount: years.length,
+    expenseInflationPctUsed: expenseInflationPct,
   });
 }
