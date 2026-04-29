@@ -41,11 +41,6 @@ class PropertiesRecord extends FirestoreRecord {
   double get estimatedValue => _estimatedValue ?? 0.0;
   bool hasEstimatedValue() => _estimatedValue != null;
 
-  // "rentPCM" field.
-  double? _rentPCM;
-  double get rentPCM => _rentPCM ?? 0.0;
-  bool hasRentPCM() => _rentPCM != null;
-
   // "purchaseDate" field.
   DateTime? _purchaseDate;
   DateTime? get purchaseDate => _purchaseDate;
@@ -253,13 +248,17 @@ class PropertiesRecord extends FirestoreRecord {
   String get currentTenancyId => _currentTenancyId ?? '';
   bool hasCurrentTenancyId() => _currentTenancyId != null;
 
+  // "currentRentSource" field.
+  String? _currentRentSource;
+  String get currentRentSource => _currentRentSource ?? '';
+  bool hasCurrentRentSource() => _currentRentSource != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
     _mainPhoto = snapshotData['mainPhoto'] as String?;
     _purchasePrice = castToType<double>(snapshotData['purchasePrice']);
     _estimatedValue = castToType<double>(snapshotData['estimatedValue']);
-    _rentPCM = castToType<double>(snapshotData['rentPCM']);
     _purchaseDate = snapshotData['purchaseDate'] as DateTime?;
     _earningsToDate = castToType<double>(snapshotData['earningsToDate']);
     _nextRentReviewDate = snapshotData['nextRentReviewDate'] as DateTime?;
@@ -308,6 +307,7 @@ class PropertiesRecord extends FirestoreRecord {
     _currentRentAmount = castToType<double>(snapshotData['currentRentAmount']);
     _hasActiveTenancy = snapshotData['hasActiveTenancy'] as bool?;
     _currentTenancyId = snapshotData['currentTenancyId'] as String?;
+    _currentRentSource = snapshotData['currentRentSource'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -350,7 +350,6 @@ Map<String, dynamic> createPropertiesRecordData({
   String? mainPhoto,
   double? purchasePrice,
   double? estimatedValue,
-  double? rentPCM,
   DateTime? purchaseDate,
   double? earningsToDate,
   DateTime? nextRentReviewDate,
@@ -391,6 +390,7 @@ Map<String, dynamic> createPropertiesRecordData({
   double? currentRentAmount,
   bool? hasActiveTenancy,
   String? currentTenancyId,
+  String? currentRentSource,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -399,7 +399,6 @@ Map<String, dynamic> createPropertiesRecordData({
       'mainPhoto': mainPhoto,
       'purchasePrice': purchasePrice,
       'estimatedValue': estimatedValue,
-      'rentPCM': rentPCM,
       'purchaseDate': purchaseDate,
       'earningsToDate': earningsToDate,
       'nextRentReviewDate': nextRentReviewDate,
@@ -440,6 +439,7 @@ Map<String, dynamic> createPropertiesRecordData({
       'currentRentAmount': currentRentAmount,
       'hasActiveTenancy': hasActiveTenancy,
       'currentTenancyId': currentTenancyId,
+      'currentRentSource': currentRentSource,
     }.withoutNulls,
   );
 
@@ -457,7 +457,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.mainPhoto == e2?.mainPhoto &&
         e1?.purchasePrice == e2?.purchasePrice &&
         e1?.estimatedValue == e2?.estimatedValue &&
-        e1?.rentPCM == e2?.rentPCM &&
         e1?.purchaseDate == e2?.purchaseDate &&
         e1?.earningsToDate == e2?.earningsToDate &&
         e1?.nextRentReviewDate == e2?.nextRentReviewDate &&
@@ -499,7 +498,8 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
             e2?.priceValuationOnJoiningAddressed &&
         e1?.currentRentAmount == e2?.currentRentAmount &&
         e1?.hasActiveTenancy == e2?.hasActiveTenancy &&
-        e1?.currentTenancyId == e2?.currentTenancyId;
+        e1?.currentTenancyId == e2?.currentTenancyId &&
+        e1?.currentRentSource == e2?.currentRentSource;
   }
 
   @override
@@ -509,7 +509,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.mainPhoto,
         e?.purchasePrice,
         e?.estimatedValue,
-        e?.rentPCM,
         e?.purchaseDate,
         e?.earningsToDate,
         e?.nextRentReviewDate,
@@ -550,7 +549,8 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.priceValuationOnJoiningAddressed,
         e?.currentRentAmount,
         e?.hasActiveTenancy,
-        e?.currentTenancyId
+        e?.currentTenancyId,
+        e?.currentRentSource
       ]);
 
   @override

@@ -61,20 +61,24 @@ exports.onTenancyWriteSyncCurrentRent = functions
     const prevHasActive =
       typeof p.hasActiveTenancy === "boolean" ? p.hasActiveTenancy : false;
     const prevTenancyId = p.currentTenancyId || "";
+    const prevRentSource =
+      typeof p.currentRentSource === "string" ? p.currentRentSource : "";
 
     const updates = {};
     let poke = false;
 
     if (activeSnap.empty) {
-      // No active tenancy -> keep last known rent, but mark inactive
+      // No active tenancy -> keep last known rent + source, but mark inactive
       if (prevHasActive !== false) {
         updates.hasActiveTenancy = false;
-        poke = true; // optional; harmless. If you don't care, remove this poke.
+        poke = true;
       } else {
-        // still set explicitly only if you want property to always have the field
+        // keep field explicit if you want
         // updates.hasActiveTenancy = false;
       }
+
       // do NOT change currentRentAmount
+      // do NOT change currentRentSource
       // do NOT change currentTenancyId (optional; you can clear it if you prefer)
       // updates.currentTenancyId = admin.firestore.FieldValue.delete();
     } else {
@@ -85,22 +89,23 @@ exports.onTenancyWriteSyncCurrentRent = functions
 
       if (prevHasActive !== true) {
         updates.hasActiveTenancy = true;
-        poke = true; // optional UI signal
+        poke = true;
       } else {
-        // keep it set if you want it always present
         updates.hasActiveTenancy = true;
       }
 
       if (prevRent !== rentPCM) {
         updates.currentRentAmount = rentPCM;
         poke = true; // projections depend on rent
-      } else {
-        // still ensure the field exists if you want
-        // updates.currentRentAmount = rentPCM;
+      }
+
+      // Ensure source reflects tenancy even if rent is unchanged
+      if (prevRentSource !== "tenancy") {
+        updates.currentRentSource = "tenancy";
       }
 
       if (prevTenancyId !== chosenId) {
-        updates.currentTenancyId = chosenId; // optional debug
+        updates.currentTenancyId = chosenId;
         // no need to poke for this alone
       }
 
