@@ -3,8 +3,6 @@ export '/pages/login_registration/login/login_widget.dart' show LoginWidget;
 export '/pages/dashboard/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/pages/properties/properties/properties_widget.dart'
     show PropertiesWidget;
-export '/pages/properties/property_old/property_old_widget.dart'
-    show PropertyOldWidget;
 export '/pages/user/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/messages/message/message_widget.dart' show MessageWidget;
 export '/pages/user/notifications/notifications_widget.dart'

@@ -116,20 +116,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               : PropertiesWidget(),
         ),
         FFRoute(
-            name: PropertyOldWidget.routeName,
-            path: PropertyOldWidget.routePath,
-            builder: (context, params) => NavBarPage(
-                  initialPage: '',
-                  page: PropertyOldWidget(
-                    propID: params.getParam(
-                      'propID',
-                      ParamType.DocumentReference,
-                      isList: false,
-                      collectionNamePath: ['properties'],
-                    ),
-                  ),
-                )),
-        FFRoute(
           name: ProfileWidget.routeName,
           path: ProfileWidget.routePath,
           builder: (context, params) => ProfileWidget(),

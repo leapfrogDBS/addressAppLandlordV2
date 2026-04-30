@@ -118,11 +118,6 @@ final parametersBuilderMap =
   'Login': ParameterData.none(),
   'dashboard': ParameterData.none(),
   'Properties': ParameterData.none(),
-  'PropertyOld': (data) async => ParameterData(
-        allParams: {
-          'propID': getParameter<DocumentReference>(data, 'propID'),
-        },
-      ),
   'Profile': ParameterData.none(),
   'Message': (data) async => ParameterData(
         allParams: {

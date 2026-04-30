@@ -41,21 +41,6 @@ class PropertiesRecord extends FirestoreRecord {
   double get estimatedValue => _estimatedValue ?? 0.0;
   bool hasEstimatedValue() => _estimatedValue != null;
 
-  // "purchaseDate" field.
-  DateTime? _purchaseDate;
-  DateTime? get purchaseDate => _purchaseDate;
-  bool hasPurchaseDate() => _purchaseDate != null;
-
-  // "nextRentReviewDate" field.
-  DateTime? _nextRentReviewDate;
-  DateTime? get nextRentReviewDate => _nextRentReviewDate;
-  bool hasNextRentReviewDate() => _nextRentReviewDate != null;
-
-  // "lastValuationDate" field.
-  DateTime? _lastValuationDate;
-  DateTime? get lastValuationDate => _lastValuationDate;
-  bool hasLastValuationDate() => _lastValuationDate != null;
-
   // "energyCert" field.
   String? _energyCert;
   String get energyCert => _energyCert ?? '';
@@ -176,11 +161,6 @@ class PropertiesRecord extends FirestoreRecord {
   double get averageYearlyExpenses => _averageYearlyExpenses ?? 0.0;
   bool hasAverageYearlyExpenses() => _averageYearlyExpenses != null;
 
-  // "expenseInflationPct" field.
-  double? _expenseInflationPct;
-  double get expenseInflationPct => _expenseInflationPct ?? 0.0;
-  bool hasExpenseInflationPct() => _expenseInflationPct != null;
-
   // "mortgageMonthlyPayment" field.
   double? _mortgageMonthlyPayment;
   double get mortgageMonthlyPayment => _mortgageMonthlyPayment ?? 0.0;
@@ -216,11 +196,6 @@ class PropertiesRecord extends FirestoreRecord {
   DateTime? get lastAccruedAt => _lastAccruedAt;
   bool hasLastAccruedAt() => _lastAccruedAt != null;
 
-  // "lastAccruedAmount" field.
-  double? _lastAccruedAmount;
-  double get lastAccruedAmount => _lastAccruedAmount ?? 0.0;
-  bool hasLastAccruedAmount() => _lastAccruedAmount != null;
-
   // "priceValuationOnJoiningAddressed" field.
   double? _priceValuationOnJoiningAddressed;
   double get priceValuationOnJoiningAddressed =>
@@ -248,15 +223,17 @@ class PropertiesRecord extends FirestoreRecord {
   String get currentRentSource => _currentRentSource ?? '';
   bool hasCurrentRentSource() => _currentRentSource != null;
 
+  // "_recalcTrigger" field.
+  DateTime? _recalcTrigger;
+  DateTime? get recalcTrigger => _recalcTrigger;
+  bool hasRecalcTrigger() => _recalcTrigger != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
     _mainPhoto = snapshotData['mainPhoto'] as String?;
     _purchasePrice = castToType<double>(snapshotData['purchasePrice']);
     _estimatedValue = castToType<double>(snapshotData['estimatedValue']);
-    _purchaseDate = snapshotData['purchaseDate'] as DateTime?;
-    _nextRentReviewDate = snapshotData['nextRentReviewDate'] as DateTime?;
-    _lastValuationDate = snapshotData['lastValuationDate'] as DateTime?;
     _energyCert = snapshotData['energyCert'] as String?;
     _gasCert = snapshotData['gasCert'] as String?;
     _elecCert = snapshotData['ElecCert'] as String?;
@@ -283,8 +260,6 @@ class PropertiesRecord extends FirestoreRecord {
     _previousExpenses = castToType<double>(snapshotData['previousExpenses']);
     _averageYearlyExpenses =
         castToType<double>(snapshotData['averageYearlyExpenses']);
-    _expenseInflationPct =
-        castToType<double>(snapshotData['expenseInflationPct']);
     _mortgageMonthlyPayment =
         castToType<double>(snapshotData['mortgageMonthlyPayment']);
     _mortgageTermRemaining =
@@ -295,13 +270,13 @@ class PropertiesRecord extends FirestoreRecord {
     _lastAccruedPeriodStart =
         snapshotData['lastAccruedPeriodStart'] as DateTime?;
     _lastAccruedAt = snapshotData['lastAccruedAt'] as DateTime?;
-    _lastAccruedAmount = castToType<double>(snapshotData['lastAccruedAmount']);
     _priceValuationOnJoiningAddressed =
         castToType<double>(snapshotData['priceValuationOnJoiningAddressed']);
     _currentRentAmount = castToType<double>(snapshotData['currentRentAmount']);
     _hasActiveTenancy = snapshotData['hasActiveTenancy'] as bool?;
     _currentTenancyId = snapshotData['currentTenancyId'] as String?;
     _currentRentSource = snapshotData['currentRentSource'] as String?;
+    _recalcTrigger = snapshotData['_recalcTrigger'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -344,9 +319,6 @@ Map<String, dynamic> createPropertiesRecordData({
   String? mainPhoto,
   double? purchasePrice,
   double? estimatedValue,
-  DateTime? purchaseDate,
-  DateTime? nextRentReviewDate,
-  DateTime? lastValuationDate,
   String? energyCert,
   String? gasCert,
   String? elecCert,
@@ -370,7 +342,6 @@ Map<String, dynamic> createPropertiesRecordData({
   double? previousRentalIncome,
   double? previousExpenses,
   double? averageYearlyExpenses,
-  double? expenseInflationPct,
   double? mortgageMonthlyPayment,
   int? mortgageTermRemaining,
   String? letType,
@@ -378,12 +349,12 @@ Map<String, dynamic> createPropertiesRecordData({
   DateTime? dateJoinedAddressed,
   DateTime? lastAccruedPeriodStart,
   DateTime? lastAccruedAt,
-  double? lastAccruedAmount,
   double? priceValuationOnJoiningAddressed,
   double? currentRentAmount,
   bool? hasActiveTenancy,
   String? currentTenancyId,
   String? currentRentSource,
+  DateTime? recalcTrigger,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -392,9 +363,6 @@ Map<String, dynamic> createPropertiesRecordData({
       'mainPhoto': mainPhoto,
       'purchasePrice': purchasePrice,
       'estimatedValue': estimatedValue,
-      'purchaseDate': purchaseDate,
-      'nextRentReviewDate': nextRentReviewDate,
-      'lastValuationDate': lastValuationDate,
       'energyCert': energyCert,
       'gasCert': gasCert,
       'ElecCert': elecCert,
@@ -418,7 +386,6 @@ Map<String, dynamic> createPropertiesRecordData({
       'previousRentalIncome': previousRentalIncome,
       'previousExpenses': previousExpenses,
       'averageYearlyExpenses': averageYearlyExpenses,
-      'expenseInflationPct': expenseInflationPct,
       'mortgageMonthlyPayment': mortgageMonthlyPayment,
       'mortgageTermRemaining': mortgageTermRemaining,
       'letType': letType,
@@ -426,12 +393,12 @@ Map<String, dynamic> createPropertiesRecordData({
       'dateJoinedAddressed': dateJoinedAddressed,
       'lastAccruedPeriodStart': lastAccruedPeriodStart,
       'lastAccruedAt': lastAccruedAt,
-      'lastAccruedAmount': lastAccruedAmount,
       'priceValuationOnJoiningAddressed': priceValuationOnJoiningAddressed,
       'currentRentAmount': currentRentAmount,
       'hasActiveTenancy': hasActiveTenancy,
       'currentTenancyId': currentTenancyId,
       'currentRentSource': currentRentSource,
+      '_recalcTrigger': recalcTrigger,
     }.withoutNulls,
   );
 
@@ -449,9 +416,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.mainPhoto == e2?.mainPhoto &&
         e1?.purchasePrice == e2?.purchasePrice &&
         e1?.estimatedValue == e2?.estimatedValue &&
-        e1?.purchaseDate == e2?.purchaseDate &&
-        e1?.nextRentReviewDate == e2?.nextRentReviewDate &&
-        e1?.lastValuationDate == e2?.lastValuationDate &&
         e1?.energyCert == e2?.energyCert &&
         e1?.gasCert == e2?.gasCert &&
         e1?.elecCert == e2?.elecCert &&
@@ -476,7 +440,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.previousRentalIncome == e2?.previousRentalIncome &&
         e1?.previousExpenses == e2?.previousExpenses &&
         e1?.averageYearlyExpenses == e2?.averageYearlyExpenses &&
-        e1?.expenseInflationPct == e2?.expenseInflationPct &&
         e1?.mortgageMonthlyPayment == e2?.mortgageMonthlyPayment &&
         e1?.mortgageTermRemaining == e2?.mortgageTermRemaining &&
         e1?.letType == e2?.letType &&
@@ -484,13 +447,13 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.dateJoinedAddressed == e2?.dateJoinedAddressed &&
         e1?.lastAccruedPeriodStart == e2?.lastAccruedPeriodStart &&
         e1?.lastAccruedAt == e2?.lastAccruedAt &&
-        e1?.lastAccruedAmount == e2?.lastAccruedAmount &&
         e1?.priceValuationOnJoiningAddressed ==
             e2?.priceValuationOnJoiningAddressed &&
         e1?.currentRentAmount == e2?.currentRentAmount &&
         e1?.hasActiveTenancy == e2?.hasActiveTenancy &&
         e1?.currentTenancyId == e2?.currentTenancyId &&
-        e1?.currentRentSource == e2?.currentRentSource;
+        e1?.currentRentSource == e2?.currentRentSource &&
+        e1?.recalcTrigger == e2?.recalcTrigger;
   }
 
   @override
@@ -500,9 +463,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.mainPhoto,
         e?.purchasePrice,
         e?.estimatedValue,
-        e?.purchaseDate,
-        e?.nextRentReviewDate,
-        e?.lastValuationDate,
         e?.energyCert,
         e?.gasCert,
         e?.elecCert,
@@ -527,7 +487,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.previousRentalIncome,
         e?.previousExpenses,
         e?.averageYearlyExpenses,
-        e?.expenseInflationPct,
         e?.mortgageMonthlyPayment,
         e?.mortgageTermRemaining,
         e?.letType,
@@ -535,12 +494,12 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.dateJoinedAddressed,
         e?.lastAccruedPeriodStart,
         e?.lastAccruedAt,
-        e?.lastAccruedAmount,
         e?.priceValuationOnJoiningAddressed,
         e?.currentRentAmount,
         e?.hasActiveTenancy,
         e?.currentTenancyId,
-        e?.currentRentSource
+        e?.currentRentSource,
+        e?.recalcTrigger
       ]);
 
   @override

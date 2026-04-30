@@ -33,7 +33,6 @@ class PropertyProjectionChart2 extends StatefulWidget {
     this.height,
     required this.projection, // Document: propertyProjections
     this.chartViewType = 'COMBINED', // 'CAPITAL' | 'RENTAL' | 'COMBINED'
-    this.hasActiveTenancy = false, // handles no-tenancy case
   });
 
   final double? width;
@@ -43,7 +42,6 @@ class PropertyProjectionChart2 extends StatefulWidget {
   final PropertyProjectionsRecord? projection;
 
   final String chartViewType;
-  final bool hasActiveTenancy;
 
   @override
   State<PropertyProjectionChart2> createState() =>
@@ -152,9 +150,7 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
     final labels = periodLabelsShort.take(coreLen).toList();
 
     // Rental (yearly profit)
-    final rentalRaw = widget.hasActiveTenancy
-        ? (proj.rentalProfit ?? const <dynamic>[])
-        : const <dynamic>[];
+    final rentalRaw = (proj.rentalProfit ?? const <dynamic>[]);
     final rentProfit = List<double>.generate(
       coreLen,
       (i) => i < rentalRaw.length ? _toDouble(rentalRaw[i]) : 0.0,
@@ -168,25 +164,7 @@ class _PropertyProjectionChart2State extends State<PropertyProjectionChart2> {
           (i < rentProfit.length ? rentProfit[i] : 0.0),
     );
 
-    // Keep your existing vacancy behaviour (force CAPITAL unless explicitly CAPITAL)
-    final effectiveViewType =
-        (!widget.hasActiveTenancy && widget.chartViewType != 'CAPITAL')
-            ? 'CAPITAL'
-            : widget.chartViewType;
-
-    // If user explicitly picked RENTAL but there’s no rent, show a friendly placeholder
-    final rentalAllZero =
-        rentProfit.isEmpty || rentProfit.every((v) => v.abs() < 1e-9);
-    if (effectiveViewType == 'RENTAL' && rentalAllZero) {
-      return SizedBox(
-        width: widget.width ?? double.infinity,
-        height: widget.height ?? 300,
-        child: Center(
-          child:
-              Text('No active tenancy — rental is £0', style: theme.bodyMedium),
-        ),
-      );
-    }
+    final effectiveViewType = widget.chartViewType;
 
     // Choose series
     late final List<double> seriesY;
