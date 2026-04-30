@@ -237,7 +237,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
                       collectionNamePath: ['properties'],
                     ),
                   ),
-                ))
+                )),
+        FFRoute(
+          name: PurchaseInfoWidget.routeName,
+          path: PurchaseInfoWidget.routePath,
+          builder: (context, params) => PurchaseInfoWidget(),
+        )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 

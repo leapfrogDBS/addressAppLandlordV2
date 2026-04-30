@@ -31,3 +31,5 @@ export '/pages/onboarding/redirect_page/redirect_page_widget.dart'
 export '/pages/onboarding/personal_details/personal_details_widget.dart'
     show PersonalDetailsWidget;
 export '/pages/properties/property/property_widget.dart' show PropertyWidget;
+export '/pages/onboarding/purchase_info/purchase_info_widget.dart'
+    show PurchaseInfoWidget;

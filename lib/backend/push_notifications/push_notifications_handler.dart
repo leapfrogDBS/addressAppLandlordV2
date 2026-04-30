@@ -152,6 +152,7 @@ final parametersBuilderMap =
           'propID': getParameter<DocumentReference>(data, 'propID'),
         },
       ),
+  'purchaseInfo': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {
