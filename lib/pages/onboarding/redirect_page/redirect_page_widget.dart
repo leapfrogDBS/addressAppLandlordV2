@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,12 +44,27 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
       );
       _model.userCollection =
           await UsersRecord.getDocumentOnce(currentUserReference!);
+      _model.noPurchasePrice = await queryPropertiesRecordOnce(
+        queryBuilder: (propertiesRecord) => propertiesRecord
+            .where(
+              'ownerID',
+              isEqualTo: currentUserReference?.id,
+            )
+            .where(
+              'purchasePrice',
+              isLessThanOrEqualTo: 0.0,
+            ),
+        limit: 1,
+      );
       if (_model.userCollection?.status != 'active') {
         context.goNamed(WelcomeWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
         context.goNamed(RetirementGoalsWidget.routeName);
       } else if (!_model.userCollection!.shownMortgageOnboarding) {
         context.goNamed(MortgageInfoWidget.routeName);
+      } else if (_model.noPurchasePrice != null &&
+          (_model.noPurchasePrice)!.isNotEmpty) {
+        context.goNamed(PurchaseInfoWidget.routeName);
       } else {
         while (valueOrDefault<bool>(
             currentUserDocument?.calculatingProjections, false)) {

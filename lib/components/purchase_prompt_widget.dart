@@ -199,7 +199,6 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                   ),
-              keyboardType: TextInputType.number,
               cursorColor: FlutterFlowTheme.of(context).primaryText,
               validator: _model.propertyTitleTextControllerValidator
                   .asValidator(context),

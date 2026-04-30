@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -207,15 +208,51 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                                       0.0, 20.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        shownMortgageOnboarding: true,
-                                      ));
-                                      if (Navigator.of(context).canPop()) {
-                                        context.pop();
+                                      _model.noPurchasePrice =
+                                          await queryPropertiesRecordOnce(
+                                        queryBuilder: (propertiesRecord) =>
+                                            propertiesRecord
+                                                .where(
+                                                  'ownerID',
+                                                  isEqualTo:
+                                                      currentUserReference?.id,
+                                                )
+                                                .where(
+                                                  'purchasePrice',
+                                                  isLessThanOrEqualTo: 0.0,
+                                                ),
+                                        limit: 1,
+                                      );
+                                      if (_model.noPurchasePrice != null &&
+                                          (_model.noPurchasePrice)!
+                                              .isNotEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Please enter purchase price for all properties',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                          ),
+                                        );
+                                      } else {
+                                        if (Navigator.of(context).canPop()) {
+                                          context.pop();
+                                        }
+                                        context.pushNamed(
+                                            RedirectPageWidget.routeName);
                                       }
-                                      context.pushNamed(
-                                          RedirectPageWidget.routeName);
+
+                                      safeSetState(() {});
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'i5ffo260' /* Next */,
