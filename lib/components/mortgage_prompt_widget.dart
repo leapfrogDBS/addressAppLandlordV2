@@ -88,9 +88,10 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                     width: 300.0,
                     decoration: BoxDecoration(),
                     child: Text(
-                      widget!.title != null && widget!.title != ''
-                          ? widget!.title!
-                          : widget!.formattedAddress!,
+                      valueOrDefault<String>(
+                        widget!.formattedAddress,
+                        'Property Address',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             font: GoogleFonts.figtree(
                               fontWeight: FontWeight.w600,

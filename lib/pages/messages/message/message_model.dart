@@ -36,6 +36,8 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   List<ThreadsRecord>? threadsForLandlord;
   // Stores action output result for [Backend Call - Create Document] action in Message widget.
   ThreadsRecord? newThreadRef;
+  // Model for SlideNavigation component.
+  late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
   // State field(s) for scrollColumn widget.
@@ -46,26 +48,23 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Model for SlideNavigation component.
-  late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    slideNavigationModel = createModel(context, () => SlideNavigationModel());
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     scrollColumnScrollController = ScrollController();
     listViewController = ScrollController();
-    slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     scrollColumnScrollController?.dispose();
     listViewController?.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
-
-    slideNavigationModel.dispose();
   }
 
   /// Action blocks.

@@ -60,11 +60,11 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
         context.goNamed(WelcomeWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
         context.goNamed(RetirementGoalsWidget.routeName);
-      } else if (!_model.userCollection!.shownMortgageOnboarding) {
-        context.goNamed(MortgageInfoWidget.routeName);
       } else if (_model.noPurchasePrice != null &&
           (_model.noPurchasePrice)!.isNotEmpty) {
         context.goNamed(PurchaseInfoWidget.routeName);
+      } else if (!_model.userCollection!.shownMortgageOnboarding) {
+        context.goNamed(MortgageInfoWidget.routeName);
       } else {
         while (valueOrDefault<bool>(
             currentUserDocument?.calculatingProjections, false)) {

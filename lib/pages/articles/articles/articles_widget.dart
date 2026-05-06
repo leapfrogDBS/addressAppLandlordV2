@@ -161,6 +161,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                   0,
                                   44.0,
                                 ),
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: listViewArticlesRecordList.length,

@@ -235,7 +235,6 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 16.0),
                               child: FFButtonWidget(
-                                key: ValueKey('Button_mn0q'),
                                 onPressed: () async {
                                   await currentUserReference!
                                       .update(createUsersRecordData(

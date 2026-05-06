@@ -221,7 +221,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                   child: Container(
                                     width: double.infinity,
                                     child: TextFormField(
-                                      key: ValueKey('new_password_akfo'),
                                       controller:
                                           _model.newPasswordTextController,
                                       focusNode: _model.newPasswordFocusNode,
@@ -352,8 +351,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                   child: Container(
                                     width: double.infinity,
                                     child: TextFormField(
-                                      key:
-                                          ValueKey('confirm_new_password_e0uv'),
                                       controller: _model
                                           .confirmNewPasswordTextController,
                                       focusNode:

@@ -13,9 +13,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class MortgageInfoModel extends FlutterFlowModel<MortgageInfoWidget> {
-  @override
-  void initState(BuildContext context) {}
+  ///  State fields for stateful widgets in this page.
+
+  // Models for mortgagePrompt dynamic component.
+  late FlutterFlowDynamicModels<MortgagePromptModel> mortgagePromptModels;
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    mortgagePromptModels =
+        FlutterFlowDynamicModels(() => MortgagePromptModel());
+  }
+
+  @override
+  void dispose() {
+    mortgagePromptModels.dispose();
+  }
 }

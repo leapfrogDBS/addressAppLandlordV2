@@ -280,41 +280,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 ),
                                                       ),
                                                     ),
-                                                    StreamBuilder<UsersRecord>(
-                                                      stream: UsersRecord
-                                                          .getDocument(
-                                                              currentUserReference!),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-
-                                                        final containerUsersRecord =
-                                                            snapshot.data!;
-
-                                                        return Container(
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                        );
-                                                      },
-                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -345,10 +310,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 .routeName);
                                                       },
                                                       child: Container(
-                                                        key: ValueKey(
-                                                            'Container_raul'),
-                                                        width: 44.0,
-                                                        height: 44.0,
+                                                        width: 48.0,
+                                                        height: 48.0,
                                                         decoration:
                                                             BoxDecoration(
                                                           color: FlutterFlowTheme

@@ -173,18 +173,27 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
 
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: property.length,
                                 itemBuilder: (context, propertyIndex) {
                                   final propertyItem = property[propertyIndex];
-                                  return MortgagePromptWidget(
-                                    key: Key(
-                                        'Keye86_${propertyIndex}_of_${property.length}'),
-                                    title: propertyItem.title,
-                                    formattedAddress:
-                                        propertyItem.addressFormatted,
-                                    documentId: propertyItem.reference,
+                                  return wrapWithModel(
+                                    model: _model.mortgagePromptModels.getModel(
+                                      propertyItem.reference.id,
+                                      propertyIndex,
+                                    ),
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: MortgagePromptWidget(
+                                      key: Key(
+                                        'Keye86_${propertyItem.reference.id}',
+                                      ),
+                                      title: propertyItem.title,
+                                      formattedAddress:
+                                          propertyItem.addressFormatted,
+                                      documentId: propertyItem.reference,
+                                    ),
                                   );
                                 },
                               );

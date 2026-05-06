@@ -31,24 +31,28 @@ class SalesOffersModel extends FlutterFlowModel<SalesOffersWidget> {
 
   // Stores action output result for [Firestore Query - Query a collection] action in SalesOffers widget.
   List<PropertyProjectionsRecord>? projectionDocs;
-  // Model for mainHeader component.
-  late MainHeaderModel mainHeaderModel;
-  // Model for Offers_CTA component.
-  late OffersCTAModel offersCTAModel;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
+  // Model for mainHeader component.
+  late MainHeaderModel mainHeaderModel;
+  // Models for salesOffer dynamic component.
+  late FlutterFlowDynamicModels<SalesOfferModel> salesOfferModels;
+  // Model for Offers_CTA component.
+  late OffersCTAModel offersCTAModel;
 
   @override
   void initState(BuildContext context) {
-    mainHeaderModel = createModel(context, () => MainHeaderModel());
-    offersCTAModel = createModel(context, () => OffersCTAModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
+    salesOfferModels = FlutterFlowDynamicModels(() => SalesOfferModel());
+    offersCTAModel = createModel(context, () => OffersCTAModel());
   }
 
   @override
   void dispose() {
-    mainHeaderModel.dispose();
-    offersCTAModel.dispose();
     slideNavigationModel.dispose();
+    mainHeaderModel.dispose();
+    salesOfferModels.dispose();
+    offersCTAModel.dispose();
   }
 }

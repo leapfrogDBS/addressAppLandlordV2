@@ -40,6 +40,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   List<PropertyProjectionsRecord>? projectionDocs;
+  // Model for SlideNavigation component.
+  late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
   // Model for liveEarningsDash component.
@@ -52,28 +54,26 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late PropertySliderModel propertySliderModel;
   // Model for Offers_CTA component.
   late OffersCTAModel offersCTAModel;
-  // Model for SlideNavigation component.
-  late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    slideNavigationModel = createModel(context, () => SlideNavigationModel());
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsDashModel = createModel(context, () => LiveEarningsDashModel());
     capitalUpgradeModel = createModel(context, () => CapitalUpgradeModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
     offersCTAModel = createModel(context, () => OffersCTAModel());
-    slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     liveEarningsDashModel.dispose();
     capitalUpgradeModel.dispose();
     keyMetricsDashModel.dispose();
     propertySliderModel.dispose();
     offersCTAModel.dispose();
-    slideNavigationModel.dispose();
   }
 }

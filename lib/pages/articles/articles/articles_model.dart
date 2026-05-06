@@ -28,24 +28,24 @@ class ArticlesModel extends FlutterFlowModel<ArticlesWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Model for SlideNavigation component.
+  late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
   // Model for subscribeBlock component.
   late SubscribeBlockModel subscribeBlockModel;
-  // Model for SlideNavigation component.
-  late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
+    slideNavigationModel = createModel(context, () => SlideNavigationModel());
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     subscribeBlockModel = createModel(context, () => SubscribeBlockModel());
-    slideNavigationModel = createModel(context, () => SlideNavigationModel());
   }
 
   @override
   void dispose() {
+    slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     subscribeBlockModel.dispose();
-    slideNavigationModel.dispose();
   }
 }

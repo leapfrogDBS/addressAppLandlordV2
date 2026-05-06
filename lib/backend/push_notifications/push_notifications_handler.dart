@@ -115,28 +115,16 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'Login': ParameterData.none(),
-  'dashboard': ParameterData.none(),
-  'Properties': ParameterData.none(),
   'Profile': ParameterData.none(),
-  'Message': (data) async => ParameterData(
-        allParams: {
-          'prefillText': getParameter<String>(data, 'prefillText'),
-        },
-      ),
   'Notifications': ParameterData.none(),
-  'Articles': ParameterData.none(),
   'Article': (data) async => ParameterData(
         allParams: {
           'articleContent': getParameter<String>(data, 'articleContent'),
         },
       ),
   'ForgotPassword': ParameterData.none(),
-  'AllMessages': ParameterData.none(),
-  'SalesOffers': ParameterData.none(),
   'welcome': ParameterData.none(),
   'retirementGoals': ParameterData.none(),
-  'ChangePassword': ParameterData.none(),
   'SignAgreement': ParameterData.none(),
   'pdFViewPage': (data) async => ParameterData(
         allParams: {
@@ -144,9 +132,21 @@ final parametersBuilderMap =
           'fileName': getParameter<String>(data, 'fileName'),
         },
       ),
+  'personalDetails': ParameterData.none(),
+  'Login': ParameterData.none(),
+  'dashboard': ParameterData.none(),
+  'Properties': ParameterData.none(),
+  'Message': (data) async => ParameterData(
+        allParams: {
+          'prefillText': getParameter<String>(data, 'prefillText'),
+        },
+      ),
+  'Articles': ParameterData.none(),
+  'AllMessages': ParameterData.none(),
+  'SalesOffers': ParameterData.none(),
+  'ChangePassword': ParameterData.none(),
   'mortgageInfo': ParameterData.none(),
   'redirectPage': ParameterData.none(),
-  'personalDetails': ParameterData.none(),
   'Property': (data) async => ParameterData(
         allParams: {
           'propID': getParameter<DocumentReference>(data, 'propID'),

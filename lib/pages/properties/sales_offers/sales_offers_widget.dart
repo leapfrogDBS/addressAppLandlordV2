@@ -125,23 +125,33 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                           ),
                         );
                       }
-                      List<SalesOffersRecord> columnSalesOffersRecordList =
+                      List<SalesOffersRecord> listViewSalesOffersRecordList =
                           snapshot.data!;
 
-                      return Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: List.generate(
-                            columnSalesOffersRecordList.length, (columnIndex) {
-                          final columnSalesOffersRecord =
-                              columnSalesOffersRecordList[columnIndex];
-                          return SalesOfferWidget(
-                            key: Key(
-                                'Keybgm_${columnIndex}_of_${columnSalesOffersRecordList.length}'),
-                            salesOffer: columnSalesOffersRecord,
-                            pvTotals: _model.pvTotals!,
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        primary: false,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemCount: listViewSalesOffersRecordList.length,
+                        itemBuilder: (context, listViewIndex) {
+                          final listViewSalesOffersRecord =
+                              listViewSalesOffersRecordList[listViewIndex];
+                          return wrapWithModel(
+                            model: _model.salesOfferModels.getModel(
+                              listViewSalesOffersRecord.reference.id,
+                              listViewIndex,
+                            ),
+                            updateCallback: () => safeSetState(() {}),
+                            child: SalesOfferWidget(
+                              key: Key(
+                                'Keybgm_${listViewSalesOffersRecord.reference.id}',
+                              ),
+                              salesOffer: listViewSalesOffersRecord,
+                              pvTotals: _model.pvTotals!,
+                            ),
                           );
-                        }),
+                        },
                       );
                     },
                   ),

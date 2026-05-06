@@ -190,7 +190,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                   child: Container(
                                     width: double.infinity,
                                     child: TextFormField(
-                                      key: ValueKey('emailAddress_Create_16cu'),
                                       controller: _model
                                           .emailAddressCreateTextController,
                                       focusNode:
@@ -305,7 +304,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                   child: Container(
                                     width: double.infinity,
                                     child: TextFormField(
-                                      key: ValueKey('password_Create_bluj'),
                                       controller:
                                           _model.passwordCreateTextController,
                                       focusNode: _model.passwordCreateFocusNode,
@@ -437,7 +435,6 @@ class _LoginWidgetState extends State<LoginWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 16.0),
                                     child: FFButtonWidget(
-                                      key: ValueKey('Button_40te'),
                                       onPressed: () async {
                                         GoRouter.of(context).prepareAuthEvent();
 

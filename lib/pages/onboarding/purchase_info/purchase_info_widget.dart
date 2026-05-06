@@ -46,8 +46,8 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<PropertiesRecord>>(
-      stream: queryPropertiesRecord(
+    return FutureBuilder<List<PropertiesRecord>>(
+      future: queryPropertiesRecordOnce(
         queryBuilder: (propertiesRecord) => propertiesRecord
             .where(
               'ownerID',
@@ -179,18 +179,27 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
 
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
+                                primary: false,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 itemCount: property.length,
                                 itemBuilder: (context, propertyIndex) {
                                   final propertyItem = property[propertyIndex];
-                                  return PurchasePromptWidget(
-                                    key: Key(
-                                        'Key0m2_${propertyIndex}_of_${property.length}'),
-                                    title: propertyItem.title,
-                                    formattedAddress:
-                                        propertyItem.addressFormatted,
-                                    documentId: propertyItem.reference,
+                                  return wrapWithModel(
+                                    model: _model.purchasePromptModels.getModel(
+                                      propertyItem.reference.id,
+                                      propertyIndex,
+                                    ),
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: PurchasePromptWidget(
+                                      key: Key(
+                                        'Key0m2_${propertyItem.reference.id}',
+                                      ),
+                                      title: propertyItem.title,
+                                      formattedAddress:
+                                          propertyItem.addressFormatted,
+                                      documentId: propertyItem.reference,
+                                    ),
                                   );
                                 },
                               );
@@ -208,6 +217,11 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                                       0.0, 20.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      await Future.delayed(
+                                        Duration(
+                                          milliseconds: 500,
+                                        ),
+                                      );
                                       _model.noPurchasePrice =
                                           await queryPropertiesRecordOnce(
                                         queryBuilder: (propertiesRecord) =>

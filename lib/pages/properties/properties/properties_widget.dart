@@ -113,42 +113,49 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                 );
                               }
                               List<PropertiesRecord>
-                                  columnPropertiesRecordList = snapshot.data!;
+                                  listViewPropertiesRecordList = snapshot.data!;
 
-                              return Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: List.generate(
-                                    columnPropertiesRecordList.length,
-                                    (columnIndex) {
-                                  final columnPropertiesRecord =
-                                      columnPropertiesRecordList[columnIndex];
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                primary: false,
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: listViewPropertiesRecordList.length,
+                                itemBuilder: (context, listViewIndex) {
+                                  final listViewPropertiesRecord =
+                                      listViewPropertiesRecordList[
+                                          listViewIndex];
                                   return wrapWithModel(
                                     model: _model.singlePropertyModels.getModel(
-                                      columnPropertiesRecord.reference.id,
-                                      columnIndex,
+                                      listViewPropertiesRecord.reference.id,
+                                      listViewIndex,
                                     ),
                                     updateCallback: () => safeSetState(() {}),
                                     child: SinglePropertyWidget(
                                       key: Key(
-                                        'Keyiwp_${columnPropertiesRecord.reference.id}',
+                                        'Keyiwp_${listViewPropertiesRecord.reference.id}',
                                       ),
-                                      propImg: columnPropertiesRecord.mainPhoto,
-                                      propTitle: columnPropertiesRecord.title,
-                                      propValue:
-                                          columnPropertiesRecord.estimatedValue,
-                                      propID: columnPropertiesRecord.reference,
+                                      propImg:
+                                          listViewPropertiesRecord.mainPhoto,
+                                      propTitle: listViewPropertiesRecord.title,
+                                      propValue: listViewPropertiesRecord
+                                          .estimatedValue,
+                                      propID:
+                                          listViewPropertiesRecord.reference,
                                       propFormattedAddress:
-                                          columnPropertiesRecord
+                                          listViewPropertiesRecord
                                               .addressFormatted,
                                       propLetType:
-                                          columnPropertiesRecord.letType,
-                                      hasActiveTenancy: columnPropertiesRecord
+                                          listViewPropertiesRecord.letType,
+                                      hasActiveTenancy: listViewPropertiesRecord
                                           .hasActiveTenancy,
-                                      rentAmount: columnPropertiesRecord
+                                      rentAmount: listViewPropertiesRecord
                                           .currentRentAmount,
+                                      purchasePrice: listViewPropertiesRecord
+                                          .purchasePrice,
                                     ),
                                   );
-                                }).divide(SizedBox(height: 0.0)),
+                                },
                               );
                             },
                           ),

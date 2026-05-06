@@ -279,6 +279,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               reverse: true,
+                              primary: false,
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemCount: listViewMessagesRecordList.length,

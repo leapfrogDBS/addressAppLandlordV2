@@ -16,12 +16,19 @@ import 'package:provider/provider.dart';
 class PurchaseInfoModel extends FlutterFlowModel<PurchaseInfoWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Models for purchasePrompt dynamic component.
+  late FlutterFlowDynamicModels<PurchasePromptModel> purchasePromptModels;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<PropertiesRecord>? noPurchasePrice;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    purchasePromptModels =
+        FlutterFlowDynamicModels(() => PurchasePromptModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    purchasePromptModels.dispose();
+  }
 }

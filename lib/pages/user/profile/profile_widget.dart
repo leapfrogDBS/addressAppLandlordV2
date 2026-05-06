@@ -1827,7 +1827,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FFButtonWidget(
-                                key: ValueKey('Button_2jig'),
                                 onPressed: () async {
                                   context.pushNamed(
                                       ChangePasswordWidget.routeName);

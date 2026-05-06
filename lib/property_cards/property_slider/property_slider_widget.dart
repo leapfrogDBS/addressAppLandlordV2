@@ -47,7 +47,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
       child: Container(
         width: double.infinity,
-        height: 400.0,
+        height: 420.0,
         decoration: BoxDecoration(),
         child: StreamBuilder<List<PropertiesRecord>>(
           stream: queryPropertiesRecord(
@@ -107,6 +107,7 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                       hasActiveTenancy:
                           listViewPropertiesRecord.hasActiveTenancy,
                       rentAmount: listViewPropertiesRecord.currentRentAmount,
+                      purchasePrice: listViewPropertiesRecord.purchasePrice,
                     ),
                   ),
                 );

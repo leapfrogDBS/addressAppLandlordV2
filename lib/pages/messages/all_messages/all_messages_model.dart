@@ -18,6 +18,8 @@ import 'package:webviewx_plus/webviewx_plus.dart';
 class AllMessagesModel extends FlutterFlowModel<AllMessagesWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Model for SlideNavigation component.
+  late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
   // State field(s) for TabBar widget.
@@ -32,22 +34,19 @@ class AllMessagesModel extends FlutterFlowModel<AllMessagesWidget> {
   TextEditingController? conversationNameTextController;
   String? Function(BuildContext, String?)?
       conversationNameTextControllerValidator;
-  // Model for SlideNavigation component.
-  late SlideNavigationModel slideNavigationModel;
 
   @override
   void initState(BuildContext context) {
-    mainHeaderModel = createModel(context, () => MainHeaderModel());
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
+    mainHeaderModel = createModel(context, () => MainHeaderModel());
   }
 
   @override
   void dispose() {
+    slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     tabBarController?.dispose();
     conversationNameFocusNode?.dispose();
     conversationNameTextController?.dispose();
-
-    slideNavigationModel.dispose();
   }
 }

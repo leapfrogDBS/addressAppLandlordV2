@@ -80,40 +80,19 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
-    GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? entryPage ?? NavBarPage() : LoginWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? entryPage ?? NavBarPage()
-              : LoginWidget(),
-        ),
-        FFRoute(
-          name: LoginWidget.routeName,
-          path: LoginWidget.routePath,
-          builder: (context, params) => LoginWidget(),
-        ),
-        FFRoute(
-          name: DashboardWidget.routeName,
-          path: DashboardWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'dashboard')
-              : DashboardWidget(),
-        ),
-        FFRoute(
-          name: PropertiesWidget.routeName,
-          path: PropertiesWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Properties')
-              : PropertiesWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
         ),
         FFRoute(
           name: ProfileWidget.routeName,
@@ -121,31 +100,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-            name: MessageWidget.routeName,
-            path: MessageWidget.routePath,
-            builder: (context, params) => params.isEmpty
-                ? NavBarPage(initialPage: 'Message')
-                : NavBarPage(
-                    initialPage: 'Message',
-                    page: MessageWidget(
-                      prefillText: params.getParam(
-                        'prefillText',
-                        ParamType.String,
-                      ),
-                    ),
-                  )),
-        FFRoute(
           name: NotificationsWidget.routeName,
           path: NotificationsWidget.routePath,
           builder: (context, params) => NotificationsWidget(),
         ),
-        FFRoute(
-            name: ArticlesWidget.routeName,
-            path: ArticlesWidget.routePath,
-            builder: (context, params) => NavBarPage(
-                  initialPage: '',
-                  page: ArticlesWidget(),
-                )),
         FFRoute(
             name: ArticleWidget.routeName,
             path: ArticleWidget.routePath,
@@ -164,18 +122,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: AllMessagesWidget.routeName,
-          path: AllMessagesWidget.routePath,
-          builder: (context, params) => AllMessagesWidget(),
-        ),
-        FFRoute(
-          name: SalesOffersWidget.routeName,
-          path: SalesOffersWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'SalesOffers')
-              : SalesOffersWidget(),
-        ),
-        FFRoute(
           name: WelcomeWidget.routeName,
           path: WelcomeWidget.routePath,
           builder: (context, params) => WelcomeWidget(),
@@ -184,11 +130,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: RetirementGoalsWidget.routeName,
           path: RetirementGoalsWidget.routePath,
           builder: (context, params) => RetirementGoalsWidget(),
-        ),
-        FFRoute(
-          name: ChangePasswordWidget.routeName,
-          path: ChangePasswordWidget.routePath,
-          builder: (context, params) => ChangePasswordWidget(),
         ),
         FFRoute(
           name: SignAgreementWidget.routeName,
@@ -210,6 +151,68 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           ),
         ),
         FFRoute(
+          name: PersonalDetailsWidget.routeName,
+          path: PersonalDetailsWidget.routePath,
+          builder: (context, params) => PersonalDetailsWidget(),
+        ),
+        FFRoute(
+          name: LoginWidget.routeName,
+          path: LoginWidget.routePath,
+          builder: (context, params) => LoginWidget(),
+        ),
+        FFRoute(
+          name: DashboardWidget.routeName,
+          path: DashboardWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'dashboard')
+              : DashboardWidget(),
+        ),
+        FFRoute(
+          name: PropertiesWidget.routeName,
+          path: PropertiesWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Properties')
+              : PropertiesWidget(),
+        ),
+        FFRoute(
+            name: MessageWidget.routeName,
+            path: MessageWidget.routePath,
+            builder: (context, params) => params.isEmpty
+                ? NavBarPage(initialPage: 'Message')
+                : NavBarPage(
+                    initialPage: 'Message',
+                    page: MessageWidget(
+                      prefillText: params.getParam(
+                        'prefillText',
+                        ParamType.String,
+                      ),
+                    ),
+                  )),
+        FFRoute(
+            name: ArticlesWidget.routeName,
+            path: ArticlesWidget.routePath,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: ArticlesWidget(),
+                )),
+        FFRoute(
+          name: AllMessagesWidget.routeName,
+          path: AllMessagesWidget.routePath,
+          builder: (context, params) => AllMessagesWidget(),
+        ),
+        FFRoute(
+          name: SalesOffersWidget.routeName,
+          path: SalesOffersWidget.routePath,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'SalesOffers')
+              : SalesOffersWidget(),
+        ),
+        FFRoute(
+          name: ChangePasswordWidget.routeName,
+          path: ChangePasswordWidget.routePath,
+          builder: (context, params) => ChangePasswordWidget(),
+        ),
+        FFRoute(
           name: MortgageInfoWidget.routeName,
           path: MortgageInfoWidget.routePath,
           builder: (context, params) => MortgageInfoWidget(),
@@ -218,11 +221,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: RedirectPageWidget.routeName,
           path: RedirectPageWidget.routePath,
           builder: (context, params) => RedirectPageWidget(),
-        ),
-        FFRoute(
-          name: PersonalDetailsWidget.routeName,
-          path: PersonalDetailsWidget.routePath,
-          builder: (context, params) => PersonalDetailsWidget(),
         ),
         FFRoute(
             name: PropertyWidget.routeName,

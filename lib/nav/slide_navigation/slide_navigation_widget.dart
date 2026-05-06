@@ -465,7 +465,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                 height: 50.0,
                                 decoration: BoxDecoration(
                                   color: Color(0x4D9489F5),
-                                  borderRadius: BorderRadius.circular(24.0),
+                                  shape: BoxShape.circle,
                                   border: Border.all(
                                     color: FlutterFlowTheme.of(context).primary,
                                     width: 2.0,
