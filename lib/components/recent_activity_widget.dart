@@ -86,7 +86,8 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                       .where(
                         'startDate',
                         isGreaterThan: getCurrentTimestamp,
-                      ),
+                      )
+                      .orderBy('startDate'),
                   limit: 3,
                 ),
                 builder: (context, snapshot) {
@@ -164,6 +165,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                                         .headlineSmall
                                                         .fontStyle,
                                               ),
+                                              fontSize: 14.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
@@ -278,7 +280,8 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                   .where(
                     'startDate',
                     isLessThan: getCurrentTimestamp,
-                  ),
+                  )
+                  .orderBy('startDate', descending: true),
               limit: 3,
             ),
             builder: (context, snapshot) {
@@ -355,6 +358,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                                     .headlineSmall
                                                     .fontStyle,
                                           ),
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)

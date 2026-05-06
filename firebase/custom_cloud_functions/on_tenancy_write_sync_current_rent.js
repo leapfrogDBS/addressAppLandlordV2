@@ -3,17 +3,30 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 
 const REGION = "us-central1";
+const RENT_EVENT_TYPE = "rent_due";
+const RENT_EVENT_TITLE = "Rent Due";
+const RENT_MONTHS_AHEAD = 12;
 
 exports.onTenancyWriteSyncCurrentRent = functions
   .region(REGION)
-  .runWith({ memory: "128MB" })
+  .runWith({ memory: "256MB", timeoutSeconds: 120 })
   .firestore.document("properties/{propertyId}/tenancies/{tenancyId}")
   .onWrite(async (change, context) => {
     const propertyId = context.params.propertyId;
+    const tenancyId = context.params.tenancyId;
 
     const db = admin.firestore();
     const propRef = db.collection("properties").doc(propertyId);
-    const tenanciesRef = propRef.collection("tenancies");
+    const eventsRef = db.collection("events");
+
+    const beforeExists = change.before.exists;
+    const afterExists = change.after.exists;
+
+    const before = beforeExists ? change.before.data() || {} : {};
+    const after = afterExists ? change.after.data() || {} : {};
+
+    const now = new Date();
+    const nowTs = admin.firestore.Timestamp.fromDate(now);
 
     const normNum = (v) => {
       if (v == null) return null;
@@ -25,114 +38,273 @@ exports.onTenancyWriteSyncCurrentRent = functions
       return null;
     };
 
-    // Prefer latest tenancyStartDate; fallback to last_updated_at.
-    // NOTE: if tenancyStartDate is null on some docs, Firestore ordering can be awkward.
-    // Ideally tenancyStartDate is always set for real tenancies.
-    let activeSnap;
-    try {
-      activeSnap = await tenanciesRef
-        .where("isActive", "==", true)
-        .orderBy("tenancyStartDate", "desc")
-        .limit(2)
-        .get();
-    } catch (e) {
-      // Fallback index/order if tenancyStartDate isn't present or index missing
-      functions.logger.warn(
-        "[tenancy-sync] tenancyStartDate orderBy failed, falling back to last_updated_at",
-        {
-          propertyId,
-          error: e && e.message ? e.message : String(e),
-        },
-      );
+    const asBool = (v) => v === true;
+    const wasActive = asBool(before.isActive);
+    const isActive = asBool(after.isActive);
 
-      activeSnap = await tenanciesRef
-        .where("isActive", "==", true)
-        .orderBy("last_updated_at", "desc")
-        .limit(2)
-        .get();
+    const beforeRent = Math.max(0, normNum(before.rentAmount) ?? 0);
+    const afterRent = Math.max(0, normNum(after.rentAmount) ?? 0);
+    const rentChanged = beforeRent !== afterRent;
+
+    const wasDeleted = beforeExists && !afterExists;
+    const isCreated = !beforeExists && afterExists;
+
+    // ---- Rule 1: false -> false update => do nothing
+    if (beforeExists && afterExists && !wasActive && !isActive) {
+      functions.logger.info("[tenancy-sync] inactive->inactive; no action", {
+        propertyId,
+        tenancyId,
+      });
+      return null;
     }
 
-    // Read property once so we can avoid pointless writes/pokes
-    const propSnap = await propRef.get();
-    if (!propSnap.exists) return null;
-    const p = propSnap.data() || {};
+    // ---- Rule 2 + 3: Active tenancy created/updated
+    // Create/update future rent events when:
+    // - new active tenancy created
+    // - inactive -> active
+    // - active + rent changed
+    const shouldUpsertFutureRentEvents =
+      (isCreated && isActive) ||
+      (!isCreated && beforeExists && !wasActive && isActive) ||
+      (!isCreated && beforeExists && wasActive && isActive && rentChanged);
 
-    const prevRent = normNum(p.currentRentAmount) ?? 0;
-    const prevHasActive =
-      typeof p.hasActiveTenancy === "boolean" ? p.hasActiveTenancy : false;
-    const prevTenancyId = p.currentTenancyId || "";
-    const prevRentSource =
-      typeof p.currentRentSource === "string" ? p.currentRentSource : "";
+    // ---- Rule 4: active -> inactive (or active doc deleted) => remove future rent events
+    const shouldDeleteFutureRentEvents =
+      (beforeExists && afterExists && wasActive && !isActive) ||
+      (wasDeleted && wasActive);
 
-    const updates = {};
-    let poke = false;
+    // ---- Property current rent sync logic
+    // Only update property current rent fields when tenancy is active and created/activated/rent-changed.
+    if (shouldUpsertFutureRentEvents) {
+      const propSnap = await propRef.get();
+      if (propSnap.exists) {
+        const p = propSnap.data() || {};
+        const prevCurrentRent = normNum(p.currentRentAmount) ?? 0;
+        const prevHasActive = p.hasActiveTenancy === true;
+        const prevTenancyId = p.currentTenancyId || "";
+        const prevSource =
+          typeof p.currentRentSource === "string" ? p.currentRentSource : "";
 
-    if (activeSnap.empty) {
-      // No active tenancy -> keep last known rent + source, but mark inactive
-      if (prevHasActive !== false) {
-        updates.hasActiveTenancy = false;
-        poke = true;
-      } else {
-        // keep field explicit if you want
-        // updates.hasActiveTenancy = false;
+        const propUpdates = {};
+        let poke = false;
+
+        if (prevCurrentRent !== afterRent) {
+          propUpdates.currentRentAmount = afterRent;
+          poke = true;
+        }
+        if (!prevHasActive) propUpdates.hasActiveTenancy = true;
+        if (prevTenancyId !== tenancyId)
+          propUpdates.currentTenancyId = tenancyId;
+        if (prevSource !== "tenancy") propUpdates.currentRentSource = "tenancy";
+        if (poke)
+          propUpdates._recalcTrigger =
+            admin.firestore.FieldValue.serverTimestamp();
+
+        if (Object.keys(propUpdates).length > 0) {
+          await propRef.set(propUpdates, { merge: true });
+        }
       }
+    }
 
-      // do NOT change currentRentAmount
-      // do NOT change currentRentSource
-      // do NOT change currentTenancyId (optional; you can clear it if you prefer)
-      // updates.currentTenancyId = admin.firestore.FieldValue.delete();
-    } else {
-      const chosen = activeSnap.docs[0];
+    if (shouldDeleteFutureRentEvents) {
+      await deleteFutureRentDueEvents({
+        db,
+        eventsRef,
+        tenancyRef: change.before.ref,
+        nowTs,
+      });
 
-      const rentPCM = Math.max(0, normNum(chosen.get("rentAmount")) ?? 0);
-      const chosenId = chosen.id;
-
-      if (prevHasActive !== true) {
-        updates.hasActiveTenancy = true;
-        poke = true;
-      } else {
-        updates.hasActiveTenancy = true;
+      // Optional property flags update: if this tenancy was marked current, clear active flag.
+      const propSnap = await propRef.get();
+      if (propSnap.exists) {
+        const p = propSnap.data() || {};
+        if (
+          (p.currentTenancyId || "") === tenancyId &&
+          p.hasActiveTenancy === true
+        ) {
+          await propRef.set(
+            {
+              hasActiveTenancy: false,
+              _recalcTrigger: admin.firestore.FieldValue.serverTimestamp(),
+            },
+            { merge: true },
+          );
+        }
       }
+    }
 
-      if (prevRent !== rentPCM) {
-        updates.currentRentAmount = rentPCM;
-        poke = true; // projections depend on rent
-      }
+    if (shouldUpsertFutureRentEvents) {
+      const rentDueDayRaw = normNum(after.rentDueDay);
+      const rentDueDay = rentDueDayRaw
+        ? Math.max(1, Math.min(31, Math.trunc(rentDueDayRaw)))
+        : null;
 
-      // Ensure source reflects tenancy even if rent is unchanged
-      if (prevRentSource !== "tenancy") {
-        updates.currentRentSource = "tenancy";
-      }
-
-      if (prevTenancyId !== chosenId) {
-        updates.currentTenancyId = chosenId;
-        // no need to poke for this alone
-      }
-
-      // Log if 2+ active tenancies exist (your enforcement should prevent this)
-      if (activeSnap.size > 1) {
+      if (!rentDueDay) {
         functions.logger.warn(
-          "[tenancy-sync] multiple active tenancies detected",
+          "[tenancy-sync] Missing/invalid rentDueDay; skipped rent event generation",
           {
             propertyId,
-            activeTenancyIds: activeSnap.docs.map((d) => d.id),
+            tenancyId,
+            rentDueDay: after.rentDueDay,
           },
         );
+        return null;
       }
+
+      const tenancyStartDate = toDate(after.tenancyStartDate);
+      const dueDates = generateNextMonthlyDueDates({
+        fromDate: now,
+        rentDueDay,
+        monthsAhead: RENT_MONTHS_AHEAD,
+        tenancyStartDate,
+      });
+
+      await upsertFutureRentDueEvents({
+        db,
+        eventsRef,
+        propertyRef: propRef,
+        tenancyRef: change.after.ref,
+        tenancyId,
+        amount: afterRent,
+        dueDates,
+      });
     }
 
-    if (poke) {
-      updates._recalcTrigger = admin.firestore.FieldValue.serverTimestamp();
-    }
-
-    if (Object.keys(updates).length === 0) return null;
-
-    await propRef.set(updates, { merge: true });
-
-    functions.logger.info("[tenancy-sync] synced tenancy -> property", {
+    functions.logger.info("[tenancy-sync] completed", {
       propertyId,
-      updates,
+      tenancyId,
+      shouldUpsertFutureRentEvents,
+      shouldDeleteFutureRentEvents,
+      rentChanged,
+      wasActive,
+      isActive,
+      isCreated,
+      wasDeleted,
     });
 
     return null;
   });
+
+// -------------------- Helpers --------------------
+
+function toDate(v) {
+  if (!v) return null;
+  if (v instanceof Date) return v;
+  if (typeof v.toDate === "function") return v.toDate();
+  return null;
+}
+
+function daysInMonth(year, month1to12) {
+  return new Date(Date.UTC(year, month1to12, 0)).getUTCDate();
+}
+
+function makeDueDate(year, month1to12, day) {
+  const d = Math.min(day, daysInMonth(year, month1to12));
+  return new Date(year, month1to12 - 1, d, 12, 0, 0, 0); // midday local to avoid DST edge oddities
+}
+
+function startOfDayLocal(d) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
+}
+
+function ymdKey(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}${m}${day}`;
+}
+
+function generateNextMonthlyDueDates({
+  fromDate,
+  rentDueDay,
+  monthsAhead,
+  tenancyStartDate,
+}) {
+  const out = [];
+  const fromDay = startOfDayLocal(fromDate);
+  const floorDate = tenancyStartDate
+    ? startOfDayLocal(tenancyStartDate)
+    : fromDay;
+  const effectiveStart = fromDay > floorDate ? fromDay : floorDate;
+
+  let y = effectiveStart.getFullYear();
+  let m = effectiveStart.getMonth() + 1;
+
+  while (out.length < monthsAhead) {
+    const due = makeDueDate(y, m, rentDueDay);
+    if (due >= effectiveStart) out.push(due);
+    m += 1;
+    if (m === 13) {
+      m = 1;
+      y += 1;
+    }
+  }
+  return out;
+}
+
+async function upsertFutureRentDueEvents({
+  db,
+  eventsRef,
+  propertyRef,
+  tenancyRef,
+  tenancyId,
+  amount,
+  dueDates,
+}) {
+  const batches = [];
+  let batch = db.batch();
+  let ops = 0;
+
+  for (const dueDate of dueDates) {
+    const id = `rent_due_${tenancyId}_${ymdKey(dueDate)}`;
+    const docRef = eventsRef.doc(id);
+
+    batch.set(
+      docRef,
+      {
+        title: RENT_EVENT_TITLE,
+        type: RENT_EVENT_TYPE,
+        startDate: admin.firestore.Timestamp.fromDate(dueDate),
+        status: "pending",
+        propertyRef,
+        tenancyRef,
+        amount: Math.round(amount), // events.amount is int in your schema
+        notes: "Auto-generated from active tenancy rent schedule",
+        source: "system_rent_schedule",
+        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        // keep first createdAt if already exists; set always for new docs:
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      },
+      { merge: true },
+    );
+
+    ops += 1;
+    if (ops >= 450) {
+      batches.push(batch.commit());
+      batch = db.batch();
+      ops = 0;
+    }
+  }
+
+  if (ops > 0) batches.push(batch.commit());
+  if (batches.length > 0) await Promise.all(batches);
+}
+
+async function deleteFutureRentDueEvents({ db, eventsRef, tenancyRef, nowTs }) {
+  while (true) {
+    const snap = await eventsRef
+      .where("tenancyRef", "==", tenancyRef)
+      .where("type", "==", RENT_EVENT_TYPE)
+      .where("startDate", ">=", nowTs)
+      .limit(400)
+      .get();
+
+    if (snap.empty) break;
+
+    const batch = db.batch();
+    snap.docs.forEach((doc) => batch.delete(doc.ref));
+    await batch.commit();
+
+    if (snap.size < 400) break;
+  }
+}

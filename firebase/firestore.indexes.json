@@ -15,6 +15,20 @@
       ]
     },
     {
+      "collectionGroup": "events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "propertyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "startDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "threads",
       "queryScope": "COLLECTION",
       "fields": [
@@ -47,20 +61,6 @@
       ]
     },
     {
-      "collectionGroup": "tenancies",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "isActive",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "tenancyStartDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "expenses",
       "queryScope": "COLLECTION",
       "fields": [
@@ -79,6 +79,16 @@
     {
       "collectionGroup": "fcm_tokens",
       "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "tenancies",
+      "fieldPath": "isActive",
       "indexes": [
         {
           "order": "ASCENDING",

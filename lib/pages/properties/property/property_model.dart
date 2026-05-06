@@ -87,8 +87,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   // Stores action output result for [Backend Call - Read Document] action in Property widget.
   PropertiesRecord? output;
   // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
-  TenanciesRecord? outputTenancy;
-  // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   List<ExpensesRecord>? getExpenses;
   // Stores action output result for [Firestore Query - Query a collection] action in Property widget.
   PropertyProjectionsRecord? projectionDoc;

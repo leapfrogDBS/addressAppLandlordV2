@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom widget code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom widgets
+
 import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
@@ -18,13 +20,13 @@ class _PopupItem {
   _PopupItem({
     required this.title,
     this.body,
-    this.amount, // int or double are fine
+    this.amount,
     this.icon = Icons.event,
   });
 
   final String title;
-  final String? body; // notes
-  final num? amount; // supports int or double
+  final String? body;
+  final num? amount;
   final IconData icon;
 }
 
@@ -39,6 +41,7 @@ IconData _iconForType(String? t) {
     case 'valuation':
       return Icons.assessment_outlined;
     case 'rent':
+    case 'rent_due':
       return Icons.payments_outlined;
     case 'gas':
       return Icons.gas_meter;
@@ -49,23 +52,18 @@ IconData _iconForType(String? t) {
   }
 }
 
+/// Calendar driven only by [events] (including auto-generated rent_due rows).
 class RentDueCalendar extends StatefulWidget {
   const RentDueCalendar({
     super.key,
     this.width,
     this.height,
-    this.rentDueDates, // List<DateTime> of rent days
-    this.otherEventDates, // List<DateTime> of other single‑day events
-    this.events, // List<EventsRecord> for popup details
-    this.rentAmount,
+    this.events,
   });
 
   final double? width;
   final double? height;
-  final List<DateTime>? rentDueDates;
-  final List<DateTime>? otherEventDates;
   final List<EventsRecord>? events;
-  final double? rentAmount;
 
   @override
   State<RentDueCalendar> createState() => _RentDueCalendarState();
@@ -81,12 +79,6 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
   bool isSameDate(DateTime a, DateTime b) =>
       a.year == b.year && a.month == b.month && a.day == b.day;
 
-  bool _inList(List<DateTime>? list, DateTime day) =>
-      list?.any((d) => isSameDate(d, day)) ?? false;
-
-  bool isRentDue(DateTime day) => _inList(widget.rentDueDates, day);
-  bool hasOtherEvent(DateTime day) => _inList(widget.otherEventDates, day);
-
   List<EventsRecord> _eventsForDay(DateTime day) {
     final list = widget.events ?? const <EventsRecord>[];
     return list.where((e) {
@@ -97,9 +89,11 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
     }).toList();
   }
 
+  bool _hasEventOnDay(DateTime day) => _eventsForDay(day).isNotEmpty;
+
   @override
   Widget build(BuildContext context) {
-    return TableCalendar(
+    final calendar = TableCalendar(
       firstDay: DateTime.utc(2020, 1, 1),
       lastDay: DateTime.utc(2035, 12, 31),
       focusedDay: _focusedDay,
@@ -111,24 +105,22 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
         });
 
         final dayEvents = _eventsForDay(selectedDay);
+        if (dayEvents.isEmpty) return;
 
-        // Build popup items: a synthetic Rent Due + real events
-        final items = <_PopupItem>[
-          if (isRentDue(selectedDay))
+        final items = <_PopupItem>[];
+        for (final EventsRecord e in dayEvents) {
+          final notes = e.notes.trim();
+          items.add(
             _PopupItem(
-              title: 'Rent Due',
-              amount: widget.rentAmount,
-              icon: Icons.payments_outlined,
+              title: e.title.isNotEmpty
+                  ? e.title
+                  : (e.type.isNotEmpty ? e.type : 'Event'),
+              body: notes.isEmpty ? null : notes,
+              amount: e.amount,
+              icon: _iconForType(e.type),
             ),
-          ...dayEvents.map((e) => _PopupItem(
-                title: (e.title ?? e.type ?? 'Event').toString(),
-                body: (e.notes ?? '').trim().isEmpty ? null : e.notes!.trim(),
-                amount: e.amount, // int OK
-                icon: _iconForType(e.type),
-              )),
-        ];
-
-        if (items.isEmpty) return;
+          );
+        }
 
         showDialog(
           context: context,
@@ -152,7 +144,6 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Title + optional amount right-aligned
                             Row(
                               children: [
                                 Expanded(
@@ -167,8 +158,9 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
                                 if (it.amount != null && it.amount != 0)
                                   Text(
                                     NumberFormat.currency(
-                                            symbol: '£', decimalDigits: 0)
-                                        .format(it.amount),
+                                      symbol: '£',
+                                      decimalDigits: 0,
+                                    ).format(it.amount),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -177,8 +169,10 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
                             ),
                             if (it.body != null) ...[
                               const SizedBox(height: 4),
-                              Text(it.body!,
-                                  style: const TextStyle(height: 1.35)),
+                              Text(
+                                it.body!,
+                                style: const TextStyle(height: 1.35),
+                              ),
                             ],
                           ],
                         ),
@@ -200,20 +194,18 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
       availableCalendarFormats: const {CalendarFormat.month: 'Month'},
       calendarStyle: const CalendarStyle(
         todayDecoration: BoxDecoration(
-          color: _todayBlue, // today = blue
+          color: _todayBlue,
           shape: BoxShape.circle,
         ),
         selectedDecoration: BoxDecoration(
-          color: _eventGreen, // selected = solid green
+          color: _eventGreen,
           shape: BoxShape.circle,
         ),
         defaultTextStyle: TextStyle(color: Colors.black),
       ),
       calendarBuilders: CalendarBuilders(
-        // Draw the same green ring for ANY event (rent or other).
         defaultBuilder: (context, day, _) {
-          final hasEvent = isRentDue(day) || hasOtherEvent(day);
-          if (!hasEvent) return null;
+          if (!_hasEventOnDay(day)) return null;
 
           return Container(
             alignment: Alignment.center,
@@ -221,11 +213,22 @@ class _RentDueCalendarState extends State<RentDueCalendar> {
               border: Border.all(color: _eventGreen, width: 2),
               shape: BoxShape.circle,
             ),
-            child:
-                Text('${day.day}', style: const TextStyle(color: Colors.black)),
+            child: Text(
+              '${day.day}',
+              style: const TextStyle(color: Colors.black),
+            ),
           );
         },
       ),
     );
+
+    if (widget.width != null || widget.height != null) {
+      return SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: calendar,
+      );
+    }
+    return calendar;
   }
 }

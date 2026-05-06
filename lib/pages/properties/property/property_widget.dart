@@ -67,30 +67,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.output = await PropertiesRecord.getDocumentOnce(widget!.propID!);
-      _model.outputTenancy = await queryTenanciesRecordOnce(
-        parent: widget!.propID,
-        queryBuilder: (tenanciesRecord) => tenanciesRecord
-            .where(
-              'isActive',
-              isEqualTo: true,
-            )
-            .orderBy('tenancyStartDate', descending: true),
-        singleRecord: true,
-      ).then((s) => s.firstOrNull);
-      if (_model.outputTenancy?.reference != null) {
-        _model.hasActiveTenancy = true;
-        _model.monthlyRental = _model.outputTenancy!.rentAmount;
-        _model.rentDueDates = functions
-            .generateRentDueDates(_model.outputTenancy?.tenancyStartDate,
-                _model.outputTenancy?.rentDueDay)!
-            .toList()
-            .cast<DateTime>();
-        safeSetState(() {});
-      } else {
-        _model.hasActiveTenancy = false;
-        safeSetState(() {});
-      }
-
+      _model.hasActiveTenancy = _model.output!.hasActiveTenancy;
+      safeSetState(() {});
       _model.getExpenses = await queryExpensesRecordOnce(
         queryBuilder: (expensesRecord) => expensesRecord
             .where(
@@ -1619,24 +1597,70 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     50.0, 20.0, 50.0, 20.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      FFLocalizations.of(
-                                                              context)
-                                                          .getText(
-                                                        'lmy0kkx2' /* Tenancy Snapshot */,
-                                                      ),
-                                                      style:
+                                            child: StreamBuilder<
+                                                List<TenanciesRecord>>(
+                                              stream: queryTenanciesRecord(
+                                                queryBuilder:
+                                                    (tenanciesRecord) =>
+                                                        tenanciesRecord.where(
+                                                  'isActive',
+                                                  isEqualTo: true,
+                                                ),
+                                                singleRecord: true,
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        valueColor:
+                                                            AlwaysStoppedAnimation<
+                                                                Color>(
                                                           FlutterFlowTheme.of(
                                                                   context)
+                                                              .primary,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<TenanciesRecord>
+                                                    columnTenanciesRecordList =
+                                                    snapshot.data!;
+                                                // Return an empty Container when the item does not exist.
+                                                if (snapshot.data!.isEmpty) {
+                                                  return Container();
+                                                }
+                                                final columnTenanciesRecord =
+                                                    columnTenanciesRecordList
+                                                            .isNotEmpty
+                                                        ? columnTenanciesRecordList
+                                                            .first
+                                                        : null;
+
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .getText(
+                                                            'lmy0kkx2' /* Tenancy Snapshot */,
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
                                                               .headlineMedium
                                                               .override(
                                                                 font: GoogleFonts
@@ -1665,77 +1689,25 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .headlineMedium
                                                                     .fontStyle,
                                                               ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                  ],
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'xhqizsx0' /* Rent Amount */,
-                                                                ),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .figtree(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                            Column(
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 0.0),
+                                                            child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
@@ -1743,173 +1715,209 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                RichText(
-                                                                  textScaler: MediaQuery.of(
-                                                                          context)
-                                                                      .textScaler,
-                                                                  text:
-                                                                      TextSpan(
-                                                                    children: [
-                                                                      TextSpan(
-                                                                        text: valueOrDefault<
-                                                                            String>(
-                                                                          formatNumber(
-                                                                            _model.outputTenancy?.rentAmount,
-                                                                            formatType:
-                                                                                FormatType.decimal,
-                                                                            decimalType:
-                                                                                DecimalType.automatic,
-                                                                            currency:
-                                                                                '£',
-                                                                          ),
-                                                                          'N/A',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .headlineSmall
-                                                                            .override(
-                                                                              font: GoogleFonts.figtree(
-                                                                                fontWeight: FontWeight.bold,
-                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                              ),
-                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              fontSize: 18.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                            ),
-                                                                      )
-                                                                    ],
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      'xhqizsx0' /* Rent Amount */,
+                                                                    ),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .displayLarge
+                                                                        .bodyMedium
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Thunder',
+                                                                          font:
+                                                                              GoogleFonts.figtree(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                           color:
                                                                               FlutterFlowTheme.of(context).primaryBackground,
                                                                           fontSize:
-                                                                              24.0,
+                                                                              12.0,
                                                                           letterSpacing:
                                                                               0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'pk20qurh' /* per month */,
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelSmall
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .figtree(
                                                                           fontWeight: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
+                                                                              .bodyMedium
                                                                               .fontWeight,
                                                                           fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
+                                                                              .bodyMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .labelSmall
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelSmall
-                                                                            .fontStyle,
-                                                                      ),
+                                                                  ),
                                                                 ),
-                                                              ],
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              height: 2.0)),
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                -1.0, 0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child: Text(
-                                                                FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  '3gzyels7' /* Rent Due Date */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .figtree(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    RichText(
+                                                                      textScaler:
+                                                                          MediaQuery.of(context)
+                                                                              .textScaler,
+                                                                      text:
+                                                                          TextSpan(
+                                                                        children: [
+                                                                          TextSpan(
+                                                                            text:
+                                                                                formatNumber(
+                                                                              columnTenanciesRecord!.rentAmount,
+                                                                              formatType: FormatType.decimal,
+                                                                              decimalType: DecimalType.automatic,
+                                                                              currency: '£',
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                  font: GoogleFonts.figtree(
+                                                                                    fontWeight: FontWeight.bold,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                  ),
+                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                  fontSize: 18.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                ),
+                                                                          )
+                                                                        ],
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .displayLarge
+                                                                            .override(
+                                                                              fontFamily: 'Thunder',
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              fontSize: 24.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
                                                                       ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
                                                                     ),
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      -1.0,
-                                                                      0.0),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  RichText(
-                                                                    textScaler:
-                                                                        MediaQuery.of(context)
-                                                                            .textScaler,
-                                                                    text:
-                                                                        TextSpan(
-                                                                      children: [
-                                                                        TextSpan(
-                                                                          text:
-                                                                              valueOrDefault<String>(
-                                                                            _model.outputTenancy?.rentDueDay.toString(),
-                                                                            'N/A',
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'pk20qurh' /* per month */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.figtree(
+                                                                              fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBackground,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                           ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ].divide(SizedBox(
+                                                                  height: 2.0)),
+                                                            ),
+                                                          ),
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 0.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    FFLocalizations.of(
+                                                                            context)
+                                                                        .getText(
+                                                                      '3gzyels7' /* Rent Due Date */,
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.figtree(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          fontSize:
+                                                                              12.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.0,
+                                                                          0.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: valueOrDefault<String>(
+                                                                                columnTenanciesRecord?.rentDueDay?.toString(),
+                                                                                '00',
+                                                                              ),
+                                                                              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                    font: GoogleFonts.figtree(
+                                                                                      fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                    ),
+                                                                                    color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                    fontSize: 18.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                  ),
+                                                                            )
+                                                                          ],
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .headlineSmall
                                                                               .override(
@@ -1923,416 +1931,107 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                                 fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                               ),
-                                                                        )
-                                                                      ],
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineSmall
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.figtree(
-                                                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryBackground,
-                                                                            fontSize:
-                                                                                18.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      'dvd15dnr' /* of each month */,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.figtree(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .fontStyle,
                                                                         ),
+                                                                      ),
+                                                                      Text(
+                                                                        FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          'dvd15dnr' /* of each month */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.figtree(
+                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              height: 2.0)),
-                                                        ),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(width: 4.0)),
-                                                  ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    -1.0, 0.0),
-                                                            child: Text(
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .getText(
-                                                                'g35jv8jv' /* Tenancy Start */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .figtree(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              dateTimeFormat(
-                                                                "d/M/y",
-                                                                _model
-                                                                    .outputTenancy
-                                                                    ?.tenancyStartDate,
-                                                                locale: FFLocalizations.of(
-                                                                        context)
-                                                                    .languageCode,
-                                                              ),
-                                                              'N/A',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .figtree(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmall
-                                                                      .fontStyle,
                                                                 ),
+                                                              ].divide(SizedBox(
+                                                                  height: 2.0)),
+                                                            ),
                                                           ),
                                                         ].divide(SizedBox(
-                                                            height: 2.0)),
+                                                            width: 4.0)),
                                                       ),
                                                     ),
-                                                    StreamBuilder<
-                                                        List<
-                                                            PropertyProjectionsRecord>>(
-                                                      stream:
-                                                          queryPropertyProjectionsRecord(
-                                                        queryBuilder:
-                                                            (propertyProjectionsRecord) =>
-                                                                propertyProjectionsRecord
-                                                                    .where(
-                                                          'propertyRef',
-                                                          isEqualTo:
-                                                              widget!.propID,
-                                                        ),
-                                                        singleRecord: true,
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                valueColor:
-                                                                    AlwaysStoppedAnimation<
-                                                                        Color>(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        List<PropertyProjectionsRecord>
-                                                            columnPropertyProjectionsRecordList =
-                                                            snapshot.data!;
-                                                        // Return an empty Container when the item does not exist.
-                                                        if (snapshot
-                                                            .data!.isEmpty) {
-                                                          return Container();
-                                                        }
-                                                        final columnPropertyProjectionsRecord =
-                                                            columnPropertyProjectionsRecordList
-                                                                    .isNotEmpty
-                                                                ? columnPropertyProjectionsRecordList
-                                                                    .first
-                                                                : null;
-
-                                                        return Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Text(
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1.0, 0.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        -1.0,
+                                                                        0.0),
+                                                                child: Text(
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '271lb97p' /* Gross Yield */,
+                                                                    'g35jv8jv' /* Tenancy Start */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium
+                                                                      .bodyMedium
                                                                       .override(
                                                                         font: GoogleFonts
                                                                             .figtree(
                                                                           fontWeight: FlutterFlowTheme.of(context)
-                                                                              .labelMedium
+                                                                              .bodyMedium
                                                                               .fontWeight,
                                                                           fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelMedium
+                                                                              .bodyMedium
                                                                               .fontStyle,
                                                                         ),
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryBackground,
+                                                                        fontSize:
+                                                                            12.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
+                                                                            .bodyMedium
                                                                             .fontWeight,
                                                                         fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
+                                                                            .bodyMedium
                                                                             .fontStyle,
                                                                       ),
                                                                 ),
-                                                                AlignedTooltip(
-                                                                  content:
-                                                                      Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
-                                                                            4.0),
-                                                                    child: Text(
-                                                                      FFLocalizations.of(
-                                                                              context)
-                                                                          .getText(
-                                                                        'a3esnhmg' /* Calculated using rental income... */,
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.figtree(
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  offset: 4.0,
-                                                                  preferredDirection:
-                                                                      AxisDirection
-                                                                          .down,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                  elevation:
-                                                                      4.0,
-                                                                  tailBaseWidth:
-                                                                      24.0,
-                                                                  tailLength:
-                                                                      12.0,
-                                                                  waitDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              100),
-                                                                  showDuration:
-                                                                      Duration(
-                                                                          milliseconds:
-                                                                              1500),
-                                                                  triggerMode:
-                                                                      TooltipTriggerMode
-                                                                          .tap,
-                                                                  child: Icon(
-                                                                    Icons.info,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                    size: 16.0,
-                                                                  ),
-                                                                ),
-                                                              ].divide(SizedBox(
-                                                                  width: 6.0)),
-                                                            ),
-                                                            RichText(
-                                                              textScaler:
-                                                                  MediaQuery.of(
+                                                              ),
+                                                              Text(
+                                                                dateTimeFormat(
+                                                                  "d/M/y",
+                                                                  columnTenanciesRecord!
+                                                                      .tenancyStartDate!,
+                                                                  locale: FFLocalizations.of(
                                                                           context)
-                                                                      .textScaler,
-                                                              text: TextSpan(
-                                                                children: [
-                                                                  TextSpan(
-                                                                    text: valueOrDefault<
-                                                                        String>(
-                                                                      columnPropertyProjectionsRecord
-                                                                          ?.yieldPct
-                                                                          ?.firstOrNull
-                                                                          ?.toString(),
-                                                                      '0',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.figtree(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .headlineSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  ),
-                                                                  TextSpan(
-                                                                    text: FFLocalizations.of(
-                                                                            context)
-                                                                        .getText(
-                                                                      '3rc4fqan' /* % */,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.figtree(
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryBackground,
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .headlineSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                  )
-                                                                ],
+                                                                      .languageCode,
+                                                                ),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .headlineSmall
@@ -2361,15 +2060,250 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           .fontStyle,
                                                                     ),
                                                               ),
+                                                            ].divide(SizedBox(
+                                                                height: 2.0)),
+                                                          ),
+                                                        ),
+                                                        StreamBuilder<
+                                                            List<
+                                                                PropertyProjectionsRecord>>(
+                                                          stream:
+                                                              queryPropertyProjectionsRecord(
+                                                            queryBuilder:
+                                                                (propertyProjectionsRecord) =>
+                                                                    propertyProjectionsRecord
+                                                                        .where(
+                                                              'propertyRef',
+                                                              isEqualTo: widget!
+                                                                  .propID,
                                                             ),
-                                                          ],
-                                                        );
-                                                      },
+                                                            singleRecord: true,
+                                                          ),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      CircularProgressIndicator(
+                                                                    valueColor:
+                                                                        AlwaysStoppedAnimation<
+                                                                            Color>(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+                                                            List<PropertyProjectionsRecord>
+                                                                columnPropertyProjectionsRecordList =
+                                                                snapshot.data!;
+                                                            // Return an empty Container when the item does not exist.
+                                                            if (snapshot.data!
+                                                                .isEmpty) {
+                                                              return Container();
+                                                            }
+                                                            final columnPropertyProjectionsRecord =
+                                                                columnPropertyProjectionsRecordList
+                                                                        .isNotEmpty
+                                                                    ? columnPropertyProjectionsRecordList
+                                                                        .first
+                                                                    : null;
+
+                                                            return Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '271lb97p' /* Gross Yield */,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.figtree(
+                                                                              fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryBackground,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                          ),
+                                                                    ),
+                                                                    AlignedTooltip(
+                                                                      content:
+                                                                          Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(4.0),
+                                                                        child:
+                                                                            Text(
+                                                                          FFLocalizations.of(context)
+                                                                              .getText(
+                                                                            'a3esnhmg' /* Calculated using rental income... */,
+                                                                          ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                font: GoogleFonts.figtree(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      offset:
+                                                                          4.0,
+                                                                      preferredDirection:
+                                                                          AxisDirection
+                                                                              .down,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                      elevation:
+                                                                          4.0,
+                                                                      tailBaseWidth:
+                                                                          24.0,
+                                                                      tailLength:
+                                                                          12.0,
+                                                                      waitDuration:
+                                                                          Duration(
+                                                                              milliseconds: 100),
+                                                                      showDuration:
+                                                                          Duration(
+                                                                              milliseconds: 1500),
+                                                                      triggerMode:
+                                                                          TooltipTriggerMode
+                                                                              .tap,
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .info,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                        size:
+                                                                            16.0,
+                                                                      ),
+                                                                    ),
+                                                                  ].divide(SizedBox(
+                                                                      width:
+                                                                          6.0)),
+                                                                ),
+                                                                RichText(
+                                                                  textScaler: MediaQuery.of(
+                                                                          context)
+                                                                      .textScaler,
+                                                                  text:
+                                                                      TextSpan(
+                                                                    children: [
+                                                                      TextSpan(
+                                                                        text: valueOrDefault<
+                                                                            String>(
+                                                                          columnPropertyProjectionsRecord
+                                                                              ?.yieldPct
+                                                                              ?.firstOrNull
+                                                                              ?.toString(),
+                                                                          '0',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.figtree(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              fontSize: 18.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      TextSpan(
+                                                                        text: FFLocalizations.of(context)
+                                                                            .getText(
+                                                                          '3rc4fqan' /* % */,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.figtree(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                              fontSize: 18.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                            ),
+                                                                      )
+                                                                    ],
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineSmall
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.figtree(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                          fontSize:
+                                                                              18.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .headlineSmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ),
+                                                      ].divide(
+                                                          SizedBox(width: 4.0)),
                                                     ),
                                                   ].divide(
-                                                      SizedBox(width: 4.0)),
-                                                ),
-                                              ].divide(SizedBox(height: 17.0)),
+                                                      SizedBox(height: 17.0)),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),
@@ -5237,15 +5171,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                 custom_widgets.RentDueCalendar(
                                               width: double.infinity,
                                               height: 400.0,
-                                              rentDueDates: _model.rentDueDates,
-                                              otherEventDates:
-                                                  rentDueCalendarEventsRecordList
-                                                      .map((e) => e.startDate)
-                                                      .withoutNulls
-                                                      .toList(),
                                               events:
                                                   rentDueCalendarEventsRecordList,
-                                              rentAmount: _model.monthlyRental,
                                             ),
                                           );
                                         },
