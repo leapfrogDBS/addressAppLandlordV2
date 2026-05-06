@@ -85,16 +85,6 @@
           "queryScope": "COLLECTION_GROUP"
         }
       ]
-    },
-    {
-      "collectionGroup": "tenancies",
-      "fieldPath": "isActive",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
     }
   ]
 }

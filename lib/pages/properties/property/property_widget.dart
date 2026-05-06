@@ -1600,6 +1600,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                             child: StreamBuilder<
                                                 List<TenanciesRecord>>(
                                               stream: queryTenanciesRecord(
+                                                parent: widget!.propID,
                                                 queryBuilder:
                                                     (tenanciesRecord) =>
                                                         tenanciesRecord.where(
