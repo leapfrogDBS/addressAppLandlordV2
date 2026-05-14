@@ -66,24 +66,27 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
       } else if (!_model.userCollection!.shownMortgageOnboarding) {
         context.goNamed(MortgageInfoWidget.routeName);
       } else {
-        while (valueOrDefault<bool>(
-            currentUserDocument?.calculatingProjections, false)) {
+        if (valueOrDefault<bool>(
+                currentUserDocument?.completedOnboarding, false) ==
+            true) {
+          context.pushNamed(DashboardWidget.routeName);
+        } else {
+          await currentUserReference!.update(createUsersRecordData(
+            completedOnboarding: true,
+          ));
           _model.isCalculatingProjections = true;
-          safeSetState(() {});
-          await Future.delayed(
-            Duration(
-              milliseconds: 1000,
-            ),
-          );
+          while (!valueOrDefault<bool>(
+              currentUserDocument?.firstProjectionsRun, false)) {
+            await Future.delayed(
+              Duration(
+                milliseconds: 100,
+              ),
+            );
+          }
+          _model.isCalculatingProjections = false;
+
+          context.pushNamed(DashboardWidget.routeName);
         }
-        _model.isCalculatingProjections = false;
-        safeSetState(() {});
-
-        await currentUserReference!.update(createUsersRecordData(
-          completedOnboarding: true,
-        ));
-
-        context.goNamed(DashboardWidget.routeName);
       }
     });
 

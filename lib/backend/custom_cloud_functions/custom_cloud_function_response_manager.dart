@@ -22,6 +22,17 @@ class OnUserRetirementChangepokeCloudFunctionCallResponse {
   dynamic jsonBody;
 }
 
+class OnUserOnboardingCompletePokeCloudFunctionCallResponse {
+  OnUserOnboardingCompletePokeCloudFunctionCallResponse({
+    this.errorCode,
+    this.succeeded,
+    this.jsonBody,
+  });
+  String? errorCode;
+  bool? succeeded;
+  dynamic jsonBody;
+}
+
 class OnTenancyWriteSyncCurrentRentCloudFunctionCallResponse {
   OnTenancyWriteSyncCurrentRentCloudFunctionCallResponse({
     this.errorCode,
