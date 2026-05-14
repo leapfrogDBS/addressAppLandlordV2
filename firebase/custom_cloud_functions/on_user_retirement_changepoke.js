@@ -21,6 +21,13 @@ exports.onUserRetirementChangepoke = functions
       });
       return null;
     }
+    if (after.completedOnboarding === false) {
+      functions.logger.info(
+        "[user-poke] skipped because completedOnboarding is false",
+        { userId },
+      );
+      return null;
+    }
 
     // Watch these two fields for changes
     const watched = ["dob", "planned_retirement_age"];

@@ -39,7 +39,10 @@ exports.recalculatePropertyData = functions
     const db = admin.firestore();
 
     try {
-      await computePropertyProjectionCore({ db, propertyId });
+      const result = await computePropertyProjectionCore({ db, propertyId });
+      if (result && result.skipped) {
+        return null;
+      }
     } catch (err) {
       functions.logger.error("Background projection failed", {
         propertyId,
@@ -64,10 +67,13 @@ exports.computePropertyProjection = functions
     }
 
     try {
-      await computePropertyProjectionCore({
+      const result = await computePropertyProjectionCore({
         db: admin.firestore(),
         propertyId,
       });
+      if (result && result.skipped) {
+        return { ok: true, skipped: true, propertyId };
+      }
       return { ok: true, propertyId };
     } catch (err) {
       functions.logger.error("Callable projection failed", {
@@ -96,6 +102,18 @@ async function computePropertyProjectionCore(args) {
   const ownerId = getOwnerUserIdFromPropertyData(p); // reads p.ownerID
   if (!ownerId) throw new Error("Property ownerID missing");
   const userRef = ownerId ? db.collection("users").doc(ownerId) : null;
+
+  if (userRef) {
+    const uSnap = await userRef.get();
+    const uData = uSnap.exists ? uSnap.data() || {} : {};
+    if (!isCompletedOnboardingForProjections(uData)) {
+      functions.logger.info(
+        "Projection skipped: completedOnboarding is false (onboarding not finished)",
+        { propertyId, ownerId },
+      );
+      return { skipped: true };
+    }
+  }
 
   // START: atomic increment + set flag
   if (userRef) {
@@ -373,14 +391,18 @@ async function computePropertyProjectionCore(args) {
       years: years.length,
       expenseInflationPctUsed: expenseInflationPct,
     });
+
+    return { skipped: false };
   } finally {
     // END: atomic decrement + flip flag iff last job
     if (userRef) {
       try {
+        let nextCount = null;
         await db.runTransaction(async (t) => {
           const u = await t.get(userRef);
           const cur = Number(u.get("calculatingProjectionsCount") || 0);
           const next = Math.max(0, cur - 1);
+          nextCount = next;
           const update = {
             calculatingProjectionsCount: next,
             calculatingProjections: next > 0 ? true : false,
@@ -389,6 +411,9 @@ async function computePropertyProjectionCore(args) {
           };
           t.update(userRef, update);
         });
+        if (nextCount === 0) {
+          await maybeSetFirstProjectionsRun(db, userRef, ownerId);
+        }
       } catch (err) {
         functions.logger.error("Flag reset failed", {
           ownerId,
@@ -400,6 +425,77 @@ async function computePropertyProjectionCore(args) {
 }
 
 // ───────────────────────── UTILS ─────────────────────────
+
+/** Legacy: missing completedOnboarding → allow. Only explicit false blocks. */
+function isCompletedOnboardingForProjections(userData) {
+  const v = userData && userData.completedOnboarding;
+  if (v === false) return false;
+  return true;
+}
+
+/**
+ * After the last in-flight projection job for this user (count → 0), set
+ * firstProjectionsRun when every owned property has a propertyProjections doc
+ * for this ownerRef, and onboarding is complete.
+ */
+async function maybeSetFirstProjectionsRun(db, userRef, ownerId) {
+  try {
+    const uSnap = await userRef.get();
+    if (!uSnap.exists) return;
+    const d = uSnap.data() || {};
+    if (d.firstProjectionsRun === true) return;
+    if (!isCompletedOnboardingForProjections(d)) return;
+
+    const [propsOwnerID, propsOwnerId] = await Promise.all([
+      db.collection("properties").where("ownerID", "==", ownerId).get(),
+      db.collection("properties").where("ownerId", "==", ownerId).get(),
+    ]);
+    const seenPaths = new Set();
+    propsOwnerID.docs.forEach((doc) => seenPaths.add(doc.ref.path));
+    propsOwnerId.docs.forEach((doc) => seenPaths.add(doc.ref.path));
+    const allPaths = Array.from(seenPaths);
+
+    if (allPaths.length === 0) {
+      await userRef.set({ firstProjectionsRun: true }, { merge: true });
+      functions.logger.info("firstProjectionsRun set (no properties)", {
+        ownerId,
+      });
+      return;
+    }
+
+    const projSnap = await db
+      .collection("propertyProjections")
+      .where("ownerRef", "==", userRef)
+      .get();
+
+    const coveredPaths = new Set();
+    projSnap.docs.forEach((doc) => {
+      const pr = doc.get("propertyRef");
+      if (pr && typeof pr.path === "string") coveredPaths.add(pr.path);
+    });
+
+    const missing = allPaths.filter((path) => !coveredPaths.has(path));
+    if (missing.length > 0) {
+      functions.logger.debug(
+        "firstProjectionsRun not set yet; missing coverage",
+        {
+          ownerId,
+          missingCount: missing.length,
+        },
+      );
+      return;
+    }
+
+    await userRef.set({ firstProjectionsRun: true }, { merge: true });
+    functions.logger.info("firstProjectionsRun set", { ownerId });
+  } catch (err) {
+    functions.logger.error("maybeSetFirstProjectionsRun failed", {
+      ownerId,
+      error: err && err.message,
+    });
+  }
+}
+
 function getOwnerUserIdFromPropertyData(p) {
   return String(p.ownerID || "").trim() || null;
 }
