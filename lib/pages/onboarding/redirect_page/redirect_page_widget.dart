@@ -84,7 +84,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'Please pull down to refresh the app, or log out and back in. If it keeps happening, contact support.”',
+                  'Please pull down to refresh the app, or log out and back in. If it keeps happening, contact support.',
                   style: TextStyle(
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
@@ -94,6 +94,8 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
               ),
             );
           }
+
+          _model.isCalculatingProjections = false;
         }
       }
     });
