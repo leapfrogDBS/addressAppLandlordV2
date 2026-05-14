@@ -78,7 +78,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
           ));
           _model.isCalculatingProjections = true;
           _model.waitOutput = await actions.waitForFirstProjectionsRun();
-          if (_model.waitOutput == false) {
+          if (_model.waitOutput == true) {
             context.pushNamed(DashboardWidget.routeName);
           } else {
             ScaffoldMessenger.of(context).showSnackBar(

@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import '/auth/firebase_auth/auth_util.dart';
+
 Future<bool> waitForFirstProjectionsRun() async {
   if (!loggedIn || currentUserReference == null) {
     return false;
