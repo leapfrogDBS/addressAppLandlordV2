@@ -3970,7 +3970,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '',
     },
     '1oyko569': {
-      'en': 'See what’s coming up next and what has recently been completed.',
+      'en': 'Upcoming and recent activity',
       'ar': '',
       'bn': '',
       'de': '',

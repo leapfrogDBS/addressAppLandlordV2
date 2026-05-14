@@ -1666,8 +1666,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         int.tryParse(_model
                                                             .retirementAgeTextController
                                                             .text),
-                                                    calculatingProjections:
-                                                        true,
                                                     targetEquity: int.tryParse(
                                                         _model
                                                             .equityTextController
@@ -1677,6 +1675,27 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                             .incomeGoalTextController1
                                                             .text),
                                                   ));
+                                                  if (functions
+                                                          .convertStringToInteger(
+                                                              _model
+                                                                  .retirementAgeTextController
+                                                                  .text) !=
+                                                      stackUsersRecord
+                                                          .plannedRetirementAge) {
+                                                    await currentUserReference!
+                                                        .update(
+                                                            createUsersRecordData(
+                                                      calculatingProjections:
+                                                          true,
+                                                    ));
+                                                  } else {
+                                                    await Future.delayed(
+                                                      Duration(
+                                                        milliseconds: 10,
+                                                      ),
+                                                    );
+                                                  }
+
                                                   _model.goalsChanged = false;
                                                   safeSetState(() {});
                                                 } else {

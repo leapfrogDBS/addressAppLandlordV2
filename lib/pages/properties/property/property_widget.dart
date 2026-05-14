@@ -200,6 +200,44 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
+                                    if (propertyPropertiesRecord.title !=
+                                            null &&
+                                        propertyPropertiesRecord.title != '')
+                                      Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 1.0),
+                                            child: Text(
+                                              propertyPropertiesRecord.title
+                                                  .maybeHandleOverflow(
+                                                maxChars: 50,
+                                                replacement: '…',
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .headlineMedium
+                                                  .override(
+                                                    font: GoogleFonts.figtree(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    ),
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle: FontStyle.italic,
+                                                    lineHeight: 1.2,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -208,43 +246,47 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1.0, 1.0),
-                                          child: Text(
-                                            propertyPropertiesRecord
-                                                .addressLine1
-                                                .maybeHandleOverflow(
-                                              maxChars: 50,
-                                              replacement: '…',
+                                          child: Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.8,
+                                            decoration: BoxDecoration(),
+                                            child: Text(
+                                              propertyPropertiesRecord
+                                                  .addressFormatted,
+                                              textAlign: TextAlign.center,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.figtree(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMedium
+                                                                .fontStyle,
+                                                        lineHeight: 1.0,
+                                                      ),
                                             ),
-                                            textAlign: TextAlign.start,
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineMedium
-                                                .override(
-                                                  font: GoogleFonts.figtree(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineMedium
-                                                          .fontStyle,
-                                                  lineHeight: 1.2,
-                                                ),
                                           ),
                                         ),
                                       ],
@@ -351,7 +393,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                               .headlineMedium
                                                               .fontStyle,
                                                     ),
-                                                    fontSize: 14.0,
+                                                    fontSize: 12.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
                                                     fontStyle:
@@ -367,7 +409,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ].divide(SizedBox(height: 3.0)),
                                 ),
                               ),
                             ),
@@ -4994,7 +5036,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                 child: Text(
                                                   FFLocalizations.of(context)
                                                       .getText(
-                                                    '1oyko569' /* See what’s coming up next and ... */,
+                                                    '1oyko569' /* Upcoming and recent activity */,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                   style: FlutterFlowTheme.of(
@@ -5032,12 +5074,16 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                           ),
                                         ].divide(SizedBox(height: 4.0)),
                                       ),
-                                      wrapWithModel(
-                                        model: _model.recentActivityModel,
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: RecentActivityWidget(
-                                          propId: widget!.propID!,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 16.0, 0.0, 0.0),
+                                        child: wrapWithModel(
+                                          model: _model.recentActivityModel,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: RecentActivityWidget(
+                                            propId: widget!.propID!,
+                                          ),
                                         ),
                                       ),
                                       Column(

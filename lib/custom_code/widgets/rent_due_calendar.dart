@@ -47,6 +47,8 @@ IconData _iconForType(String? t) {
       return Icons.gas_meter;
     case 'electricity':
       return Icons.bolt;
+    case 'repair':
+      return Icons.handyman_sharp;
     default:
       return Icons.event;
   }

@@ -52,24 +52,21 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
-          child: Text(
-            FFLocalizations.of(context).getText(
-              '2lt4g6l9' /* Coming Up */,
-            ),
-            style: FlutterFlowTheme.of(context).labelMedium.override(
-                  font: GoogleFonts.figtree(
-                    fontWeight: FontWeight.bold,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).labelMedium.fontStyle,
-                  ),
-                  fontSize: 14.0,
-                  letterSpacing: 0.0,
+        Text(
+          FFLocalizations.of(context).getText(
+            '2lt4g6l9' /* Coming Up */,
+          ),
+          style: FlutterFlowTheme.of(context).labelMedium.override(
+                font: GoogleFonts.figtree(
                   fontWeight: FontWeight.bold,
                   fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                 ),
-          ),
+                color: FlutterFlowTheme.of(context).primary,
+                fontSize: 12.0,
+                letterSpacing: 0.0,
+                fontWeight: FontWeight.bold,
+                fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
+              ),
         ),
         Column(
           mainAxisSize: MainAxisSize.max,
@@ -137,104 +134,175 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 8.0, 16.0, 8.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        listViewEventsRecord.title,
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineSmall
-                                            .override(
-                                              font: GoogleFonts.figtree(
+                                    Builder(
+                                      builder: (context) {
+                                        if ((listViewEventsRecord.type ==
+                                                'rent') ||
+                                            (listViewEventsRecord.type ==
+                                                'rent_due')) {
+                                          return Icon(
+                                            Icons.payments_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'move_in') {
+                                          return Icon(
+                                            Icons.login,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'inspection') {
+                                          return Icon(
+                                            Icons.build_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'move_out') {
+                                          return Icon(
+                                            Icons.logout_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'valuation') {
+                                          return Icon(
+                                            Icons.assessment_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'gas') {
+                                          return Icon(
+                                            Icons.gas_meter,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'electricity') {
+                                          return Icon(
+                                            Icons.bolt,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else if (listViewEventsRecord.type ==
+                                            'repair') {
+                                          return Icon(
+                                            Icons.handyman_sharp,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        } else {
+                                          return Icon(
+                                            Icons.event_available,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            size: 24.0,
+                                          );
+                                        }
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    listViewEventsRecord.title,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          font: GoogleFonts.figtree(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineSmall
+                                                    .fontStyle,
+                                          ),
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineSmall
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          valueOrDefault<String>(
+                                            dateTimeFormat(
+                                              "MMMEd",
+                                              listViewEventsRecord.startDate,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
+                                            'Soon',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodySmall
+                                              .override(
+                                                font: GoogleFonts.figtree(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodySmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodySmall
+                                                          .fontStyle,
+                                                ),
+                                                letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .bodySmall
                                                         .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .bodySmall
                                                         .fontStyle,
                                               ),
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineSmall
-                                                      .fontStyle,
-                                            ),
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              valueOrDefault<String>(
-                                                dateTimeFormat(
-                                                  "MMMEd",
-                                                  listViewEventsRecord
-                                                      .startDate,
-                                                  locale: FFLocalizations.of(
-                                                          context)
-                                                      .languageCode,
-                                                ),
-                                                'Soon',
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.figtree(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodySmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodySmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodySmall
-                                                                .fontStyle,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -249,7 +317,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
           ],
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
           child: Text(
             FFLocalizations.of(context).getText(
               'dor0aseg' /* Recent */,
@@ -261,6 +329,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                     fontStyle:
                         FlutterFlowTheme.of(context).labelMedium.fontStyle,
                   ),
+                  color: FlutterFlowTheme.of(context).primary,
                   letterSpacing: 0.0,
                   fontWeight:
                       FlutterFlowTheme.of(context).labelMedium.fontWeight,
@@ -330,96 +399,166 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 8.0, 16.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    listViewEventsRecord.title,
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineSmall
-                                        .override(
-                                          font: GoogleFonts.figtree(
+                                Builder(
+                                  builder: (context) {
+                                    if ((listViewEventsRecord.type == 'rent') ||
+                                        (listViewEventsRecord.type ==
+                                            'rent_due')) {
+                                      return Icon(
+                                        Icons.payments_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'move_in') {
+                                      return Icon(
+                                        Icons.login,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'inspection') {
+                                      return Icon(
+                                        Icons.build_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'move_out') {
+                                      return Icon(
+                                        Icons.logout_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'valuation') {
+                                      return Icon(
+                                        Icons.assessment_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'gas') {
+                                      return Icon(
+                                        Icons.gas_meter,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'electricity') {
+                                      return Icon(
+                                        Icons.bolt,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else if (listViewEventsRecord.type ==
+                                        'repair') {
+                                      return Icon(
+                                        Icons.handyman_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    } else {
+                                      return Icon(
+                                        Icons.event_available,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 24.0,
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  4.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                listViewEventsRecord.title,
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineSmall
+                                    .override(
+                                      font: GoogleFonts.figtree(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .headlineSmall
+                                            .fontStyle,
+                                      ),
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  4.0, 4.0, 0.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      dateTimeFormat(
+                                        "MMMEd",
+                                        listViewEventsRecord.startDate!,
+                                        locale: FFLocalizations.of(context)
+                                                .languageShortCode ??
+                                            FFLocalizations.of(context)
+                                                .languageCode,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            font: GoogleFonts.figtree(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .headlineSmall
+                                                    .bodySmall
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .headlineSmall
+                                                    .bodySmall
                                                     .fontStyle,
                                           ),
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall
-                                                  .fontStyle,
-                                        ),
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4.0, 4.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          dateTimeFormat(
-                                            "MMMEd",
-                                            listViewEventsRecord.startDate!,
-                                            locale: FFLocalizations.of(context)
-                                                    .languageShortCode ??
-                                                FFLocalizations.of(context)
-                                                    .languageCode,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall
-                                              .override(
-                                                font: GoogleFonts.figtree(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodySmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodySmall
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ],
                         ),

@@ -1,4 +1,5 @@
 import '/components/main_header_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -66,6 +67,30 @@ class _PdFViewPageWidgetState extends State<PdFViewPageWidget> {
                 model: _model.mainHeaderModel,
                 updateCallback: () => safeSetState(() {}),
                 child: MainHeaderWidget(),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 44.0,
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: FlutterFlowTheme.of(context).primary,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          print('IconButton pressed ...');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
               FlutterFlowPdfViewer(
                 networkPath: widget!.pdfUrl!,

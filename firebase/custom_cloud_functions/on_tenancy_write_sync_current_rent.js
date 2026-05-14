@@ -269,7 +269,7 @@ async function upsertFutureRentDueEvents({
         propertyRef,
         tenancyRef,
         amount: Math.round(amount), // events.amount is int in your schema
-        notes: "Auto-generated from active tenancy rent schedule",
+        notes: "",
         source: "system_rent_schedule",
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         // keep first createdAt if already exists; set always for new docs:
