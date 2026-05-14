@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -67,25 +68,32 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
         context.goNamed(MortgageInfoWidget.routeName);
       } else {
         if (valueOrDefault<bool>(
-                currentUserDocument?.completedOnboarding, false) ==
-            true) {
+                currentUserDocument?.completedOnboarding, false) &&
+            valueOrDefault<bool>(
+                currentUserDocument?.firstProjectionsRun, false)) {
           context.pushNamed(DashboardWidget.routeName);
         } else {
           await currentUserReference!.update(createUsersRecordData(
             completedOnboarding: true,
           ));
           _model.isCalculatingProjections = true;
-          while (!valueOrDefault<bool>(
-              currentUserDocument?.firstProjectionsRun, false)) {
-            await Future.delayed(
-              Duration(
-                milliseconds: 100,
+          _model.waitOutput = await actions.waitForFirstProjectionsRun();
+          if (_model.waitOutput == false) {
+            context.pushNamed(DashboardWidget.routeName);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Please pull down to refresh the app, or log out and back in. If it keeps happening, contact support.”',
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryBackground,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: FlutterFlowTheme.of(context).error,
               ),
             );
           }
-          _model.isCalculatingProjections = false;
-
-          context.pushNamed(DashboardWidget.routeName);
         }
       }
     });

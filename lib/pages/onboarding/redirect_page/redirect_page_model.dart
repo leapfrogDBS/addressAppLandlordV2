@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'redirect_page_widget.dart' show RedirectPageWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,6 +26,8 @@ class RedirectPageModel extends FlutterFlowModel<RedirectPageWidget> {
   UsersRecord? userCollection;
   // Stores action output result for [Firestore Query - Query a collection] action in redirectPage widget.
   List<PropertiesRecord>? noPurchasePrice;
+  // Stores action output result for [Custom Action - waitForFirstProjectionsRun] action in redirectPage widget.
+  bool? waitOutput;
 
   @override
   void initState(BuildContext context) {}
