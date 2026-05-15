@@ -84,8 +84,8 @@ class _PdFViewPageWidgetState extends State<PdFViewPageWidget> {
                           color: FlutterFlowTheme.of(context).primary,
                           size: 24.0,
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
+                        onPressed: () async {
+                          context.safePop();
                         },
                       ),
                     ),

@@ -48,8 +48,8 @@ Future navigateFromNotificationLink(
     case 'Articles':
       context.pushNamed('Articles');
       break;
-    case 'AllMessages':
-      context.pushNamed('AllMessages');
+    case 'messages':
+      context.pushNamed('message');
       break;
     default:
       break;

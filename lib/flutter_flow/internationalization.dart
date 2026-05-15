@@ -2971,7 +2971,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '稍等片刻…',
     },
     '164a2u9a': {
-      'en': 'Calculating Projections',
+      'en':
+          'Calculating projections for every property in your portfolio.\n\nPlease stay on this screen — it may take up to a minute.',
       'ar': 'حساب التوقعات',
       'bn': 'অনুমান গণনা করা হচ্ছে',
       'de': 'Berechnung von Prognosen',

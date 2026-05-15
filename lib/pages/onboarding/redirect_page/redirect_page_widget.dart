@@ -77,6 +77,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
             completedOnboarding: true,
           ));
           _model.isCalculatingProjections = true;
+          safeSetState(() {});
           _model.waitOutput = await actions.waitForFirstProjectionsRun();
           if (_model.waitOutput == true) {
             context.pushNamed(DashboardWidget.routeName);
@@ -154,19 +155,44 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (_model.isCalculatingProjections)
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      FFLocalizations.of(context).getText(
-                        '164a2u9a' /* Calculating Projections */,
-                      ),
-                      style: FlutterFlowTheme.of(context).displayLarge.override(
-                            fontFamily: 'Thunder',
-                            letterSpacing: 0.0,
+                Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                    child: Container(
+                      decoration: BoxDecoration(),
+                      child: Visibility(
+                        visible: _model.isCalculatingProjections,
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            '164a2u9a' /* Calculating projections for ev... */,
                           ),
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .headlineLarge
+                              .override(
+                                font: GoogleFonts.figtree(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .headlineLarge
+                                      .fontStyle,
+                                ),
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .headlineLarge
+                                    .fontStyle,
+                              ),
+                        ),
+                      ),
                     ),
                   ),
+                ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
