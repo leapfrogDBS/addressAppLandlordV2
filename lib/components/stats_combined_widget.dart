@@ -82,7 +82,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .fontWeight,
@@ -118,7 +118,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                             ),
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -156,7 +156,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -178,7 +178,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -205,7 +205,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                             ),
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge
@@ -239,7 +239,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -261,7 +261,7 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyLarge

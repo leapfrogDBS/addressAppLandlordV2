@@ -103,7 +103,7 @@ class _LiveEarningsPropertyWidgetState
                 child: Text(
                   widget!.headingText,
                   style: FlutterFlowTheme.of(context).titleSmall.override(
-                        font: GoogleFonts.figtree(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FontWeight.normal,
                           fontStyle:
                               FlutterFlowTheme.of(context).titleSmall.fontStyle,
@@ -134,11 +134,24 @@ class _LiveEarningsPropertyWidgetState
                         ),
                         style:
                             FlutterFlowTheme.of(context).displayLarge.override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   fontSize: 64.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                       ),
                     ),
@@ -165,7 +178,7 @@ class _LiveEarningsPropertyWidgetState
                           '4afb697w' /* Estimated gain for the year */,
                         ),
                         style: FlutterFlowTheme.of(context).bodySmall.override(
-                              font: GoogleFonts.figtree(
+                              font: GoogleFonts.dmSans(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .bodySmall
                                     .fontWeight,
@@ -190,7 +203,7 @@ class _LiveEarningsPropertyWidgetState
                           'this year',
                         ),
                         style: FlutterFlowTheme.of(context).bodySmall.override(
-                              font: GoogleFonts.figtree(
+                              font: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FlutterFlowTheme.of(context)
                                     .bodySmall
@@ -217,9 +230,22 @@ class _LiveEarningsPropertyWidgetState
                       locale: 'en_GB',
                     ),
                     style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: 'Thunder',
+                          font: GoogleFonts.dmSans(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontStyle,
+                          ),
                           color: FlutterFlowTheme.of(context).primaryBackground,
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .displayLarge
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .displayLarge
+                              .fontStyle,
                         ),
                   ),
                   Text(
@@ -231,7 +257,7 @@ class _LiveEarningsPropertyWidgetState
                       locale: 'en_GB',
                     )} /day)',
                     style: FlutterFlowTheme.of(context).labelMedium.override(
-                          font: GoogleFonts.figtree(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w600,
                             fontStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
@@ -254,7 +280,7 @@ class _LiveEarningsPropertyWidgetState
                     'ak9pv36y' /* Based on rental profit and cap... */,
                   ),
                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                        font: GoogleFonts.figtree(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .labelSmall
                               .fontWeight,

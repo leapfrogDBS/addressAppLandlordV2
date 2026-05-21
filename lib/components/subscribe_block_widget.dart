@@ -58,8 +58,17 @@ class _SubscribeBlockWidgetState extends State<SubscribeBlockWidget> {
                 'zy6qjcuj' /* SUBSCRIBE FOR UPDATES */,
               ),
               style: FlutterFlowTheme.of(context).displayLarge.override(
-                    fontFamily: 'Thunder',
+                    font: GoogleFonts.dmSans(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                    ),
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).displayLarge.fontStyle,
                   ),
             ),
             Text(
@@ -68,7 +77,7 @@ class _SubscribeBlockWidgetState extends State<SubscribeBlockWidget> {
               ),
               textAlign: TextAlign.start,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:
@@ -101,7 +110,7 @@ class _SubscribeBlockWidgetState extends State<SubscribeBlockWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).tertiary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.figtree(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .fontWeight,

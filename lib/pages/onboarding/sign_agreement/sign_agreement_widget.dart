@@ -60,7 +60,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
               '0vux0kbx' /* Onboarding */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineMedium.fontWeight,
                     fontStyle:
@@ -105,8 +105,21 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                         'b3iwlo5i' /* SIGN YOUR AGREEMENT */,
                       ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
-                            fontFamily: 'Thunder',
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontStyle,
+                            ),
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontStyle,
                           ),
                     ),
                     Text(
@@ -115,7 +128,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .fontWeight,
@@ -164,7 +177,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
@@ -196,7 +209,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -257,7 +270,7 @@ class _SignAgreementWidgetState extends State<SignAgreementWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall

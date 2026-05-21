@@ -381,7 +381,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -420,7 +420,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -454,7 +454,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -499,7 +499,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         textStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -560,8 +560,29 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
-                                                  fontFamily: 'Thunder',
+                                                  font: GoogleFonts.dmSans(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displaySmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displaySmall
+                                                            .fontStyle,
+                                                  ),
                                                   letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmall
+                                                          .fontStyle,
                                                 ),
                                           ),
                                         ),
@@ -578,7 +599,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .titleMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -613,7 +634,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -668,8 +689,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -701,8 +723,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -779,7 +802,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .titleMedium
                                                         .override(
                                                           font: GoogleFonts
-                                                              .figtree(
+                                                              .dmSans(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -831,7 +854,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .titleMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -870,7 +893,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -920,8 +943,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -953,8 +977,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1031,7 +1056,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .titleMedium
                                                         .override(
                                                           font: GoogleFonts
-                                                              .figtree(
+                                                              .dmSans(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1083,7 +1108,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .titleMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -1122,7 +1147,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1172,8 +1197,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1205,8 +1231,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1283,7 +1310,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .titleMedium
                                                         .override(
                                                           font: GoogleFonts
-                                                              .figtree(
+                                                              .dmSans(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1335,7 +1362,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .titleMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -1375,7 +1402,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1425,8 +1452,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1458,8 +1486,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1536,7 +1565,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         .titleMedium
                                                         .override(
                                                           font: GoogleFonts
-                                                              .figtree(
+                                                              .dmSans(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1608,7 +1637,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1741,7 +1770,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1798,7 +1827,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                         context)
                                                     .titleSmall
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1865,7 +1894,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyLarge
@@ -1917,7 +1946,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   textStyle: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyLarge
@@ -2022,7 +2051,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -2075,8 +2104,21 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               style: FlutterFlowTheme.of(context)
                                   .displayLarge
                                   .override(
-                                    fontFamily: 'Thunder',
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .fontStyle,
+                                    ),
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
                                   ),
                             ),
                           ),

@@ -74,9 +74,18 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
               '1v4kd7xr' /* Back */,
             ),
             style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: 'Thunder',
+                  font: GoogleFonts.dmSans(
+                    fontWeight:
+                        FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).displaySmall.fontStyle,
+                  ),
                   fontSize: 16.0,
                   letterSpacing: 0.0,
+                  fontWeight:
+                      FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                  fontStyle:
+                      FlutterFlowTheme.of(context).displaySmall.fontStyle,
                 ),
           ),
         ),
@@ -136,7 +145,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .fontWeight,
@@ -165,8 +174,21 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       '8xjevk07' /* FORGOT PASSWORD */,
                     ),
                     style: FlutterFlowTheme.of(context).displaySmall.override(
-                          fontFamily: 'Thunder',
+                          font: GoogleFonts.dmSans(
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displaySmall
+                                .fontStyle,
+                          ),
                           letterSpacing: 0.0,
+                          fontWeight: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .fontWeight,
+                          fontStyle: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .fontStyle,
                         ),
                   ),
                 ),
@@ -177,7 +199,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       'ut7t17fe' /* We will send you an email with... */,
                     ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
-                          font: GoogleFonts.figtree(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .fontWeight,
@@ -211,7 +233,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         ),
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .fontWeight,
@@ -232,7 +254,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         ),
                         hintStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .fontWeight,
@@ -283,7 +305,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                             24.0, 24.0, 20.0, 24.0),
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .fontWeight,
@@ -379,7 +401,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         color: FlutterFlowTheme.of(context).tertiary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontWeight,

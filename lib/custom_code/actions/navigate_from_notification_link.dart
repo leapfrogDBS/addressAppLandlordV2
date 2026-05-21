@@ -49,7 +49,7 @@ Future navigateFromNotificationLink(
       context.pushNamed('Articles');
       break;
     case 'messages':
-      context.pushNamed('message');
+      context.pushNamed('Message');
       break;
     default:
       break;

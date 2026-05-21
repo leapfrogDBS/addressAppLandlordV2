@@ -93,7 +93,7 @@ class _Dashboard11SmallCountWidgetState
                         '6dwh983a' /* Balance at Risk */,
                       ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .fontWeight,
@@ -123,7 +123,7 @@ class _Dashboard11SmallCountWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .headlineMedium
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .fontWeight,
@@ -160,7 +160,7 @@ class _Dashboard11SmallCountWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .bodySmall
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodySmall
                                         .fontWeight,

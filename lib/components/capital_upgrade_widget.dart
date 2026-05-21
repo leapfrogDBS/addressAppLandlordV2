@@ -95,7 +95,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                       'm6sbhbcg' /* Reinvestment Potential */,
                     ),
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
-                          font: GoogleFonts.figtree(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w600,
                             fontStyle: FlutterFlowTheme.of(context)
                                 .headlineLarge
@@ -133,7 +133,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.normal,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -165,11 +165,28 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .displayLarge
                                             .override(
-                                              fontFamily: 'Thunder',
+                                              font: GoogleFonts.dmSans(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .displayLarge
+                                                        .fontStyle,
+                                              ),
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
                                               letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayLarge
+                                                      .fontStyle,
                                             ),
                                       ),
                                       AlignedTooltip(
@@ -228,7 +245,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .headlineLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
@@ -298,7 +315,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.normal,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleLarge
@@ -323,7 +340,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .fontWeight,
@@ -356,7 +373,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.normal,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleLarge
@@ -381,7 +398,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleLarge
                                         .fontWeight,
@@ -413,7 +430,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.normal,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleLarge
@@ -439,7 +456,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleLarge
@@ -472,7 +489,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleLarge
@@ -504,7 +521,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.bold,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
@@ -530,7 +547,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyLarge
@@ -598,7 +615,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                           color: FlutterFlowTheme.of(context).secondary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .fontWeight,

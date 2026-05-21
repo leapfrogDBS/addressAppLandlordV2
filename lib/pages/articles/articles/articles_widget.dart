@@ -97,8 +97,21 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                         ),
@@ -108,7 +121,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .fontWeight,
@@ -237,8 +250,9 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                   context)
                                                               .titleSmall
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
@@ -280,7 +294,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                 .labelSmall
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelSmall

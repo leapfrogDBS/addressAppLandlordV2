@@ -71,7 +71,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
               'qkhx6njz' /* Onboarding */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineMedium.fontWeight,
                     fontStyle:
@@ -119,8 +119,21 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                           style: FlutterFlowTheme.of(context)
                               .displayLarge
                               .override(
-                                fontFamily: 'Thunder',
+                                font: GoogleFonts.dmSans(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displayLarge
+                                    .fontStyle,
                               ),
                         ),
                         Text(
@@ -130,7 +143,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyLarge.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .fontWeight,
@@ -171,7 +184,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
@@ -196,7 +209,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -236,7 +249,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -260,7 +273,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -313,7 +326,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -366,7 +379,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
@@ -391,7 +404,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -431,7 +444,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -455,7 +468,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -508,7 +521,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -560,7 +573,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight: FontWeight.w600,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
@@ -585,7 +598,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -625,7 +638,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -649,7 +662,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   hintStyle: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .labelMedium
@@ -702,7 +715,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -758,7 +771,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall
@@ -790,7 +803,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -867,7 +880,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall

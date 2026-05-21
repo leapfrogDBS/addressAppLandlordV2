@@ -145,7 +145,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleLarge
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.w600,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
@@ -173,7 +173,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FontWeight.w300,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
@@ -215,7 +215,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -246,7 +246,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -277,7 +277,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -308,7 +308,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -345,7 +345,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -376,7 +376,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
@@ -451,7 +451,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -488,7 +488,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                                         context)
                                                     .bodySmall
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -565,7 +565,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -617,7 +617,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -661,7 +661,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall

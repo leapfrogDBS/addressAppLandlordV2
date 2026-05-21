@@ -958,3 +958,17 @@ int? parseMoneyToInt(String? raw) {
   if (value == null) return null;
   return value.round();
 }
+
+String? getUserInitials(String? displayName) {
+  final name = displayName?.trim() ?? '';
+  if (name.isEmpty) return '?';
+  final parts = name.split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+  if (parts.isEmpty) return '?';
+  if (parts.length == 1) {
+    final w = parts.first;
+    return w.length >= 2
+        ? w.substring(0, 2).toUpperCase()
+        : w.substring(0, 1).toUpperCase();
+  }
+  return '${parts.first[0]}${parts.last[0]}'.toUpperCase();
+}

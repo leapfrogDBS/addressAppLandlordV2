@@ -65,7 +65,7 @@ class _NotificationsIconWidgetState extends State<NotificationsIconWidget> {
               '18',
             ),
             style: FlutterFlowTheme.of(context).titleSmall.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).titleSmall.fontWeight,
                     fontStyle:

@@ -127,9 +127,9 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color tertiary = const Color(0xFFF2CB00);
   late Color alternate = const Color(0xFFE0E3E7);
   late Color primaryText = const Color(0xFF0C2337);
-  late Color secondaryText = const Color(0xFF3C444C);
+  late Color secondaryText = const Color(0xFF7A8A99);
   late Color primaryBackground = const Color(0xFFFFFFFF);
-  late Color secondaryBackground = const Color(0xFFF9FAFB);
+  late Color secondaryBackground = const Color(0xFFF5F7F9);
   late Color accent1 = const Color(0xFF223B7F);
   late Color accent2 = const Color(0xFF377C74);
   late Color accent3 = const Color(0xFFC9A146);
@@ -195,110 +195,107 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Thunder';
-  bool get displayLargeIsCustom => true;
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'Thunder',
+  String get displayLargeFamily => 'DM Sans';
+  bool get displayLargeIsCustom => false;
+  TextStyle get displayLarge => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get displayMediumFamily => 'Thunder';
-  bool get displayMediumIsCustom => true;
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'Thunder',
+  String get displayMediumFamily => 'DM Sans';
+  bool get displayMediumIsCustom => false;
+  TextStyle get displayMedium => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get displaySmallFamily => 'Thunder';
-  bool get displaySmallIsCustom => true;
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'Thunder',
+  String get displaySmallFamily => 'DM Sans';
+  bool get displaySmallIsCustom => false;
+  TextStyle get displaySmall => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get headlineLargeFamily => 'Figtree';
+  String get headlineLargeFamily => 'DM Sans';
   bool get headlineLargeIsCustom => false;
-  TextStyle get headlineLarge => GoogleFonts.figtree(
+  TextStyle get headlineLarge => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get headlineMediumFamily => 'Figtree';
+  String get headlineMediumFamily => 'DM Sans';
   bool get headlineMediumIsCustom => false;
-  TextStyle get headlineMedium => GoogleFonts.figtree(
+  TextStyle get headlineMedium => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get headlineSmallFamily => 'Figtree';
+  String get headlineSmallFamily => 'DM Sans';
   bool get headlineSmallIsCustom => false;
-  TextStyle get headlineSmall => GoogleFonts.figtree(
+  TextStyle get headlineSmall => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'Figtree';
+  String get titleLargeFamily => 'DM Sans';
   bool get titleLargeIsCustom => false;
-  TextStyle get titleLarge => GoogleFonts.figtree(
+  TextStyle get titleLarge => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get titleMediumFamily => 'Figtree';
+  String get titleMediumFamily => 'DM Sans';
   bool get titleMediumIsCustom => false;
-  TextStyle get titleMedium => GoogleFonts.figtree(
+  TextStyle get titleMedium => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get titleSmallFamily => 'Figtree';
+  String get titleSmallFamily => 'DM Sans';
   bool get titleSmallIsCustom => false;
-  TextStyle get titleSmall => GoogleFonts.figtree(
+  TextStyle get titleSmall => GoogleFonts.dmSans(
         color: theme.primaryText,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Figtree';
+  String get labelLargeFamily => 'DM Sans';
   bool get labelLargeIsCustom => false;
-  TextStyle get labelLarge => GoogleFonts.figtree(
+  TextStyle get labelLarge => GoogleFonts.dmSans(
         color: theme.secondaryText,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelMediumFamily => 'Figtree';
+  String get labelMediumFamily => 'DM Sans';
   bool get labelMediumIsCustom => false;
-  TextStyle get labelMedium => GoogleFonts.figtree(
+  TextStyle get labelMedium => GoogleFonts.dmSans(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get labelSmallFamily => 'Figtree';
+  String get labelSmallFamily => 'DM Sans';
   bool get labelSmallIsCustom => false;
-  TextStyle get labelSmall => GoogleFonts.figtree(
+  TextStyle get labelSmall => GoogleFonts.dmSans(
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Figtree';
+  String get bodyLargeFamily => 'DM Sans';
   bool get bodyLargeIsCustom => false;
-  TextStyle get bodyLarge => GoogleFonts.figtree(
+  TextStyle get bodyLarge => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Figtree';
+  String get bodyMediumFamily => 'DM Sans';
   bool get bodyMediumIsCustom => false;
-  TextStyle get bodyMedium => GoogleFonts.figtree(
+  TextStyle get bodyMedium => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Figtree';
+  String get bodySmallFamily => 'DM Sans';
   bool get bodySmallIsCustom => false;
-  TextStyle get bodySmall => GoogleFonts.figtree(
+  TextStyle get bodySmall => GoogleFonts.dmSans(
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,

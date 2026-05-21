@@ -80,7 +80,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodySmall.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .fontWeight,
@@ -144,7 +144,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                               headerTextStyle: FlutterFlowTheme.of(context)
                                   .headlineLarge
                                   .override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FontWeight.w600,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .headlineLarge
@@ -191,7 +191,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
                       height: 40.0,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
-                                font: GoogleFonts.figtree(
+                                font: GoogleFonts.dmSans(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .fontWeight,

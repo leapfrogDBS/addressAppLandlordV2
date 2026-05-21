@@ -77,7 +77,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
               '0sriu7tq' /* Onboarding */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineMedium.fontWeight,
                     fontStyle:
@@ -122,8 +122,21 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                         'uq8f2fad' /* PERSONAL DETAILS */,
                       ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
-                            fontFamily: 'Thunder',
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontStyle,
+                            ),
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontStyle,
                           ),
                     ),
                     FlutterFlowLanguageSelector(
@@ -137,7 +150,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                       borderRadius: 8.0,
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
-                                font: GoogleFonts.figtree(
+                                font: GoogleFonts.dmSans(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .fontWeight,
@@ -272,7 +285,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
@@ -321,7 +334,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -344,7 +357,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -403,7 +416,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -436,7 +449,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleMedium
@@ -460,7 +473,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleMedium
@@ -504,7 +517,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                                 context)
                                             .headlineLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.w600,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
@@ -575,7 +588,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
@@ -619,7 +632,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleMedium
@@ -659,7 +672,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                                   context)
                                               .labelMedium
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -689,7 +702,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                                   context)
                                               .labelMedium
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -756,7 +769,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleMedium
@@ -854,7 +867,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall

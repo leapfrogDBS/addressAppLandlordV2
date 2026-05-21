@@ -71,7 +71,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                       'ufmc471u' /* Rental Return */,
                     ),
                     style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.figtree(
+                          font: GoogleFonts.dmSans(
                             fontWeight: FontWeight.w600,
                             fontStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
@@ -105,7 +105,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .fontWeight,
@@ -141,9 +141,22 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   fontSize: 24.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                         ].divide(SizedBox(height: 4.0)),
@@ -164,7 +177,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .fontWeight,
@@ -199,9 +212,22 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   fontSize: 24.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                         ].divide(SizedBox(height: 4.0)),
@@ -231,7 +257,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -267,9 +293,22 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .displayLarge
                                   .override(
-                                    fontFamily: 'Thunder',
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displayLarge
+                                          .fontStyle,
+                                    ),
                                     fontSize: 24.0,
                                     letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
                                   ),
                             ),
                           ].divide(SizedBox(height: 4.0)),
@@ -293,7 +332,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -328,7 +367,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall
@@ -385,9 +424,26 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .displayLarge
                                         .override(
-                                          fontFamily: 'Thunder',
+                                          font: GoogleFonts.dmSans(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontStyle,
+                                          ),
                                           fontSize: 24.0,
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontStyle,
                                         ),
                                   ),
                                   TextSpan(
@@ -397,16 +453,33 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .displayLarge
                                         .override(
-                                          fontFamily: 'Thunder',
+                                          font: GoogleFonts.dmSans(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontStyle,
+                                          ),
                                           fontSize: 24.0,
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontStyle,
                                         ),
                                   )
                                 ],
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,

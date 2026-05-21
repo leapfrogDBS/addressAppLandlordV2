@@ -69,7 +69,7 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
                 ),
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).bodyLarge.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight: FontWeight.normal,
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyLarge.fontStyle,
@@ -105,7 +105,7 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
                       color: FlutterFlowTheme.of(context).secondary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.figtree(
+                                font: GoogleFonts.dmSans(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .fontWeight,

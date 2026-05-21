@@ -57,7 +57,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
             '2lt4g6l9' /* Coming Up */,
           ),
           style: FlutterFlowTheme.of(context).labelMedium.override(
-                font: GoogleFonts.figtree(
+                font: GoogleFonts.dmSans(
                   fontWeight: FontWeight.bold,
                   fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                 ),
@@ -231,7 +231,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .headlineSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .headlineSmall
@@ -277,7 +277,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodySmall
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -323,7 +323,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
               'dor0aseg' /* Recent */,
             ),
             style: FlutterFlowTheme.of(context).labelMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).labelMedium.fontWeight,
                     fontStyle:
@@ -495,7 +495,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .headlineSmall
                                             .fontWeight,
@@ -535,7 +535,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodySmall

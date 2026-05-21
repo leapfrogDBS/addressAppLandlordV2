@@ -179,8 +179,25 @@ class _LoginWidgetState extends State<LoginWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .displayLarge
                                         .override(
-                                          fontFamily: 'Thunder',
+                                          font: GoogleFonts.dmSans(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayLarge
+                                                    .fontStyle,
+                                          ),
                                           letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displayLarge
+                                                  .fontStyle,
                                         ),
                                   ),
                                 ),
@@ -205,7 +222,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
@@ -269,7 +286,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -319,7 +336,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
@@ -401,7 +418,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -471,7 +488,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -522,7 +539,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium

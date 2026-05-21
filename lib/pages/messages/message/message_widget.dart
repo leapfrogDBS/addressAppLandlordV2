@@ -199,9 +199,22 @@ class _MessageWidgetState extends State<MessageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   fontSize: 24.0,
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                         ),
@@ -216,7 +229,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  font: GoogleFonts.figtree(
+                                  font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .fontWeight,
@@ -381,7 +394,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             fontStyle:
@@ -404,7 +417,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                         fontStyle: FlutterFlowTheme.of(context)
@@ -444,7 +457,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                     .labelMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .labelMedium
                                                                             .fontWeight,
@@ -580,7 +593,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodySmall
                                                                               .override(
-                                                                                font: GoogleFonts.figtree(
+                                                                                font: GoogleFonts.dmSans(
                                                                                   fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
                                                                                   fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                 ),
@@ -672,7 +685,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                           isDense: true,
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .fontWeight,
@@ -693,7 +706,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                           ),
                           hintStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .fontWeight,
@@ -741,7 +754,7 @@ class _MessageWidgetState extends State<MessageWidget> {
                           fillColor: FlutterFlowTheme.of(context).alternate,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.figtree(
+                              font: GoogleFonts.dmSans(
                                 fontWeight: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .fontWeight,

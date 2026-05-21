@@ -222,7 +222,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       context)
                                                   .headlineMedium
                                                   .override(
-                                                    font: GoogleFonts.figtree(
+                                                    font: GoogleFonts.dmSans(
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontStyle:
@@ -260,7 +260,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .headlineMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -312,7 +312,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .headlineMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FontWeight.w300,
                                                           fontStyle:
@@ -384,7 +384,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       context)
                                                   .headlineMedium
                                                   .override(
-                                                    font: GoogleFonts.figtree(
+                                                    font: GoogleFonts.dmSans(
                                                       fontWeight:
                                                           FontWeight.w300,
                                                       fontStyle:
@@ -484,7 +484,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontStyle:
@@ -573,7 +573,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontStyle:
@@ -662,7 +662,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontStyle:
@@ -751,7 +751,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      font: GoogleFonts.figtree(
+                                                      font: GoogleFonts.dmSans(
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontStyle:
@@ -1009,7 +1009,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   .labelMedium
                                                                   .override(
                                                                     font: GoogleFonts
-                                                                        .figtree(
+                                                                        .dmSans(
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
                                                                           .labelMedium
@@ -1116,7 +1116,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontWeight,
@@ -1169,12 +1169,23 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                             context)
                                                                         .displayLarge
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Thunder',
+                                                                          font:
+                                                                              GoogleFonts.dmSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               20.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .displayLarge
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .displayLarge
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1204,7 +1215,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           .bodyMedium
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.figtree(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FontWeight.w800,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                             ),
@@ -1254,7 +1265,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .bodyMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontWeight,
@@ -1307,12 +1318,23 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                             context)
                                                                         .displayLarge
                                                                         .override(
-                                                                          fontFamily:
-                                                                              'Thunder',
+                                                                          font:
+                                                                              GoogleFonts.dmSans(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                                                                          ),
                                                                           fontSize:
                                                                               20.0,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .displayLarge
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .displayLarge
+                                                                              .fontStyle,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -1339,7 +1361,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FontWeight.w800,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
@@ -1375,7 +1397,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FontWeight.w800,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
@@ -1483,7 +1505,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
@@ -1525,10 +1547,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .displayLarge
                                                                             .override(
-                                                                              fontFamily: 'Thunder',
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                                                                              ),
                                                                               fontSize: 20.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).displayLarge.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1552,7 +1578,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
@@ -1706,8 +1732,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   .of(context)
                                                               .headlineMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineMedium
@@ -1777,7 +1804,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
@@ -1822,7 +1849,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                               currency: '£',
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                  font: GoogleFonts.figtree(
+                                                                                  font: GoogleFonts.dmSans(
                                                                                     fontWeight: FontWeight.bold,
                                                                                     fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                                   ),
@@ -1837,10 +1864,15 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .displayLarge
                                                                             .override(
-                                                                              fontFamily: 'Thunder',
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                                                                              ),
                                                                               color: FlutterFlowTheme.of(context).primaryBackground,
                                                                               fontSize: 24.0,
                                                                               letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).displayLarge.fontStyle,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1855,7 +1887,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           .labelSmall
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.figtree(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                             ),
@@ -1903,7 +1935,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         .bodyMedium
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                             fontStyle:
@@ -1949,7 +1981,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                                 '00',
                                                                               ),
                                                                               style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                    font: GoogleFonts.figtree(
+                                                                                    font: GoogleFonts.dmSans(
                                                                                       fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                                     ),
@@ -1964,7 +1996,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .headlineSmall
                                                                               .override(
-                                                                                font: GoogleFonts.figtree(
+                                                                                font: GoogleFonts.dmSans(
                                                                                   fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
                                                                                   fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                                 ),
@@ -1984,7 +2016,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .labelSmall
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                               ),
@@ -2043,7 +2075,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       .bodyMedium
                                                                       .override(
                                                                         font: GoogleFonts
-                                                                            .figtree(
+                                                                            .dmSans(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .fontWeight,
@@ -2080,7 +2112,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .headlineSmall
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                         fontStyle: FlutterFlowTheme.of(context)
@@ -2183,7 +2215,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           .labelMedium
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.figtree(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                                                                             ),
@@ -2211,7 +2243,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodySmall
                                                                               .override(
-                                                                                font: GoogleFonts.figtree(
+                                                                                font: GoogleFonts.dmSans(
                                                                                   fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
                                                                                   fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                 ),
@@ -2280,7 +2312,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                               ),
@@ -2299,7 +2331,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                                               ),
@@ -2316,7 +2348,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         .headlineSmall
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             fontStyle:
@@ -2383,8 +2415,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   context)
                                                               .headlineMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineMedium
@@ -2433,7 +2466,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .bodyMedium
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -2796,7 +2829,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .titleSmall
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .titleSmall
@@ -2862,7 +2895,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .headlineMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -2908,7 +2941,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                         .bodyLarge
                                                         .override(
                                                           font: GoogleFonts
-                                                              .figtree(
+                                                              .dmSans(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -3013,7 +3046,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .titleLarge
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
@@ -3043,7 +3076,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -3125,8 +3158,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -3169,8 +3203,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   context)
                                                               .labelMedium
                                                               .override(
-                                                                font: GoogleFonts
-                                                                    .figtree(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
@@ -3297,7 +3332,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                           .titleLarge
                                                           .override(
                                                             font: GoogleFonts
-                                                                .figtree(
+                                                                .dmSans(
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold,
@@ -3333,7 +3368,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -3411,11 +3446,29 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   context)
                                                               .displayLarge
                                                               .override(
-                                                                fontFamily:
-                                                                    'Thunder',
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLarge
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLarge
+                                                                      .fontStyle,
+                                                                ),
                                                                 fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displayLarge
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displayLarge
+                                                                    .fontStyle,
                                                               ),
                                                       icon: Icon(
                                                         Icons
@@ -3549,7 +3602,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       context)
                                                   .titleLarge
                                                   .override(
-                                                    font: GoogleFonts.figtree(
+                                                    font: GoogleFonts.dmSans(
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontStyle:
@@ -3615,7 +3668,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelLarge
@@ -3653,10 +3706,27 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .of(context)
                                                                 .displaySmall
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Thunder',
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
                                                                 ),
                                                           ),
                                                           Padding(
@@ -3724,7 +3794,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelLarge
@@ -3754,10 +3824,27 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .of(context)
                                                                 .displaySmall
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Thunder',
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
                                                                 ),
                                                           ),
                                                         ].divide(SizedBox(
@@ -3792,7 +3879,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelLarge
@@ -3830,10 +3917,27 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .of(context)
                                                                 .displaySmall
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Thunder',
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
                                                                 ),
                                                           ),
                                                         ].divide(SizedBox(
@@ -3862,7 +3966,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 .labelLarge
                                                                 .override(
                                                                   font: GoogleFonts
-                                                                      .figtree(
+                                                                      .dmSans(
                                                                     fontWeight: FlutterFlowTheme.of(
                                                                             context)
                                                                         .labelLarge
@@ -3929,7 +4033,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       .labelSmall
                                                                       .override(
                                                                         font: GoogleFonts
-                                                                            .figtree(
+                                                                            .dmSans(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .labelSmall
                                                                               .fontWeight,
@@ -4018,7 +4122,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .bodyLarge
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .fontWeight,
@@ -4093,7 +4197,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       .labelSmall
                                                                       .override(
                                                                         font: GoogleFonts
-                                                                            .figtree(
+                                                                            .dmSans(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .labelSmall
                                                                               .fontWeight,
@@ -4182,7 +4286,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .bodyLarge
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .fontWeight,
@@ -4257,7 +4361,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       .labelSmall
                                                                       .override(
                                                                         font: GoogleFonts
-                                                                            .figtree(
+                                                                            .dmSans(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .labelSmall
                                                                               .fontWeight,
@@ -4346,7 +4450,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .bodyLarge
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .fontWeight,
@@ -4438,7 +4542,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleSmall
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleSmall
                                                                             .fontWeight,
@@ -4505,7 +4609,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4542,7 +4646,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4583,7 +4687,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4620,7 +4724,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4661,7 +4765,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4701,7 +4805,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4742,7 +4846,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4784,7 +4888,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4825,7 +4929,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4861,7 +4965,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .titleMedium
                                                                     .override(
                                                                       font: GoogleFonts
-                                                                          .figtree(
+                                                                          .dmSans(
                                                                         fontWeight: FlutterFlowTheme.of(context)
                                                                             .titleMedium
                                                                             .fontWeight,
@@ -4940,7 +5044,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         .headlineSmall
                                                                         .override(
                                                                           font:
-                                                                              GoogleFonts.figtree(
+                                                                              GoogleFonts.dmSans(
                                                                             fontWeight:
                                                                                 FlutterFlowTheme.of(context).headlineSmall.fontWeight,
                                                                             fontStyle:
@@ -5000,7 +5104,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5044,7 +5148,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5106,7 +5210,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5150,7 +5254,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5253,7 +5357,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .titleLarge
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5297,7 +5401,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       .bodyMedium
                                                       .override(
                                                         font:
-                                                            GoogleFonts.figtree(
+                                                            GoogleFonts.dmSans(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -5411,8 +5515,17 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     context)
                                                                 .displaySmall
                                                                 .override(
-                                                                  fontFamily:
-                                                                      'Thunder',
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
@@ -5420,6 +5533,14 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       20.0,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
                                                                 ),
                                                       ),
                                                       Icon(
@@ -5490,16 +5611,35 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             .getText(
                                                           'qduttzna' /* GAS SAFETY CERTIFICATE */,
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .displaySmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Thunder',
-                                                              fontSize: 20.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
+                                                                ),
                                                       ),
                                                       Icon(
                                                         Icons.chevron_right,
@@ -5568,16 +5708,35 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             .getText(
                                                           'zuylz1jb' /* ELECTRICAL INSTALATION REPORT */,
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .displaySmall
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Thunder',
-                                                              fontSize: 20.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                            ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displaySmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmall
+                                                                      .fontStyle,
+                                                                ),
                                                       ),
                                                       Icon(
                                                         Icons.chevron_right,
@@ -5608,7 +5767,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium

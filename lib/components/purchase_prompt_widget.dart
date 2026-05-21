@@ -90,7 +90,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                         'Formatted Address',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w600,
                               fontStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -127,7 +127,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -143,7 +143,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                   'k68ct9cw' /* Enter Optional Title for Prope... */,
                 ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).labelMedium.fontWeight,
                         fontStyle:
@@ -187,7 +187,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:
@@ -224,7 +224,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -240,7 +240,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                   '7el1rv3m' /* Enter Purchase Price */,
                 ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).labelMedium.fontWeight,
                         fontStyle:
@@ -284,7 +284,7 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:

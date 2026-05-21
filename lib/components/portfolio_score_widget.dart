@@ -63,8 +63,18 @@ class _PortfolioScoreWidgetState extends State<PortfolioScoreWidget> {
                   'x0fcfpoq' /* PORTFOLIO SCORE */,
                 ),
                 style: FlutterFlowTheme.of(context).displayLarge.override(
-                      fontFamily: 'Thunder',
+                      font: GoogleFonts.dmSans(
+                        fontWeight: FlutterFlowTheme.of(context)
+                            .displayLarge
+                            .fontWeight,
+                        fontStyle:
+                            FlutterFlowTheme.of(context).displayLarge.fontStyle,
+                      ),
                       letterSpacing: 0.0,
+                      fontWeight:
+                          FlutterFlowTheme.of(context).displayLarge.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).displayLarge.fontStyle,
                     ),
               ),
               custom_widgets.PortfolioGauge(
@@ -85,7 +95,7 @@ class _PortfolioScoreWidgetState extends State<PortfolioScoreWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).labelSmall.override(
-                        font: GoogleFonts.figtree(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .labelSmall
                               .fontWeight,

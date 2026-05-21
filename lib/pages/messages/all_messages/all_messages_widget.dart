@@ -102,7 +102,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                               FlutterFlowTheme.of(context).secondaryText,
                           labelStyle:
                               FlutterFlowTheme.of(context).titleMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .fontWeight,
@@ -120,7 +120,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                   ),
                           unselectedLabelStyle:
                               FlutterFlowTheme.of(context).titleMedium.override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .fontWeight,
@@ -328,8 +328,13 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .displaySmall
                                                                               .override(
-                                                                                fontFamily: 'Thunder',
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).displaySmall.fontStyle,
+                                                                                ),
                                                                                 letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).displaySmall.fontStyle,
                                                                               ),
                                                                         ),
                                                                         if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) &&
@@ -362,7 +367,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           .bodyLarge
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.figtree(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                             ),
@@ -395,7 +400,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .labelMedium
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                                                                               ),
@@ -430,7 +435,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                             textAlign:
                                                                                 TextAlign.start,
                                                                             style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.figtree(
+                                                                                  font: GoogleFonts.dmSans(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                     fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                   ),
@@ -646,8 +651,13 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .displaySmall
                                                                               .override(
-                                                                                fontFamily: 'Thunder',
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).displaySmall.fontStyle,
+                                                                                ),
                                                                                 letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).displaySmall.fontStyle,
                                                                               ),
                                                                         ),
                                                                         if ((listViewThreadsRecord.landlordLastReadAt! < listViewThreadsRecord.lastMessageAt!) &&
@@ -680,7 +690,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                           .bodyLarge
                                                                           .override(
                                                                             font:
-                                                                                GoogleFonts.figtree(
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).bodyLarge.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyLarge.fontStyle,
                                                                             ),
@@ -713,7 +723,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .labelMedium
                                                                             .override(
-                                                                              font: GoogleFonts.figtree(
+                                                                              font: GoogleFonts.dmSans(
                                                                                 fontWeight: FlutterFlowTheme.of(context).labelMedium.fontWeight,
                                                                                 fontStyle: FlutterFlowTheme.of(context).labelMedium.fontStyle,
                                                                               ),
@@ -748,7 +758,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                             textAlign:
                                                                                 TextAlign.start,
                                                                             style: FlutterFlowTheme.of(context).labelSmall.override(
-                                                                                  font: GoogleFonts.figtree(
+                                                                                  font: GoogleFonts.dmSans(
                                                                                     fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
                                                                                     fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
                                                                                   ),
@@ -816,8 +826,21 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                           style: FlutterFlowTheme.of(context)
                               .displaySmall
                               .override(
-                                fontFamily: 'Thunder',
+                                font: GoogleFonts.dmSans(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .fontStyle,
+                                ),
                                 letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .fontStyle,
                               ),
                         ),
                       ),
@@ -843,7 +866,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                   labelStyle: FlutterFlowTheme.of(context)
                                       .labelLarge
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .labelLarge
@@ -902,7 +925,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .fontWeight,

@@ -214,11 +214,6 @@ flutter:
     - assets/jsons/
 
     - assets/environment_values/
-  fonts:
-    - family: 'Thunder'
-      fonts:
-        - asset: assets/fonts/Thunder-BoldLC.ttf
-          weight: 700
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

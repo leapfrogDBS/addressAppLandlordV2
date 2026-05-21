@@ -60,7 +60,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
               '0jovbr2p' /* Notifications */,
             ),
             style: FlutterFlowTheme.of(context).headlineLarge.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineLarge.fontWeight,
                     fontStyle:
@@ -232,7 +232,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
@@ -257,7 +257,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
@@ -292,7 +292,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .labelSmall
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)

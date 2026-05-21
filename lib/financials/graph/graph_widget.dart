@@ -82,7 +82,7 @@ class _GraphWidgetState extends State<GraphWidget> {
               selectedChipStyle: ChipStyle(
                 backgroundColor: FlutterFlowTheme.of(context).secondary,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -104,7 +104,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                 backgroundColor:
                     FlutterFlowTheme.of(context).secondaryBackground,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:

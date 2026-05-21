@@ -129,7 +129,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
               'ksmmgllu' /* One moment .... */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineMedium.fontWeight,
                     fontStyle:
@@ -172,7 +172,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .headlineLarge
                               .override(
-                                font: GoogleFonts.figtree(
+                                font: GoogleFonts.dmSans(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .fontWeight,

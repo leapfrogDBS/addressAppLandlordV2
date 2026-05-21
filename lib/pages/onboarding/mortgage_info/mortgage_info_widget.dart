@@ -89,7 +89,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                   'efpv6z83' /* Onboarding */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .fontWeight,
@@ -137,8 +137,21 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                           Text(
@@ -148,7 +161,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                             textAlign: TextAlign.center,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .fontWeight,
@@ -227,7 +240,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -259,7 +272,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -324,7 +337,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall

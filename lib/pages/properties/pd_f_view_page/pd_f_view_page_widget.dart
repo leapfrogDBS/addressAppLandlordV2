@@ -118,7 +118,7 @@ class _PdFViewPageWidgetState extends State<PdFViewPageWidget> {
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                   color: FlutterFlowTheme.of(context).primary,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        font: GoogleFonts.figtree(
+                        font: GoogleFonts.dmSans(
                           fontWeight: FlutterFlowTheme.of(context)
                               .titleSmall
                               .fontWeight,

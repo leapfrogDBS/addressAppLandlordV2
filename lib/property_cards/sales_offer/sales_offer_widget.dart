@@ -117,7 +117,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                         style: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .override(
-                              font: GoogleFonts.figtree(
+                              font: GoogleFonts.dmSans(
                                 fontWeight: FontWeight.bold,
                                 fontStyle: FlutterFlowTheme.of(context)
                                     .headlineMedium
@@ -147,7 +147,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).labelSmall.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
                                   .labelSmall
                                   .fontWeight,
@@ -197,11 +197,24 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Thunder',
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
+                                      ),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -214,7 +227,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -263,11 +276,24 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Thunder',
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
+                                      ),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -281,7 +307,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -330,11 +356,24 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Thunder',
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
+                                      ),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -352,7 +391,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -407,9 +446,22 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
-                                      fontFamily: 'Thunder',
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
+                                      ),
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
                                     ),
                               ),
                             ),
@@ -422,7 +474,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -481,7 +533,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleMedium
@@ -509,7 +561,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
@@ -528,7 +580,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineLarge
                                   .override(
-                                    font: GoogleFonts.figtree(
+                                    font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .headlineLarge
                                           .fontWeight,
@@ -588,7 +640,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
@@ -625,7 +677,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineSmall
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -683,7 +735,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
@@ -726,7 +778,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineSmall
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -859,7 +911,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
@@ -912,7 +964,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
-                                                  font: GoogleFonts.figtree(
+                                                  font: GoogleFonts.dmSans(
                                                     fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
@@ -944,7 +996,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
-                                                font: GoogleFonts.figtree(
+                                                font: GoogleFonts.dmSans(
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -976,7 +1028,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                                                       context)
                                                   .bodyLarge
                                                   .override(
-                                                    font: GoogleFonts.figtree(
+                                                    font: GoogleFonts.dmSans(
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontStyle:
@@ -1056,7 +1108,7 @@ class _SalesOfferWidgetState extends State<SalesOfferWidget> {
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.figtree(
+                                font: GoogleFonts.dmSans(
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .fontWeight,

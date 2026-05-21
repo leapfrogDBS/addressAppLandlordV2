@@ -6,6 +6,7 @@ import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
 import '/components/offers_c_t_a_widget.dart';
+import '/components/portfolio_score_dash_n_e_w_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -46,6 +47,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late MainHeaderModel mainHeaderModel;
   // Model for liveEarningsDash component.
   late LiveEarningsDashModel liveEarningsDashModel;
+  // Model for PortfolioScoreDashNEW component.
+  late PortfolioScoreDashNEWModel portfolioScoreDashNEWModel;
   // Model for capitalUpgrade component.
   late CapitalUpgradeModel capitalUpgradeModel;
   // Model for keyMetricsDash component.
@@ -60,6 +63,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
     mainHeaderModel = createModel(context, () => MainHeaderModel());
     liveEarningsDashModel = createModel(context, () => LiveEarningsDashModel());
+    portfolioScoreDashNEWModel =
+        createModel(context, () => PortfolioScoreDashNEWModel());
     capitalUpgradeModel = createModel(context, () => CapitalUpgradeModel());
     keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
@@ -71,6 +76,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     slideNavigationModel.dispose();
     mainHeaderModel.dispose();
     liveEarningsDashModel.dispose();
+    portfolioScoreDashNEWModel.dispose();
     capitalUpgradeModel.dispose();
     keyMetricsDashModel.dispose();
     propertySliderModel.dispose();

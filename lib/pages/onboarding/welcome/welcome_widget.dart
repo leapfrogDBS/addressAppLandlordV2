@@ -60,7 +60,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
               'ofd3cni6' /* Onboarding */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  font: GoogleFonts.figtree(
+                  font: GoogleFonts.dmSans(
                     fontWeight:
                         FlutterFlowTheme.of(context).headlineMedium.fontWeight,
                     fontStyle:
@@ -105,8 +105,21 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         '9byjfw8h' /* WELCOME TO ADDRESSED */,
                       ),
                       style: FlutterFlowTheme.of(context).displayLarge.override(
-                            fontFamily: 'Thunder',
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .fontStyle,
+                            ),
                             letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .displayLarge
+                                .fontStyle,
                           ),
                     ),
                     Text(
@@ -115,7 +128,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .fontWeight,
@@ -164,7 +177,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
-                                          font: GoogleFonts.figtree(
+                                          font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .titleSmall
@@ -228,7 +241,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
                                       .override(
-                                        font: GoogleFonts.figtree(
+                                        font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall

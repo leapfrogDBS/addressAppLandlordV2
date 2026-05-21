@@ -95,7 +95,7 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                   'llpqlrgh' /* Onboarding */,
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight: FlutterFlowTheme.of(context)
                             .headlineMedium
                             .fontWeight,
@@ -143,8 +143,21 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .displayLarge
                                 .override(
-                                  fontFamily: 'Thunder',
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayLarge
+                                        .fontStyle,
+                                  ),
                                   letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .displayLarge
+                                      .fontStyle,
                                 ),
                           ),
                           Text(
@@ -154,7 +167,7 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                             textAlign: TextAlign.center,
                             style:
                                 FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.figtree(
+                                      font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyLarge
                                             .fontWeight,
@@ -284,7 +297,7 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .titleSmall

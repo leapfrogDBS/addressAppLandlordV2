@@ -80,7 +80,7 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
         content: Text(
           'Profile Updated',
           style: FlutterFlowTheme.of(context).bodySmall.override(
-                font: GoogleFonts.figtree(
+                font: GoogleFonts.dmSans(
                   fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
                   fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                 ),

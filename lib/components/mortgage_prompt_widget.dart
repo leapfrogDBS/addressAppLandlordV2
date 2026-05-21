@@ -93,7 +93,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                         'Property Address',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: GoogleFonts.figtree(
+                            font: GoogleFonts.dmSans(
                               fontWeight: FontWeight.w600,
                               fontStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -131,7 +131,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -147,7 +147,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                   'd9qtwul0' /* Enter outstanding mortgage val... */,
                 ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).labelMedium.fontWeight,
                         fontStyle:
@@ -191,7 +191,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:
@@ -229,7 +229,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -245,7 +245,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                   '8u8kt1mg' /* Enter term remaining (years) */,
                 ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).labelMedium.fontWeight,
                         fontStyle:
@@ -289,7 +289,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:
@@ -327,7 +327,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
               decoration: InputDecoration(
                 isDense: true,
                 labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                         fontStyle:
@@ -343,7 +343,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                   '83nne55c' /* Enter monthly mortgage repayme... */,
                 ),
                 hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                      font: GoogleFonts.figtree(
+                      font: GoogleFonts.dmSans(
                         fontWeight:
                             FlutterFlowTheme.of(context).labelMedium.fontWeight,
                         fontStyle:
@@ -387,7 +387,7 @@ class _MortgagePromptWidgetState extends State<MortgagePromptWidget> {
                 fillColor: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.figtree(
+                    font: GoogleFonts.dmSans(
                       fontWeight:
                           FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                       fontStyle:

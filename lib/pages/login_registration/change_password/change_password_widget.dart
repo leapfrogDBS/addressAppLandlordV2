@@ -138,9 +138,18 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                 'ne01up5b' /* Back */,
               ),
               style: FlutterFlowTheme.of(context).displaySmall.override(
-                    fontFamily: 'Thunder',
+                    font: GoogleFonts.dmSans(
+                      fontWeight:
+                          FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                      fontStyle:
+                          FlutterFlowTheme.of(context).displaySmall.fontStyle,
+                    ),
                     fontSize: 16.0,
                     letterSpacing: 0.0,
+                    fontWeight:
+                        FlutterFlowTheme.of(context).displaySmall.fontWeight,
+                    fontStyle:
+                        FlutterFlowTheme.of(context).displaySmall.fontStyle,
                   ),
             ),
           ),
@@ -211,8 +220,23 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                   style: FlutterFlowTheme.of(context)
                                       .displaySmall
                                       .override(
-                                        fontFamily: 'Thunder',
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmall
+                                                  .fontStyle,
+                                        ),
                                         letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
                                       ),
                                 ),
                                 Padding(
@@ -236,7 +260,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
@@ -317,7 +341,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -367,7 +391,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .labelLarge
@@ -449,7 +473,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
-                                            font: GoogleFonts.figtree(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge
@@ -531,7 +555,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
-                                              font: GoogleFonts.figtree(
+                                              font: GoogleFonts.dmSans(
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall

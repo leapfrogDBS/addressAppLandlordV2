@@ -57,7 +57,7 @@ class _SecondaryCTAWidgetState extends State<SecondaryCTAWidget> {
         iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: FlutterFlowTheme.of(context).secondary,
         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-              font: GoogleFonts.figtree(
+              font: GoogleFonts.dmSans(
                 fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
                 fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
               ),
