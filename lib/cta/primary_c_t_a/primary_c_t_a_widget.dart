@@ -53,23 +53,22 @@ class _PrimaryCTAWidgetState extends State<PrimaryCTAWidget> {
       },
       text: widget!.labelText,
       options: FFButtonOptions(
-        width: 200.0,
-        height: 40.0,
-        padding: EdgeInsetsDirectional.fromSTEB(24.0, 12.0, 24.0, 12.0),
+        width: MediaQuery.sizeOf(context).width * 1.0,
+        height: 42.0,
+        padding: EdgeInsets.all(0.0),
         iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         color: FlutterFlowTheme.of(context).tertiary,
-        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+        textStyle: FlutterFlowTheme.of(context).bodySmall.override(
               font: GoogleFonts.dmSans(
-                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                fontWeight: FontWeight.w500,
+                fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
               ),
-              color: FlutterFlowTheme.of(context).primary,
               letterSpacing: 0.0,
-              fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
-              fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+              fontWeight: FontWeight.w500,
+              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
             ),
         elevation: 0.0,
-        borderRadius: BorderRadius.circular(24.0),
+        borderRadius: BorderRadius.circular(8.0),
       ),
     );
   }

@@ -84,7 +84,6 @@ class _PortfolioScoreWidgetState extends State<PortfolioScoreWidget> {
                 maxScore: 999,
                 durationMs: 3500,
                 delayMs: 1000,
-                sweepDegrees: 300.0,
                 strokeWidth: 18.0,
               ),
               Align(

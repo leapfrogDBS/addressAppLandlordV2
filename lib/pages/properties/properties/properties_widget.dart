@@ -135,8 +135,11 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                       key: Key(
                                         'Keyiwp_${listViewPropertiesRecord.reference.id}',
                                       ),
-                                      propImg:
-                                          listViewPropertiesRecord.mainPhoto,
+                                      propImg: valueOrDefault<String>(
+                                        listViewPropertiesRecord
+                                            .gallery.firstOrNull,
+                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/9trt90hix19a/360_F_276422232_RTzQ3ATAs1gOYAjfvD2tsbRgdOeLjIq0.jpg',
+                                      ),
                                       propTitle: listViewPropertiesRecord.title,
                                       propValue: listViewPropertiesRecord
                                           .estimatedValue,

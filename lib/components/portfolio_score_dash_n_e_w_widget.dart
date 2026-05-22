@@ -58,12 +58,7 @@ class _PortfolioScoreDashNEWWidgetState
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondary,
               borderRadius: BorderRadius.circular(16.0),
-              border: Border.all(
-                color: Color(0x1AFFFFFF),
-                width: 1.0,
-              ),
             ),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
@@ -75,132 +70,396 @@ class _PortfolioScoreDashNEWWidgetState
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
+                      Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
+                          Row(
                             mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(350.0),
-                                      topRight: Radius.circular(350.0),
-                                      bottomLeft: Radius.circular(350.0),
-                                      bottomRight: Radius.circular(350.0),
-                                    ),
-                                    shape: BoxShape.rectangle,
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'pksc718i' /* ADDRESSED SCORE */,
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 90.0,
-                                        height: 90.0,
-                                        child:
-                                            custom_widgets.PortfolioGaugeLinear(
-                                          width: 90.0,
-                                          height: 90.0,
-                                          score: widget!.portfolioScore,
-                                          maxScore: 999,
-                                          durationMs: 3500,
-                                          delayMs: 1000,
-                                          sweepDegrees: 300.0,
-                                          strokeWidth: 10.0,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
                                         ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 1.5,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
                                       ),
-                                    ],
-                                  ),
                                 ),
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
+                              AlignedTooltip(
+                                content: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'vtvhtkcp' /* ADDRESSED SCORE */,
+                                      'gund5pzx' /* Your Addressed Score reflects ... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
+                                        .bodyLarge
                                         .override(
                                           font: GoogleFonts.dmSans(
-                                            fontWeight: FontWeight.bold,
+                                            fontWeight: FontWeight.w500,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .bodyMedium
+                                                    .bodyLarge
                                                     .fontStyle,
                                           ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 9.0,
-                                          letterSpacing: 1.0,
-                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLarge
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                ),
+                                offset: 4.0,
+                                preferredDirection: AxisDirection.down,
+                                borderRadius: BorderRadius.circular(8.0),
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                tailBaseWidth: 24.0,
+                                tailLength: 12.0,
+                                waitDuration: Duration(milliseconds: 100),
+                                showDuration: Duration(milliseconds: 1500),
+                                triggerMode: TooltipTriggerMode.tap,
+                                child: Icon(
+                                  Icons.info,
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  size: 16.0,
+                                ),
+                              ),
+                            ].divide(SizedBox(width: 6.0)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Text(
+                                  widget!.portfolioScore.toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmall
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .displaySmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 4.0),
+                                child: Text(
+                                  FFLocalizations.of(context).getText(
+                                    'ylv41avv' /* / 999 */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ),
+                            ].divide(SizedBox(width: 5.0)),
+                          ),
+                        ].divide(SizedBox(height: 2.0)),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Builder(
+                            builder: (context) {
+                              if (widget!.portfolioScore >= 750) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEAF7F0),
+                                    borderRadius: BorderRadius.circular(6.0),
                                   ),
-                                  AlignedTooltip(
-                                    content: Padding(
-                                      padding: EdgeInsets.all(4.0),
-                                      child: Text(
-                                        FFLocalizations.of(context).getText(
-                                          'gund5pzx' /* Your Addressed Score reflects ... */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .override(
-                                              font: GoogleFonts.dmSans(
-                                                fontWeight: FontWeight.w500,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .fontStyle,
-                                              ),
-                                              letterSpacing: 0.0,
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 8.0, 10.0, 8.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'gs3b43oy' /* Excellent */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelSmall
+                                          .override(
+                                            font: GoogleFonts.dmSans(
                                               fontWeight: FontWeight.w500,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge
+                                                      .labelSmall
                                                       .fontStyle,
                                             ),
-                                      ),
-                                    ),
-                                    offset: 4.0,
-                                    preferredDirection: AxisDirection.down,
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    backgroundColor:
-                                        FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                    elevation: 4.0,
-                                    tailBaseWidth: 24.0,
-                                    tailLength: 12.0,
-                                    waitDuration: Duration(milliseconds: 100),
-                                    showDuration: Duration(milliseconds: 1500),
-                                    triggerMode: TooltipTriggerMode.tap,
-                                    child: Icon(
-                                      Icons.info,
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      size: 13.0,
+                                            color: Color(0xFF0F6E56),
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmall
+                                                    .fontStyle,
+                                          ),
                                     ),
                                   ),
-                                ].divide(SizedBox(width: 4.0)),
-                              ),
-                            ].divide(SizedBox(height: 4.0)),
+                                );
+                              } else if ((widget!.portfolioScore >= 500) &&
+                                  (widget!.portfolioScore < 750)) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFFCF6D6),
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 8.0, 10.0, 8.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'hd5vfjwt' /* Good */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelSmall
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .fontStyle,
+                                            ),
+                                            color: Color(0xFF7A6200),
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmall
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ),
+                                );
+                              } else if (widget!.portfolioScore < 500) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFFFF0E0),
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 8.0, 10.0, 8.0),
+                                    child: Text(
+                                      FFLocalizations.of(context).getText(
+                                        'kvsoet1l' /* Developing */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelSmall
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .fontStyle,
+                                            ),
+                                            color: Color(0xFFB45309),
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmall
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return Container(
+                                  width: 0.0,
+                                  height: 0.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                                );
+                              }
+                            },
                           ),
-                        ],
+                        ].divide(SizedBox(height: 4.0)),
                       ),
-                    ].divide(SizedBox(width: 10.0)),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Align(
+                        alignment: AlignmentDirectional(1.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0.0),
+                            shape: BoxShape.rectangle,
+                          ),
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 4.0, 0.0, 4.0),
+                            child: Container(
+                              width: double.infinity,
+                              height: 16.0,
+                              child: custom_widgets.PortfolioGauge(
+                                width: double.infinity,
+                                height: 16.0,
+                                score: widget!.portfolioScore,
+                                maxScore: 999,
+                                durationMs: 3500,
+                                delayMs: 1000,
+                                strokeWidth: 6.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(SizedBox(height: 4.0)),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          'zfh0dz5w' /* Developing (0) */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.dmSans(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 10.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                      ),
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          'czhkomyr' /* Good (500) */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.dmSans(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 10.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                      ),
+                      Text(
+                        FFLocalizations.of(context).getText(
+                          '7vnyt3q0' /* Excellent (750+) */,
+                        ),
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              font: GoogleFonts.dmSans(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodySmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              fontSize: 10.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),

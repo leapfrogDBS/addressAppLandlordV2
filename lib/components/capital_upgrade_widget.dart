@@ -90,420 +90,43 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Text(
-                    FFLocalizations.of(context).getText(
-                      'm6sbhbcg' /* Reinvestment Potential */,
-                    ),
-                    style: FlutterFlowTheme.of(context).headlineLarge.override(
-                          font: GoogleFonts.dmSans(
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .headlineLarge
-                                .fontStyle,
-                          ),
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          fontSize: 18.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FlutterFlowTheme.of(context)
-                              .headlineLarge
-                              .fontStyle,
-                        ),
-                  ),
-                  Column(
+                  Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Builder(
-                        builder: (context) {
-                          if (valueOrDefault<bool>(
-                            _model.capitalAvailableToInvest?.hasUpgradeDate,
-                            false,
-                          )) {
-                            return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 20.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      'pgf9sj0b' /* Next Upgrade Date */,
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'qslv7n5h' /* REINVESTMENT READY */,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .fontStyle,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .override(
-                                          font: GoogleFonts.dmSans(
-                                            fontWeight: FontWeight.normal,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleLarge
-                                                    .fontStyle,
-                                          ),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryBackground,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.normal,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        dateTimeFormat(
-                                          "d MMMM y",
-                                          _model.capitalAvailableToInvest!
-                                              .upgradeDate!,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .displayLarge
-                                            .override(
-                                              font: GoogleFonts.dmSans(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displayLarge
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .displayLarge
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .displayLarge
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                      AlignedTooltip(
-                                        content: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'fruo5wi7' /* We estimate you’ll reach the c... */,
-                                            ),
-                                            style: TextStyle(),
-                                          ),
-                                        ),
-                                        offset: 4.0,
-                                        preferredDirection: AxisDirection.down,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        elevation: 4.0,
-                                        tailBaseWidth: 24.0,
-                                        tailLength: 12.0,
-                                        waitDuration:
-                                            Duration(milliseconds: 100),
-                                        showDuration:
-                                            Duration(milliseconds: 1500),
-                                        triggerMode: TooltipTriggerMode.tap,
-                                        child: Icon(
-                                          Icons.info_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                          size: 16.0,
-                                        ),
-                                      ),
-                                    ].divide(SizedBox(width: 3.0)),
-                                  ),
-                                ].divide(SizedBox(height: 8.0)),
-                              ),
-                            );
-                          } else {
-                            return Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 20.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'b5lghj49' /* Eligible for Upgrade Today */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .override(
-                                              font: GoogleFonts.dmSans(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineLarge
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              fontSize: 20.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineLarge
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                      AlignedTooltip(
-                                        content: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'dyhrt6re' /* We estimate you’ll reach the c... */,
-                                            ),
-                                            style: TextStyle(),
-                                          ),
-                                        ),
-                                        offset: 4.0,
-                                        preferredDirection: AxisDirection.down,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        elevation: 4.0,
-                                        tailBaseWidth: 24.0,
-                                        tailLength: 12.0,
-                                        waitDuration:
-                                            Duration(milliseconds: 100),
-                                        showDuration:
-                                            Duration(milliseconds: 1500),
-                                        triggerMode: TooltipTriggerMode.tap,
-                                        child: Icon(
-                                          Icons.info_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondary,
-                                          size: 16.0,
-                                        ),
-                                      ),
-                                    ].divide(SizedBox(width: 5.0)),
-                                  ),
-                                ].divide(SizedBox(height: 8.0)),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'ricj2mu5' /* Capital To Invest */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xCDFFFFFF),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            formatNumber(
-                              _model.capitalAvailableToInvest!.ownCapital,
-                              formatType: FormatType.decimal,
-                              decimalType: DecimalType.automatic,
-                              currency: '£',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    letterSpacing: 1.5,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .labelMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
+                                        .labelMedium
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(width: 10.0)),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'nf9owzn1' /* Releasable Equity */,
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xCCFFFFFF),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            formatNumber(
-                              _model.capitalAvailableToInvest!.releasableEquity,
-                              formatType: FormatType.decimal,
-                              decimalType: DecimalType.automatic,
-                              currency: '£',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(width: 10.0)),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              '42qp7p0c' /* Total Capital Available */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xCCFFFFFF),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            formatNumber(
-                              _model.capitalAvailableToInvest!
-                                  .totalCapitalAvailable,
-                              formatType: FormatType.decimal,
-                              decimalType: DecimalType.automatic,
-                              currency: '£',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(width: 10.0)),
-                      ),
-                      Divider(
-                        thickness: 2.0,
-                        color: FlutterFlowTheme.of(context).alternate,
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'xuu6mlth' /* Total Purchasing Power */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .titleLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .fontStyle,
-                                ),
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
@@ -522,7 +145,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                     .titleLarge
                                     .override(
                                       font: GoogleFonts.dmSans(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .fontStyle,
@@ -531,7 +154,33 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                           .primaryBackground,
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
+                              ),
+                              Text(
+                                FFLocalizations.of(context).getText(
+                                  'tjgsxh59' /* purchasing power */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .fontStyle,
@@ -589,57 +238,324 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                               ),
                             ].divide(SizedBox(width: 6.0)),
                           ),
-                        ].divide(SizedBox(width: 10.0)),
+                        ].divide(SizedBox(height: 3.0)),
                       ),
-                    ].divide(SizedBox(height: 6.0)),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed(SalesOffersWidget.routeName);
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          '9ga0jrg5' /* Explore New Deals */,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).tertiary,
+                          borderRadius: BorderRadius.circular(6.0),
                         ),
-                        options: FFButtonOptions(
-                          width: 200.0,
-                          height: 40.0,
+                        child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 12.0, 24.0, 12.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).secondary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    font: GoogleFonts.dmSans(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontWeight,
+                              10.0, 8.0, 10.0, 8.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              '84js2pex' /* Available */,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .labelSmall
+                                .override(
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FontWeight.w500,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
+                                        .labelSmall
                                         .fontStyle,
                                   ),
-                          elevation: 0.0,
-                          borderRadius: BorderRadius.circular(24.0),
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontStyle,
+                                ),
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 80.0,
+                          decoration: BoxDecoration(
+                            color: Color(0x13FFFFFF),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'ricj2mu5' /* Capital To Invest */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                                Text(
+                                  formatNumber(
+                                    _model.capitalAvailableToInvest!.ownCapital,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 80.0,
+                          decoration: BoxDecoration(
+                            color: Color(0x13FFFFFF),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'nf9owzn1' /* Releasable Equity */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                                Text(
+                                  formatNumber(
+                                    _model.capitalAvailableToInvest!
+                                        .releasableEquity,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 80.0,
+                          decoration: BoxDecoration(
+                            color: Color(0x13FFFFFF),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    '42qp7p0c' /* Total Capital Available */,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelSmall
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .fontStyle,
+                                      ),
+                                ),
+                                Text(
+                                  formatNumber(
+                                    _model.capitalAvailableToInvest!
+                                        .totalCapitalAvailable,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ].divide(SizedBox(width: 3.0)),
+                  ),
+                  FFButtonWidget(
+                    onPressed: () async {
+                      context.pushNamed(SalesOffersWidget.routeName);
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      '37ge9hb9' /* Explore New Deals */,
+                    ),
+                    icon: Icon(
+                      Icons.arrow_forward,
+                      size: 15.0,
+                    ),
+                    options: FFButtonOptions(
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 42.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                      iconAlignment: IconAlignment.end,
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).secondary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .bodySmall
+                          .override(
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .fontStyle,
+                          ),
+                      elevation: 0.0,
+                      borderSide: BorderSide(
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                ].divide(SizedBox(height: 10.0)),
+                ].divide(SizedBox(height: 16.0)),
               ),
             ),
           ),

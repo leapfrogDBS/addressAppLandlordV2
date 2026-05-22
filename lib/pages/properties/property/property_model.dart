@@ -26,7 +26,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:sticky_headers/sticky_headers.dart';
 import 'property_widget.dart' show PropertyWidget;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -92,15 +91,10 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   PropertyProjectionsRecord? projectionDoc;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
-  // State field(s) for Column widget.
-  ScrollController? columnController;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  bool isDataUploading_userMainImage3 = false;
-  FFUploadedFile uploadedLocalFile_userMainImage3 =
-      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_userMainImage3 = '';
-
+  // State field(s) for Column widget.
+  ScrollController? columnController;
   // Model for liveEarningsProperty component.
   late LiveEarningsPropertyModel liveEarningsPropertyModel;
   // State field(s) for Carousel widget.
@@ -150,8 +144,8 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   @override
   void initState(BuildContext context) {
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
-    columnController = ScrollController();
     mainHeaderModel = createModel(context, () => MainHeaderModel());
+    columnController = ScrollController();
     liveEarningsPropertyModel =
         createModel(context, () => LiveEarningsPropertyModel());
     statsCombinedModel = createModel(context, () => StatsCombinedModel());
@@ -163,8 +157,8 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   @override
   void dispose() {
     slideNavigationModel.dispose();
-    columnController?.dispose();
     mainHeaderModel.dispose();
+    columnController?.dispose();
     liveEarningsPropertyModel.dispose();
     statsCombinedModel.dispose();
     statsRentalModel.dispose();

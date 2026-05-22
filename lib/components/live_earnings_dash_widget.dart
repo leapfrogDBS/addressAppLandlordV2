@@ -410,7 +410,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                       ),
                     ),
                   ),
-                ].divide(SizedBox(height: 6.0)),
+                ].divide(SizedBox(height: 8.0)),
               ),
             ),
           ),

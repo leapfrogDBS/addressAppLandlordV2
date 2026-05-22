@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/capital_upgrade_widget.dart';
-import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
 import '/components/offers_c_t_a_widget.dart';
@@ -37,10 +36,14 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   bool canShowDashboard = false;
 
+  int? propertyCountState = 0;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   List<PropertyProjectionsRecord>? projectionDocs;
+  // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
+  int? propertyCount;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
@@ -51,8 +54,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   late PortfolioScoreDashNEWModel portfolioScoreDashNEWModel;
   // Model for capitalUpgrade component.
   late CapitalUpgradeModel capitalUpgradeModel;
-  // Model for keyMetricsDash component.
-  late KeyMetricsDashModel keyMetricsDashModel;
   // Model for PropertySlider component.
   late PropertySliderModel propertySliderModel;
   // Model for Offers_CTA component.
@@ -66,7 +67,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     portfolioScoreDashNEWModel =
         createModel(context, () => PortfolioScoreDashNEWModel());
     capitalUpgradeModel = createModel(context, () => CapitalUpgradeModel());
-    keyMetricsDashModel = createModel(context, () => KeyMetricsDashModel());
     propertySliderModel = createModel(context, () => PropertySliderModel());
     offersCTAModel = createModel(context, () => OffersCTAModel());
   }
@@ -78,7 +78,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     liveEarningsDashModel.dispose();
     portfolioScoreDashNEWModel.dispose();
     capitalUpgradeModel.dispose();
-    keyMetricsDashModel.dispose();
     propertySliderModel.dispose();
     offersCTAModel.dispose();
   }

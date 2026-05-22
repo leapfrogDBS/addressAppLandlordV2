@@ -228,7 +228,7 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.dashboard,
+                  Icons.home_outlined,
                   color: currentIndex == 0
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xFFB1B3B4),
@@ -254,7 +254,7 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.home,
+                  Icons.business,
                   color: currentIndex == 1
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xFFB1B3B4),
@@ -262,7 +262,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    'bbfah1l9' /* Properties */,
+                    'bbfah1l9' /* Portfolio */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -280,7 +280,7 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.local_offer,
+                  Icons.local_offer_outlined,
                   color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xFFB1B3B4),
@@ -288,7 +288,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    'i5td7qff' /* Offers */,
+                    'i5td7qff' /* Deals */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -306,7 +306,7 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.forum_outlined,
+                  Icons.message_outlined,
                   color: currentIndex == 3
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xFFB1B3B4),
@@ -314,7 +314,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    '2z3m88yf' /* Messages */,
+                    '2z3m88yf' /* Advisor */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

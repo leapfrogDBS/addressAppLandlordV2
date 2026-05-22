@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/capital_upgrade_widget.dart';
-import '/components/key_metrics_dash_widget.dart';
 import '/components/live_earnings_dash_widget.dart';
 import '/components/main_header_widget.dart';
 import '/components/offers_c_t_a_widget.dart';
@@ -67,6 +66,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         _model.pvTotals =
             functions.aggregateAtRetirement(_model.projectionDocs!.toList());
         _model.canShowDashboard = true;
+        safeSetState(() {});
+        _model.propertyCount = await queryPropertiesRecordCount(
+          queryBuilder: (propertiesRecord) => propertiesRecord.where(
+            'ownerID',
+            isEqualTo: currentUserReference?.id,
+          ),
+        );
+        _model.propertyCountState = _model.propertyCount;
         safeSetState(() {});
       } else {
         context.goNamed(RedirectPageWidget.routeName);
@@ -155,215 +162,180 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 20.0),
-                                    child: FutureBuilder<int>(
-                                      future: queryPropertiesRecordCount(
-                                        queryBuilder: (propertiesRecord) =>
-                                            propertiesRecord.where(
-                                          'ownerID',
-                                          isEqualTo: currentUserReference?.id,
-                                        ),
-                                      ),
-                                      builder: (context, snapshot) {
-                                        // Customize what your widget looks like when it's loading.
-                                        if (!snapshot.hasData) {
-                                          return Center(
-                                            child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
-                                              child: CircularProgressIndicator(
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        }
-                                        int columnCount = snapshot.data!;
-
-                                        return Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 10.0, 16.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            context.goNamed(
-                                                                ProfileWidget
-                                                                    .routeName);
-                                                          },
-                                                          child: Container(
-                                                            width: 34.0,
-                                                            height: 34.0,
-                                                            decoration:
-                                                                BoxDecoration(
+                                        0.0, 10.0, 0.0, 20.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 10.0, 16.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.goNamed(
+                                                              ProfileWidget
+                                                                  .routeName);
+                                                        },
+                                                        child: Container(
+                                                          width: 34.0,
+                                                          height: 34.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent1,
+                                                            shape:
+                                                                BoxShape.circle,
+                                                            border: Border.all(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .accent1,
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              border:
-                                                                  Border.all(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                width: 1.0,
-                                                              ),
+                                                                  .primary,
+                                                              width: 1.0,
                                                             ),
-                                                            child: Builder(
-                                                              builder:
-                                                                  (context) {
-                                                                if (stackUsersRecord
-                                                                            .photoUrl !=
-                                                                        null &&
-                                                                    stackUsersRecord
-                                                                            .photoUrl !=
-                                                                        '') {
-                                                                  return Padding(
-                                                                    padding:
-                                                                        EdgeInsets.all(
-                                                                            2.0),
-                                                                    child:
-                                                                        AuthUserStreamWidget(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(100.0),
-                                                                        child: Image
-                                                                            .network(
-                                                                          currentUserPhoto,
-                                                                          width:
-                                                                              44.0,
-                                                                          height:
-                                                                              44.0,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  );
-                                                                } else {
-                                                                  return Container(
-                                                                    width: 34.0,
-                                                                    height:
-                                                                        34.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
+                                                          ),
+                                                          child: Builder(
+                                                            builder: (context) {
+                                                              if (stackUsersRecord
+                                                                          .photoUrl !=
+                                                                      null &&
+                                                                  stackUsersRecord
+                                                                          .photoUrl !=
+                                                                      '') {
+                                                                return Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              2.0),
+                                                                  child:
+                                                                      AuthUserStreamWidget(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            ClipRRect(
                                                                       borderRadius:
                                                                           BorderRadius.circular(
-                                                                              24.0),
+                                                                              100.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        currentUserPhoto,
+                                                                        width:
+                                                                            44.0,
+                                                                        height:
+                                                                            44.0,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
                                                                     ),
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Text(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          functions
-                                                                              .getUserInitials(stackUsersRecord.displayName),
-                                                                          '?',
-                                                                        ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.dmSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                              ),
-                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                              fontSize: 13.0,
-                                                                              letterSpacing: 0.0,
+                                                                  ),
+                                                                );
+                                                              } else {
+                                                                return Container(
+                                                                  width: 34.0,
+                                                                  height: 34.0,
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondary,
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            24.0),
+                                                                  ),
+                                                                  child: Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        functions
+                                                                            .getUserInitials(stackUsersRecord.displayName),
+                                                                        '?',
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.dmSans(
                                                                               fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                               fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                             ),
-                                                                      ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            fontSize:
+                                                                                13.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                     ),
-                                                                  );
-                                                                }
-                                                              },
-                                                            ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                            },
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                  Expanded(
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          key: ValueKey(
-                                                              'dashboardWelcome'),
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text: FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  's54ivdp6' /* WELCOME BACK */,
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .dmSans(
-                                                                        fontWeight:
-                                                                            FontWeight.normal,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      fontSize:
-                                                                          11.0,
-                                                                      letterSpacing:
-                                                                          0.0,
+                                                    ),
+                                                  ],
+                                                ),
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      RichText(
+                                                        textScaler:
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .textScaler,
+                                                        key: ValueKey(
+                                                            'dashboardWelcome'),
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text: FFLocalizations
+                                                                      .of(context)
+                                                                  .getText(
+                                                                's54ivdp6' /* WELCOME BACK */,
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -372,14 +344,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           .headlineMedium
                                                                           .fontStyle,
                                                                     ),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        11.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .normal,
@@ -388,12 +359,15 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .headlineMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: Color(
-                                                                      0x8CFFFFFF),
-                                                                  fontSize:
-                                                                      11.0,
-                                                                  letterSpacing:
-                                                                      0.4,
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -402,40 +376,39 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineMedium
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
-                                                        ),
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          key: ValueKey(
-                                                              'dashboardWelcome'),
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text:
-                                                                    currentUserDisplayName,
-                                                                style: FlutterFlowTheme.of(
+                                                                color: Color(
+                                                                    0x8CFFFFFF),
+                                                                fontSize: 11.0,
+                                                                letterSpacing:
+                                                                    0.4,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .headlineMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .dmSans(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .headlineMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .headlineMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryBackground,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      RichText(
+                                                        textScaler:
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .textScaler,
+                                                        key: ValueKey(
+                                                            'dashboardWelcome'),
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text:
+                                                                  currentUserDisplayName,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
                                                                           .headlineMedium
@@ -445,29 +418,31 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           .headlineMedium
                                                                           .fontStyle,
                                                                     ),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryBackground,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineMedium
+                                                                        .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .dmSans(
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w500,
@@ -476,50 +451,56 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineMedium
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMedium
+                                                                    .fontStyle,
+                                                              ),
                                                         ),
-                                                      ].divide(SizedBox(
-                                                          height: 1.0)),
-                                                    ),
-                                                  ),
-                                                ].divide(SizedBox(width: 10.0)),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 16.0, 0.0),
-                                                child: AuthUserStreamWidget(
-                                                  builder: (context) =>
-                                                      wrapWithModel(
-                                                    model: _model
-                                                        .liveEarningsDashModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child:
-                                                        LiveEarningsDashWidget(
-                                                      yearlyGain: _model
-                                                          .pvTotals
-                                                          ?.liveGainThisYear,
-                                                      dailyGain: _model.pvTotals
-                                                          ?.liveGainPerDay,
-                                                      secondGain: _model
-                                                          .pvTotals!
-                                                          .liveGainPerSecond,
-                                                      earningsToDate: _model
-                                                          .pvTotals!
-                                                          .liveEarningsAsOfNow,
-                                                      propertiesCount:
-                                                          columnCount,
-                                                    ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 1.0)),
                                                   ),
                                                 ),
+                                              ].divide(SizedBox(width: 10.0)),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    16.0, 0.0, 16.0, 0.0),
+                                            child: wrapWithModel(
+                                              model:
+                                                  _model.liveEarningsDashModel,
+                                              updateCallback: () =>
+                                                  safeSetState(() {}),
+                                              child: LiveEarningsDashWidget(
+                                                yearlyGain: _model
+                                                    .pvTotals?.liveGainThisYear,
+                                                dailyGain: _model
+                                                    .pvTotals?.liveGainPerDay,
+                                                secondGain: _model.pvTotals!
+                                                    .liveGainPerSecond,
+                                                earningsToDate: _model.pvTotals!
+                                                    .liveEarningsAsOfNow,
+                                                propertiesCount:
+                                                    _model.propertyCountState!,
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 10.0)),
-                                        );
-                                      },
+                                          ),
+                                        ),
+                                      ].divide(SizedBox(height: 16.0)),
                                     ),
                                   ),
                                 ),
@@ -557,12 +538,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
+                                      borderRadius: BorderRadius.circular(16.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -570,374 +546,211 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, -1.0),
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                '638yfxgu' /* Your Retirement Goals */,
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .headlineSmall
-                                                  .override(
-                                                    font: GoogleFonts.dmSans(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineSmall
-                                                            .fontStyle,
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '638yfxgu' /* Your Retirement Goals */,
                                                   ),
-                                            ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelLarge
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelLarge
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                child: RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            FFLocalizations.of(
+                                                                    context)
+                                                                .getText(
+                                                          'onzuiw02' /* Target:  */,
+                                                        ),
+                                                        style: TextStyle(),
+                                                      ),
+                                                      TextSpan(
+                                                        text: valueOrDefault<
+                                                            String>(
+                                                          _model.pvTotals
+                                                              ?.retirementYear
+                                                              ?.toString(),
+                                                          '2025',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                      )
+                                                    ],
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .dmSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 20.0, 0.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text: FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  '4ze7qdom' /* Predicted Portfolio Capital Va... */,
-                                                                ),
-                                                                style:
-                                                                    TextStyle(),
-                                                              ),
-                                                              TextSpan(
-                                                                text: FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'zyvnup8s' /* ( */,
-                                                                ),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      12.0,
-                                                                ),
-                                                              ),
-                                                              TextSpan(
-                                                                text:
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                  _model
-                                                                      .pvTotals
-                                                                      ?.retirementYear
-                                                                      ?.toString(),
-                                                                  '2025',
-                                                                ),
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                ),
-                                                              ),
-                                                              TextSpan(
-                                                                text: FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'go3rx3kc' /* ) */,
-                                                                ),
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontSize:
-                                                                      12.0,
-                                                                ),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleLarge
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLarge
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLarge
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text:
-                                                                    formatNumber(
-                                                                  _model
-                                                                      .pvTotals!
-                                                                      .capitalValue,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .automatic,
-                                                                  currency: '£',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .dmSans(
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleLarge
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLarge
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLarge
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLarge
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLarge
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ].divide(
-                                                          SizedBox(width: 6.0)),
-                                                    ),
-                                                    AuthUserStreamWidget(
-                                                      builder: (context) =>
-                                                          LinearPercentIndicator(
-                                                        percent: valueOrDefault<
-                                                            double>(
-                                                          functions.getRatio(
-                                                              _model.pvTotals!
-                                                                  .capitalValue,
-                                                              valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.targetEquity,
-                                                                      0)
-                                                                  .toDouble()),
-                                                          0.0,
-                                                        ),
-                                                        lineHeight: 15.0,
-                                                        animation: true,
-                                                        animateFromLastPercent:
-                                                            true,
-                                                        progressColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondary,
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        barRadius:
-                                                            Radius.circular(
-                                                                50.0),
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                      ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        RichText(
-                                                          textScaler:
-                                                              MediaQuery.of(
-                                                                      context)
-                                                                  .textScaler,
-                                                          text: TextSpan(
-                                                            children: [
-                                                              TextSpan(
-                                                                text: FFLocalizations.of(
-                                                                        context)
-                                                                    .getText(
-                                                                  'xvzv9y5i' /* Target of  */,
-                                                                ),
-                                                                style:
-                                                                    TextStyle(),
-                                                              ),
-                                                              TextSpan(
-                                                                text:
-                                                                    formatNumber(
-                                                                  valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.targetEquity,
-                                                                      0),
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .automatic,
-                                                                  currency: '£',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .dmSans(
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .greyBlue,
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                              )
-                                                            ],
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .greyBlue,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ].divide(
-                                                          SizedBox(width: 6.0)),
-                                                    ),
-                                                  ].divide(
-                                                      SizedBox(height: 8.0)),
-                                                ),
-                                              ),
-                                              Column(
+                                              Row(
                                                 mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Row(
+                                                  Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    '4ze7qdom' /* Portfolio Value  */,
+                                                                  ),
+                                                                  style:
+                                                                      TextStyle(),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 6.0)),
+                                                      ),
                                                       RichText(
                                                         textScaler:
                                                             MediaQuery.of(
@@ -946,49 +759,47 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         text: TextSpan(
                                                           children: [
                                                             TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                'raytn19v' /* Predicted Annual Rental Income... */,
-                                                              ),
-                                                              style:
-                                                                  TextStyle(),
-                                                            ),
-                                                            TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                '7qswkojl' /* ( */,
-                                                              ),
-                                                              style: TextStyle(
-                                                                fontSize: 12.0,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
                                                               text:
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                _model.pvTotals
-                                                                    ?.retirementYear
-                                                                    ?.toString(),
-                                                                '2025',
+                                                                  formatNumber(
+                                                                _model.pvTotals!
+                                                                    .capitalValue,
+                                                                formatType:
+                                                                    FormatType
+                                                                        .decimal,
+                                                                decimalType:
+                                                                    DecimalType
+                                                                        .automatic,
+                                                                currency: '£',
                                                               ),
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                                fontSize: 12.0,
-                                                              ),
-                                                            ),
-                                                            TextSpan(
-                                                              text: FFLocalizations
+                                                              style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .getText(
-                                                                'od03xnb0' /* ) */,
-                                                              ),
-                                                              style: TextStyle(
-                                                                fontSize: 12.0,
-                                                              ),
+                                                                  .titleLarge
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLarge
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    fontSize:
+                                                                        16.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .fontStyle,
+                                                                  ),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -998,9 +809,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 font:
                                                                     GoogleFonts
                                                                         .dmSans(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLarge
+                                                                      .fontWeight,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleLarge
@@ -1009,15 +821,230 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLarge
+                                                                    .fontWeight,
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleLarge
                                                                     .fontStyle,
                                                               ),
                                                         ),
+                                                      ),
+                                                      AuthUserStreamWidget(
+                                                        builder: (context) =>
+                                                            LinearPercentIndicator(
+                                                          percent:
+                                                              valueOrDefault<
+                                                                  double>(
+                                                            functions.getRatio(
+                                                                _model.pvTotals!
+                                                                    .capitalValue,
+                                                                valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.targetEquity,
+                                                                        0)
+                                                                    .toDouble()),
+                                                            0.0,
+                                                          ),
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.35,
+                                                          lineHeight: 4.0,
+                                                          animation: true,
+                                                          animateFromLastPercent:
+                                                              true,
+                                                          progressColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondary,
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          barRadius:
+                                                              Radius.circular(
+                                                                  50.0),
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'xvzv9y5i' /* Target of  */,
+                                                                  ),
+                                                                  style:
+                                                                      TextStyle(),
+                                                                ),
+                                                                TextSpan(
+                                                                  text:
+                                                                      formatNumber(
+                                                                    valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.targetEquity,
+                                                                        0),
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .automatic,
+                                                                    currency:
+                                                                        '£',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .dmSans(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelSmall
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 6.0)),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 4.0)),
+                                                  ),
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'raytn19v' /*  Annual Rental Income  */,
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .dmSans(
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                )
+                                                              ],
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleLarge
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .dmSans(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLarge
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 6.0)),
                                                       ),
                                                       RichText(
                                                         textScaler:
@@ -1045,24 +1072,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .dmSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLarge
+                                                                          .fontWeight,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
                                                                           .titleLarge
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    fontSize:
-                                                                        12.0,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleLarge
+                                                                        .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .titleLarge
@@ -1099,346 +1123,378 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               ),
                                                         ),
                                                       ),
-                                                    ].divide(
-                                                        SizedBox(width: 6.0)),
-                                                  ),
-                                                  AuthUserStreamWidget(
-                                                    builder: (context) =>
-                                                        LinearPercentIndicator(
-                                                      percent: valueOrDefault<
-                                                          double>(
-                                                        functions.getRatio(
-                                                            _model.pvTotals!
-                                                                .annualRent,
-                                                            valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.targetIncome,
-                                                                    0)
-                                                                .toDouble()),
-                                                        0.0,
-                                                      ),
-                                                      lineHeight: 15.0,
-                                                      animation: true,
-                                                      animateFromLastPercent:
-                                                          true,
-                                                      progressColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiary,
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      barRadius:
-                                                          Radius.circular(50.0),
-                                                      padding: EdgeInsets.zero,
-                                                    ),
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                'vne8ecx1' /* Target of  */,
-                                                              ),
-                                                              style:
-                                                                  TextStyle(),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  formatNumber(
+                                                      AuthUserStreamWidget(
+                                                        builder: (context) =>
+                                                            LinearPercentIndicator(
+                                                          percent:
+                                                              valueOrDefault<
+                                                                  double>(
+                                                            functions.getRatio(
+                                                                _model.pvTotals!
+                                                                    .annualRent,
                                                                 valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.targetIncome,
-                                                                    0),
-                                                                formatType:
-                                                                    FormatType
-                                                                        .decimal,
-                                                                decimalType:
-                                                                    DecimalType
-                                                                        .automatic,
-                                                                currency: '£',
-                                                              ),
+                                                                        currentUserDocument
+                                                                            ?.targetIncome,
+                                                                        0)
+                                                                    .toDouble()),
+                                                            0.0,
+                                                          ),
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  0.35,
+                                                          lineHeight: 4.0,
+                                                          animation: true,
+                                                          animateFromLastPercent:
+                                                              true,
+                                                          progressColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .tertiary,
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          barRadius:
+                                                              Radius.circular(
+                                                                  50.0),
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                        ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          RichText(
+                                                            textScaler:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .textScaler,
+                                                            text: TextSpan(
+                                                              children: [
+                                                                TextSpan(
+                                                                  text: FFLocalizations.of(
+                                                                          context)
+                                                                      .getText(
+                                                                    'vne8ecx1' /* Target of  */,
+                                                                  ),
+                                                                  style:
+                                                                      TextStyle(),
+                                                                ),
+                                                                TextSpan(
+                                                                  text:
+                                                                      formatNumber(
+                                                                    valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.targetIncome,
+                                                                        0),
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .automatic,
+                                                                    currency:
+                                                                        '£',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .dmSans(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .labelSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                )
+                                                              ],
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .titleLarge
+                                                                  .labelSmall
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .dmSans(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelSmall
+                                                                          .fontWeight,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .titleLarge
+                                                                          .labelSmall
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .greyBlue,
-                                                                    fontSize:
-                                                                        12.0,
                                                                     letterSpacing:
                                                                         0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .titleLarge
+                                                                        .labelSmall
                                                                         .fontStyle,
                                                                   ),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 6.0)),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 4.0)),
+                                                  ),
+                                                ],
+                                              ),
+                                            ].divide(SizedBox(height: 16.0)),
+                                          ),
+                                          FFButtonWidget(
+                                            onPressed: () async {
+                                              context.pushNamed(
+                                                  ProfileWidget.routeName);
+                                            },
+                                            text: FFLocalizations.of(context)
+                                                .getText(
+                                              'bvapixh5' /* Edit Retirement goals */,
+                                            ),
+                                            options: FFButtonOptions(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 42.0,
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .fontStyle,
+                                                      ),
+                                              elevation: 0.0,
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .greyBlue,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                          ),
+                                        ]
+                                            .divide(SizedBox(height: 16.0))
+                                            .addToStart(SizedBox(height: 0.0)),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(0.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'shsbx041' /* My Properties */,
+                                                ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleMedium
+                                                    .override(
+                                                      font: GoogleFonts.dmSans(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                    PropertiesWidget.routeName);
+                                              },
+                                              child: RichText(
+                                                textScaler:
+                                                    MediaQuery.of(context)
+                                                        .textScaler,
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: FFLocalizations.of(
+                                                              context)
+                                                          .getText(
+                                                        'i3nuebb4' /* View all  */,
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLarge
                                                               .override(
                                                                 font:
                                                                     GoogleFonts
                                                                         .dmSans(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmall
+                                                                      .labelLarge
                                                                       .fontWeight,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmall
+                                                                      .labelLarge
                                                                       .fontStyle,
                                                                 ),
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .greyBlue,
-                                                                fontSize: 12.0,
+                                                                    .secondary,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .titleSmall
+                                                                    .labelLarge
                                                                     .fontWeight,
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .titleSmall
+                                                                    .labelLarge
                                                                     .fontStyle,
                                                               ),
-                                                        ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: valueOrDefault<
+                                                          String>(
+                                                        _model
+                                                            .propertyCountState
+                                                            ?.toString(),
+                                                        '0',
                                                       ),
-                                                    ].divide(
-                                                        SizedBox(width: 6.0)),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 6.0,
-                                                                0.0, 0.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                            ProfileWidget
-                                                                .routeName);
-                                                      },
-                                                      child: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          '6iy0gz2d' /* Edit Retirement Goals */,
-                                                        ),
-                                                        style:
+                                                      style: TextStyle(
+                                                        color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .dmSans(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                ),
+                                                                .secondary,
                                                       ),
-                                                    ),
-                                                  ),
-                                                ].divide(SizedBox(height: 8.0)),
-                                              ),
-                                            ].divide(SizedBox(height: 16.0)),
-                                          ),
-                                        ]
-                                            .divide(SizedBox(height: 10.0))
-                                            .addToStart(SizedBox(height: 0.0)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                wrapWithModel(
-                                  model: _model.keyMetricsDashModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: KeyMetricsDashWidget(
-                                    predictedValue:
-                                        _model.pvTotals?.capitalValue,
-                                    cumulativeRentalProfit:
-                                        _model.pvTotals?.cumulativeRentalProfit,
-                                    dailyGainOnRetirement:
-                                        _model.pvTotals?.combinedDailyGain,
-                                    retirementYear:
-                                        _model.pvTotals!.retirementYear,
-                                    retirementAge:
-                                        stackUsersRecord.plannedRetirementAge,
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderRadius: BorderRadius.circular(0.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 16.0, 0.0, 0.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'shsbx041' /* My Properties */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineLarge
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
+                                                    )
+                                                  ],
+                                                  style: FlutterFlowTheme.of(
                                                           context)
-                                                      .primary,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .fontStyle,
+                                                      .labelLarge
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelLarge
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelLarge
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .fontStyle,
+                                                      ),
                                                 ),
-                                          ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         wrapWithModel(
                                           model: _model.propertySliderModel,
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: PropertySliderWidget(),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 16.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                    PropertiesWidget.routeName);
-                                              },
-                                              text: FFLocalizations.of(context)
-                                                  .getText(
-                                                '9mori5ko' /* View All */,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 200.0,
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 12.0, 24.0, 12.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleSmall
-                                                    .override(
-                                                      font: GoogleFonts.dmSans(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                elevation: 0.0,
-                                                borderRadius:
-                                                    BorderRadius.circular(24.0),
-                                              ),
-                                            ),
-                                          ),
                                         ),
                                       ].divide(SizedBox(height: 16.0)),
                                     ),

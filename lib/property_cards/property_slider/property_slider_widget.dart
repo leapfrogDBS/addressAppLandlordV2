@@ -83,10 +83,8 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                 final listViewPropertiesRecord =
                     listViewPropertiesRecordList[listViewIndex];
                 return Container(
-                  width: 260.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).alternate,
-                  ),
+                  width: 280.0,
+                  decoration: BoxDecoration(),
                   child: wrapWithModel(
                     model: _model.singlePropertyModels.getModel(
                       listViewPropertiesRecord.reference.id,
@@ -97,7 +95,10 @@ class _PropertySliderWidgetState extends State<PropertySliderWidget> {
                       key: Key(
                         'Key9sa_${listViewPropertiesRecord.reference.id}',
                       ),
-                      propImg: listViewPropertiesRecord.mainPhoto,
+                      propImg: valueOrDefault<String>(
+                        listViewPropertiesRecord.gallery.firstOrNull,
+                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/9trt90hix19a/360_F_276422232_RTzQ3ATAs1gOYAjfvD2tsbRgdOeLjIq0.jpg',
+                      ),
                       propTitle: listViewPropertiesRecord.title,
                       propValue: listViewPropertiesRecord.estimatedValue,
                       propID: listViewPropertiesRecord.reference,

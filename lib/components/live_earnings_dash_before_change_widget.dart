@@ -379,7 +379,6 @@ class _LiveEarningsDashBeforeChangeWidgetState
                                         maxScore: 999,
                                         durationMs: 3500,
                                         delayMs: 1000,
-                                        sweepDegrees: 300.0,
                                         strokeWidth: 10.0,
                                       ),
                                     ),

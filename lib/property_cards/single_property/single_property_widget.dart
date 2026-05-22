@@ -134,47 +134,16 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                           children: [
                             if (widget!.propTitle != null &&
                                 widget!.propTitle != '')
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    widget!.propTitle,
-                                    'Property Title',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        font: GoogleFonts.dmSans(
-                                          fontWeight: FontWeight.w600,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLarge
-                                                  .fontStyle,
-                                        ),
-                                        color: Color(0xA53C444C),
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
-                              child: Text(
+                              Text(
                                 valueOrDefault<String>(
-                                  widget!.propFormattedAddress,
-                                  '10 Any Street',
+                                  widget!.propTitle,
+                                  'Property Title',
                                 ),
                                 style: FlutterFlowTheme.of(context)
                                     .titleLarge
                                     .override(
                                       font: GoogleFonts.dmSans(
-                                        fontWeight: FontWeight.w300,
+                                        fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .titleLarge
                                             .fontStyle,
@@ -182,16 +151,42 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                       color: Color(0xA53C444C),
                                       fontSize: 14.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w300,
+                                      fontWeight: FontWeight.w600,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .fontStyle,
                                     ),
                               ),
+                            Text(
+                              valueOrDefault<String>(
+                                widget!.propFormattedAddress,
+                                '10 Any Street',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FontWeight.w300,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xA53C444C),
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w300,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
                             ),
                           ],
                         ),
                       ),
+                    ),
+                    Divider(
+                      thickness: 2.0,
+                      color: FlutterFlowTheme.of(context).alternate,
                     ),
                     Container(
                       width: double.infinity,
@@ -255,7 +250,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                           ),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          fontSize: 18.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
@@ -317,7 +312,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                           ),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          fontSize: 18.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
@@ -385,7 +380,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                           ),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
-                                          fontSize: 18.0,
+                                          fontSize: 14.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
@@ -576,7 +571,7 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                fontSize: 18.0,
+                                                fontSize: 14.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight: FontWeight.bold,
                                                 fontStyle:

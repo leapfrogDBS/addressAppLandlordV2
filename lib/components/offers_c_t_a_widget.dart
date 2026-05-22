@@ -96,34 +96,32 @@ class _OffersCTAWidgetState extends State<OffersCTAWidget> {
                     },
                     text: widget!.buttonLabel!,
                     options: FFButtonOptions(
-                      width: 200.0,
-                      height: 40.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 42.0,
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).secondary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: GoogleFonts.dmSans(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .fontStyle,
-                              ),
+                      textStyle: FlutterFlowTheme.of(context)
+                          .bodySmall
+                          .override(
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodySmall
+                                  .fontStyle,
+                            ),
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w500,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .fontStyle,
+                          ),
                       elevation: 0.0,
-                      borderRadius: BorderRadius.circular(24.0),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ),
