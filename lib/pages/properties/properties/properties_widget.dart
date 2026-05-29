@@ -106,6 +106,115 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
+                        Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '1gb3rdrf' /* Portfolio Overview */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      FFLocalizations.of(context).getText(
+                                        '725at16t' /* Total Value */,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelLarge
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLarge
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLarge
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                    Text(
+                                      formatNumber(
+                                        _model.portfolioSnapshot!.totalValue,
+                                        formatType: FormatType.decimal,
+                                        currency: '£',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .displayMedium
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .displayMedium
+                                                      .fontStyle,
+                                            ),
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .displayMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(height: 4.0)),
+                                ),
+                              ].divide(SizedBox(height: 16.0)),
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Column(
@@ -1171,7 +1280,7 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(height: 20.0)),
+                      ].divide(SizedBox(height: 0.0)),
                     ),
                   ),
                 ),
