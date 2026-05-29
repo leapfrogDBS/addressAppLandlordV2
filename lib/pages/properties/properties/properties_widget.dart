@@ -107,7 +107,9 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
-                          decoration: BoxDecoration(),
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).primary,
+                          ),
                           child: Padding(
                             padding: EdgeInsets.all(16.0),
                             child: Column(
@@ -134,6 +136,8 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                       .titleSmall
                                                       .fontStyle,
                                             ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
@@ -184,6 +188,7 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                         formatNumber(
                                           _model.portfolioSnapshot?.totalValue,
                                           formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
                                           currency: '£',
                                         ),
                                         '0',
@@ -201,6 +206,8 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                       .displayMedium
                                                       .fontStyle,
                                             ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryBackground,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
@@ -553,9 +560,15 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                   TextSpan(
                                                     text:
                                                         valueOrDefault<String>(
-                                                      _model.portfolioSnapshot
-                                                          ?.avgMonthlyRent
-                                                          ?.toString(),
+                                                      formatNumber(
+                                                        _model.portfolioSnapshot
+                                                            ?.avgMonthlyRent,
+                                                        formatType:
+                                                            FormatType.decimal,
+                                                        decimalType: DecimalType
+                                                            .automatic,
+                                                        currency: '£',
+                                                      ),
                                                       '0',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -945,6 +958,8 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                       ?.capitalGainSinceJoining,
                                                   formatType:
                                                       FormatType.decimal,
+                                                  decimalType:
+                                                      DecimalType.automatic,
                                                   currency: '£',
                                                 ),
                                                 '0',
@@ -977,12 +992,10 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                               text: TextSpan(
                                                 children: [
                                                   TextSpan(
-                                                    text:
-                                                        valueOrDefault<String>(
-                                                      _model.portfolioSnapshot
-                                                          ?.avgMonthlyRent
-                                                          ?.toString(),
-                                                      '0',
+                                                    text: FFLocalizations.of(
+                                                            context)
+                                                        .getText(
+                                                      'tp3j5wux' /*  */,
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -1013,14 +1026,6 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                                   .labelSmall
                                                                   .fontStyle,
                                                         ),
-                                                  ),
-                                                  TextSpan(
-                                                    text: FFLocalizations.of(
-                                                            context)
-                                                        .getText(
-                                                      'n0y202w4' /*  / month avg */,
-                                                    ),
-                                                    style: TextStyle(),
                                                   )
                                                 ],
                                                 style: FlutterFlowTheme.of(

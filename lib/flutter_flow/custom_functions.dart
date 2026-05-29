@@ -982,19 +982,30 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
   double totalEquity = 0.0;
   double annualRent = 0.0;
   double capitalGain = 0.0;
+
   for (final p in list) {
     final value = nz(p.estimatedValue);
     final mortgage = nz(p.mortgageRemaining);
     final rent = nz(p.currentRentAmount);
-    final joinVal = nz(p.priceValuationOnJoiningAddressed);
+    final purchase = nz(p.purchasePrice);
+    final joining = nz(p.priceValuationOnJoiningAddressed);
+
     totalValue += value;
     if (p.mortgageEntered == true) {
       totalEquity += (value - mortgage).clamp(0.0, double.infinity);
     }
     annualRent += rent * 12.0;
-    capitalGain += value - joinVal;
+
+    // Capital gain: purchase price first, then joining valuation, else skip
+    final baseline = purchase > 0 ? purchase : (joining > 0 ? joining : 0.0);
+    if (baseline > 0) {
+      capitalGain += value - baseline;
+    }
   }
-  final avgYield = totalValue > 0 ? (annualRent / totalValue) * 100.0 : 0.0;
+
+  final avgYieldRaw = totalValue > 0 ? (annualRent / totalValue) * 100.0 : 0.0;
+  final avgYield = double.parse(avgYieldRaw.toStringAsFixed(2));
+
   return createPortfolioSnapshotStruct(
     propertyCount: count,
     totalValue: totalValue,
