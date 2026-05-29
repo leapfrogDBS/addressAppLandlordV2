@@ -47,7 +47,7 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
       _model.loadedProperties = await queryPropertiesRecordOnce(
         queryBuilder: (propertiesRecord) => propertiesRecord.where(
           'ownerID',
-          isEqualTo: '',
+          isEqualTo: currentUserReference?.id,
         ),
       );
       _model.portfolioSnapshot = functions
@@ -180,10 +180,13 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                           ),
                                     ),
                                     Text(
-                                      formatNumber(
-                                        _model.portfolioSnapshot!.totalValue,
-                                        formatType: FormatType.decimal,
-                                        currency: '£',
+                                      valueOrDefault<String>(
+                                        formatNumber(
+                                          _model.portfolioSnapshot?.totalValue,
+                                          formatType: FormatType.decimal,
+                                          currency: '£',
+                                        ),
+                                        '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .displayMedium
@@ -1059,6 +1062,38 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                               ),
                             ].divide(SizedBox(height: 8.0)),
                           ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'yybvf9r5' /* Properties */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .fontStyle,
+                                      ),
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
