@@ -76,39 +76,52 @@ class _PortfolioScoreDashNEWWidgetState
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Stack(
+                            alignment: AlignmentDirectional(1.0, -1.0),
                             children: [
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'pksc718i' /* ADDRESSED SCORE */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        font: GoogleFonts.dmSans(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .labelMedium
-                                                  .fontStyle,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 34.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, 0.0),
+                                      child: Text(
+                                        FFLocalizations.of(context).getText(
+                                          'pksc718i' /* ADDRESSED SCORE */,
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        letterSpacing: 1.5,
-                                        fontWeight: FlutterFlowTheme.of(context)
+                                        style: FlutterFlowTheme.of(context)
                                             .labelMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .fontStyle,
+                                            .override(
+                                              font: GoogleFonts.dmSans(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              letterSpacing: 1.5,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .fontStyle,
+                                            ),
                                       ),
+                                    ),
+                                  ].divide(SizedBox(width: 6.0)),
                                 ),
                               ),
                               AlignedTooltip(
@@ -148,13 +161,23 @@ class _PortfolioScoreDashNEWWidgetState
                                 waitDuration: Duration(milliseconds: 100),
                                 showDuration: Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.tap,
-                                child: Icon(
-                                  Icons.info,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 16.0,
+                                child: Container(
+                                  width: 44.0,
+                                  height: 44.0,
+                                  decoration: BoxDecoration(),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.0, -1.0),
+                                    child: Icon(
+                                      Icons.info,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      size: 16.0,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 6.0)),
+                            ],
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,

@@ -972,3 +972,36 @@ String? getUserInitials(String? displayName) {
   }
   return '${parts.first[0]}${parts.last[0]}'.toUpperCase();
 }
+
+PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
+    List<PropertiesRecord>? properties) {
+  double nz(double? v) => (v == null || v.isNaN || v.isInfinite) ? 0.0 : v;
+  final list = properties ?? [];
+  final count = list.length;
+  double totalValue = 0.0;
+  double totalEquity = 0.0;
+  double annualRent = 0.0;
+  double capitalGain = 0.0;
+  for (final p in list) {
+    final value = nz(p.estimatedValue);
+    final mortgage = nz(p.mortgageRemaining);
+    final rent = nz(p.currentRentAmount);
+    final joinVal = nz(p.priceValuationOnJoiningAddressed);
+    totalValue += value;
+    if (p.mortgageEntered == true) {
+      totalEquity += (value - mortgage).clamp(0.0, double.infinity);
+    }
+    annualRent += rent * 12.0;
+    capitalGain += value - joinVal;
+  }
+  final avgYield = totalValue > 0 ? (annualRent / totalValue) * 100.0 : 0.0;
+  return createPortfolioSnapshotStruct(
+    propertyCount: count,
+    totalValue: totalValue,
+    totalEquity: totalEquity,
+    annualRent: annualRent,
+    avgYield: avgYield,
+    capitalGainSinceJoining: capitalGain,
+    avgMonthlyRent: annualRent / 12.0,
+  );
+}

@@ -119,23 +119,23 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                     Text(
                       key: ValueKey('onboardingPageTitle'),
                       FFLocalizations.of(context).getText(
-                        'uq8f2fad' /* PERSONAL DETAILS */,
+                        'uq8f2fad' /* Personal Details */,
                       ),
-                      style: FlutterFlowTheme.of(context).displayLarge.override(
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
                             font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
-                                  .displayLarge
+                                  .titleMedium
                                   .fontWeight,
                               fontStyle: FlutterFlowTheme.of(context)
-                                  .displayLarge
+                                  .titleMedium
                                   .fontStyle,
                             ),
                             letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .fontWeight,
                             fontStyle: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .fontStyle,
                           ),
                     ),

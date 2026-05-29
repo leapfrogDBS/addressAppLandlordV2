@@ -193,27 +193,26 @@ class _MessageWidgetState extends State<MessageWidget> {
                               0.0, 5.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'ow7hdn9f' /* ADDRESSED ADMIN */,
+                              'ow7hdn9f' /* Addressed Admin */,
                             ),
                             textAlign: TextAlign.start,
                             style: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .override(
                                   font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontStyle,
                                   ),
-                                  fontSize: 24.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontStyle,
                                 ),
                           ),

@@ -156,7 +156,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               children: [
                                 Container(
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                     borderRadius: BorderRadius.circular(0.0),
                                     shape: BoxShape.rectangle,
                                   ),
@@ -172,34 +173,30 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 10.0, 16.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          context.goNamed(
-                                                              ProfileWidget
-                                                                  .routeName);
-                                                        },
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                    ProfileWidget.routeName);
+                                              },
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
                                                         child: Container(
                                                           width: 34.0,
                                                           height: 34.0,
@@ -304,38 +301,50 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        key: ValueKey(
-                                                            'dashboardWelcome'),
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: FFLocalizations
-                                                                      .of(context)
-                                                                  .getText(
-                                                                's54ivdp6' /* WELCOME BACK */,
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .headlineMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .dmSans(
+                                                    ],
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          key: ValueKey(
+                                                              'dashboardWelcome'),
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text: FFLocalizations.of(
+                                                                        context)
+                                                                    .getText(
+                                                                  's54ivdp6' /* WELCOME BACK */,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .dmSans(
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .headlineMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          11.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .normal,
@@ -344,13 +353,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           .headlineMedium
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    fontSize:
-                                                                        11.0,
-                                                                    letterSpacing:
-                                                                        0.0,
+                                                              )
+                                                            ],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .normal,
@@ -359,15 +369,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         .headlineMedium
                                                                         .fontStyle,
                                                                   ),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .dmSans(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      11.0,
+                                                                  letterSpacing:
+                                                                      0.4,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .normal,
@@ -376,39 +384,40 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineMedium
                                                                       .fontStyle,
                                                                 ),
-                                                                color: Color(
-                                                                    0x8CFFFFFF),
-                                                                fontSize: 11.0,
-                                                                letterSpacing:
-                                                                    0.4,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                                fontStyle: FlutterFlowTheme.of(
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textScaler:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .textScaler,
+                                                          key: ValueKey(
+                                                              'dashboardWelcome'),
+                                                          text: TextSpan(
+                                                            children: [
+                                                              TextSpan(
+                                                                text:
+                                                                    currentUserDisplayName,
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .headlineMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        key: ValueKey(
-                                                            'dashboardWelcome'),
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  currentUserDisplayName,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .headlineMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .dmSans(
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .dmSans(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .headlineMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .headlineMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
                                                                           .headlineMedium
@@ -418,31 +427,29 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           .headlineMedium
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineMedium
-                                                                        .fontWeight,
+                                                              )
+                                                            ],
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .headlineMedium
                                                                         .fontStyle,
                                                                   ),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .dmSans(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w500,
@@ -451,27 +458,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       .headlineMedium
                                                                       .fontStyle,
                                                                 ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMedium
-                                                                    .fontStyle,
-                                                              ),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(height: 1.0)),
+                                                      ].divide(SizedBox(
+                                                          height: 1.0)),
+                                                    ),
                                                   ),
-                                                ),
-                                              ].divide(SizedBox(width: 10.0)),
+                                                ].divide(SizedBox(width: 10.0)),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -1334,33 +1328,42 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(0.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'shsbx041' /* My Properties */,
-                                                ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .titleMedium
-                                                    .override(
-                                                      font: GoogleFonts.dmSans(
+                                            Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                'shsbx041' /* My Properties */,
+                                              ),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -1372,19 +1375,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 .titleMedium
                                                                 .fontStyle,
                                                       ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleMedium
-                                                              .fontStyle,
-                                                    ),
-                                              ),
                                             ),
                                             InkWell(
                                               splashColor: Colors.transparent,
@@ -1490,14 +1480,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                           ],
                                         ),
-                                        wrapWithModel(
-                                          model: _model.propertySliderModel,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: PropertySliderWidget(),
-                                        ),
-                                      ].divide(SizedBox(height: 16.0)),
-                                    ),
+                                      ),
+                                      wrapWithModel(
+                                        model: _model.propertySliderModel,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: PropertySliderWidget(),
+                                      ),
+                                    ].divide(SizedBox(height: 16.0)),
                                   ),
                                 ),
                                 Padding(

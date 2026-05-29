@@ -250,23 +250,82 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(50.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(2.0),
-                                    child: AuthUserStreamWidget(
-                                      builder: (context) => ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(60.0),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            currentUserPhoto,
-                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                  child: Builder(
+                                    builder: (context) {
+                                      if (stackUsersRecord.photoUrl != null &&
+                                          stackUsersRecord.photoUrl != '') {
+                                        return Padding(
+                                          padding: EdgeInsets.all(2.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(60.0),
+                                              child: Image.network(
+                                                valueOrDefault<String>(
+                                                  currentUserPhoto,
+                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                                ),
+                                                width: 100.0,
+                                                height: 100.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                           ),
+                                        );
+                                      } else {
+                                        return Container(
                                           width: 100.0,
                                           height: 100.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Text(
+                                              valueOrDefault<String>(
+                                                functions.getUserInitials(
+                                                    stackUsersRecord
+                                                        .displayName),
+                                                '?',
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .displayLarge
+                                                  .override(
+                                                    font: GoogleFonts.dmSans(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displayLarge
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .displayLarge
+                                                              .fontStyle,
+                                                    ),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displayLarge
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .displayLarge
+                                                            .fontStyle,
+                                                  ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
                                   ),
                                 ).animateOnPageLoad(
                                     animationsMap['cardOnPageLoadAnimation']!),
@@ -418,28 +477,28 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         builder: (context) => Text(
                                           currentUserDisplayName,
                                           style: FlutterFlowTheme.of(context)
-                                              .headlineSmall
+                                              .titleMedium
                                               .override(
                                                 font: GoogleFonts.dmSans(
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .headlineSmall
+                                                          .titleMedium
                                                           .fontWeight,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .headlineSmall
+                                                          .titleMedium
                                                           .fontStyle,
                                                 ),
                                                 letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .titleMedium
                                                         .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineSmall
+                                                        .titleMedium
                                                         .fontStyle,
                                               ),
                                         ).animateOnPageLoad(animationsMap[
@@ -555,33 +614,33 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              'ayzzb8zn' /* RETIREMENT GOALS */,
+                                              'ayzzb8zn' /* Retirement Goals */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .displaySmall
+                                                .titleSmall
                                                 .override(
                                                   font: GoogleFonts.dmSans(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .displaySmall
+                                                            .titleSmall
                                                             .fontWeight,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .displaySmall
+                                                            .titleSmall
                                                             .fontStyle,
                                                   ),
                                                   letterSpacing: 0.0,
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .displaySmall
+                                                          .titleSmall
                                                           .fontWeight,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .displaySmall
+                                                          .titleSmall
                                                           .fontStyle,
                                                 ),
                                           ),

@@ -138,25 +138,25 @@ class _PurchaseInfoWidgetState extends State<PurchaseInfoWidget> {
                           ),
                           Text(
                             FFLocalizations.of(context).getText(
-                              'plorjgsn' /* PURCHASE INFO */,
+                              'plorjgsn' /* Purchase Info */,
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .override(
                                   font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontStyle,
                                 ),
                           ),

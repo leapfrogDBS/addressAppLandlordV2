@@ -132,25 +132,25 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                           ),
                           Text(
                             FFLocalizations.of(context).getText(
-                              'ax1eaojb' /* MORTGAGE INFORMATION */,
+                              'ax1eaojb' /* Mortgage Info */,
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .override(
                                   font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleMedium
                                       .fontStyle,
                                 ),
                           ),
@@ -160,21 +160,21 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                             ),
                             textAlign: TextAlign.center,
                             style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                FlutterFlowTheme.of(context).bodySmall.override(
                                       font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                            .bodySmall
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                            .bodySmall
                                             .fontStyle,
                                       ),
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .bodySmall
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyLarge
+                                          .bodySmall
                                           .fontStyle,
                                       lineHeight: 1.5,
                                     ),

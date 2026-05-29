@@ -32,6 +32,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,7 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   int? currentYearIndex = 0;
 
-  String tabView = 'overview';
+  String tabView = 'financial';
 
   ///  State fields for stateful widgets in this page.
 
@@ -93,8 +94,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.
   late MainHeaderModel mainHeaderModel;
-  // State field(s) for Column widget.
-  ScrollController? columnController;
   // Model for liveEarningsProperty component.
   late LiveEarningsPropertyModel liveEarningsPropertyModel;
   // State field(s) for Carousel widget.
@@ -145,7 +144,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   void initState(BuildContext context) {
     slideNavigationModel = createModel(context, () => SlideNavigationModel());
     mainHeaderModel = createModel(context, () => MainHeaderModel());
-    columnController = ScrollController();
     liveEarningsPropertyModel =
         createModel(context, () => LiveEarningsPropertyModel());
     statsCombinedModel = createModel(context, () => StatsCombinedModel());
@@ -158,7 +156,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   void dispose() {
     slideNavigationModel.dispose();
     mainHeaderModel.dispose();
-    columnController?.dispose();
     liveEarningsPropertyModel.dispose();
     statsCombinedModel.dispose();
     statsRentalModel.dispose();

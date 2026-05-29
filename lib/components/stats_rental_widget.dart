@@ -56,204 +56,152 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0.0),
+            color: FlutterFlowTheme.of(context).primaryBackground,
+            borderRadius: BorderRadius.circular(16.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(50.0, 12.0, 50.0, 12.0),
+            padding: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'ufmc471u' /* Rental Return */,
-                    ),
-                    style: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: GoogleFonts.dmSans(
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .fontStyle,
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            FFLocalizations.of(context).getText(
+                              'j3pqwyht' /* Rental return */,
+                            ),
+                            textAlign: TextAlign.start,
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  font: GoogleFonts.dmSans(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .fontStyle,
+                                ),
                           ),
-                          fontSize: 16.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                        ),
-                  ),
+                        ],
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              valueOrDefault<String>(
+                                formatNumber(
+                                  widget!.projections?.rentalProfit
+                                      ?.elementAtOrNull(
+                                          widget!.selectedYearIndex!),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                  currency: '£',
+                                ),
+                                '0',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .displayMedium
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .displayMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displayMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .displayMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'biks4521' /* Net profit for this period */,
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color:
+                                        FlutterFlowTheme.of(context).greyBlue,
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ),
+                        ].divide(SizedBox(height: 4.0)),
+                      ),
+                    ),
+                  ].divide(SizedBox(height: 8.0)),
+                ),
+                Divider(
+                  thickness: 2.0,
+                  color: FlutterFlowTheme.of(context).alternate,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '6fizkdie' /* Rental Income */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.dmSans(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color:
-                                        FlutterFlowTheme.of(context).greyBlue,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                          Text(
-                            valueOrDefault<String>(
-                              formatNumber(
-                                widget!.projections?.rentalIncome
-                                    ?.elementAtOrNull(
-                                        widget!.selectedYearIndex!),
-                                formatType: FormatType.decimal,
-                                decimalType: DecimalType.automatic,
-                                currency: '£',
-                              ),
-                              '0',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .displayLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .fontStyle,
-                                  ),
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(-1.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '62d8odrb' /* Total Expenses */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    font: GoogleFonts.dmSans(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color:
-                                        FlutterFlowTheme.of(context).greyBlue,
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                          ),
-                          Text(
-                            valueOrDefault<String>(
-                              formatNumber(
-                                widget!.projections?.expenses?.elementAtOrNull(
-                                    widget!.selectedYearIndex!),
-                                formatType: FormatType.decimal,
-                                decimalType: DecimalType.automatic,
-                                currency: '£',
-                              ),
-                              '0',
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .displayLarge
-                                .override(
-                                  font: GoogleFonts.dmSans(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
-                                        .fontStyle,
-                                  ),
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontStyle,
-                                ),
-                          ),
-                        ].divide(SizedBox(height: 4.0)),
-                      ),
-                    ),
-                  ].divide(SizedBox(width: 2.0)),
-                ),
-                Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Align(
+                    Expanded(
+                      child: Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
                                 FFLocalizations.of(context).getText(
-                                  'biks4521' /* Total Profit */,
+                                  '6fizkdie' /* Rental Income */,
                                 ),
-                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -281,7 +229,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                             Text(
                               valueOrDefault<String>(
                                 formatNumber(
-                                  widget!.projections?.rentalProfit
+                                  widget!.projections?.rentalIncome
                                       ?.elementAtOrNull(
                                           widget!.selectedYearIndex!),
                                   formatType: FormatType.decimal,
@@ -291,30 +239,118 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 '0',
                               ),
                               style: FlutterFlowTheme.of(context)
-                                  .displayLarge
+                                  .headlineLarge
                                   .override(
                                     font: GoogleFonts.dmSans(
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .displayLarge
+                                          .headlineLarge
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .displayLarge
+                                          .headlineLarge
                                           .fontStyle,
                                     ),
-                                    fontSize: 24.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .headlineLarge
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .headlineLarge
                                         .fontStyle,
                                   ),
                             ),
                           ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
-                      Align(
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                      child: VerticalDivider(
+                        thickness: 2.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '62d8odrb' /* Total Expenses */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color:
+                                          FlutterFlowTheme.of(context).greyBlue,
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                formatNumber(
+                                  widget!.projections?.expenses
+                                      ?.elementAtOrNull(
+                                          widget!.selectedYearIndex!),
+                                  formatType: FormatType.decimal,
+                                  decimalType: DecimalType.automatic,
+                                  currency: '£',
+                                ),
+                                '0',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ].divide(SizedBox(height: 4.0)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                      child: VerticalDivider(
+                        thickness: 2.0,
+                        color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
                         alignment: AlignmentDirectional(-1.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -322,6 +358,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
@@ -422,27 +459,26 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                       '0',
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .headlineLarge
                                         .override(
                                           font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .headlineLarge
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .headlineLarge
                                                     .fontStyle,
                                           ),
-                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .headlineLarge
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .headlineLarge
                                                   .fontStyle,
                                         ),
                                   ),
@@ -451,49 +487,47 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                       '60wekbsz' /* % */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .headlineLarge
                                         .override(
                                           font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .headlineLarge
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .headlineLarge
                                                     .fontStyle,
                                           ),
-                                          fontSize: 24.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .headlineLarge
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .headlineLarge
                                                   .fontStyle,
                                         ),
                                   )
                                 ],
                                 style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
+                                    .headlineLarge
                                     .override(
                                       font: GoogleFonts.dmSans(
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .headlineLarge
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .headlineLarge
                                             .fontStyle,
                                       ),
-                                      fontSize: 24.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .headlineLarge
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
+                                          .headlineLarge
                                           .fontStyle,
                                     ),
                               ),
@@ -501,10 +535,10 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                           ].divide(SizedBox(height: 4.0)),
                         ),
                       ),
-                    ].divide(SizedBox(width: 4.0)),
-                  ),
+                    ),
+                  ].divide(SizedBox(width: 2.0)),
                 ),
-              ].divide(SizedBox(height: 6.0)),
+              ].divide(SizedBox(height: 16.0)),
             ),
           ),
         ),

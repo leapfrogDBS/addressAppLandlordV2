@@ -87,12 +87,8 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
           child: Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Color(0x10FFFFFF),
+              color: FlutterFlowTheme.of(context).primary,
               borderRadius: BorderRadius.circular(16.0),
-              border: Border.all(
-                color: Color(0x1AFFFFFF),
-                width: 1.0,
-              ),
             ),
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16.0, 20.0, 16.0, 20.0),
@@ -216,18 +212,29 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'rk4mwhuv' /* Properties */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'rk4mwhuv' /* Properties */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .fontWeight,
@@ -235,24 +242,28 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                valueOrDefault<String>(
-                                  widget!.propertiesCount?.toString(),
-                                  '0',
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                                Text(
+                                  valueOrDefault<String>(
+                                    widget!.propertiesCount?.toString(),
+                                    '0',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .fontWeight,
@@ -260,18 +271,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelLarge
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 6.0)),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
                           ),
                           SizedBox(
                             height: 40.0,
@@ -280,18 +282,29 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  'qpgbre5d' /* Gain this year */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    'qpgbre5d' /* Gain this year */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .fontWeight,
@@ -299,27 +312,31 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                formatNumber(
-                                  widget!.yearlyGain,
-                                  formatType: FormatType.custom,
-                                  currency: '£',
-                                  format: '#,##0.00',
-                                  locale: 'en_GB',
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                                Text(
+                                  formatNumber(
+                                    widget!.yearlyGain,
+                                    formatType: FormatType.custom,
+                                    currency: '£',
+                                    format: '#,##0.00',
+                                    locale: 'en_GB',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .fontWeight,
@@ -327,18 +344,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelLarge
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 6.0)),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
                           ),
                           SizedBox(
                             height: 40.0,
@@ -347,18 +355,29 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                             ),
                           ),
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                FFLocalizations.of(context).getText(
-                                  '0nwraxvb' /* Daily Gain */,
-                                ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  FFLocalizations.of(context).getText(
+                                    '0nwraxvb' /* Daily Gain */,
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .fontWeight,
@@ -366,26 +385,30 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelMedium
                                             .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                              Text(
-                                formatNumber(
-                                  widget!.dailyGain,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.automatic,
-                                  currency: '£',
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .labelLarge
-                                    .override(
-                                      font: GoogleFonts.dmSans(
+                                Text(
+                                  formatNumber(
+                                    widget!.dailyGain,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLarge
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .labelLarge
                                             .fontWeight,
@@ -393,18 +416,9 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                             .labelLarge
                                             .fontStyle,
                                       ),
-                                      color:
-                                          FlutterFlowTheme.of(context).tertiary,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ].divide(SizedBox(height: 6.0)),
+                                ),
+                              ].divide(SizedBox(height: 6.0)),
+                            ),
                           ),
                         ].divide(SizedBox(width: 10.0)),
                       ),

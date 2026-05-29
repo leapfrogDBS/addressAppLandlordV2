@@ -102,23 +102,23 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                     Text(
                       key: ValueKey('onboardingPageTitle'),
                       FFLocalizations.of(context).getText(
-                        '9byjfw8h' /* WELCOME TO ADDRESSED */,
+                        '9byjfw8h' /* Welcome */,
                       ),
-                      style: FlutterFlowTheme.of(context).displayLarge.override(
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
                             font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
-                                  .displayLarge
+                                  .titleMedium
                                   .fontWeight,
                               fontStyle: FlutterFlowTheme.of(context)
-                                  .displayLarge
+                                  .titleMedium
                                   .fontStyle,
                             ),
                             letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .fontWeight,
                             fontStyle: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleMedium
                                 .fontStyle,
                           ),
                     ),
@@ -127,21 +127,21 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                         'kror71vo' /* Let’s get you set up. Answer a... */,
                       ),
                       textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
                             font: GoogleFonts.dmSans(
                               fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyLarge
+                                  .bodyMedium
                                   .fontWeight,
                               fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyLarge
+                                  .bodyMedium
                                   .fontStyle,
                             ),
                             letterSpacing: 0.0,
                             fontWeight: FlutterFlowTheme.of(context)
-                                .bodyLarge
+                                .bodyMedium
                                 .fontWeight,
                             fontStyle: FlutterFlowTheme.of(context)
-                                .bodyLarge
+                                .bodyMedium
                                 .fontStyle,
                             lineHeight: 1.5,
                           ),

@@ -173,30 +173,30 @@ class _LoginWidgetState extends State<LoginWidget>
                                       0.0, 0.0, 0.0, 20.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'h37uifyc' /* LOG IN */,
+                                      'h37uifyc' /* Log in */,
                                     ),
                                     textAlign: TextAlign.start,
                                     style: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleMedium
                                         .override(
                                           font: GoogleFonts.dmSans(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .titleMedium
                                                     .fontWeight,
                                             fontStyle:
                                                 FlutterFlowTheme.of(context)
-                                                    .displayLarge
+                                                    .titleMedium
                                                     .fontStyle,
                                           ),
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .titleMedium
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .displayLarge
+                                                  .titleMedium
                                                   .fontStyle,
                                         ),
                                   ),

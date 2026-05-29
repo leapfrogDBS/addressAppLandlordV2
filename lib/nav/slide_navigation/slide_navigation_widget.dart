@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -471,22 +472,88 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                     width: 2.0,
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(2.0),
-                                  child: AuthUserStreamWidget(
-                                    builder: (context) => ClipRRect(
-                                      borderRadius: BorderRadius.circular(24.0),
-                                      child: Image.network(
-                                        valueOrDefault<String>(
-                                          currentUserPhoto,
-                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                child: Builder(
+                                  builder: (context) {
+                                    if (currentUserPhoto != null &&
+                                        currentUserPhoto != '') {
+                                      return Padding(
+                                        padding: EdgeInsets.all(2.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                          child: Image.network(
+                                            valueOrDefault<String>(
+                                              currentUserPhoto,
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                            ),
+                                            width: 44.0,
+                                            height: 44.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
-                                        width: 44.0,
-                                        height: 44.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
+                                      );
+                                    } else {
+                                      return Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            borderRadius:
+                                                BorderRadius.circular(50.0),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: AuthUserStreamWidget(
+                                              builder: (context) => Text(
+                                                valueOrDefault<String>(
+                                                  functions.getUserInitials(
+                                                      currentUserDisplayName),
+                                                  '?',
+                                                ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      font: GoogleFonts.dmSans(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                               ),
                               Expanded(

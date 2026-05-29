@@ -171,23 +171,23 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      '8xjevk07' /* FORGOT PASSWORD */,
+                      '8xjevk07' /* Forgot password */,
                     ),
-                    style: FlutterFlowTheme.of(context).displaySmall.override(
+                    style: FlutterFlowTheme.of(context).titleMedium.override(
                           font: GoogleFonts.dmSans(
                             fontWeight: FlutterFlowTheme.of(context)
-                                .displaySmall
+                                .titleMedium
                                 .fontWeight,
                             fontStyle: FlutterFlowTheme.of(context)
-                                .displaySmall
+                                .titleMedium
                                 .fontStyle,
                           ),
                           letterSpacing: 0.0,
                           fontWeight: FlutterFlowTheme.of(context)
-                              .displaySmall
+                              .titleMedium
                               .fontWeight,
                           fontStyle: FlutterFlowTheme.of(context)
-                              .displaySmall
+                              .titleMedium
                               .fontStyle,
                         ),
                   ),

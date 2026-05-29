@@ -26,11 +26,6 @@ class PropertiesRecord extends FirestoreRecord {
   String get title => _title ?? '';
   bool hasTitle() => _title != null;
 
-  // "mainPhoto" field.
-  String? _mainPhoto;
-  String get mainPhoto => _mainPhoto ?? '';
-  bool hasMainPhoto() => _mainPhoto != null;
-
   // "purchasePrice" field.
   double? _purchasePrice;
   double get purchasePrice => _purchasePrice ?? 0.0;
@@ -231,7 +226,6 @@ class PropertiesRecord extends FirestoreRecord {
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
-    _mainPhoto = snapshotData['mainPhoto'] as String?;
     _purchasePrice = castToType<double>(snapshotData['purchasePrice']);
     _estimatedValue = castToType<double>(snapshotData['estimatedValue']);
     _energyCert = snapshotData['energyCert'] as String?;
@@ -316,7 +310,6 @@ class PropertiesRecord extends FirestoreRecord {
 Map<String, dynamic> createPropertiesRecordData({
   String? ownerID,
   String? title,
-  String? mainPhoto,
   double? purchasePrice,
   double? estimatedValue,
   String? energyCert,
@@ -360,7 +353,6 @@ Map<String, dynamic> createPropertiesRecordData({
     <String, dynamic>{
       'ownerID': ownerID,
       'title': title,
-      'mainPhoto': mainPhoto,
       'purchasePrice': purchasePrice,
       'estimatedValue': estimatedValue,
       'energyCert': energyCert,
@@ -413,7 +405,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
     const listEquality = ListEquality();
     return e1?.ownerID == e2?.ownerID &&
         e1?.title == e2?.title &&
-        e1?.mainPhoto == e2?.mainPhoto &&
         e1?.purchasePrice == e2?.purchasePrice &&
         e1?.estimatedValue == e2?.estimatedValue &&
         e1?.energyCert == e2?.energyCert &&
@@ -460,7 +451,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
   int hash(PropertiesRecord? e) => const ListEquality().hash([
         e?.ownerID,
         e?.title,
-        e?.mainPhoto,
         e?.purchasePrice,
         e?.estimatedValue,
         e?.energyCert,

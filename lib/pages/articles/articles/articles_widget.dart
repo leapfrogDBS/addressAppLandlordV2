@@ -91,26 +91,26 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                               0.0, 20.0, 0.0, 0.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              'nx0btiy5' /* PROPERTY INVESTMENT INTELLIGEN... */,
+                              'nx0btiy5' /* Property Investment Inteligenc... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
-                                .displayLarge
+                                .titleLarge
                                 .override(
                                   font: GoogleFonts.dmSans(
                                     fontWeight: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleLarge
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
-                                        .displayLarge
+                                        .titleLarge
                                         .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleLarge
                                       .fontWeight,
                                   fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
+                                      .titleLarge
                                       .fontStyle,
                                 ),
                           ),

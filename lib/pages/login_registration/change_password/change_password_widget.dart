@@ -214,28 +214,28 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                   ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'qr1s9cft' /* CHANGE PASSWORD */,
+                                    'qr1s9cft' /* Change password */,
                                   ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
-                                      .displaySmall
+                                      .titleMedium
                                       .override(
                                         font: GoogleFonts.dmSans(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
-                                                  .displaySmall
+                                                  .titleMedium
                                                   .fontWeight,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .displaySmall
+                                                  .titleMedium
                                                   .fontStyle,
                                         ),
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
-                                            .displaySmall
+                                            .titleMedium
                                             .fontWeight,
                                         fontStyle: FlutterFlowTheme.of(context)
-                                            .displaySmall
+                                            .titleMedium
                                             .fontStyle,
                                       ),
                                 ),

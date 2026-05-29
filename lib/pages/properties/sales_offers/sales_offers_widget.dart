@@ -74,7 +74,7 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).alternate,
         drawer: InkWell(
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,

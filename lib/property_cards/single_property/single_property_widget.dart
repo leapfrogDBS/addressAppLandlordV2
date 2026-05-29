@@ -157,28 +157,32 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                           .fontStyle,
                                     ),
                               ),
-                            Text(
-                              valueOrDefault<String>(
-                                widget!.propFormattedAddress,
-                                '10 Any Street',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    font: GoogleFonts.dmSans(
+                            Container(
+                              height: 50.0,
+                              decoration: BoxDecoration(),
+                              child: Text(
+                                valueOrDefault<String>(
+                                  widget!.propFormattedAddress,
+                                  '10 Any Street',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FontWeight.w300,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
+                                      color: Color(0xA53C444C),
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w300,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .fontStyle,
                                     ),
-                                    color: Color(0xA53C444C),
-                                    fontSize: 12.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w300,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleLarge
-                                        .fontStyle,
-                                  ),
+                              ),
                             ),
                           ],
                         ),
@@ -436,40 +440,54 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
+                                      Stack(
+                                        alignment:
+                                            AlignmentDirectional(1.0, 0.0),
                                         children: [
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              's2v1i2cp' /* Gross Yield */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .labelMedium
-                                                            .fontStyle,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 34.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    's2v1i2cp' /* Gross Yield */,
                                                   ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontStyle,
+                                                      ),
                                                 ),
+                                              ].divide(SizedBox(width: 6.0)),
+                                            ),
                                           ),
                                           AlignedTooltip(
                                             content: Padding(
@@ -525,15 +543,24 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                             showDuration:
                                                 Duration(milliseconds: 1500),
                                             triggerMode: TooltipTriggerMode.tap,
-                                            child: Icon(
-                                              Icons.info,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                            child: Container(
+                                              width: 44.0,
+                                              height: 20.0,
+                                              decoration: BoxDecoration(),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Icon(
+                                                  Icons.info,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .primaryText,
-                                              size: 16.0,
+                                                  size: 16.0,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ].divide(SizedBox(width: 6.0)),
+                                        ],
                                       ),
                                       RichText(
                                         textScaler:

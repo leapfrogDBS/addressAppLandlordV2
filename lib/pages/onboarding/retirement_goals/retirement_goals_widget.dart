@@ -114,27 +114,26 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                         ),
                         Text(
                           FFLocalizations.of(context).getText(
-                            'b6ix3dg2' /* YOUR RETIREMENT GOALS */,
+                            'b6ix3dg2' /* Reitrement goals */,
                           ),
-                          style: FlutterFlowTheme.of(context)
-                              .displayLarge
-                              .override(
-                                font: GoogleFonts.dmSans(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displayLarge
-                                      .fontStyle,
-                                ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .displayLarge
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .displayLarge
-                                    .fontStyle,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).titleMedium.override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .fontStyle,
+                                  ),
                         ),
                         Text(
                           FFLocalizations.of(context).getText(
