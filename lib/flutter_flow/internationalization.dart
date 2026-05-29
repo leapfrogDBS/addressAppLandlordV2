@@ -2231,8 +2231,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Properties
   {
-    '1gb3rdrf': {
-      'en': 'Portfolio Overview',
+    '725at16t': {
+      'en': 'Total Value',
       'ar': '',
       'bn': '',
       'de': '',
@@ -2249,8 +2249,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': '',
       'zh_Hant': '',
     },
-    '725at16t': {
-      'en': 'Total Value',
+    '3ggpr59t': {
+      'en': 'SUMMARY',
       'ar': '',
       'bn': '',
       'de': '',

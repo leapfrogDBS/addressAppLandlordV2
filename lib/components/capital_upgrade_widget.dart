@@ -92,7 +92,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                 children: [
                   Builder(
                     builder: (context) {
-                      if (valueOrDefault<bool>(
+                      if (!valueOrDefault<bool>(
                         _model.capitalAvailableToInvest?.hasUpgradeDate,
                         false,
                       )) {
