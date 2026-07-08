@@ -793,9 +793,9 @@ double? releasableEquityForProperty(
   double? mortgageRemaining,
   bool? mortgageEntered,
 ) {
-  if (mortgageEntered != true) return 0.0;
+  if (mortgageRemaining == null) return 0.0;
   final val = (estimatedValue ?? 0.0) * 0.75;
-  final mortgage = mortgageRemaining ?? 0.0;
+  final mortgage = mortgageRemaining;
   final releasable = val - mortgage;
   return releasable > 0 ? releasable : 0.0;
 }

@@ -3960,8 +3960,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         if ((propertyPropertiesRecord
-                                                                    .mortgageRemaining >
-                                                                0.0) &&
+                                                                    .mortgageRemaining !=
+                                                                null) &&
                                                             !_model
                                                                 .updatingMortgageEstimate)
                                                           Padding(
@@ -4085,8 +4085,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   width: 10.0)),
                                                             ),
                                                           ),
-                                                        if (!propertyPropertiesRecord
-                                                                .mortgageEntered ||
+                                                        if ((propertyPropertiesRecord
+                                                                    .mortgageRemaining ==
+                                                                null) ||
                                                             _model
                                                                 .updatingMortgageEstimate)
                                                           Padding(
