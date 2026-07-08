@@ -29,7 +29,7 @@ class PropertyDetailsModel extends FlutterFlowModel<PropertyDetailsWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'nrmq1j34' /* Enter Purchase Price is requir... */,
+        'nrmq1j34' /*  Purchase Price is required */,
       );
     }
 
@@ -46,7 +46,7 @@ class PropertyDetailsModel extends FlutterFlowModel<PropertyDetailsWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        'dnvaxwkv' /* Enter average yearly costs is ... */,
+        'dnvaxwkv' /* Average yearly costs is requir... */,
       );
     }
 
@@ -58,6 +58,17 @@ class PropertyDetailsModel extends FlutterFlowModel<PropertyDetailsWidget> {
   TextEditingController? mortgageValueRemainingTextController;
   String? Function(BuildContext, String?)?
       mortgageValueRemainingTextControllerValidator;
+  String? _mortgageValueRemainingTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '7ao2w5ab' /* Outstanding mortgage value is ... */,
+      );
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Validate Form] action in Button widget.
   bool? validateForm;
 
@@ -67,6 +78,8 @@ class PropertyDetailsModel extends FlutterFlowModel<PropertyDetailsWidget> {
         _purchasePriceTextControllerValidator;
     averageYearlyCostsTextControllerValidator =
         _averageYearlyCostsTextControllerValidator;
+    mortgageValueRemainingTextControllerValidator =
+        _mortgageValueRemainingTextControllerValidator;
   }
 
   @override

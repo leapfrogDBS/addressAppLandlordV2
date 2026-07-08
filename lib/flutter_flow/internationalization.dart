@@ -4960,7 +4960,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '',
     },
     'nrmq1j34': {
-      'en': 'Enter Purchase Price is required',
+      'en': ' Purchase Price is required',
       'ar': '',
       'bn': '',
       'de': '',
@@ -4996,7 +4996,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '',
     },
     'dnvaxwkv': {
-      'en': 'Enter average yearly costs is required',
+      'en': 'Average yearly costs is required',
       'ar': '',
       'bn': '',
       'de': '',
@@ -5032,7 +5032,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '',
     },
     '7ao2w5ab': {
-      'en': 'Enter outstanding mortgage value is required',
+      'en': 'Outstanding mortgage value is required',
       'ar': '',
       'bn': '',
       'de': '',

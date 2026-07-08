@@ -868,6 +868,7 @@ class _PropertyDetailsWidgetState extends State<PropertyDetailsWidget> {
                                               .averageYearlyCostsTextController
                                               .text),
                                       purchaseDate: _model.datePicked,
+                                      mortgageEntered: true,
                                     ));
                                     if (widget!.propertyDoc
                                             ?.priceValuationOnJoiningAddressed ==

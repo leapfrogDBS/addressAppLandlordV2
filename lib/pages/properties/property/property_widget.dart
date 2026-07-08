@@ -3968,9 +3968,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
+                                                                        0.0,
                                                                         10.0,
-                                                                        20.0,
+                                                                        0.0,
                                                                         5.0),
                                                             child: Row(
                                                               mainAxisSize:
@@ -4045,10 +4045,10 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          5.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0,
+                                                                          10.0),
                                                                   child:
                                                                       InkWell(
                                                                     splashColor:
@@ -4279,6 +4279,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                         mortgageRemaining: double.tryParse(_model
                                                                             .mortgageRemainingTextController
                                                                             .text),
+                                                                        mortgageEntered:
+                                                                            true,
                                                                       ));
                                                                       _model.updatingMortgageEstimate =
                                                                           false;
