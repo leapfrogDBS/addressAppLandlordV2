@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -868,6 +869,30 @@ class _PropertyDetailsWidgetState extends State<PropertyDetailsWidget> {
                                               .text),
                                       purchaseDate: _model.datePicked,
                                     ));
+                                    if (widget!.propertyDoc
+                                            ?.priceValuationOnJoiningAddressed ==
+                                        null) {
+                                      await widget!.propertyDoc!.reference
+                                          .update(createPropertiesRecordData(
+                                        priceValuationOnJoiningAddressed: functions
+                                            .estimateValuationOnJoiningAddressed(
+                                                widget!
+                                                    .propertyDoc?.purchasePrice,
+                                                widget!
+                                                    .propertyDoc?.purchaseDate,
+                                                widget!.propertyDoc
+                                                    ?.estimatedValue,
+                                                widget!.propertyDoc
+                                                    ?.dateJoinedAddressed),
+                                      ));
+                                    } else {
+                                      await Future.delayed(
+                                        Duration(
+                                          milliseconds: 10,
+                                        ),
+                                      );
+                                    }
+
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }

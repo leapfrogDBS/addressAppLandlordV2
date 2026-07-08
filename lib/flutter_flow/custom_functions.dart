@@ -1016,3 +1016,41 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
     avgMonthlyRent: annualRent / 12.0,
   );
 }
+
+double? estimateValuationOnJoiningAddressed(
+  double? purchasePrice,
+  DateTime? purchaseDate,
+  double? estimatedValueNow,
+  DateTime? dateJoinedAddressed,
+) {
+  final purchase = purchasePrice ?? 0.0;
+  final valueNow = estimatedValueNow ?? 0.0;
+  if (purchaseDate == null || dateJoinedAddressed == null) return null;
+  if (!(purchase > 0) || !(valueNow > 0)) return null;
+  final purchaseDay = DateTime(
+    purchaseDate.year,
+    purchaseDate.month,
+    purchaseDate.day,
+  );
+  final joinDay = DateTime(
+    dateJoinedAddressed.year,
+    dateJoinedAddressed.month,
+    dateJoinedAddressed.day,
+  );
+  final today = DateTime.now();
+  final todayDay = DateTime(today.year, today.month, today.day);
+  final daysPurchaseToToday = todayDay.difference(purchaseDay).inDays;
+  if (daysPurchaseToToday <= 0) {
+    return double.parse(valueNow.toStringAsFixed(2));
+  }
+  final daysPurchaseToJoin = joinDay.difference(purchaseDay).inDays;
+  if (daysPurchaseToJoin <= 0) {
+    return double.parse(purchase.toStringAsFixed(2));
+  }
+  if (daysPurchaseToJoin >= daysPurchaseToToday) {
+    return double.parse(valueNow.toStringAsFixed(2));
+  }
+  final fraction = daysPurchaseToJoin / daysPurchaseToToday;
+  final estimated = purchase + ((valueNow - purchase) * fraction);
+  return double.parse(estimated.toStringAsFixed(2));
+}

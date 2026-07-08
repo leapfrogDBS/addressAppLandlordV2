@@ -127,16 +127,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   TextEditingController? mortgageRemainingTextController;
   String? Function(BuildContext, String?)?
       mortgageRemainingTextControllerValidator;
-  // State field(s) for mortgageTermRemaining widget.
-  FocusNode? mortgageTermRemainingFocusNode;
-  TextEditingController? mortgageTermRemainingTextController;
-  String? Function(BuildContext, String?)?
-      mortgageTermRemainingTextControllerValidator;
-  // State field(s) for mortgageMonthlyPayment widget.
-  FocusNode? mortgageMonthlyPaymentFocusNode;
-  TextEditingController? mortgageMonthlyPaymentTextController;
-  String? Function(BuildContext, String?)?
-      mortgageMonthlyPaymentTextControllerValidator;
   // Model for recentActivity component.
   late RecentActivityModel recentActivityModel;
 
@@ -162,12 +152,6 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
     statsCapitalModel.dispose();
     mortgageRemainingFocusNode?.dispose();
     mortgageRemainingTextController?.dispose();
-
-    mortgageTermRemainingFocusNode?.dispose();
-    mortgageTermRemainingTextController?.dispose();
-
-    mortgageMonthlyPaymentFocusNode?.dispose();
-    mortgageMonthlyPaymentTextController?.dispose();
 
     recentActivityModel.dispose();
   }
