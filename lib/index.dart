@@ -33,3 +33,5 @@ export '/pages/onboarding/redirect_page/redirect_page_widget.dart'
 export '/pages/properties/property/property_widget.dart' show PropertyWidget;
 export '/pages/onboarding/purchase_info/purchase_info_widget.dart'
     show PurchaseInfoWidget;
+export '/pages/onboarding/property_details/property_details_widget.dart'
+    show PropertyDetailsWidget;

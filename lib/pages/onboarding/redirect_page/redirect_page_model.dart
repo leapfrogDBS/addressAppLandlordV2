@@ -25,7 +25,7 @@ class RedirectPageModel extends FlutterFlowModel<RedirectPageWidget> {
   // Stores action output result for [Backend Call - Read Document] action in redirectPage widget.
   UsersRecord? userCollection;
   // Stores action output result for [Firestore Query - Query a collection] action in redirectPage widget.
-  List<PropertiesRecord>? noPurchasePrice;
+  List<PropertiesRecord>? propertyOnboarding;
   // Stores action output result for [Custom Action - waitForFirstProjectionsRun] action in redirectPage widget.
   bool? waitOutput;
 

@@ -190,6 +190,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
                                             fontStyle:
@@ -385,6 +386,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
                                             fontStyle:
@@ -579,6 +581,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
+                                            fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
                                             fontStyle:
@@ -730,6 +733,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
+                                keyboardType: TextInputType.number,
                                 cursorColor:
                                     FlutterFlowTheme.of(context).primaryText,
                                 validator: _model.incomeTextControllerValidator

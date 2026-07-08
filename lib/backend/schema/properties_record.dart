@@ -223,6 +223,16 @@ class PropertiesRecord extends FirestoreRecord {
   DateTime? get recalcTrigger => _recalcTrigger;
   bool hasRecalcTrigger() => _recalcTrigger != null;
 
+  // "shownOnboardingScreen" field.
+  bool? _shownOnboardingScreen;
+  bool get shownOnboardingScreen => _shownOnboardingScreen ?? false;
+  bool hasShownOnboardingScreen() => _shownOnboardingScreen != null;
+
+  // "purchaseDate" field.
+  DateTime? _purchaseDate;
+  DateTime? get purchaseDate => _purchaseDate;
+  bool hasPurchaseDate() => _purchaseDate != null;
+
   void _initializeFields() {
     _ownerID = snapshotData['ownerID'] as String?;
     _title = snapshotData['title'] as String?;
@@ -271,6 +281,8 @@ class PropertiesRecord extends FirestoreRecord {
     _currentTenancyId = snapshotData['currentTenancyId'] as String?;
     _currentRentSource = snapshotData['currentRentSource'] as String?;
     _recalcTrigger = snapshotData['_recalcTrigger'] as DateTime?;
+    _shownOnboardingScreen = snapshotData['shownOnboardingScreen'] as bool?;
+    _purchaseDate = snapshotData['purchaseDate'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -348,6 +360,8 @@ Map<String, dynamic> createPropertiesRecordData({
   String? currentTenancyId,
   String? currentRentSource,
   DateTime? recalcTrigger,
+  bool? shownOnboardingScreen,
+  DateTime? purchaseDate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -391,6 +405,8 @@ Map<String, dynamic> createPropertiesRecordData({
       'currentTenancyId': currentTenancyId,
       'currentRentSource': currentRentSource,
       '_recalcTrigger': recalcTrigger,
+      'shownOnboardingScreen': shownOnboardingScreen,
+      'purchaseDate': purchaseDate,
     }.withoutNulls,
   );
 
@@ -444,7 +460,9 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.hasActiveTenancy == e2?.hasActiveTenancy &&
         e1?.currentTenancyId == e2?.currentTenancyId &&
         e1?.currentRentSource == e2?.currentRentSource &&
-        e1?.recalcTrigger == e2?.recalcTrigger;
+        e1?.recalcTrigger == e2?.recalcTrigger &&
+        e1?.shownOnboardingScreen == e2?.shownOnboardingScreen &&
+        e1?.purchaseDate == e2?.purchaseDate;
   }
 
   @override
@@ -489,7 +507,9 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.hasActiveTenancy,
         e?.currentTenancyId,
         e?.currentRentSource,
-        e?.recalcTrigger
+        e?.recalcTrigger,
+        e?.shownOnboardingScreen,
+        e?.purchaseDate
       ]);
 
   @override

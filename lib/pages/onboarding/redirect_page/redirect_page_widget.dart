@@ -45,15 +45,15 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
       );
       _model.userCollection =
           await UsersRecord.getDocumentOnce(currentUserReference!);
-      _model.noPurchasePrice = await queryPropertiesRecordOnce(
+      _model.propertyOnboarding = await queryPropertiesRecordOnce(
         queryBuilder: (propertiesRecord) => propertiesRecord
             .where(
               'ownerID',
               isEqualTo: currentUserReference?.id,
             )
             .where(
-              'purchasePrice',
-              isLessThanOrEqualTo: 0.0,
+              'shownOnboardingScreen',
+              isEqualTo: false,
             ),
         limit: 1,
       );
@@ -61,11 +61,20 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
         context.goNamed(WelcomeWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
         context.goNamed(RetirementGoalsWidget.routeName);
-      } else if (_model.noPurchasePrice != null &&
-          (_model.noPurchasePrice)!.isNotEmpty) {
-        context.goNamed(PurchaseInfoWidget.routeName);
-      } else if (!_model.userCollection!.shownMortgageOnboarding) {
-        context.goNamed(MortgageInfoWidget.routeName);
+      } else if (_model.propertyOnboarding != null &&
+          (_model.propertyOnboarding)!.isNotEmpty) {
+        context.pushNamed(
+          PropertyDetailsWidget.routeName,
+          queryParameters: {
+            'propertyDoc': serializeParam(
+              _model.propertyOnboarding?.firstOrNull,
+              ParamType.Document,
+            ),
+          }.withoutNulls,
+          extra: <String, dynamic>{
+            'propertyDoc': _model.propertyOnboarding?.firstOrNull,
+          },
+        );
       } else {
         if (valueOrDefault<bool>(
                 currentUserDocument?.completedOnboarding, false) &&

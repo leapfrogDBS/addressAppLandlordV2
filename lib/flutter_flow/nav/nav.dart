@@ -240,6 +240,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PurchaseInfoWidget.routeName,
           path: PurchaseInfoWidget.routePath,
           builder: (context, params) => PurchaseInfoWidget(),
+        ),
+        FFRoute(
+          name: PropertyDetailsWidget.routeName,
+          path: PropertyDetailsWidget.routePath,
+          asyncParams: {
+            'propertyDoc':
+                getDoc(['properties'], PropertiesRecord.fromSnapshot),
+          },
+          builder: (context, params) => PropertyDetailsWidget(
+            propertyDoc: params.getParam(
+              'propertyDoc',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

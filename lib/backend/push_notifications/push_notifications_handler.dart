@@ -153,6 +153,12 @@ final parametersBuilderMap =
         },
       ),
   'purchaseInfo': ParameterData.none(),
+  'propertyDetails': (data) async => ParameterData(
+        allParams: {
+          'propertyDoc': await getDocumentParameter<PropertiesRecord>(
+              data, 'propertyDoc', PropertiesRecord.fromSnapshot),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

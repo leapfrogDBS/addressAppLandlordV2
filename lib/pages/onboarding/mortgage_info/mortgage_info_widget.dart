@@ -312,9 +312,7 @@ class _MortgageInfoWidgetState extends State<MortgageInfoWidget> {
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        shownMortgageOnboarding: true,
-                                      ));
+                                          .update(createUsersRecordData());
                                       if (Navigator.of(context).canPop()) {
                                         context.pop();
                                       }
