@@ -1499,7 +1499,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                 earningsToDate:
                                     _model.financialSummary!.earningsAsOfNow,
                                 headingText:
-                                    'TOTAL EARNED SINCE  ${dateTimeFormat(
+                                    'TOTAL EARNED SINCE ${dateTimeFormat(
                                   "y",
                                   propertyPropertiesRecord.dateJoinedAddressed,
                                   locale:
