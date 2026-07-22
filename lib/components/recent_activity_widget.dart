@@ -135,7 +135,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                           ),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 8.0, 16.0, 8.0),
+                                16.0, 6.0, 16.0, 6.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -241,7 +241,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                                     .headlineSmall
                                                     .fontStyle,
                                           ),
-                                          fontSize: 14.0,
+                                          fontSize: 11.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -289,6 +289,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                                           .bodySmall
                                                           .fontStyle,
                                                 ),
+                                                fontSize: 10.0,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
@@ -400,7 +401,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 8.0, 16.0, 8.0),
+                            16.0, 6.0, 16.0, 6.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -503,7 +504,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                             .headlineSmall
                                             .fontStyle,
                                       ),
-                                      fontSize: 14.0,
+                                      fontSize: 11.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .headlineSmall
@@ -545,6 +546,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                                                       .bodySmall
                                                       .fontStyle,
                                             ),
+                                            fontSize: 10.0,
                                             letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)

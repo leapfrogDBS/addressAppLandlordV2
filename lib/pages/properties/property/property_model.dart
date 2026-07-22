@@ -82,6 +82,8 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   String tabView = 'financial';
 
+  bool isEditingFinancials = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - Read Document] action in Property widget.

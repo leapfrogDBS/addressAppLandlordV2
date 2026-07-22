@@ -569,7 +569,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   children: [
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        '3crhjgmx' /* Target Rental Income Per Annum... */,
+                                        '3crhjgmx' /* Target Monthly Rental Income */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -595,7 +595,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'yqsnuw9l' /* What annual rental income woul... */,
+                                          'yqsnuw9l' /* What monthly rental income wou... */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -858,7 +858,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                           .reitementAgeTextController.text),
                                       targetEquity: functions.parseMoneyToInt(
                                           _model.equityTextController.text),
-                                      targetIncome: functions.parseMoneyToInt(
+                                      targetIncome: functions.monthlyToAnnual(
                                           _model.incomeTextController.text),
                                       enteredRetirmentTargets: true,
                                     ));

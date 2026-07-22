@@ -249,6 +249,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                           .headlineLarge
                                           .fontStyle,
                                     ),
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .headlineLarge
@@ -329,6 +330,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                           .headlineLarge
                                           .fontStyle,
                                     ),
+                                    fontSize: 18.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .headlineLarge
@@ -522,6 +524,7 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                             .headlineLarge
                                             .fontStyle,
                                       ),
+                                      fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .headlineLarge

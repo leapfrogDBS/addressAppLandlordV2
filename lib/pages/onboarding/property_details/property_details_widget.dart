@@ -114,7 +114,10 @@ class _PropertyDetailsWidgetState extends State<PropertyDetailsWidget> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(
-                          widget!.propertyDoc!.gallery.firstOrNull!,
+                          valueOrDefault<String>(
+                            widget!.propertyDoc?.gallery?.firstOrNull,
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/data-shema-changes-phnljo/assets/osnyemfa80kf/house-placeholder-300x213.jpg',
+                          ),
                           width: double.infinity,
                           height: 150.0,
                           fit: BoxFit.cover,

@@ -1054,3 +1054,14 @@ double? estimateValuationOnJoiningAddressed(
   final estimated = purchase + ((valueNow - purchase) * fraction);
   return double.parse(estimated.toStringAsFixed(2));
 }
+
+int? annualToMonthly(int? annual) {
+  if (annual == null) return null;
+  return (annual / 12).round();
+}
+
+int? monthlyToAnnual(String? raw) {
+  final monthly = parseMoneyToInt(raw); // or inline the same cleaning
+  if (monthly == null) return null;
+  return monthly * 12;
+}

@@ -242,6 +242,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                                         .headlineLarge
                                                         .fontStyle,
                                               ),
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
@@ -271,6 +272,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                                         .headlineLarge
                                                         .fontStyle,
                                               ),
+                                              fontSize: 18.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
@@ -386,6 +388,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                                   .headlineLarge
                                                   .fontStyle,
                                         ),
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .headlineLarge
@@ -473,6 +476,7 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                                   .headlineLarge
                                                   .fontStyle,
                                         ),
+                                        fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .headlineLarge

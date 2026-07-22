@@ -207,8 +207,8 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Container(
-                                              width: 100.0,
-                                              height: 100.0,
+                                              width: 150.0,
+                                              height: 80.0,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(12.0),
@@ -222,7 +222,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                   child: Image.network(
                                                     listViewArticlesRecord
                                                         .image,
-                                                    width: 120.0,
+                                                    width: 240.0,
                                                     height: 120.0,
                                                     fit: BoxFit.cover,
                                                   ),
@@ -262,6 +262,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                       .titleSmall
                                                                       .fontStyle,
                                                                 ),
+                                                                fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight: FlutterFlowTheme.of(
@@ -307,6 +308,8 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
+                                                                  fontSize:
+                                                                      11.0,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   fontWeight: FlutterFlowTheme.of(
