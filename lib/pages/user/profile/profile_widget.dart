@@ -1748,7 +1748,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                 .text) !=
                                                         stackUsersRecord
                                                             .targetEquity) ||
-                                                    (functions.convertStringToInteger(
+                                                    (functions.monthlyToAnnual(
                                                             _model
                                                                 .incomeGoalTextController1
                                                                 .text) !=
