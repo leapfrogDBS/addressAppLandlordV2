@@ -1,4 +1,4 @@
-# Addressed  Pro
+# Addressed
 
 A new Flutter project.
 

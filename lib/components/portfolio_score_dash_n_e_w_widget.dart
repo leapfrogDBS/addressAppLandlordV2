@@ -91,7 +91,7 @@ class _PortfolioScoreDashNEWWidgetState
                                           AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'pksc718i' /* ADDRESSED SCORE */,
+                                          'pksc718i' /* PORTFOLIO HEALTH */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .labelMedium

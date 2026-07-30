@@ -1065,3 +1065,8 @@ int? monthlyToAnnual(String? raw) {
   if (monthly == null) return null;
   return monthly * 12;
 }
+
+double? toMonthly(double? annual) {
+  if (annual == null) return null;
+  return annual / 12.0;
+}

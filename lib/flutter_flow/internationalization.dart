@@ -2013,7 +2013,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '你好世界',
     },
     'raytn19v': {
-      'en': ' Annual Rental Income ',
+      'en': ' Monthly Rental Income ',
       'ar': 'الدخل السنوي المتوقع من الإيجار',
       'bn': 'পূর্বাভাসিত বার্ষিক \nভাড়া আয়',
       'de': 'Voraussichtliche jährliche Mieteinnahmen',
@@ -7362,7 +7362,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // PortfolioScoreDashNEW
   {
     'pksc718i': {
-      'en': 'ADDRESSED SCORE',
+      'en': 'PORTFOLIO HEALTH',
       'ar': 'منذ انضمامه إلى العنوان',
       'bn': 'যোগদানের পর থেকে ঠিকানা',
       'de': 'Seit meinem Beitritt zu Addressed',

@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Addressed  Pro</string>
+	<string>Addressed</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleLocalizations</key>
@@ -56,10 +56,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>addressedpro.com</string>
+        <string>addressed.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>addressedpro</string>
+        <string>addressed</string>
         </array>
         </dict>
     </array>

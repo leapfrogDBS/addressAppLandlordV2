@@ -983,7 +983,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   text: FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    'raytn19v' /*  Annual Rental Income  */,
+                                                                    'raytn19v' /*  Monthly Rental Income  */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -1050,8 +1050,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                             TextSpan(
                                                               text:
                                                                   formatNumber(
-                                                                _model.pvTotals!
-                                                                    .annualRent,
+                                                                functions.toMonthly(
+                                                                    _model
+                                                                        .pvTotals
+                                                                        ?.annualRent),
                                                                 formatType:
                                                                     FormatType
                                                                         .decimal,
@@ -1180,10 +1182,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                 TextSpan(
                                                                   text:
                                                                       formatNumber(
-                                                                    valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.targetIncome,
-                                                                        0),
+                                                                    functions.annualToMonthly(
+                                                                        stackUsersRecord
+                                                                            .targetIncome),
                                                                     formatType:
                                                                         FormatType
                                                                             .decimal,
