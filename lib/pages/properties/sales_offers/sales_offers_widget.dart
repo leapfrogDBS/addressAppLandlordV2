@@ -109,7 +109,13 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                   padding:
                       EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 20.0),
                   child: StreamBuilder<List<SalesOffersRecord>>(
-                    stream: querySalesOffersRecord(),
+                    stream: querySalesOffersRecord(
+                      queryBuilder: (salesOffersRecord) =>
+                          salesOffersRecord.where(
+                        'active',
+                        isEqualTo: true,
+                      ),
+                    ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {

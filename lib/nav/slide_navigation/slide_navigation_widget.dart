@@ -265,7 +265,7 @@ class _SlideNavigationWidgetState extends State<SlideNavigationWidget> {
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'i0d4ms2m' /* Offers */,
+                                'i0d4ms2m' /* Deals */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge

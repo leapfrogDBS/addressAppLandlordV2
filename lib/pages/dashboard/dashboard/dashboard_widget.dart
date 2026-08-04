@@ -759,11 +759,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                     .capitalValue,
                                                                 formatType:
                                                                     FormatType
-                                                                        .decimal,
-                                                                decimalType:
-                                                                    DecimalType
-                                                                        .automatic,
+                                                                        .custom,
                                                                 currency: '£',
+                                                                format:
+                                                                    '#,##0.00',
+                                                                locale: 'en_GB',
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -1056,11 +1056,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         ?.annualRent),
                                                                 formatType:
                                                                     FormatType
-                                                                        .decimal,
-                                                                decimalType:
-                                                                    DecimalType
-                                                                        .automatic,
+                                                                        .custom,
                                                                 currency: '£',
+                                                                format:
+                                                                    '#,##0.00',
+                                                                locale: 'en_GB',
                                                               ),
                                                               style: FlutterFlowTheme
                                                                       .of(context)

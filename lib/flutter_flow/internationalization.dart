@@ -3929,6 +3929,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '自從加入 Addressed 以來',
     },
     '4mje1kok': {
+      'en': 'ANNUAL RENT',
+      'ar': 'منذ انضمامه إلى العنوان',
+      'bn': 'যোগদানের পর থেকে ঠিকানা',
+      'de': 'Seit meinem Beitritt zu Addressed',
+      'es': 'Desde que se unió a Addressed',
+      'fr': 'Depuis mon arrivée chez Addressed',
+      'gu': 'જોડાયા ત્યારથી સંબોધિત',
+      'hi': 'Addressed से जुड़ने के बाद से',
+      'nl': 'Sinds ik bij Addressed ben gekomen',
+      'pa': 'ਸ਼ਾਮਲ ਹੋਣ ਤੋਂ ਬਾਅਦ ਪਤਾ ਕੀਤਾ ਗਿਆ',
+      'pl': 'Od czasu dołączenia do Addressed',
+      'ro': 'De când s-a alăturat, a fost abordat',
+      'ta': 'சேர்ந்ததிலிருந்து முகவரியிடப்பட்டது',
+      'tr': 'Addressed\'e katıldığından beri',
+      'ur': 'جوائن کرنے کے بعد سے خطاب کیا۔',
+      'zh_Hant': '自從加入 Addressed 以來',
+    },
+    '9dar6ihv': {
       'en': 'GROSS YIELD',
       'ar': 'منذ انضمامه إلى العنوان',
       'bn': 'যোগদানের পর থেকে ঠিকানা',
@@ -3946,7 +3964,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'جوائن کرنے کے بعد سے خطاب کیا۔',
       'zh_Hant': '自從加入 Addressed 以來',
     },
-    'wa1pqr9w': {
+    'hw6ll2sp': {
       'en': 'Calculated using rental income against purchase price.',
       'ar': 'تم حسابها باستخدام دخل الإيجار مقابل سعر الشراء.',
       'bn': 'ক্রয় মূল্যের বিপরীতে ভাড়া আয় ব্যবহার করে গণনা করা হয়েছে।',
@@ -3971,7 +3989,69 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'خریداری کی قیمت کے مقابلے کرایہ کی آمدنی کا استعمال کرتے ہوئے شمار کیا جاتا ہے۔',
       'zh_Hant': '以租金收入除以購買價格計算。',
     },
-    'ao5ahblc': {
+    '43zs6ezk': {
+      'en': '%',
+      'ar': '',
+      'bn': '',
+      'de': '',
+      'es': '',
+      'fr': '',
+      'gu': '',
+      'hi': '',
+      'nl': '',
+      'pa': '',
+      'pl': '',
+      'ro': '',
+      'ta': '',
+      'tr': '',
+      'ur': '',
+      'zh_Hant': '',
+    },
+    'fyu9750q': {
+      'en': 'ROI',
+      'ar': 'منذ انضمامه إلى العنوان',
+      'bn': 'যোগদানের পর থেকে ঠিকানা',
+      'de': 'Seit meinem Beitritt zu Addressed',
+      'es': 'Desde que se unió a Addressed',
+      'fr': 'Depuis mon arrivée chez Addressed',
+      'gu': 'જોડાયા ત્યારથી સંબોધિત',
+      'hi': 'Addressed से जुड़ने के बाद से',
+      'nl': 'Sinds ik bij Addressed ben gekomen',
+      'pa': 'ਸ਼ਾਮਲ ਹੋਣ ਤੋਂ ਬਾਅਦ ਪਤਾ ਕੀਤਾ ਗਿਆ',
+      'pl': 'Od czasu dołączenia do Addressed',
+      'ro': 'De când s-a alăturat, a fost abordat',
+      'ta': 'சேர்ந்ததிலிருந்து முகவரியிடப்பட்டது',
+      'tr': 'Addressed\'e katıldığından beri',
+      'ur': 'جوائن کرنے کے بعد سے خطاب کیا۔',
+      'zh_Hant': '自從加入 Addressed 以來',
+    },
+    'tx2q3vq9': {
+      'en':
+          'Calculated using rental income against purchase price less remaining mortgage',
+      'ar': 'تم حسابها باستخدام دخل الإيجار مقابل سعر الشراء.',
+      'bn': 'ক্রয় মূল্যের বিপরীতে ভাড়া আয় ব্যবহার করে গণনা করা হয়েছে।',
+      'de': 'Berechnet anhand der Mieteinnahmen im Verhältnis zum Kaufpreis.',
+      'es':
+          'Calculado utilizando los ingresos del alquiler frente al precio de compra.',
+      'fr': 'Calculé en fonction des revenus locatifs et du prix d\'achat.',
+      'gu': 'ખરીદી કિંમત સામે ભાડાની આવકનો ઉપયોગ કરીને ગણતરી કરવામાં આવે છે.',
+      'hi': 'किराये से प्राप्त आय की तुलना खरीद मूल्य से की गई है।',
+      'nl':
+          'Berekend op basis van de huurinkomsten ten opzichte van de aankoopprijs.',
+      'pa': 'ਖਰੀਦ ਮੁੱਲ ਦੇ ਮੁਕਾਬਲੇ ਕਿਰਾਏ ਦੀ ਆਮਦਨ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਗਣਨਾ ਕੀਤੀ ਗਈ।',
+      'pl':
+          'Obliczono na podstawie dochodu z wynajmu w stosunku do ceny zakupu.',
+      'ro':
+          'Calculat folosind venitul din chirii raportat la prețul de achiziție.',
+      'ta':
+          'வாங்கிய விலைக்கு எதிராக வாடகை வருமானத்தைப் பயன்படுத்தி கணக்கிடப்படுகிறது.',
+      'tr':
+          'Kira gelirinin satın alma fiyatına oranı üzerinden hesaplanmıştır.',
+      'ur':
+          'خریداری کی قیمت کے مقابلے کرایہ کی آمدنی کا استعمال کرتے ہوئے شمار کیا جاتا ہے۔',
+      'zh_Hant': '以租金收入除以購買價格計算。',
+    },
+    '2k9rv94c': {
       'en': '%',
       'ar': '',
       'bn': '',
@@ -7081,7 +7161,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '特性',
     },
     'i0d4ms2m': {
-      'en': 'Offers',
+      'en': 'Deals',
       'ar': 'عروض',
       'bn': 'অফার',
       'de': 'Angebote',

@@ -36,6 +36,8 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   List<ThreadsRecord>? threadsForLandlord;
   // Stores action output result for [Backend Call - Create Document] action in Message widget.
   ThreadsRecord? newThreadRef;
+  // Stores action output result for [Firestore Query - Query a collection] action in Message widget.
+  List<NotificationsRecord>? unreadMessageNotifications;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.

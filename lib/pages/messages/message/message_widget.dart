@@ -96,6 +96,28 @@ class _MessageWidgetState extends State<MessageWidget> {
         safeSetState(() {});
       }
 
+      _model.unreadMessageNotifications = await queryNotificationsRecordOnce(
+        parent: currentUserReference,
+        queryBuilder: (notificationsRecord) => notificationsRecord
+            .where(
+              'linkType',
+              isEqualTo: 'messages',
+            )
+            .where(
+              'viewed',
+              isNotEqualTo: true,
+            ),
+      );
+      for (int loop1Index = 0;
+          loop1Index < _model.unreadMessageNotifications!.length;
+          loop1Index++) {
+        final currentLoop1Item = _model.unreadMessageNotifications![loop1Index];
+
+        await currentLoop1Item.reference.update(createNotificationsRecordData(
+          viewed: true,
+          readAt: getCurrentTimestamp,
+        ));
+      }
       await Future.delayed(
         Duration(
           milliseconds: 200,

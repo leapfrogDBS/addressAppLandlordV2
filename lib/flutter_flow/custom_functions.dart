@@ -1070,3 +1070,17 @@ double? toMonthly(double? annual) {
   if (annual == null) return null;
   return annual / 12.0;
 }
+
+double? propertyRoiPct(
+  double? rentalIncome,
+  double? purchasePrice,
+  double? mortgageRemaining,
+) {
+  final income = rentalIncome ?? 0.0;
+  final purchase = purchasePrice ?? 0.0;
+  final mortgage = mortgageRemaining ?? 0.0;
+  final investment = purchase - mortgage;
+  if (investment <= 0) return 0.0;
+  final roi = (income / investment) * 100.0;
+  return double.parse(roi.toStringAsFixed(2));
+}
