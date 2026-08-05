@@ -129,7 +129,7 @@ class _PortfolioScoreDashNEWWidgetState
                                   padding: EdgeInsets.all(4.0),
                                   child: Text(
                                     FFLocalizations.of(context).getText(
-                                      'gund5pzx' /* Your Addressed Score reflects ... */,
+                                      'gund5pzx' /* Your portfolio health figure r... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge

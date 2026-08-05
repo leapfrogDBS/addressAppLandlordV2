@@ -6616,6 +6616,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'سرمایہ کاری کے لیے سرمایہ',
       'zh_Hant': '投資資金',
     },
+    '798sr2s4': {
+      'en': 'Enter available capital',
+      'ar': '',
+      'bn': '',
+      'de': '',
+      'es': '',
+      'fr': '',
+      'gu': '',
+      'hi': '',
+      'nl': '',
+      'pa': '',
+      'pl': '',
+      'ro': '',
+      'ta': '',
+      'tr': '',
+      'ur': '',
+      'zh_Hant': '',
+    },
     'nf9owzn1': {
       'en': 'Releasable Equity',
       'ar': 'حقوق الملكية القابلة للتحرير',
@@ -7340,7 +7358,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'gund5pzx': {
       'en':
-          'Your Addressed Score reflects how close you are to your retirement goals. It combines your progress toward your equity target and income target, scored out of 999.',
+          'Your portfolio health figure reflects how close you are to your retirement goals. It combines your progress toward your equity target and income target, scored out of 999.',
       'ar': '',
       'bn': '',
       'de': '',

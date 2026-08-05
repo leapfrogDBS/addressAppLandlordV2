@@ -445,7 +445,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                     children: [
                       Expanded(
                         child: Container(
-                          height: 80.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
                             color: Color(0x13FFFFFF),
                             borderRadius: BorderRadius.circular(8.0),
@@ -489,37 +489,99 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         ),
                                   ),
                                 ),
-                                Text(
-                                  formatNumber(
-                                    _model.capitalAvailableToInvest!.ownCapital,
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.automatic,
-                                    currency: '£',
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleLarge
-                                      .override(
-                                        font: GoogleFonts.dmSans(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLarge
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleLarge
-                                                  .fontStyle,
+                                Builder(
+                                  builder: (context) {
+                                    if (valueOrDefault(
+                                            currentUserDocument
+                                                ?.availableCapital,
+                                            0.0) !=
+                                        null) {
+                                      return Text(
+                                        formatNumber(
+                                          _model.capitalAvailableToInvest!
+                                              .ownCapital,
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                          currency: '£',
                                         ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        fontSize: 14.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
+                                        style: FlutterFlowTheme.of(context)
                                             .titleLarge
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
+                                            .override(
+                                              font: GoogleFonts.dmSans(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleLarge
+                                                      .fontStyle,
+                                            ),
+                                      );
+                                    } else {
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                              ProfileWidget.routeName);
+                                        },
+                                        child: Text(
+                                          FFLocalizations.of(context).getText(
+                                            '798sr2s4' /* Enter available capital */,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleLarge
+                                              .override(
+                                                font: GoogleFonts.dmSans(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleLarge
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                fontSize: 10.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleLarge
+                                                        .fontStyle,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                              ),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 ),
                               ].divide(SizedBox(height: 6.0)),
                             ),
@@ -528,7 +590,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                       ),
                       Expanded(
                         child: Container(
-                          height: 80.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
                             color: Color(0x13FFFFFF),
                             borderRadius: BorderRadius.circular(8.0),
@@ -612,7 +674,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                       ),
                       Expanded(
                         child: Container(
-                          height: 80.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
                             color: Color(0x13FFFFFF),
                             borderRadius: BorderRadius.circular(8.0),
