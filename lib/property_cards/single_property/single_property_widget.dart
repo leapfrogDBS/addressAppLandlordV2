@@ -396,73 +396,86 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                   ),
                                 ],
                               ),
-                              StreamBuilder<List<PropertyProjectionsRecord>>(
-                                stream: queryPropertyProjectionsRecord(
-                                  queryBuilder: (propertyProjectionsRecord) =>
-                                      propertyProjectionsRecord.where(
-                                    'propertyRef',
-                                    isEqualTo: widget!.propID,
+                              if (widget!.purchasePrice! > 0.0)
+                                StreamBuilder<List<PropertyProjectionsRecord>>(
+                                  stream: queryPropertyProjectionsRecord(
+                                    queryBuilder: (propertyProjectionsRecord) =>
+                                        propertyProjectionsRecord.where(
+                                      'propertyRef',
+                                      isEqualTo: widget!.propID,
+                                    ),
+                                    singleRecord: true,
                                   ),
-                                  singleRecord: true,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                  List<PropertyProjectionsRecord>
-                                      columnPropertyProjectionsRecordList =
-                                      snapshot.data!;
-                                  // Return an empty Container when the item does not exist.
-                                  if (snapshot.data!.isEmpty) {
-                                    return Container();
-                                  }
-                                  final columnPropertyProjectionsRecord =
-                                      columnPropertyProjectionsRecordList
-                                              .isNotEmpty
-                                          ? columnPropertyProjectionsRecordList
-                                              .first
-                                          : null;
+                                      );
+                                    }
+                                    List<PropertyProjectionsRecord>
+                                        columnPropertyProjectionsRecordList =
+                                        snapshot.data!;
+                                    // Return an empty Container when the item does not exist.
+                                    if (snapshot.data!.isEmpty) {
+                                      return Container();
+                                    }
+                                    final columnPropertyProjectionsRecord =
+                                        columnPropertyProjectionsRecordList
+                                                .isNotEmpty
+                                            ? columnPropertyProjectionsRecordList
+                                                .first
+                                            : null;
 
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Stack(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 0.0),
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 34.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    's2v1i2cp' /* Gross Yield */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.dmSans(
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 0.0),
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 34.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                      's2v1i2cp' /* Gross Yield */,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .dmSans(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -474,38 +487,39 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                                                   .labelMedium
                                                                   .fontStyle,
                                                         ),
+                                                  ),
+                                                ].divide(SizedBox(width: 6.0)),
+                                              ),
+                                            ),
+                                            AlignedTooltip(
+                                              content: Padding(
+                                                padding: EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'qny4v1p8' /* Calculated using rental income... */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.dmSans(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontStyle,
+                                                        ),
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(width: 6.0)),
-                                            ),
-                                          ),
-                                          AlignedTooltip(
-                                            content: Padding(
-                                              padding: EdgeInsets.all(4.0),
-                                              child: Text(
-                                                FFLocalizations.of(context)
-                                                    .getText(
-                                                  'qny4v1p8' /* Calculated using rental income... */,
-                                                ),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodySmall
-                                                    .override(
-                                                      font: GoogleFonts.dmSans(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
                                                                 .bodySmall
                                                                 .fontWeight,
                                                         fontStyle:
@@ -514,81 +528,84 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                                                 .bodySmall
                                                                 .fontStyle,
                                                       ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontStyle,
-                                                    ),
+                                                ),
+                                              ),
+                                              offset: 4.0,
+                                              preferredDirection:
+                                                  AxisDirection.down,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              elevation: 4.0,
+                                              tailBaseWidth: 24.0,
+                                              tailLength: 12.0,
+                                              waitDuration:
+                                                  Duration(milliseconds: 100),
+                                              showDuration:
+                                                  Duration(milliseconds: 1500),
+                                              triggerMode:
+                                                  TooltipTriggerMode.tap,
+                                              child: Container(
+                                                width: 44.0,
+                                                height: 20.0,
+                                                decoration: BoxDecoration(),
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Icon(
+                                                    Icons.info,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 16.0,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                            offset: 4.0,
-                                            preferredDirection:
-                                                AxisDirection.down,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            elevation: 4.0,
-                                            tailBaseWidth: 24.0,
-                                            tailLength: 12.0,
-                                            waitDuration:
-                                                Duration(milliseconds: 100),
-                                            showDuration:
-                                                Duration(milliseconds: 1500),
-                                            triggerMode: TooltipTriggerMode.tap,
-                                            child: Container(
-                                              width: 44.0,
-                                              height: 20.0,
-                                              decoration: BoxDecoration(),
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Icon(
-                                                  Icons.info,
+                                          ],
+                                        ),
+                                        RichText(
+                                          textScaler:
+                                              MediaQuery.of(context).textScaler,
+                                          text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: valueOrDefault<String>(
+                                                  columnPropertyProjectionsRecord
+                                                      ?.yieldPct?.firstOrNull
+                                                      ?.toString(),
+                                                  'error',
+                                                ),
+                                                style: TextStyle(),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'cx5i9atb' /* % */,
+                                                ),
+                                                style: TextStyle(),
+                                              )
+                                            ],
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineSmall
+                                                .override(
+                                                  font: GoogleFonts.dmSans(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .headlineSmall
+                                                            .fontStyle,
+                                                  ),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryText,
-                                                  size: 16.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      RichText(
-                                        textScaler:
-                                            MediaQuery.of(context).textScaler,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: valueOrDefault<String>(
-                                                columnPropertyProjectionsRecord
-                                                    ?.yieldPct?.firstOrNull
-                                                    ?.toString(),
-                                                'error',
-                                              ),
-                                              style: TextStyle(),
-                                            ),
-                                            TextSpan(
-                                              text: FFLocalizations.of(context)
-                                                  .getText(
-                                                'cx5i9atb' /* % */,
-                                              ),
-                                              style: TextStyle(),
-                                            )
-                                          ],
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineSmall
-                                              .override(
-                                                font: GoogleFonts.dmSans(
+                                                      .primary,
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -596,23 +613,12 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
                                                           .headlineSmall
                                                           .fontStyle,
                                                 ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineSmall
-                                                        .fontStyle,
-                                              ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
+                                      ],
+                                    );
+                                  },
+                                ),
                             ].divide(SizedBox(width: 20.0)),
                           ),
                           Padding(

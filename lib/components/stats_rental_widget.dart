@@ -16,10 +16,12 @@ class StatsRentalWidget extends StatefulWidget {
     super.key,
     required this.projections,
     required this.selectedYearIndex,
+    required this.purchasePrice,
   });
 
   final PropertyProjectionsRecord? projections;
   final int? selectedYearIndex;
+  final double? purchasePrice;
 
   @override
   State<StatsRentalWidget> createState() => _StatsRentalWidgetState();
@@ -448,22 +450,95 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                 ),
                               ].divide(SizedBox(width: 6.0)),
                             ),
-                            RichText(
-                              textScaler: MediaQuery.of(context).textScaler,
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: valueOrDefault<String>(
-                                      (widget!.projections?.yieldPct
-                                              ?.elementAtOrNull(
-                                                  widget!.selectedYearIndex!))
-                                          .toString(),
-                                      '0',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .override(
-                                          font: GoogleFonts.dmSans(
+                            Builder(
+                              builder: (context) {
+                                if (widget!.purchasePrice! > 0.0) {
+                                  return RichText(
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: valueOrDefault<String>(
+                                            (widget!.projections?.yieldPct
+                                                    ?.elementAtOrNull(widget!
+                                                        .selectedYearIndex!))
+                                                .toString(),
+                                            '0',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineLarge
+                                              .override(
+                                                font: GoogleFonts.dmSans(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLarge
+                                                          .fontStyle,
+                                                ),
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                        TextSpan(
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            '60wekbsz' /* % */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineLarge
+                                              .override(
+                                                font: GoogleFonts.dmSans(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLarge
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineLarge
+                                                          .fontStyle,
+                                                ),
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineLarge
+                                                        .fontStyle,
+                                              ),
+                                        )
+                                      ],
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .headlineLarge
@@ -473,25 +548,37 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                                     .headlineLarge
                                                     .fontStyle,
                                           ),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                  TextSpan(
-                                    text: FFLocalizations.of(context).getText(
-                                      '60wekbsz' /* % */,
                                     ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .headlineLarge
-                                        .override(
-                                          font: GoogleFonts.dmSans(
+                                  );
+                                } else {
+                                  return RichText(
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'fqrrk5gp' /* Add purchase price to see yiel... */,
+                                          ),
+                                          style: TextStyle(),
+                                        )
+                                      ],
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .override(
+                                            font: GoogleFonts.dmSans(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineLarge
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .headlineLarge
@@ -501,39 +588,10 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                                     .headlineLarge
                                                     .fontStyle,
                                           ),
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineLarge
-                                                  .fontStyle,
-                                        ),
-                                  )
-                                ],
-                                style: FlutterFlowTheme.of(context)
-                                    .headlineLarge
-                                    .override(
-                                      font: GoogleFonts.dmSans(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .headlineLarge
-                                            .fontStyle,
-                                      ),
-                                      fontSize: 18.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .headlineLarge
-                                          .fontStyle,
                                     ),
-                              ),
+                                  );
+                                }
+                              },
                             ),
                           ].divide(SizedBox(height: 4.0)),
                         ),
