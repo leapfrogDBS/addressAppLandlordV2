@@ -982,6 +982,7 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
   double totalEquity = 0.0;
   double annualRent = 0.0;
   double capitalGain = 0.0;
+  int mortgageEnteredCount = 0;
 
   for (final p in list) {
     final value = nz(p.estimatedValue);
@@ -991,7 +992,9 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
     final joining = nz(p.priceValuationOnJoiningAddressed);
 
     totalValue += value;
+
     if (p.mortgageEntered == true) {
+      mortgageEnteredCount += 1;
       totalEquity += (value - mortgage).clamp(0.0, double.infinity);
     }
     annualRent += rent * 12.0;
@@ -1014,6 +1017,7 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
     avgYield: avgYield,
     capitalGainSinceJoining: capitalGain,
     avgMonthlyRent: annualRent / 12.0,
+    mortgageEnteredCount: mortgageEnteredCount,
   );
 }
 

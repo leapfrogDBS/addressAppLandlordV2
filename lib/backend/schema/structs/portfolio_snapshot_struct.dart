@@ -17,6 +17,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
     double? avgYield,
     double? capitalGainSinceJoining,
     double? avgMonthlyRent,
+    int? mortgageEnteredCount,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _propertyCount = propertyCount,
         _totalValue = totalValue,
@@ -25,6 +26,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         _avgYield = avgYield,
         _capitalGainSinceJoining = capitalGainSinceJoining,
         _avgMonthlyRent = avgMonthlyRent,
+        _mortgageEnteredCount = mortgageEnteredCount,
         super(firestoreUtilData);
 
   // "propertyCount" field.
@@ -94,6 +96,16 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
 
   bool hasAvgMonthlyRent() => _avgMonthlyRent != null;
 
+  // "mortgageEnteredCount" field.
+  int? _mortgageEnteredCount;
+  int get mortgageEnteredCount => _mortgageEnteredCount ?? 0;
+  set mortgageEnteredCount(int? val) => _mortgageEnteredCount = val;
+
+  void incrementMortgageEnteredCount(int amount) =>
+      mortgageEnteredCount = mortgageEnteredCount + amount;
+
+  bool hasMortgageEnteredCount() => _mortgageEnteredCount != null;
+
   static PortfolioSnapshotStruct fromMap(Map<String, dynamic> data) =>
       PortfolioSnapshotStruct(
         propertyCount: castToType<int>(data['propertyCount']),
@@ -104,6 +116,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         capitalGainSinceJoining:
             castToType<double>(data['capitalGainSinceJoining']),
         avgMonthlyRent: castToType<double>(data['avgMonthlyRent']),
+        mortgageEnteredCount: castToType<int>(data['mortgageEnteredCount']),
       );
 
   static PortfolioSnapshotStruct? maybeFromMap(dynamic data) => data is Map
@@ -118,6 +131,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         'avgYield': _avgYield,
         'capitalGainSinceJoining': _capitalGainSinceJoining,
         'avgMonthlyRent': _avgMonthlyRent,
+        'mortgageEnteredCount': _mortgageEnteredCount,
       }.withoutNulls;
 
   @override
@@ -149,6 +163,10 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         'avgMonthlyRent': serializeParam(
           _avgMonthlyRent,
           ParamType.double,
+        ),
+        'mortgageEnteredCount': serializeParam(
+          _mortgageEnteredCount,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -190,6 +208,11 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
           ParamType.double,
           false,
         ),
+        mortgageEnteredCount: deserializeParam(
+          data['mortgageEnteredCount'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -204,7 +227,8 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         annualRent == other.annualRent &&
         avgYield == other.avgYield &&
         capitalGainSinceJoining == other.capitalGainSinceJoining &&
-        avgMonthlyRent == other.avgMonthlyRent;
+        avgMonthlyRent == other.avgMonthlyRent &&
+        mortgageEnteredCount == other.mortgageEnteredCount;
   }
 
   @override
@@ -215,7 +239,8 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         annualRent,
         avgYield,
         capitalGainSinceJoining,
-        avgMonthlyRent
+        avgMonthlyRent,
+        mortgageEnteredCount
       ]);
 }
 
@@ -227,6 +252,7 @@ PortfolioSnapshotStruct createPortfolioSnapshotStruct({
   double? avgYield,
   double? capitalGainSinceJoining,
   double? avgMonthlyRent,
+  int? mortgageEnteredCount,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -240,6 +266,7 @@ PortfolioSnapshotStruct createPortfolioSnapshotStruct({
       avgYield: avgYield,
       capitalGainSinceJoining: capitalGainSinceJoining,
       avgMonthlyRent: avgMonthlyRent,
+      mortgageEnteredCount: mortgageEnteredCount,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,
