@@ -225,7 +225,7 @@ class _WelcomeWidgetState extends State<WelcomeWidget> {
                                   ));
 
                                   context
-                                      .goNamed(PersonalDetailsWidget.routeName);
+                                      .pushNamed(RedirectPageWidget.routeName);
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'tviq99ao' /* Let's Go */,

@@ -7,7 +7,6 @@ import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,36 +44,12 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
       );
       _model.userCollection =
           await UsersRecord.getDocumentOnce(currentUserReference!);
-      _model.propertyOnboarding = await queryPropertiesRecordOnce(
-        queryBuilder: (propertiesRecord) => propertiesRecord
-            .where(
-              'ownerID',
-              isEqualTo: currentUserReference?.id,
-            )
-            .where(
-              'shownOnboardingScreen',
-              isEqualTo: false,
-            ),
-        limit: 1,
-      );
       if (_model.userCollection?.status != 'active') {
         context.goNamed(WelcomeWidget.routeName);
+      } else if (currentUserDocument?.dob == null) {
+        context.pushNamed(PersonalDetailsWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
         context.goNamed(RetirementGoalsWidget.routeName);
-      } else if (_model.propertyOnboarding != null &&
-          (_model.propertyOnboarding)!.isNotEmpty) {
-        context.pushNamed(
-          PropertyDetailsWidget.routeName,
-          queryParameters: {
-            'propertyDoc': serializeParam(
-              _model.propertyOnboarding?.firstOrNull,
-              ParamType.Document,
-            ),
-          }.withoutNulls,
-          extra: <String, dynamic>{
-            'propertyDoc': _model.propertyOnboarding?.firstOrNull,
-          },
-        );
       } else {
         if (valueOrDefault<bool>(
                 currentUserDocument?.completedOnboarding, false) &&
