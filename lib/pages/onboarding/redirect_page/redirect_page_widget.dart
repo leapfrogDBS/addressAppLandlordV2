@@ -46,7 +46,7 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
           await UsersRecord.getDocumentOnce(currentUserReference!);
       if (_model.userCollection?.status != 'active') {
         context.goNamed(WelcomeWidget.routeName);
-      } else if (currentUserDocument?.dob == null) {
+      } else if (_model.userCollection?.dob == null) {
         context.pushNamed(PersonalDetailsWidget.routeName);
       } else if (!_model.userCollection!.enteredRetirmentTargets) {
         context.goNamed(RetirementGoalsWidget.routeName);

@@ -223,11 +223,6 @@ class PropertiesRecord extends FirestoreRecord {
   DateTime? get recalcTrigger => _recalcTrigger;
   bool hasRecalcTrigger() => _recalcTrigger != null;
 
-  // "shownOnboardingScreen" field.
-  bool? _shownOnboardingScreen;
-  bool get shownOnboardingScreen => _shownOnboardingScreen ?? false;
-  bool hasShownOnboardingScreen() => _shownOnboardingScreen != null;
-
   // "purchaseDate" field.
   DateTime? _purchaseDate;
   DateTime? get purchaseDate => _purchaseDate;
@@ -281,7 +276,6 @@ class PropertiesRecord extends FirestoreRecord {
     _currentTenancyId = snapshotData['currentTenancyId'] as String?;
     _currentRentSource = snapshotData['currentRentSource'] as String?;
     _recalcTrigger = snapshotData['_recalcTrigger'] as DateTime?;
-    _shownOnboardingScreen = snapshotData['shownOnboardingScreen'] as bool?;
     _purchaseDate = snapshotData['purchaseDate'] as DateTime?;
   }
 
@@ -360,7 +354,6 @@ Map<String, dynamic> createPropertiesRecordData({
   String? currentTenancyId,
   String? currentRentSource,
   DateTime? recalcTrigger,
-  bool? shownOnboardingScreen,
   DateTime? purchaseDate,
 }) {
   final firestoreData = mapToFirestore(
@@ -405,7 +398,6 @@ Map<String, dynamic> createPropertiesRecordData({
       'currentTenancyId': currentTenancyId,
       'currentRentSource': currentRentSource,
       '_recalcTrigger': recalcTrigger,
-      'shownOnboardingScreen': shownOnboardingScreen,
       'purchaseDate': purchaseDate,
     }.withoutNulls,
   );
@@ -461,7 +453,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e1?.currentTenancyId == e2?.currentTenancyId &&
         e1?.currentRentSource == e2?.currentRentSource &&
         e1?.recalcTrigger == e2?.recalcTrigger &&
-        e1?.shownOnboardingScreen == e2?.shownOnboardingScreen &&
         e1?.purchaseDate == e2?.purchaseDate;
   }
 
@@ -508,7 +499,6 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.currentTenancyId,
         e?.currentRentSource,
         e?.recalcTrigger,
-        e?.shownOnboardingScreen,
         e?.purchaseDate
       ]);
 

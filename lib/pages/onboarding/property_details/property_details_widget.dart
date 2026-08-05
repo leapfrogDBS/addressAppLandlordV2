@@ -860,7 +860,6 @@ class _PropertyDetailsWidgetState extends State<PropertyDetailsWidget> {
                                   if (_model.datePicked != null) {
                                     await widget!.propertyDoc!.reference
                                         .update(createPropertiesRecordData(
-                                      shownOnboardingScreen: true,
                                       purchasePrice: double.tryParse(_model
                                           .purchasePriceTextController.text),
                                       mortgageRemaining: double.tryParse(_model
