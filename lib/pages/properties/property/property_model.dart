@@ -84,6 +84,8 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
 
   bool isEditingFinancials = false;
 
+  bool updatingPurchaseInfo = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - Read Document] action in Property widget.
@@ -124,6 +126,10 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
   late StatsRentalModel statsRentalModel;
   // Model for statsCapital component.
   late StatsCapitalModel statsCapitalModel;
+  // State field(s) for purchasePrice widget.
+  FocusNode? purchasePriceFocusNode;
+  TextEditingController? purchasePriceTextController;
+  String? Function(BuildContext, String?)? purchasePriceTextControllerValidator;
   // State field(s) for mortgageRemaining widget.
   FocusNode? mortgageRemainingFocusNode;
   TextEditingController? mortgageRemainingTextController;
@@ -152,6 +158,9 @@ class PropertyModel extends FlutterFlowModel<PropertyWidget> {
     statsCombinedModel.dispose();
     statsRentalModel.dispose();
     statsCapitalModel.dispose();
+    purchasePriceFocusNode?.dispose();
+    purchasePriceTextController?.dispose();
+
     mortgageRemainingFocusNode?.dispose();
     mortgageRemainingTextController?.dispose();
 

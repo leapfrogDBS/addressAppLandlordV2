@@ -4257,7 +4257,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '',
     },
     '5zw3brmg': {
-      'en': 'Estimated mortage remaining',
+      'en': 'Purchase Price',
       'ar': 'المبلغ المتبقي من الرهن العقاري',
       'bn': 'আনুমানিক বন্ধকী অবশিষ্টাংশ',
       'de': 'Geschätzter Restbetrag der Hypothek',
@@ -4275,6 +4275,91 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '預計剩餘抵押貸款',
     },
     'mxjsyrki': {
+      'en': 'Please enter the purchase price for this property',
+      'ar':
+          'يرجى إدخال قيمة الرهن العقاري المتبقية المقدرة على العقار لحساب حقوق الملكية.',
+      'bn': 'ইকুইটি গণনা করার জন্য সম্পত্তির অবশিষ্ট আনুমানিক বন্ধক লিখুন।',
+      'de':
+          'Bitte geben Sie die geschätzte verbleibende Hypothekenschuld auf der Immobilie ein, um das Eigenkapital zu berechnen.',
+      'es':
+          'Ingrese la hipoteca estimada restante sobre la propiedad para calcular el capital.',
+      'fr':
+          'Veuillez saisir le montant estimé du prêt hypothécaire restant sur la propriété pour calculer les capitaux propres.',
+      'gu':
+          'ઇક્વિટીની ગણતરી કરવા માટે કૃપા કરીને મિલકત પર બાકી રહેલ અંદાજિત ગીરો દાખલ કરો.',
+      'hi':
+          'इक्विटी की गणना करने के लिए कृपया संपत्ति पर शेष अनुमानित बंधक राशि दर्ज करें।',
+      'nl':
+          'Voer het geschatte resterende hypotheekbedrag op de woning in om de overwaarde te berekenen.',
+      'pa':
+          'ਇਕੁਇਟੀ ਦੀ ਗਣਨਾ ਕਰਨ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਜਾਇਦਾਦ \'ਤੇ ਬਾਕੀ ਬਚੀ ਅੰਦਾਜ਼ਨ ਮੌਰਗੇਜ ਦਰਜ ਕਰੋ।',
+      'pl':
+          'Proszę wprowadzić szacowaną kwotę kredytu hipotecznego pozostałego do spłaty na nieruchomości w celu obliczenia kapitału własnego.',
+      'ro':
+          'Vă rugăm să introduceți ipoteca estimată rămasă asupra proprietății pentru a calcula capitalul propriu.',
+      'ta':
+          'ஈக்விட்டியைக் கணக்கிட, சொத்தில் மீதமுள்ள மதிப்பிடப்பட்ட அடமானத்தை உள்ளிடவும்.',
+      'tr':
+          'Lütfen öz sermayeyi hesaplamak için mülk üzerindeki tahmini kalan ipotek tutarını girin.',
+      'ur':
+          'ایکویٹی کا حساب لگانے کے لیے براہ کرم پراپرٹی پر باقی رہن کا تخمینہ درج کریں۔',
+      'zh_Hant': '請輸入房產剩餘抵押貸款金額，以便計算房產淨值。',
+    },
+    'oaar69p5': {
+      'en': 'Enter purchase price',
+      'ar': 'أدخل قيمة الرهن العقاري القائم',
+      'bn': 'বকেয়া বন্ধকী মূল্য লিখুন',
+      'de': 'Geben Sie den ausstehenden Hypothekenwert ein',
+      'es': 'Ingrese el valor de la hipoteca pendiente',
+      'fr': 'Saisissez le montant du prêt hypothécaire en cours',
+      'gu': 'બાકી મોર્ટગેજ મૂલ્ય દાખલ કરો',
+      'hi': 'बकाया बंधक राशि दर्ज करें',
+      'nl': 'Voer de uitstaande hypotheekwaarde in',
+      'pa': 'ਬਕਾਇਆ ਮੌਰਗੇਜ ਮੁੱਲ ਦਰਜ ਕਰੋ',
+      'pl': 'Wprowadź wartość niespłaconego kredytu hipotecznego',
+      'ro': 'Introduceți valoarea ipotecii restante',
+      'ta': 'நிலுவையில் உள்ள அடமான மதிப்பை உள்ளிடவும்',
+      'tr': 'Ödenmemiş ipotek tutarını girin.',
+      'ur': 'بقایا رہن کی قیمت درج کریں۔',
+      'zh_Hant': '輸入未償還抵押貸款金額',
+    },
+    'ijjqgn84': {
+      'en': 'Save',
+      'ar': 'يحفظ',
+      'bn': 'সংরক্ষণ করুন',
+      'de': 'Speichern',
+      'es': 'Ahorrar',
+      'fr': 'Sauvegarder',
+      'gu': 'સાચવો',
+      'hi': 'बचाना',
+      'nl': 'Redden',
+      'pa': 'ਸੇਵ ਕਰੋ',
+      'pl': 'Ratować',
+      'ro': 'Salva',
+      'ta': 'சேமிக்கவும்',
+      'tr': 'Kaydetmek',
+      'ur': 'محفوظ کریں۔',
+      'zh_Hant': '節省',
+    },
+    '66of62p4': {
+      'en': 'Estimated mortage remaining',
+      'ar': 'المبلغ المتبقي من الرهن العقاري',
+      'bn': 'আনুমানিক বন্ধকী অবশিষ্টাংশ',
+      'de': 'Geschätzter Restbetrag der Hypothek',
+      'es': 'Hipoteca restante estimada',
+      'fr': 'Estimation du solde hypothécaire',
+      'gu': 'અંદાજિત ગીરો બાકી રહેલો',
+      'hi': 'अनुमानित शेष बंधक राशि',
+      'nl': 'Geschatte resterende hypotheek',
+      'pa': 'ਅਨੁਮਾਨਿਤ ਗਿਰਵੀਨਾਮਾ ਬਾਕੀ',
+      'pl': 'Szacunkowa pozostała kwota kredytu hipotecznego',
+      'ro': 'Ipotecă estimată rămasă',
+      'ta': 'மதிப்பிடப்பட்ட அடமான மீதமுள்ள தொகை',
+      'tr': 'Tahmini kalan ipotek',
+      'ur': 'تخمینی رہن باقی ہے۔',
+      'zh_Hant': '預計剩餘抵押貸款',
+    },
+    '0cqg0j2i': {
       'en':
           'Please enter the estimated mortgage remaining on the property to calculate equity.',
       'ar':
@@ -4306,7 +4391,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'ایکویٹی کا حساب لگانے کے لیے براہ کرم پراپرٹی پر باقی رہن کا تخمینہ درج کریں۔',
       'zh_Hant': '請輸入房產剩餘抵押貸款金額，以便計算房產淨值。',
     },
-    'oaar69p5': {
+    '5c9ihmvg': {
       'en': 'Enter outstanding mortgage value',
       'ar': 'أدخل قيمة الرهن العقاري القائم',
       'bn': 'বকেয়া বন্ধকী মূল্য লিখুন',
@@ -4324,7 +4409,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'بقایا رہن کی قیمت درج کریں۔',
       'zh_Hant': '輸入未償還抵押貸款金額',
     },
-    'ijjqgn84': {
+    'q9j1iivt': {
       'en': 'Save',
       'ar': 'يحفظ',
       'bn': 'সংরক্ষণ করুন',
