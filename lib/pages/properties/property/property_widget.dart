@@ -939,54 +939,53 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       ),
                                                                 ),
                                                               ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
+                                                              if (propertyPropertiesRecord
+                                                                      .purchasePrice !=
+                                                                  null)
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      functions.percentageIncreaseAlltime(
-                                                                          propertyPropertiesRecord
-                                                                              .purchasePrice,
-                                                                          propertyPropertiesRecord
-                                                                              .estimatedValue),
-                                                                      'Unkown',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            4.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        functions.percentageIncreaseAlltime(
+                                                                            propertyPropertiesRecord.purchasePrice,
+                                                                            propertyPropertiesRecord.estimatedValue),
+                                                                        'Unkown',
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.dmSans(
+                                                                              fontWeight: FontWeight.w800,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondary,
+                                                                            fontSize:
+                                                                                12.0,
+                                                                            letterSpacing:
+                                                                                0.0,
                                                                             fontWeight:
                                                                                 FontWeight.w800,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                           ),
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                          fontSize:
-                                                                              12.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w800,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
                                                             ],
                                                           ),
                                                         ].divide(SizedBox(
@@ -3499,58 +3498,169 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                                   ),
                                                                                 ].divide(SizedBox(width: 6.0)),
                                                                               ),
-                                                                              RichText(
-                                                                                textScaler: MediaQuery.of(context).textScaler,
-                                                                                text: TextSpan(
-                                                                                  children: [
-                                                                                    TextSpan(
-                                                                                      text: valueOrDefault<String>(
-                                                                                        formatNumber(
-                                                                                          functions.propertyRoiPct(tenancySnapshotPropertyProjectionsRecord?.rentalIncome?.firstOrNull, propertyPropertiesRecord.purchasePrice, propertyPropertiesRecord.mortgageRemaining),
-                                                                                          formatType: FormatType.decimal,
-                                                                                          decimalType: DecimalType.automatic,
-                                                                                        ),
-                                                                                        '0',
-                                                                                      ),
-                                                                                      style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                            font: GoogleFonts.dmSans(
-                                                                                              fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
-                                                                                              fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                              Builder(
+                                                                                builder: (context) {
+                                                                                  if ((propertyPropertiesRecord.purchasePrice != null) && propertyPropertiesRecord.mortgageEntered) {
+                                                                                    return RichText(
+                                                                                      textScaler: MediaQuery.of(context).textScaler,
+                                                                                      text: TextSpan(
+                                                                                        children: [
+                                                                                          TextSpan(
+                                                                                            text: valueOrDefault<String>(
+                                                                                              formatNumber(
+                                                                                                functions.propertyRoiPct(tenancySnapshotPropertyProjectionsRecord?.rentalIncome?.firstOrNull, propertyPropertiesRecord.purchasePrice, propertyPropertiesRecord.mortgageRemaining),
+                                                                                                formatType: FormatType.decimal,
+                                                                                                decimalType: DecimalType.automatic,
+                                                                                              ),
+                                                                                              '0',
                                                                                             ),
-                                                                                            color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                  font: GoogleFonts.dmSans(
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                ),
                                                                                           ),
-                                                                                    ),
-                                                                                    TextSpan(
-                                                                                      text: FFLocalizations.of(context).getText(
-                                                                                        '2k9rv94c' /* % */,
-                                                                                      ),
-                                                                                      style: FlutterFlowTheme.of(context).titleMedium.override(
-                                                                                            font: GoogleFonts.dmSans(
-                                                                                              fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
-                                                                                              fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                          TextSpan(
+                                                                                            text: FFLocalizations.of(context).getText(
+                                                                                              '2k9rv94c' /* % */,
                                                                                             ),
-                                                                                            color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
-                                                                                          ),
-                                                                                    )
-                                                                                  ],
-                                                                                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                                                                                        font: GoogleFonts.dmSans(
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
-                                                                                        ),
-                                                                                        color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                        fontSize: 18.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                  font: GoogleFonts.dmSans(
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                ),
+                                                                                          )
+                                                                                        ],
+                                                                                        style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                              font: GoogleFonts.dmSans(
+                                                                                                fontWeight: FontWeight.bold,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                              ),
+                                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                              fontSize: 18.0,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                            ),
                                                                                       ),
-                                                                                ),
+                                                                                    );
+                                                                                  } else if ((propertyPropertiesRecord.purchasePrice != null) && !propertyPropertiesRecord.mortgageEntered) {
+                                                                                    return RichText(
+                                                                                      textScaler: MediaQuery.of(context).textScaler,
+                                                                                      text: TextSpan(
+                                                                                        children: [
+                                                                                          TextSpan(
+                                                                                            text: FFLocalizations.of(context).getText(
+                                                                                              '3dqrvj38' /* Enter mortgage remaining to ca... */,
+                                                                                            ),
+                                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                  font: GoogleFonts.dmSans(
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                  fontSize: 10.0,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                ),
+                                                                                          )
+                                                                                        ],
+                                                                                        style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                              font: GoogleFonts.dmSans(
+                                                                                                fontWeight: FontWeight.bold,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                              ),
+                                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                              fontSize: 18.0,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                            ),
+                                                                                      ),
+                                                                                    );
+                                                                                  } else if (propertyPropertiesRecord.mortgageEntered && (propertyPropertiesRecord.purchasePrice == null)) {
+                                                                                    return RichText(
+                                                                                      textScaler: MediaQuery.of(context).textScaler,
+                                                                                      text: TextSpan(
+                                                                                        children: [
+                                                                                          TextSpan(
+                                                                                            text: FFLocalizations.of(context).getText(
+                                                                                              'p2ysrhne' /* Enter purcahse price to calcul... */,
+                                                                                            ),
+                                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                  font: GoogleFonts.dmSans(
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                  fontSize: 10.0,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                ),
+                                                                                          )
+                                                                                        ],
+                                                                                        style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                              font: GoogleFonts.dmSans(
+                                                                                                fontWeight: FontWeight.bold,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                              ),
+                                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                              fontSize: 18.0,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                            ),
+                                                                                      ),
+                                                                                    );
+                                                                                  } else {
+                                                                                    return RichText(
+                                                                                      textScaler: MediaQuery.of(context).textScaler,
+                                                                                      text: TextSpan(
+                                                                                        children: [
+                                                                                          TextSpan(
+                                                                                            text: FFLocalizations.of(context).getText(
+                                                                                              'w3mpfac0' /* Enter mortgage remaining and p... */,
+                                                                                            ),
+                                                                                            style: FlutterFlowTheme.of(context).titleMedium.override(
+                                                                                                  font: GoogleFonts.dmSans(
+                                                                                                    fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                    fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                  ),
+                                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                                  fontSize: 10.0,
+                                                                                                  letterSpacing: 0.0,
+                                                                                                  fontWeight: FlutterFlowTheme.of(context).titleMedium.fontWeight,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).titleMedium.fontStyle,
+                                                                                                ),
+                                                                                          )
+                                                                                        ],
+                                                                                        style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                                                              font: GoogleFonts.dmSans(
+                                                                                                fontWeight: FontWeight.bold,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                              ),
+                                                                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                                                                              fontSize: 18.0,
+                                                                                              letterSpacing: 0.0,
+                                                                                              fontWeight: FontWeight.bold,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                                                            ),
+                                                                                      ),
+                                                                                    );
+                                                                                  }
+                                                                                },
                                                                               ),
                                                                             ].divide(SizedBox(height: 4.0)),
                                                                           ),

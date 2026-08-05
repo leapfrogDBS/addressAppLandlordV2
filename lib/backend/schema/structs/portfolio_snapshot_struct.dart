@@ -18,6 +18,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
     double? capitalGainSinceJoining,
     double? avgMonthlyRent,
     int? mortgageEnteredCount,
+    int? purchasePriceEnteredCount,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _propertyCount = propertyCount,
         _totalValue = totalValue,
@@ -27,6 +28,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         _capitalGainSinceJoining = capitalGainSinceJoining,
         _avgMonthlyRent = avgMonthlyRent,
         _mortgageEnteredCount = mortgageEnteredCount,
+        _purchasePriceEnteredCount = purchasePriceEnteredCount,
         super(firestoreUtilData);
 
   // "propertyCount" field.
@@ -106,6 +108,16 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
 
   bool hasMortgageEnteredCount() => _mortgageEnteredCount != null;
 
+  // "purchasePriceEnteredCount" field.
+  int? _purchasePriceEnteredCount;
+  int get purchasePriceEnteredCount => _purchasePriceEnteredCount ?? 0;
+  set purchasePriceEnteredCount(int? val) => _purchasePriceEnteredCount = val;
+
+  void incrementPurchasePriceEnteredCount(int amount) =>
+      purchasePriceEnteredCount = purchasePriceEnteredCount + amount;
+
+  bool hasPurchasePriceEnteredCount() => _purchasePriceEnteredCount != null;
+
   static PortfolioSnapshotStruct fromMap(Map<String, dynamic> data) =>
       PortfolioSnapshotStruct(
         propertyCount: castToType<int>(data['propertyCount']),
@@ -117,6 +129,8 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
             castToType<double>(data['capitalGainSinceJoining']),
         avgMonthlyRent: castToType<double>(data['avgMonthlyRent']),
         mortgageEnteredCount: castToType<int>(data['mortgageEnteredCount']),
+        purchasePriceEnteredCount:
+            castToType<int>(data['purchasePriceEnteredCount']),
       );
 
   static PortfolioSnapshotStruct? maybeFromMap(dynamic data) => data is Map
@@ -132,6 +146,7 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         'capitalGainSinceJoining': _capitalGainSinceJoining,
         'avgMonthlyRent': _avgMonthlyRent,
         'mortgageEnteredCount': _mortgageEnteredCount,
+        'purchasePriceEnteredCount': _purchasePriceEnteredCount,
       }.withoutNulls;
 
   @override
@@ -166,6 +181,10 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         ),
         'mortgageEnteredCount': serializeParam(
           _mortgageEnteredCount,
+          ParamType.int,
+        ),
+        'purchasePriceEnteredCount': serializeParam(
+          _purchasePriceEnteredCount,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -213,6 +232,11 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        purchasePriceEnteredCount: deserializeParam(
+          data['purchasePriceEnteredCount'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -228,7 +252,8 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         avgYield == other.avgYield &&
         capitalGainSinceJoining == other.capitalGainSinceJoining &&
         avgMonthlyRent == other.avgMonthlyRent &&
-        mortgageEnteredCount == other.mortgageEnteredCount;
+        mortgageEnteredCount == other.mortgageEnteredCount &&
+        purchasePriceEnteredCount == other.purchasePriceEnteredCount;
   }
 
   @override
@@ -240,7 +265,8 @@ class PortfolioSnapshotStruct extends FFFirebaseStruct {
         avgYield,
         capitalGainSinceJoining,
         avgMonthlyRent,
-        mortgageEnteredCount
+        mortgageEnteredCount,
+        purchasePriceEnteredCount
       ]);
 }
 
@@ -253,6 +279,7 @@ PortfolioSnapshotStruct createPortfolioSnapshotStruct({
   double? capitalGainSinceJoining,
   double? avgMonthlyRent,
   int? mortgageEnteredCount,
+  int? purchasePriceEnteredCount,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -267,6 +294,7 @@ PortfolioSnapshotStruct createPortfolioSnapshotStruct({
       capitalGainSinceJoining: capitalGainSinceJoining,
       avgMonthlyRent: avgMonthlyRent,
       mortgageEnteredCount: mortgageEnteredCount,
+      purchasePriceEnteredCount: purchasePriceEnteredCount,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

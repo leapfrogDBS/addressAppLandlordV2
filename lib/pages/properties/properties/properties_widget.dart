@@ -665,7 +665,7 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                             text: FFLocalizations
                                                                     .of(context)
                                                                 .getText(
-                                                              'q3sutfu7' /* Across  */,
+                                                              '6a5yxxp9' /* Across  */,
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
@@ -710,7 +710,7 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                                             text: FFLocalizations
                                                                     .of(context)
                                                                 .getText(
-                                                              '2ip8wfgn' /*  properties */,
+                                                              'j1al6h1c' /*  properties */,
                                                             ),
                                                             style: TextStyle(),
                                                           )
@@ -1256,110 +1256,399 @@ class _PropertiesWidgetState extends State<PropertiesWidget> {
                                               ),
                                             ],
                                           ),
-                                          Text(
-                                            valueOrDefault<String>(
-                                              formatNumber(
-                                                _model.portfolioSnapshot
-                                                    ?.capitalGainSinceJoining,
-                                                formatType: FormatType.decimal,
-                                                decimalType:
-                                                    DecimalType.automatic,
-                                                currency: '£',
-                                              ),
-                                              '0',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  font: GoogleFonts.dmSans(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyLarge
-                                                            .fontStyle,
-                                                  ),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
+                                          Builder(
+                                            builder: (context) {
+                                              if ((_model.portfolioSnapshot!
+                                                          .propertyCount >
+                                                      0) &&
+                                                  (_model.portfolioSnapshot!
+                                                          .purchasePriceEnteredCount <=
+                                                      0)) {
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              '2wxpvnqu' /* Add purchase prices to see cap... */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 10.0)),
+                                                );
+                                              } else if ((_model
+                                                          .portfolioSnapshot!
+                                                          .purchasePriceEnteredCount >
+                                                      0) &&
+                                                  (_model.portfolioSnapshot!
+                                                          .purchasePriceEnteredCount <
+                                                      _model.portfolioSnapshot!
+                                                          .propertyCount)) {
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        formatNumber(
+                                                          _model
+                                                              .portfolioSnapshot
+                                                              ?.capitalGainSinceJoining,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .automatic,
+                                                          currency: '£',
+                                                        ),
+                                                        '0',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
                                                           .bodyLarge
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                          RichText(
-                                            textScaler: MediaQuery.of(context)
-                                                .textScaler,
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: FFLocalizations.of(
-                                                          context)
-                                                      .getText(
-                                                    'tp3j5wux' /*  */,
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.dmSans(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .dmSans(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontStyle,
+                                                            ),
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                    RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'dggd5fq5' /* Across  */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              _model
+                                                                  .portfolioSnapshot
+                                                                  ?.purchasePriceEnteredCount
+                                                                  ?.toString(),
+                                                              '0',
+                                                            ),
+                                                            style: TextStyle(),
+                                                          ),
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'hc26bchg' /*  of your  */,
+                                                            ),
+                                                            style: TextStyle(),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              _model
+                                                                  .portfolioSnapshot
+                                                                  ?.propertyCount
+                                                                  ?.toString(),
+                                                              '0',
+                                                            ),
+                                                            style: TextStyle(),
+                                                          ),
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'qpc0vwz4' /*  properties  */,
+                                                            ),
+                                                            style: TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
                                                       ),
-                                                )
-                                              ],
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.dmSans(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelSmall
-                                                                  .fontStyle,
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 10.0)),
+                                                );
+                                              } else {
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      valueOrDefault<String>(
+                                                        formatNumber(
+                                                          _model
+                                                              .portfolioSnapshot
+                                                              ?.capitalGainSinceJoining,
+                                                          formatType: FormatType
+                                                              .decimal,
+                                                          decimalType:
+                                                              DecimalType
+                                                                  .automatic,
+                                                          currency: '£',
                                                         ),
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelSmall
-                                                                .fontStyle,
+                                                        '0',
                                                       ),
-                                            ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyLarge
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .dmSans(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge
+                                                                      .fontStyle,
+                                                            ),
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                    RichText(
+                                                      textScaler:
+                                                          MediaQuery.of(context)
+                                                              .textScaler,
+                                                      text: TextSpan(
+                                                        children: [
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              'psy7jsk8' /* Across  */,
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                          ),
+                                                          TextSpan(
+                                                            text:
+                                                                valueOrDefault<
+                                                                    String>(
+                                                              _model
+                                                                  .portfolioSnapshot
+                                                                  ?.propertyCount
+                                                                  ?.toString(),
+                                                              '0',
+                                                            ),
+                                                            style: TextStyle(),
+                                                          ),
+                                                          TextSpan(
+                                                            text: FFLocalizations
+                                                                    .of(context)
+                                                                .getText(
+                                                              '90omwv43' /*  properties */,
+                                                            ),
+                                                            style: TextStyle(),
+                                                          )
+                                                        ],
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelSmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .dmSans(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelSmall
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ].divide(
+                                                      SizedBox(height: 10.0)),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ].divide(SizedBox(height: 10.0)),
                                       ),
