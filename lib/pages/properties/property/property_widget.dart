@@ -4237,8 +4237,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         if ((propertyPropertiesRecord
-                                                                    .purchasePrice !=
-                                                                null) &&
+                                                                    .purchasePrice >
+                                                                0.0) &&
                                                             !_model
                                                                 .updatingPurchaseInfo)
                                                           Padding(
@@ -4570,7 +4570,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                           .purchasePriceTextController
                                                                           .text),
                                                                     ));
-                                                                    _model.updatingMortgageEstimate =
+                                                                    _model.updatingPurchaseInfo =
                                                                         false;
                                                                     safeSetState(
                                                                         () {});
