@@ -130,7 +130,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                         ),
                         Text(
                           FFLocalizations.of(context).getText(
-                            'b6ix3dg2' /* Reitrement goals */,
+                            'b6ix3dg2' /* Retirement goals */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).titleMedium.override(

@@ -389,9 +389,10 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                 Text(
                                   formatNumber(
                                     widget!.dailyGain,
-                                    formatType: FormatType.decimal,
-                                    decimalType: DecimalType.automatic,
+                                    formatType: FormatType.custom,
                                     currency: '£',
+                                    format: ' #,##0.00',
+                                    locale: 'en_GB',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .labelLarge

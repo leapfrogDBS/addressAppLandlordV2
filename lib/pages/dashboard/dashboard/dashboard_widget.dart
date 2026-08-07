@@ -1499,7 +1499,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     updateCallback: () => safeSetState(() {}),
                                     child: OffersCTAWidget(
                                       message:
-                                          'Our friendly team are available to discsuss your investment options. ',
+                                          'Our friendly team are available to discuss your investment options. ',
                                       buttonLabel: 'Talk to us',
                                     ),
                                   ),

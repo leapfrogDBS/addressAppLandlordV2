@@ -369,9 +369,9 @@ class _StatsCapitalWidgetState extends State<StatsCapitalWidget> {
                                       widget!.projections?.dailyCapitalGain
                                           ?.elementAtOrNull(
                                               widget!.selectedYearIndex),
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.automatic,
-                                      currency: '£',
+                                      formatType: FormatType.custom,
+                                      format: '#,##0.00 ',
+                                      locale: 'en_GB',
                                     ),
                                     '0',
                                   ),

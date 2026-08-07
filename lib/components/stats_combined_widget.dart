@@ -174,10 +174,10 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                                       .projections!.rentalProfit
                                                       .elementAtOrNull(widget!
                                                           .selectedYearIndex!)!),
-                                              formatType: FormatType.decimal,
-                                              decimalType:
-                                                  DecimalType.automatic,
+                                              formatType: FormatType.custom,
                                               currency: '£',
+                                              format: '#,##0.00 ',
+                                              locale: 'en_GB',
                                             ),
                                             '0',
                                           ),
@@ -299,9 +299,10 @@ class _StatsCombinedWidgetState extends State<StatsCombinedWidget> {
                                                 .projections?.combinedDailyGain
                                                 ?.elementAtOrNull(
                                                     widget!.selectedYearIndex!),
-                                            formatType: FormatType.decimal,
-                                            decimalType: DecimalType.automatic,
+                                            formatType: FormatType.custom,
                                             currency: '£',
+                                            format: '#,##0.00 ',
+                                            locale: 'en_GB',
                                           ),
                                           '0',
                                         ),

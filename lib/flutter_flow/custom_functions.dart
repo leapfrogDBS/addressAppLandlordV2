@@ -982,6 +982,8 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
   double totalEquity = 0.0;
   double annualRent = 0.0;
   double capitalGain = 0.0;
+  double annualRentForYield = 0.0;
+  double totalPurchaseForYield = 0.0;
   int mortgageEnteredCount = 0;
   int purchasePriceEnteredCount = 0;
 
@@ -1002,6 +1004,8 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
 
     if (purchase > 0) {
       purchasePriceEnteredCount += 1;
+      totalPurchaseForYield += purchase;
+      annualRentForYield += rent * 12.0;
     }
 
     // Capital gain: purchase price first, then joining valuation, else skip
@@ -1011,7 +1015,9 @@ PortfolioSnapshotStruct? aggregatePortfolioFromProperties(
     }
   }
 
-  final avgYieldRaw = totalValue > 0 ? (annualRent / totalValue) * 100.0 : 0.0;
+  final avgYieldRaw = totalPurchaseForYield > 0
+      ? (annualRentForYield / totalPurchaseForYield) * 100.0
+      : 0.0;
   final avgYield = double.parse(avgYieldRaw.toStringAsFixed(2));
 
   return createPortfolioSnapshotStruct(

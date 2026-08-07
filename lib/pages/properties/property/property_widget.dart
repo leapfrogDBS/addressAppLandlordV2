@@ -941,8 +941,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 ),
                                                               ),
                                                               if (propertyPropertiesRecord
-                                                                      .purchasePrice !=
-                                                                  null)
+                                                                      .purchasePrice >
+                                                                  0.0)
                                                                 Align(
                                                                   alignment:
                                                                       AlignmentDirectional(
@@ -4489,17 +4489,21 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                       ),
                                                                 ),
                                                                 Text(
-                                                                  formatNumber(
-                                                                    propertyPropertiesRecord
-                                                                        .purchasePrice,
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .automatic,
-                                                                    currency:
-                                                                        '£',
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    formatNumber(
+                                                                      propertyPropertiesRecord
+                                                                          .purchasePrice,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .decimal,
+                                                                      decimalType:
+                                                                          DecimalType
+                                                                              .automatic,
+                                                                      currency:
+                                                                          '£',
+                                                                    ),
+                                                                    '0',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -4567,11 +4571,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   width: 10.0)),
                                                             ),
                                                           ),
-                                                        if ((propertyPropertiesRecord
-                                                                    .purchasePrice <=
-                                                                0.0) ||
-                                                            _model
-                                                                .updatingPurchaseInfo)
+                                                        if (_model
+                                                            .updatingPurchaseInfo)
                                                           Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -4628,9 +4629,15 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     controller:
                                                                         _model.purchasePriceTextController ??=
                                                                             TextEditingController(
-                                                                      text: propertyPropertiesRecord
-                                                                          .purchasePrice
-                                                                          .toString(),
+                                                                      text:
+                                                                          formatNumber(
+                                                                        propertyPropertiesRecord
+                                                                            .purchasePrice,
+                                                                        formatType:
+                                                                            FormatType.decimal,
+                                                                        decimalType:
+                                                                            DecimalType.automatic,
+                                                                      ),
                                                                     ),
                                                                     focusNode:
                                                                         _model
@@ -4758,81 +4765,129 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await widget!
-                                                                        .propID!
-                                                                        .update(
-                                                                            createPropertiesRecordData(
-                                                                      purchasePrice: double.tryParse(_model
-                                                                          .purchasePriceTextController
-                                                                          .text),
-                                                                    ));
-                                                                    _model.updatingPurchaseInfo =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  text: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'ijjqgn84' /* Save */,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        40.0,
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await widget!
+                                                                            .propID!
+                                                                            .update(createPropertiesRecordData(
+                                                                          purchasePrice: double.tryParse(_model
+                                                                              .purchasePriceTextController
+                                                                              .text),
+                                                                        ));
+                                                                        _model.updatingPurchaseInfo =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      text: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'ijjqgn84' /* Save */,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                              color: Colors.white,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                            ),
+                                                                        elevation:
+                                                                            0.0,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        _model.updatingPurchaseInfo =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      text: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        '2oigkjba' /* Cancel */,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            16.0,
+                                                                            0.0,
+                                                                            16.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                              color: Colors.white,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                            ),
+                                                                        elevation:
+                                                                            0.0,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ].divide(SizedBox(
+                                                                    width:
+                                                                        10.0)),
                                                               ),
                                                             ].divide(SizedBox(
                                                                 height: 10.0)),
@@ -4859,7 +4914,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   FFLocalizations.of(
                                                                           context)
                                                                       .getText(
-                                                                    '66of62p4' /* Estimated mortage remaining */,
+                                                                    '66of62p4' /* Estimated mortgage remaining */,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -4963,11 +5018,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   width: 10.0)),
                                                             ),
                                                           ),
-                                                        if ((propertyPropertiesRecord
-                                                                    .mortgageRemaining ==
-                                                                null) ||
-                                                            _model
-                                                                .updatingMortgageEstimate)
+                                                        if (_model
+                                                            .updatingMortgageEstimate)
                                                           Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
@@ -5024,9 +5076,15 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     controller:
                                                                         _model.mortgageRemainingTextController ??=
                                                                             TextEditingController(
-                                                                      text: propertyPropertiesRecord
-                                                                          .mortgageRemaining
-                                                                          .toString(),
+                                                                      text:
+                                                                          formatNumber(
+                                                                        propertyPropertiesRecord
+                                                                            .mortgageRemaining,
+                                                                        formatType:
+                                                                            FormatType.decimal,
+                                                                        decimalType:
+                                                                            DecimalType.automatic,
+                                                                      ),
                                                                     ),
                                                                     focusNode:
                                                                         _model
@@ -5154,83 +5212,131 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        -1.0,
-                                                                        0.0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await widget!
-                                                                        .propID!
-                                                                        .update(
-                                                                            createPropertiesRecordData(
-                                                                      mortgageRemaining: double.tryParse(_model
-                                                                          .mortgageRemainingTextController
-                                                                          .text),
-                                                                      mortgageEntered:
-                                                                          true,
-                                                                    ));
-                                                                    _model.updatingMortgageEstimate =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  text: FFLocalizations.of(
-                                                                          context)
-                                                                      .getText(
-                                                                    'q9j1iivt' /* Save */,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    height:
-                                                                        40.0,
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        await widget!
+                                                                            .propID!
+                                                                            .update(createPropertiesRecordData(
+                                                                          mortgageRemaining: double.tryParse(_model
+                                                                              .mortgageRemainingTextController
+                                                                              .text),
+                                                                          mortgageEntered:
+                                                                              true,
+                                                                        ));
+                                                                        _model.updatingMortgageEstimate =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      text: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'q9j1iivt' /* Save */,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             0.0,
                                                                             16.0,
                                                                             0.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                              color: Colors.white,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                            ),
+                                                                        elevation:
+                                                                            0.0,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                ),
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        _model.updatingMortgageEstimate =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      },
+                                                                      text: FFLocalizations.of(
+                                                                              context)
+                                                                          .getText(
+                                                                        'kdkrxwx2' /* Cancel */,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            16.0,
+                                                                            0.0,
+                                                                            16.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              font: GoogleFonts.dmSans(
+                                                                                fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                              ),
+                                                                              color: Colors.white,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                                                            ),
+                                                                        elevation:
+                                                                            0.0,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(8.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ].divide(SizedBox(
+                                                                    width:
+                                                                        10.0)),
                                                               ),
                                                             ].divide(SizedBox(
                                                                 height: 10.0)),

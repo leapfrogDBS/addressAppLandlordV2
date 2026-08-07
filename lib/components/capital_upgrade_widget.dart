@@ -489,99 +489,37 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                         ),
                                   ),
                                 ),
-                                Builder(
-                                  builder: (context) {
-                                    if (valueOrDefault(
-                                            currentUserDocument
-                                                ?.availableCapital,
-                                            0.0) <=
-                                        0.0) {
-                                      return Text(
-                                        formatNumber(
-                                          _model.capitalAvailableToInvest!
-                                              .ownCapital,
-                                          formatType: FormatType.decimal,
-                                          decimalType: DecimalType.automatic,
-                                          currency: '£',
+                                Text(
+                                  formatNumber(
+                                    _model.capitalAvailableToInvest!.ownCapital,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.automatic,
+                                    currency: '£',
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .titleLarge
+                                      .override(
+                                        font: GoogleFonts.dmSans(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleLarge
+                                                  .fontStyle,
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
                                             .titleLarge
-                                            .override(
-                                              font: GoogleFonts.dmSans(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleLarge
-                                                      .fontStyle,
-                                            ),
-                                      );
-                                    } else {
-                                      return InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                              ProfileWidget.routeName);
-                                        },
-                                        child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            '798sr2s4' /* Enter available capital */,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge
-                                              .override(
-                                                font: GoogleFonts.dmSans(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLarge
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleLarge
-                                                          .fontStyle,
-                                                ),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                fontSize: 10.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .fontStyle,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
-                                        ),
-                                      );
-                                    }
-                                  },
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .fontStyle,
+                                      ),
                                 ),
                               ].divide(SizedBox(height: 6.0)),
                             ),
