@@ -3592,7 +3592,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                               ),
                                                                               Builder(
                                                                                 builder: (context) {
-                                                                                  if ((propertyPropertiesRecord.purchasePrice != null) && propertyPropertiesRecord.mortgageEntered) {
+                                                                                  if ((propertyPropertiesRecord.purchasePrice > 0.0) && propertyPropertiesRecord.mortgageEntered) {
                                                                                     return RichText(
                                                                                       textScaler: MediaQuery.of(context).textScaler,
                                                                                       text: TextSpan(
@@ -3646,7 +3646,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                                             ),
                                                                                       ),
                                                                                     );
-                                                                                  } else if ((propertyPropertiesRecord.purchasePrice != null) && !propertyPropertiesRecord.mortgageEntered) {
+                                                                                  } else if ((propertyPropertiesRecord.purchasePrice > 0.0) && !propertyPropertiesRecord.mortgageEntered) {
                                                                                     return RichText(
                                                                                       textScaler: MediaQuery.of(context).textScaler,
                                                                                       text: TextSpan(
@@ -3681,7 +3681,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                                             ),
                                                                                       ),
                                                                                     );
-                                                                                  } else if (propertyPropertiesRecord.mortgageEntered && (propertyPropertiesRecord.purchasePrice == null)) {
+                                                                                  } else if (propertyPropertiesRecord.mortgageEntered && (propertyPropertiesRecord.purchasePrice <= 0.0)) {
                                                                                     return RichText(
                                                                                       textScaler: MediaQuery.of(context).textScaler,
                                                                                       text: TextSpan(
@@ -4568,8 +4568,8 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             ),
                                                           ),
                                                         if ((propertyPropertiesRecord
-                                                                    .purchasePrice ==
-                                                                null) ||
+                                                                    .purchasePrice <=
+                                                                0.0) ||
                                                             _model
                                                                 .updatingPurchaseInfo)
                                                           Column(

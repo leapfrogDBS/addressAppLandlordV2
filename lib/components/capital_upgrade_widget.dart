@@ -494,8 +494,8 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                                     if (valueOrDefault(
                                             currentUserDocument
                                                 ?.availableCapital,
-                                            0.0) !=
-                                        null) {
+                                            0.0) <=
+                                        0.0) {
                                       return Text(
                                         formatNumber(
                                           _model.capitalAvailableToInvest!
