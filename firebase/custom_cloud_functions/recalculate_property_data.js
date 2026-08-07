@@ -103,6 +103,15 @@ async function computePropertyProjectionCore(args) {
   if (!ownerId) throw new Error("Property ownerID missing");
   const userRef = ownerId ? db.collection("users").doc(ownerId) : null;
 
+  const slotReserved = p._projectionSlotReserved === true;
+
+  // Clear marker first (do NOT add this field to fieldsToWatch)
+  if (slotReserved) {
+    await propRef.update({
+      _projectionSlotReserved: admin.firestore.FieldValue.delete(),
+    });
+  }
+
   if (userRef) {
     const uSnap = await userRef.get();
     const uData = uSnap.exists ? uSnap.data() || {} : {};
@@ -111,12 +120,27 @@ async function computePropertyProjectionCore(args) {
         "Projection skipped: completedOnboarding is false (onboarding not finished)",
         { propertyId, ownerId },
       );
+      // Batch poke already counted this slot — still consume it
+      if (slotReserved) {
+        await db.runTransaction(async (t) => {
+          const u = await t.get(userRef);
+          const cur = Number(u.get("calculatingProjectionsCount") || 0);
+          const next = Math.max(0, cur - 1);
+          t.update(userRef, {
+            calculatingProjectionsCount: next,
+            calculatingProjections: next > 0 ? true : false,
+            lastProjectionCompletedAt:
+              admin.firestore.FieldValue.serverTimestamp(),
+          });
+        });
+      }
       return { skipped: true };
     }
   }
 
-  // START: atomic increment + set flag
-  if (userRef) {
+  // START: +1 only for single-property runs.
+  // Batch runs were already counted by the poke (_projectionSlotReserved).
+  if (userRef && !slotReserved) {
     await db.runTransaction(async (t) => {
       const u = await t.get(userRef);
       const cur = Number(u.get("calculatingProjectionsCount") || 0);

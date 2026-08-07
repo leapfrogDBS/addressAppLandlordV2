@@ -43,28 +43,38 @@ exports.onUserOnboardingCompletePoke = functions
     ]);
 
     const seen = new Set();
-    const updates = [];
+    const propRefs = [];
     [s1, s2].forEach((snap) =>
       snap.forEach((doc) => {
         if (seen.has(doc.id)) return;
         seen.add(doc.id);
-        updates.push(
-          db.collection("properties").doc(doc.id).update({
-            _recalcTrigger: admin.firestore.FieldValue.serverTimestamp(),
-          }),
-        );
+        propRefs.push(db.collection("properties").doc(doc.id));
       }),
     );
-
+    const n = propRefs.length;
     functions.logger.info("[onboarding-poke] triggering properties", {
       userId,
-      count: updates.length,
+      count: n,
     });
-
-    if (updates.length) {
-      await Promise.all(updates);
+    if (n > 0) {
+      // Seed counter for the whole batch BEFORE poking properties
+      await userRef.set(
+        {
+          calculatingProjections: true,
+          calculatingProjectionsCount: admin.firestore.FieldValue.increment(n),
+          lastProjectionStartedAt: admin.firestore.FieldValue.serverTimestamp(),
+        },
+        { merge: true },
+      );
+      await Promise.all(
+        propRefs.map((ref) =>
+          ref.update({
+            _recalcTrigger: admin.firestore.FieldValue.serverTimestamp(),
+            _projectionSlotReserved: true,
+          }),
+        ),
+      );
     }
-
     await userRef.set(
       {
         lastOnboardingProjectionsPokeAt:
@@ -72,6 +82,5 @@ exports.onUserOnboardingCompletePoke = functions
       },
       { merge: true },
     );
-
     return null;
   });
