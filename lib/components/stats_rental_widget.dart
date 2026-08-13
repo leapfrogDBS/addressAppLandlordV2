@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -561,7 +562,18 @@ class _StatsRentalWidgetState extends State<StatsRentalWidget> {
                                               .getText(
                                             'fqrrk5gp' /* Add purchase price to see yiel... */,
                                           ),
-                                          style: TextStyle(),
+                                          style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                          mouseCursor: SystemMouseCursors.click,
+                                          recognizer: TapGestureRecognizer()
+                                            ..onTap = () async {
+                                              await actions.scrollToWidgetKey(
+                                                context,
+                                                'purchasePriceForm',
+                                              );
+                                            },
                                         )
                                       ],
                                       style: FlutterFlowTheme.of(context)
