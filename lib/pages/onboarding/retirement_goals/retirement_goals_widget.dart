@@ -153,7 +153,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                         ),
                         Text(
                           FFLocalizations.of(context).getText(
-                            'vk98xigq' /* Help us understand your retire... */,
+                            'vk98xigq' /* We’ve suggested some targets b... */,
                           ),
                           textAlign: TextAlign.center,
                           style:

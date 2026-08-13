@@ -126,6 +126,30 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                 .fontStyle,
                           ),
                     ),
+                    Text(
+                      key: ValueKey('onboardingPageTitle'),
+                      FFLocalizations.of(context).getText(
+                        '98kp9jql' /* We use your date of birth to w... */,
+                      ),
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                            font: GoogleFonts.dmSans(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .fontStyle,
+                            ),
+                            fontSize: 12.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .fontStyle,
+                          ),
+                    ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -317,9 +341,13 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                 onPressed: () async {
                                   final _datePickedDate = await showDatePicker(
                                     context: context,
-                                    initialDate: getCurrentTimestamp,
+                                    initialDate:
+                                        DateTime.fromMicrosecondsSinceEpoch(
+                                            315532800000000),
                                     firstDate: DateTime(1900),
-                                    lastDate: getCurrentTimestamp,
+                                    lastDate:
+                                        DateTime.fromMicrosecondsSinceEpoch(
+                                            315532800000000),
                                     builder: (context, child) {
                                       return wrapInMaterialDatePickerTheme(
                                         context,
@@ -379,7 +407,9 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                     });
                                   } else if (_model.datePicked != null) {
                                     safeSetState(() {
-                                      _model.datePicked = getCurrentTimestamp;
+                                      _model.datePicked =
+                                          DateTime.fromMicrosecondsSinceEpoch(
+                                              315532800000000);
                                     });
                                   }
                                   safeSetState(() {

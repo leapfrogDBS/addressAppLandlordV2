@@ -1100,3 +1100,12 @@ double? propertyRoiPct(
   final roi = (income / investment) * 100.0;
   return double.parse(roi.toStringAsFixed(2));
 }
+
+double? parsePositiveAmount(String? raw) {
+  if (raw == null) return null;
+  final cleaned = raw.replaceAll(RegExp(r'[^0-9.]'), '');
+  if (cleaned.isEmpty) return null;
+  final n = double.tryParse(cleaned);
+  if (n == null || n <= 0) return null;
+  return n;
+}

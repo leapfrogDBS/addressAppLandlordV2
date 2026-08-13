@@ -391,7 +391,7 @@ class _LiveEarningsDashWidgetState extends State<LiveEarningsDashWidget> {
                                     widget!.dailyGain,
                                     formatType: FormatType.custom,
                                     currency: '£',
-                                    format: ' #,##0.00',
+                                    format: '#,##0.00',
                                     locale: 'en_GB',
                                   ),
                                   style: FlutterFlowTheme.of(context)

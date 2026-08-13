@@ -146,33 +146,59 @@ class _RedirectPageWidgetState extends State<RedirectPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Container(
                       decoration: BoxDecoration(),
-                      child: Visibility(
-                        visible: _model.isCalculatingProjections,
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            '164a2u9a' /* Calculating projections for ev... */,
-                          ),
-                          textAlign: TextAlign.center,
-                          style: FlutterFlowTheme.of(context)
-                              .headlineLarge
-                              .override(
-                                font: GoogleFonts.dmSans(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .headlineLarge
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .headlineLarge
-                                      .fontStyle,
-                                ),
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineLarge
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineLarge
-                                    .fontStyle,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          if (_model.isCalculatingProjections)
+                            Text(
+                              FFLocalizations.of(context).getText(
+                                'ekx6nozf' /* Building your forecasts */,
                               ),
-                        ),
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
+                            ),
+                          if (_model.isCalculatingProjections)
+                            Text(
+                              FFLocalizations.of(context).getText(
+                                'ngwa00t3' /* We’ve taken your properties an... */,
+                              ),
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineLarge
+                                  .override(
+                                    font: GoogleFonts.dmSans(
+                                      fontWeight: FontWeight.normal,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineLarge
+                                          .fontStyle,
+                                    ),
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineLarge
+                                        .fontStyle,
+                                  ),
+                            ),
+                        ].divide(SizedBox(height: 10.0)),
                       ),
                     ),
                   ),
