@@ -4822,7 +4822,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                               .propID!
                                                                               .update(createPropertiesRecordData(
                                                                             purchasePrice:
-                                                                                double.tryParse(_model.purchasePriceTextController.text),
+                                                                                functions.parsePositiveAmount(_model.purchasePriceTextController.text),
                                                                           ));
                                                                           _model.updatingPurchaseInfo =
                                                                               false;
