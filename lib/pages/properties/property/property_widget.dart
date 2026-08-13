@@ -5323,7 +5323,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                               .propID!
                                                                               .update(createPropertiesRecordData(
                                                                             mortgageRemaining:
-                                                                                double.tryParse(_model.mortgageRemainingTextController.text),
+                                                                                functions.parsePositiveAmount(_model.mortgageRemainingTextController.text),
                                                                             mortgageEntered:
                                                                                 true,
                                                                           ));
