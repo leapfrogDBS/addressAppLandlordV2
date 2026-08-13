@@ -4571,7 +4571,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                   width: 10.0)),
                                                             ),
                                                           ),
-                                                        if ((_model.output!
+                                                        if ((propertyPropertiesRecord
                                                                     .purchasePrice <=
                                                                 0.0) ||
                                                             _model
