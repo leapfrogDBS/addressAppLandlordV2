@@ -4645,8 +4645,6 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                             _model
                                                                 .updatingPurchaseInfo)
                                                           Column(
-                                                            key: ValueKey(
-                                                                'purchasePriceForm'),
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
@@ -5159,8 +5157,6 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                     .mortgageEntered ==
                                                                 false))
                                                           Column(
-                                                            key: ValueKey(
-                                                                'mortgageForm'),
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
@@ -5168,6 +5164,17 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                                 CrossAxisAlignment
                                                                     .start,
                                                             children: [
+                                                              Container(
+                                                                width: 1.0,
+                                                                height: 1.0,
+                                                                child: custom_widgets
+                                                                    .ScrollAnchor(
+                                                                  width: 1.0,
+                                                                  height: 1.0,
+                                                                  anchorName:
+                                                                      'mortgageForm',
+                                                                ),
+                                                              ),
                                                               Text(
                                                                 FFLocalizations.of(
                                                                         context)

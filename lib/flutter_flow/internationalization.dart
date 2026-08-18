@@ -7232,7 +7232,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '96gxjalm': {
       'en':
-          'Based on a 75% loan-to-value mortgage. Your actual borrowing capacity may vary.',
+          'Based on a 75% loan-to-value mortgage. Your actual borrowing capacity may vary.\nAmounts below £15,000 for each property aren\'t shown due to financial viability to remortgage costs',
       'ar': '',
       'bn': '',
       'de': '',

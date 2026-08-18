@@ -345,9 +345,7 @@ class _PersonalDetailsWidgetState extends State<PersonalDetailsWidget> {
                                         DateTime.fromMicrosecondsSinceEpoch(
                                             315532800000000),
                                     firstDate: DateTime(1900),
-                                    lastDate:
-                                        DateTime.fromMicrosecondsSinceEpoch(
-                                            315532800000000),
+                                    lastDate: DateTime(2050),
                                     builder: (context, child) {
                                       return wrapInMaterialDatePickerTheme(
                                         context,
