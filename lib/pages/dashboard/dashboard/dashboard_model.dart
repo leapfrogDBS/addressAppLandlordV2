@@ -38,10 +38,18 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   int? propertyCountState = 0;
 
+  PortfolioSnapshotStruct? portfolioSnapshot;
+  void updatePortfolioSnapshotStruct(
+      Function(PortfolioSnapshotStruct) updateFn) {
+    updateFn(portfolioSnapshot ??= PortfolioSnapshotStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   List<PropertyProjectionsRecord>? projectionDocs;
+  // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
+  List<PropertiesRecord>? loadedProperties;
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   int? propertyCount;
   // Model for SlideNavigation component.
