@@ -1874,7 +1874,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ہیلو ورلڈ',
       'zh_Hant': '你好世界',
     },
-    'ki935zfe': {
+    'xfo75rz4': {
       'en': 'Hello World',
       'ar': 'مرحبا بالعالم',
       'bn': 'হ্যালো ওয়ার্ল্ড',
@@ -1928,7 +1928,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ہیلو ورلڈ',
       'zh_Hant': '你好世界',
     },
-    'xfo75rz4': {
+    'ki935zfe': {
       'en': 'Hello World',
       'ar': 'مرحبا بالعالم',
       'bn': 'হ্যালো ওয়ার্ল্ড',
@@ -2072,7 +2072,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ہیلو ورلڈ',
       'zh_Hant': '你好世界',
     },
-    'jar8ezo1': {
+    'ycl3up8s': {
       'en': 'Hello World',
       'ar': 'مرحبا بالعالم',
       'bn': 'হ্যালো ওয়ার্ল্ড',
@@ -2126,7 +2126,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': 'ہیلو ورلڈ',
       'zh_Hant': '你好世界',
     },
-    'ycl3up8s': {
+    'jar8ezo1': {
       'en': 'Hello World',
       'ar': 'مرحبا بالعالم',
       'bn': 'হ্যালো ওয়ার্ল্ড',

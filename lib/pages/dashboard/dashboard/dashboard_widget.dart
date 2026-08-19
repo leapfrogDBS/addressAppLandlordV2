@@ -65,7 +65,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         );
         _model.pvTotals =
             functions.aggregateAtRetirement(_model.projectionDocs!.toList());
-        _model.canShowDashboard = true;
         safeSetState(() {});
         _model.loadedProperties = await queryPropertiesRecordOnce(
           queryBuilder: (propertiesRecord) => propertiesRecord.where(
@@ -83,6 +82,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           ),
         );
         _model.propertyCountState = _model.propertyCount;
+        _model.canShowDashboard = true;
         safeSetState(() {});
       } else {
         context.goNamed(RedirectPageWidget.routeName);
@@ -721,7 +721,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       '4ze7qdom' /* Portfolio Value  */,
                                                                     ),
                                                                     style:
-                                                                        TextStyle(),
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                    ),
                                                                   )
                                                                 ],
                                                                 style: FlutterFlowTheme.of(
@@ -758,7 +765,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               MainAxisSize.max,
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .start,
+                                                                  .spaceBetween,
                                                           children: [
                                                             Column(
                                                               mainAxisSize:
@@ -820,16 +827,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         text:
                                                                             formatNumber(
                                                                           _model
-                                                                              .pvTotals!
-                                                                              .capitalValue,
+                                                                              .portfolioSnapshot!
+                                                                              .totalValue,
                                                                           formatType:
-                                                                              FormatType.custom,
+                                                                              FormatType.decimal,
+                                                                          decimalType:
+                                                                              DecimalType.automatic,
                                                                           currency:
                                                                               '£',
-                                                                          format:
-                                                                              '#,##0.00',
-                                                                          locale:
-                                                                              'en_GB',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .titleLarge
@@ -858,7 +863,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                           ),
                                                                           fontSize:
-                                                                              12.0,
+                                                                              16.0,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
@@ -929,14 +934,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                         text:
                                                                             formatNumber(
                                                                           _model
-                                                                              .portfolioSnapshot!
-                                                                              .totalValue,
+                                                                              .pvTotals!
+                                                                              .capitalValue,
                                                                           formatType:
-                                                                              FormatType.decimal,
-                                                                          decimalType:
-                                                                              DecimalType.automatic,
+                                                                              FormatType.custom,
                                                                           currency:
                                                                               '£',
+                                                                          format:
+                                                                              '#,##0.00',
+                                                                          locale:
+                                                                              'en_GB',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .titleLarge
@@ -965,7 +972,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                           ),
                                                                           fontSize:
-                                                                              16.0,
+                                                                              12.0,
                                                                           letterSpacing:
                                                                               0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
@@ -1111,7 +1118,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               width: 6.0)),
                                                         ),
                                                       ].divide(SizedBox(
-                                                          height: 4.0)),
+                                                          height: 8.0)),
                                                     ),
                                                   ),
                                                 ],
@@ -1205,6 +1212,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
                                                             Column(
                                                               mainAxisSize:
@@ -1265,27 +1275,26 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       TextSpan(
                                                                         text:
                                                                             formatNumber(
-                                                                          functions.toMonthly(_model
-                                                                              .pvTotals
-                                                                              ?.annualRent),
+                                                                          _model
+                                                                              .portfolioSnapshot!
+                                                                              .avgMonthlyRent,
                                                                           formatType:
-                                                                              FormatType.custom,
+                                                                              FormatType.decimal,
+                                                                          decimalType:
+                                                                              DecimalType.automatic,
                                                                           currency:
                                                                               '£',
-                                                                          format:
-                                                                              '#,##0.00',
-                                                                          locale:
-                                                                              'en_GB',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .titleLarge
                                                                             .override(
                                                                               font: GoogleFonts.dmSans(
-                                                                                fontWeight: FlutterFlowTheme.of(context).titleLarge.fontWeight,
+                                                                                fontWeight: FontWeight.w500,
                                                                                 fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                               ),
+                                                                              fontSize: 16.0,
                                                                               letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).titleLarge.fontWeight,
+                                                                              fontWeight: FontWeight.w500,
                                                                               fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                             ),
                                                                       )
@@ -1374,15 +1383,17 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       TextSpan(
                                                                         text:
                                                                             formatNumber(
-                                                                          _model
-                                                                              .portfolioSnapshot!
-                                                                              .avgMonthlyRent,
+                                                                          functions.toMonthly(_model
+                                                                              .pvTotals
+                                                                              ?.annualRent),
                                                                           formatType:
-                                                                              FormatType.decimal,
-                                                                          decimalType:
-                                                                              DecimalType.automatic,
+                                                                              FormatType.custom,
                                                                           currency:
                                                                               '£',
+                                                                          format:
+                                                                              '#,##0.00',
+                                                                          locale:
+                                                                              'en_GB',
                                                                         ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .titleLarge
@@ -1553,7 +1564,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               width: 6.0)),
                                                         ),
                                                       ].divide(SizedBox(
-                                                          height: 4.0)),
+                                                          height: 8.0)),
                                                     ),
                                                   ),
                                                 ],
