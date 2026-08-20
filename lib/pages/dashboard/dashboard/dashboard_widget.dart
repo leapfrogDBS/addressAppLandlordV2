@@ -885,43 +885,68 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                RichText(
-                                                                  textScaler: MediaQuery.of(
-                                                                          context)
-                                                                      .textScaler,
-                                                                  text:
-                                                                      TextSpan(
-                                                                    children: [
-                                                                      TextSpan(
-                                                                        text: FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          '1yhmzhvz' /* At retirement */,
-                                                                        ),
-                                                                        style:
-                                                                            TextStyle(),
-                                                                      )
-                                                                    ],
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                          ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if (functions.isPastOrAtRetirement(
+                                                                            stackUsersRecord.dob,
+                                                                            stackUsersRecord.plannedRetirementAge) ??
+                                                                        false) {
+                                                                      return RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: FFLocalizations.of(context).getText(
+                                                                                '1yhmzhvz' /* At retirement */,
+                                                                              ),
+                                                                              style: TextStyle(),
+                                                                            )
+                                                                          ],
+                                                                          style: FlutterFlowTheme.of(context)
                                                                               .labelSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .fontStyle,
+                                                                              .override(
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                              ),
                                                                         ),
-                                                                  ),
+                                                                      );
+                                                                    } else {
+                                                                      return RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: FFLocalizations.of(context).getText(
+                                                                                '34188451' /* 5 year outlook */,
+                                                                              ),
+                                                                              style: TextStyle(),
+                                                                            )
+                                                                          ],
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  },
                                                                 ),
                                                                 RichText(
                                                                   textScaler: MediaQuery.of(
@@ -953,7 +978,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                               ),
                                                                               color: FlutterFlowTheme.of(context).primary,
-                                                                              fontSize: 20.0,
+                                                                              fontSize: 18.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.bold,
                                                                               fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
@@ -1332,46 +1357,68 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                RichText(
-                                                                  textScaler: MediaQuery.of(
-                                                                          context)
-                                                                      .textScaler,
-                                                                  text:
-                                                                      TextSpan(
-                                                                    children: [
-                                                                      TextSpan(
-                                                                        text: FFLocalizations.of(context)
-                                                                            .getText(
-                                                                          'wg2bym7m' /* At retirement */,
-                                                                        ),
-                                                                        style:
-                                                                            TextStyle(),
-                                                                      )
-                                                                    ],
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.dmSans(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).labelSmall.fontStyle,
-                                                                          ),
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                Builder(
+                                                                  builder:
+                                                                      (context) {
+                                                                    if (functions.isPastOrAtRetirement(
+                                                                            stackUsersRecord.dob,
+                                                                            stackUsersRecord.plannedRetirementAge) ??
+                                                                        false) {
+                                                                      return RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: FFLocalizations.of(context).getText(
+                                                                                'janl9mq0' /* At retirement */,
+                                                                              ),
+                                                                              style: TextStyle(),
+                                                                            )
+                                                                          ],
+                                                                          style: FlutterFlowTheme.of(context)
                                                                               .labelSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelSmall
-                                                                              .fontStyle,
+                                                                              .override(
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                              ),
                                                                         ),
-                                                                  ),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
+                                                                      );
+                                                                    } else {
+                                                                      return RichText(
+                                                                        textScaler:
+                                                                            MediaQuery.of(context).textScaler,
+                                                                        text:
+                                                                            TextSpan(
+                                                                          children: [
+                                                                            TextSpan(
+                                                                              text: FFLocalizations.of(context).getText(
+                                                                                '3sxc3a2b' /* 5 year outlook */,
+                                                                              ),
+                                                                              style: TextStyle(),
+                                                                            )
+                                                                          ],
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .labelSmall
+                                                                              .override(
+                                                                                font: GoogleFonts.dmSans(
+                                                                                  fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FlutterFlowTheme.of(context).labelSmall.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).labelSmall.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      );
+                                                                    }
+                                                                  },
                                                                 ),
                                                                 RichText(
                                                                   textScaler: MediaQuery.of(
@@ -1402,7 +1449,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,
                                                                               ),
-                                                                              fontSize: 20.0,
+                                                                              fontSize: 18.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.bold,
                                                                               fontStyle: FlutterFlowTheme.of(context).titleLarge.fontStyle,

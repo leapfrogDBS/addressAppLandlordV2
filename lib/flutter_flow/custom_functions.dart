@@ -1109,3 +1109,16 @@ double? parsePositiveAmount(String? raw) {
   if (n == null || n <= 0) return null;
   return n;
 }
+
+bool? isPastOrAtRetirement(
+  DateTime? dob,
+  int? plannedRetirementAge,
+) {
+  if (dob == null ||
+      plannedRetirementAge == null ||
+      plannedRetirementAge <= 0) {
+    return false;
+  }
+  final retirementYear = dob.year + plannedRetirementAge;
+  return retirementYear <= DateTime.now().year;
+}

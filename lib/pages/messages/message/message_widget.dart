@@ -480,16 +480,19 @@ class _MessageWidgetState extends State<MessageWidget> {
                                                                       font: GoogleFonts
                                                                           .dmSans(
                                                                         fontWeight:
-                                                                            FontWeight.w600,
+                                                                            FontWeight.w500,
                                                                         fontStyle: FlutterFlowTheme.of(context)
                                                                             .labelMedium
                                                                             .fontStyle,
                                                                       ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w600,
+                                                                              .w500,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
                                                                           .labelMedium

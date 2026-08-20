@@ -386,6 +386,31 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 2.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'jpjhmm1i' /* Already retired? We’ll show a ... */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.dmSans(
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FontStyle.italic,
+                                      ),
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                              ),
+                            ),
                             Divider(
                               thickness: 2.0,
                               color: FlutterFlowTheme.of(context).alternate,
@@ -410,7 +435,7 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                                   children: [
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        'kxrptorv' /* Target Equity Goal on Retireme... */,
+                                        'kxrptorv' /* Target Equity Goal */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
