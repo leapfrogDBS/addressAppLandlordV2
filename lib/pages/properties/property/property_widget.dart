@@ -1952,10 +1952,9 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                 BorderRadius.circular(0.0),
                                             border: Border.all(
                                               color: Color(0xFFDCE4EA),
-                                              width:
-                                                  _model.tabView == 'financial'
-                                                      ? 1.0
-                                                      : 0.0,
+                                              width: _model.tabView == 'media'
+                                                  ? 1.0
+                                                  : 0.0,
                                             ),
                                           ),
                                           child: Padding(
