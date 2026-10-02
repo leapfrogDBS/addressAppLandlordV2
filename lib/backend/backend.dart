@@ -25,6 +25,7 @@ import 'schema/property_projections_record.dart';
 import 'schema/articles_record.dart';
 import 'schema/projections_record.dart';
 import 'schema/app_config_record.dart';
+import 'schema/invite_tokens_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -53,6 +54,7 @@ export 'schema/property_projections_record.dart';
 export 'schema/articles_record.dart';
 export 'schema/projections_record.dart';
 export 'schema/app_config_record.dart';
+export 'schema/invite_tokens_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -808,6 +810,43 @@ Future<List<AppConfigRecord>> queryAppConfigRecordOnce({
     queryCollectionOnce(
       AppConfigRecord.collection,
       AppConfigRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query InviteTokensRecords (as a Stream and as a Future).
+Future<int> queryInviteTokensRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      InviteTokensRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<InviteTokensRecord>> queryInviteTokensRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      InviteTokensRecord.collection,
+      InviteTokensRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<InviteTokensRecord>> queryInviteTokensRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      InviteTokensRecord.collection,
+      InviteTokensRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

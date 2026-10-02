@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_header_widget.dart';
+import '/components/no_sales_offers_widget.dart';
 import '/components/offers_c_t_a_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -133,6 +134,9 @@ class _SalesOffersWidgetState extends State<SalesOffersWidget> {
                       }
                       List<SalesOffersRecord> listViewSalesOffersRecordList =
                           snapshot.data!;
+                      if (listViewSalesOffersRecordList.isEmpty) {
+                        return NoSalesOffersWidget();
+                      }
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,

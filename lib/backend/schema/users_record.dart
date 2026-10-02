@@ -136,6 +136,11 @@ class UsersRecord extends FirestoreRecord {
   bool get firstProjectionsRun => _firstProjectionsRun ?? false;
   bool hasFirstProjectionsRun() => _firstProjectionsRun != null;
 
+  // "is_test_user" field.
+  bool? _isTestUser;
+  bool get isTestUser => _isTestUser ?? false;
+  bool hasIsTestUser() => _isTestUser != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -163,6 +168,7 @@ class UsersRecord extends FirestoreRecord {
     _availableCapital = castToType<double>(snapshotData['availableCapital']);
     _completedOnboarding = snapshotData['completedOnboarding'] as bool?;
     _firstProjectionsRun = snapshotData['firstProjectionsRun'] as bool?;
+    _isTestUser = snapshotData['is_test_user'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -223,6 +229,7 @@ Map<String, dynamic> createUsersRecordData({
   double? availableCapital,
   bool? completedOnboarding,
   bool? firstProjectionsRun,
+  bool? isTestUser,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -250,6 +257,7 @@ Map<String, dynamic> createUsersRecordData({
       'availableCapital': availableCapital,
       'completedOnboarding': completedOnboarding,
       'firstProjectionsRun': firstProjectionsRun,
+      'is_test_user': isTestUser,
     }.withoutNulls,
   );
 
@@ -284,7 +292,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.calculatingProjections == e2?.calculatingProjections &&
         e1?.availableCapital == e2?.availableCapital &&
         e1?.completedOnboarding == e2?.completedOnboarding &&
-        e1?.firstProjectionsRun == e2?.firstProjectionsRun;
+        e1?.firstProjectionsRun == e2?.firstProjectionsRun &&
+        e1?.isTestUser == e2?.isTestUser;
   }
 
   @override
@@ -312,7 +321,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.calculatingProjections,
         e?.availableCapital,
         e?.completedOnboarding,
-        e?.firstProjectionsRun
+        e?.firstProjectionsRun,
+        e?.isTestUser
       ]);
 
   @override

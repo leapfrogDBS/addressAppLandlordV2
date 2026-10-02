@@ -1912,7 +1912,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '你好世界',
     },
     '1yhmzhvz': {
-      'en': 'At retirement',
+      'en': '5 year outlook',
       'ar': 'القيمة المتوقعة للعقار\nالقيمة الرأسمالية',
       'bn': 'পূর্বাভাসিত পোর্টোলিও\nমূলধন মূল্য',
       'de': 'Prognostizierter Portfoliowert',
@@ -1948,7 +1948,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '你好世界',
     },
     '34188451': {
-      'en': '5 year outlook',
+      'en': 'At retirement',
       'ar': '',
       'bn': '',
       'de': '',
@@ -2146,7 +2146,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '你好世界',
     },
     'janl9mq0': {
-      'en': 'At retirement',
+      'en': '5 year outlook',
       'ar': 'القيمة المتوقعة للعقار\nالقيمة الرأسمالية',
       'bn': 'পূর্বাভাসিত পোর্টোলিও\nমূলধন মূল্য',
       'de': 'Prognostizierter Portfoliowert',
@@ -2182,7 +2182,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'zh_Hant': '你好世界',
     },
     '3sxc3a2b': {
-      'en': '5 year outlook',
+      'en': 'At retirement',
       'ar': '',
       'bn': '',
       'de': '',
@@ -8691,6 +8691,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'tr': 'İndirimli Teklifleri Görüntüle',
       'ur': 'سیلز آفرز دیکھیں',
       'zh_Hant': '查看促銷優惠',
+    },
+  },
+  // noSalesOffers
+  {
+    'clixbwn7': {
+      'en': 'No sales offers currently available',
+      'ar': '',
+      'bn': '',
+      'de': '',
+      'es': '',
+      'fr': '',
+      'gu': '',
+      'hi': '',
+      'nl': '',
+      'pa': '',
+      'pl': '',
+      'ro': '',
+      'ta': '',
+      'tr': '',
+      'ur': '',
+      'zh_Hant': '',
     },
   },
   // Miscellaneous

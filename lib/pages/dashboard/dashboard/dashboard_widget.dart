@@ -900,7 +900,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           children: [
                                                                             TextSpan(
                                                                               text: FFLocalizations.of(context).getText(
-                                                                                '1yhmzhvz' /* At retirement */,
+                                                                                '1yhmzhvz' /* 5 year outlook */,
                                                                               ),
                                                                               style: TextStyle(),
                                                                             )
@@ -927,7 +927,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           children: [
                                                                             TextSpan(
                                                                               text: FFLocalizations.of(context).getText(
-                                                                                '34188451' /* 5 year outlook */,
+                                                                                '34188451' /* At retirement */,
                                                                               ),
                                                                               style: TextStyle(),
                                                                             )
@@ -1372,7 +1372,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           children: [
                                                                             TextSpan(
                                                                               text: FFLocalizations.of(context).getText(
-                                                                                'janl9mq0' /* At retirement */,
+                                                                                'janl9mq0' /* 5 year outlook */,
                                                                               ),
                                                                               style: TextStyle(),
                                                                             )
@@ -1399,7 +1399,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           children: [
                                                                             TextSpan(
                                                                               text: FFLocalizations.of(context).getText(
-                                                                                '3sxc3a2b' /* 5 year outlook */,
+                                                                                '3sxc3a2b' /* At retirement */,
                                                                               ),
                                                                               style: TextStyle(),
                                                                             )
