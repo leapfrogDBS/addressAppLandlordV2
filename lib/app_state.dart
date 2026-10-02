@@ -36,4 +36,10 @@ class FFAppState extends ChangeNotifier {
   set activeDealsCount(int value) {
     _activeDealsCount = value;
   }
+
+  bool _showTimelineTab = false;
+  bool get showTimelineTab => _showTimelineTab;
+  set showTimelineTab(bool value) {
+    _showTimelineTab = value;
+  }
 }
