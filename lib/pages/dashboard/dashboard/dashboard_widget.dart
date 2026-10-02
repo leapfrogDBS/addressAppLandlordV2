@@ -84,6 +84,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         _model.propertyCountState = _model.propertyCount;
         _model.canShowDashboard = true;
         safeSetState(() {});
+        _model.salesOfferCount = await querySalesOffersRecordCount(
+          queryBuilder: (salesOffersRecord) => salesOffersRecord.where(
+            'active',
+            isEqualTo: true,
+          ),
+        );
+        FFAppState().activeDealsCount = _model.salesOfferCount!;
+        safeSetState(() {});
       } else {
         context.goNamed(RedirectPageWidget.routeName);
       }
@@ -101,6 +109,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

@@ -52,6 +52,8 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   List<PropertiesRecord>? loadedProperties;
   // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
   int? propertyCount;
+  // Stores action output result for [Firestore Query - Query a collection] action in dashboard widget.
+  int? salesOfferCount;
   // Model for SlideNavigation component.
   late SlideNavigationModel slideNavigationModel;
   // Model for mainHeader component.

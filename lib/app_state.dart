@@ -30,4 +30,10 @@ class FFAppState extends ChangeNotifier {
   set isCalculatingProjections(bool value) {
     _isCalculatingProjections = value;
   }
+
+  int _activeDealsCount = 0;
+  int get activeDealsCount => _activeDealsCount;
+  set activeDealsCount(int value) {
+    _activeDealsCount = value;
+  }
 }
