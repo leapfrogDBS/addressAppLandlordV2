@@ -696,7 +696,7 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                       await action_blocks.enquire(
                         context,
                         prefillText:
-                            'I would like to speak to someone about updgrading my portfolio.',
+                            'I would like to speak to someone about upgrading my portfolio.',
                       );
                     },
                     text: FFLocalizations.of(context).getText(
