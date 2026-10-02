@@ -203,9 +203,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: SalesOffersWidget.routeName,
           path: SalesOffersWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'SalesOffers')
-              : SalesOffersWidget(),
+          builder: (context, params) => SalesOffersWidget(),
         ),
         FFRoute(
           name: ChangePasswordWidget.routeName,

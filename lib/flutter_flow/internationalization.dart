@@ -1965,7 +1965,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ur': '',
       'zh_Hant': '',
     },
-    'kbetlngp': {
+    'cojsixcm': {
       'en': 'Hello World',
       'ar': 'مرحبا بالعالم',
       'bn': 'হ্যালো ওয়ার্ল্ড',

@@ -5,8 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -693,7 +693,11 @@ class _CapitalUpgradeWidgetState extends State<CapitalUpgradeWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () async {
-                      context.pushNamed(SalesOffersWidget.routeName);
+                      await action_blocks.enquire(
+                        context,
+                        prefillText:
+                            'I would like to speak to someone about updgrading my portfolio.',
+                      );
                     },
                     text: FFLocalizations.of(context).getText(
                       '37ge9hb9' /* Upgrade Your Portfolio */,

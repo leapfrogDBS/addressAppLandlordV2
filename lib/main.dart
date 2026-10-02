@@ -198,7 +198,6 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'dashboard': DashboardWidget(),
       'Properties': PropertiesWidget(),
-      'SalesOffers': SalesOffersWidget(),
       'Message': MessageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
@@ -287,34 +286,8 @@ class _NavBarPageState extends State<NavBarPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.local_offer_outlined,
-                  color: currentIndex == 2
-                      ? FlutterFlowTheme.of(context).primary
-                      : Color(0xFFB1B3B4),
-                  size: 24.0,
-                ),
-                Text(
-                  FFLocalizations.of(context).getText(
-                    'i5td7qff' /* Deals */,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 2
-                        ? FlutterFlowTheme.of(context).primary
-                        : Color(0xFFB1B3B4),
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
                   Icons.message_outlined,
-                  color: currentIndex == 3
+                  color: currentIndex == 2
                       ? FlutterFlowTheme.of(context).primary
                       : Color(0xFFB1B3B4),
                   size: 24.0,
@@ -325,7 +298,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: currentIndex == 3
+                    color: currentIndex == 2
                         ? FlutterFlowTheme.of(context).primary
                         : Color(0xFFB1B3B4),
                     fontSize: 11.0,
