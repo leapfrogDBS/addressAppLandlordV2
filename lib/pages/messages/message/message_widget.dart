@@ -541,35 +541,44 @@ class _MessageWidgetState extends State<MessageWidget> {
                         focusNode: _model.textFieldFocusNode,
                         onFieldSubmitted: (_) async {
                           await _model.sendMessage(context);
-
-                          await EmailRecord.collection
-                              .doc()
-                              .set(createEmailRecordData(
-                                to: 'info@leapfrogdbs.co.uk',
-                                message: createMessageStruct(
-                                  subject:
-                                      'New message from ${currentUserDisplayName}',
-                                  text: _model.textController.text,
-                                  html:
-                                      '<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\">   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> </head> <body style=\"margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; background-color: #f5f5f5;\">   <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f5f5f5; padding: 20px;\">     <tr>       <td align=\"center\">         <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);\">           <!-- Header with Logo -->           <tr>             <td style=\"background-color: #ffffff; padding: 30px 30px 20px 30px; text-align: center; border-bottom: 1px solid #e8e8e8;\">               <img src=\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-admin-tfpanq/assets/oxku0gyz828s/Addressed_logo_-_Transparent.png\" alt=\"Addressed\" style=\"max-width: 180px; height: auto; display: block; margin: 0 auto;\" />             </td>           </tr>           <!-- Content -->           <tr>             <td style=\"padding: 40px 30px;\">               <p style=\"color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0; font-weight: 500;\">You have received a new message from ${currentUserDisplayName}:</p>               <div style=\"background-color: #f9f9f9; border-left: 4px solid #153048; padding: 20px; margin: 20px 0; border-radius: 4px;\">                 <p style=\"color: #333333; font-size: 16px; line-height: 1.8; margin: 0; white-space: pre-wrap;\">${_model.textController.text}                </p>               </div>               <p style=\"color: #666666; font-size: 15px; line-height: 1.6; margin: 30px 0 0 0;\">Please log in to the Addressed app to reply.</p>             </td>           </tr>           <!-- Footer -->           <tr>             <td style=\"background-color: #f9f9f9; padding: 25px 30px; border-top: 1px solid #e8e8e8;\">               <p style=\"color: #999999; font-size: 12px; line-height: 1.6; margin: 0 0 10px 0; text-align: center;\">This is an automated message from Addressed. Please do not reply to this email.</p>               <p style=\"color: #999999; font-size: 11px; line-height: 1.6; margin: 0; text-align: center;\">Addressed National Ltd | pm@addressed.co | +44 (0)333 038 6633</p>             </td>           </tr>         </table>       </td>     </tr>   </table> </body> </html>',
-                                  clearUnsetFields: false,
-                                  create: true,
-                                ),
-                              ));
-                          safeSetState(() {
-                            _model.textController?.text = '';
-                          });
-                          await Future.delayed(
-                            Duration(
-                              milliseconds: 200,
-                            ),
-                          );
-                          await _model.scrollColumnScrollController?.animateTo(
-                            _model.scrollColumnScrollController!.position
-                                .maxScrollExtent,
-                            duration: Duration(milliseconds: 100),
-                            curve: Curves.ease,
-                          );
+                          if (_model.textController.text != null &&
+                              _model.textController.text != '') {
+                            await EmailRecord.collection
+                                .doc()
+                                .set(createEmailRecordData(
+                                  to: 'info@leapfrogdbs.co.uk',
+                                  message: createMessageStruct(
+                                    subject:
+                                        'New message from ${currentUserDisplayName}',
+                                    text: _model.textController.text,
+                                    html:
+                                        '<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\">   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> </head> <body style=\"margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; background-color: #f5f5f5;\">   <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f5f5f5; padding: 20px;\">     <tr>       <td align=\"center\">         <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);\">           <!-- Header with Logo -->           <tr>             <td style=\"background-color: #ffffff; padding: 30px 30px 20px 30px; text-align: center; border-bottom: 1px solid #e8e8e8;\">               <img src=\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-admin-tfpanq/assets/oxku0gyz828s/Addressed_logo_-_Transparent.png\" alt=\"Addressed\" style=\"max-width: 180px; height: auto; display: block; margin: 0 auto;\" />             </td>           </tr>           <!-- Content -->           <tr>             <td style=\"padding: 40px 30px;\">               <p style=\"color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0; font-weight: 500;\">You have received a new message from ${currentUserDisplayName}:</p>               <div style=\"background-color: #f9f9f9; border-left: 4px solid #153048; padding: 20px; margin: 20px 0; border-radius: 4px;\">                 <p style=\"color: #333333; font-size: 16px; line-height: 1.8; margin: 0; white-space: pre-wrap;\">${_model.textController.text}                </p>               </div>               <p style=\"color: #666666; font-size: 15px; line-height: 1.6; margin: 30px 0 0 0;\">Please log in to the Addressed app to reply.</p>             </td>           </tr>           <!-- Footer -->           <tr>             <td style=\"background-color: #f9f9f9; padding: 25px 30px; border-top: 1px solid #e8e8e8;\">               <p style=\"color: #999999; font-size: 12px; line-height: 1.6; margin: 0 0 10px 0; text-align: center;\">This is an automated message from Addressed. Please do not reply to this email.</p>               <p style=\"color: #999999; font-size: 11px; line-height: 1.6; margin: 0; text-align: center;\">Addressed National Ltd | pm@addressed.co | +44 (0)333 038 6633</p>             </td>           </tr>         </table>       </td>     </tr>   </table> </body> </html>',
+                                    clearUnsetFields: false,
+                                    create: true,
+                                  ),
+                                ));
+                            safeSetState(() {
+                              _model.textController?.text = '';
+                            });
+                            await Future.delayed(
+                              Duration(
+                                milliseconds: 200,
+                              ),
+                            );
+                            await _model.scrollColumnScrollController
+                                ?.animateTo(
+                              _model.scrollColumnScrollController!.position
+                                  .maxScrollExtent,
+                              duration: Duration(milliseconds: 100),
+                              curve: Curves.ease,
+                            );
+                          } else {
+                            await Future.delayed(
+                              Duration(
+                                milliseconds: 10,
+                              ),
+                            );
+                          }
                         },
                         autofocus: false,
                         obscureText: false,
@@ -674,39 +683,48 @@ class _MessageWidgetState extends State<MessageWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         await _model.sendMessage(context);
+                        if (_model.textController.text != null &&
+                            _model.textController.text != '') {
+                          await _model.threadRef!
+                              .update(createThreadsRecordData(
+                            messagesSent: true,
+                          ));
 
-                        await _model.threadRef!.update(createThreadsRecordData(
-                          messagesSent: true,
-                        ));
-
-                        await EmailRecord.collection
-                            .doc()
-                            .set(createEmailRecordData(
-                              to: 'info@leapfrogdbs.co.uk',
-                              message: createMessageStruct(
-                                subject:
-                                    'New message from ${currentUserDisplayName}',
-                                text: _model.textController.text,
-                                html:
-                                    '<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\">   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> </head> <body style=\"margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; background-color: #f5f5f5;\">   <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f5f5f5; padding: 20px;\">     <tr>       <td align=\"center\">         <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);\">           <!-- Header with Logo -->           <tr>             <td style=\"background-color: #ffffff; padding: 30px 30px 20px 30px; text-align: center; border-bottom: 1px solid #e8e8e8;\">               <img src=\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-admin-tfpanq/assets/oxku0gyz828s/Addressed_logo_-_Transparent.png\" alt=\"Addressed\" style=\"max-width: 180px; height: auto; display: block; margin: 0 auto;\" />             </td>           </tr>           <!-- Content -->           <tr>             <td style=\"padding: 40px 30px;\">               <p style=\"color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0; font-weight: 500;\">You have received a new message from ${currentUserDisplayName}:</p>               <div style=\"background-color: #f9f9f9; border-left: 4px solid #153048; padding: 20px; margin: 20px 0; border-radius: 4px;\">                 <p style=\"color: #333333; font-size: 16px; line-height: 1.8; margin: 0; white-space: pre-wrap;\">${_model.textController.text}                </p>               </div>               <p style=\"color: #666666; font-size: 15px; line-height: 1.6; margin: 30px 0 0 0;\">Please log in to the Addressed app to reply.</p>             </td>           </tr>           <!-- Footer -->           <tr>             <td style=\"background-color: #f9f9f9; padding: 25px 30px; border-top: 1px solid #e8e8e8;\">               <p style=\"color: #999999; font-size: 12px; line-height: 1.6; margin: 0 0 10px 0; text-align: center;\">This is an automated message from Addressed. Please do not reply to this email.</p>               <p style=\"color: #999999; font-size: 11px; line-height: 1.6; margin: 0; text-align: center;\">Addressed National Ltd | pm@addressed.co | +44 (0)333 038 6633</p>             </td>           </tr>         </table>       </td>     </tr>   </table> </body> </html>',
-                                clearUnsetFields: false,
-                                create: true,
-                              ),
-                            ));
-                        safeSetState(() {
-                          _model.textController?.text = '';
-                        });
-                        await Future.delayed(
-                          Duration(
-                            milliseconds: 200,
-                          ),
-                        );
-                        await _model.scrollColumnScrollController?.animateTo(
-                          _model.scrollColumnScrollController!.position
-                              .maxScrollExtent,
-                          duration: Duration(milliseconds: 100),
-                          curve: Curves.ease,
-                        );
+                          await EmailRecord.collection
+                              .doc()
+                              .set(createEmailRecordData(
+                                to: 'info@leapfrogdbs.co.uk',
+                                message: createMessageStruct(
+                                  subject:
+                                      'New message from ${currentUserDisplayName}',
+                                  text: _model.textController.text,
+                                  html:
+                                      '<!DOCTYPE html> <html> <head>   <meta charset=\"utf-8\">   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> </head> <body style=\"margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, sans-serif; background-color: #f5f5f5;\">   <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #f5f5f5; padding: 20px;\">     <tr>       <td align=\"center\">         <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);\">           <!-- Header with Logo -->           <tr>             <td style=\"background-color: #ffffff; padding: 30px 30px 20px 30px; text-align: center; border-bottom: 1px solid #e8e8e8;\">               <img src=\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-admin-tfpanq/assets/oxku0gyz828s/Addressed_logo_-_Transparent.png\" alt=\"Addressed\" style=\"max-width: 180px; height: auto; display: block; margin: 0 auto;\" />             </td>           </tr>           <!-- Content -->           <tr>             <td style=\"padding: 40px 30px;\">               <p style=\"color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0; font-weight: 500;\">You have received a new message from ${currentUserDisplayName}:</p>               <div style=\"background-color: #f9f9f9; border-left: 4px solid #153048; padding: 20px; margin: 20px 0; border-radius: 4px;\">                 <p style=\"color: #333333; font-size: 16px; line-height: 1.8; margin: 0; white-space: pre-wrap;\">${_model.textController.text}                </p>               </div>               <p style=\"color: #666666; font-size: 15px; line-height: 1.6; margin: 30px 0 0 0;\">Please log in to the Addressed app to reply.</p>             </td>           </tr>           <!-- Footer -->           <tr>             <td style=\"background-color: #f9f9f9; padding: 25px 30px; border-top: 1px solid #e8e8e8;\">               <p style=\"color: #999999; font-size: 12px; line-height: 1.6; margin: 0 0 10px 0; text-align: center;\">This is an automated message from Addressed. Please do not reply to this email.</p>               <p style=\"color: #999999; font-size: 11px; line-height: 1.6; margin: 0; text-align: center;\">Addressed National Ltd | pm@addressed.co | +44 (0)333 038 6633</p>             </td>           </tr>         </table>       </td>     </tr>   </table> </body> </html>',
+                                  clearUnsetFields: false,
+                                  create: true,
+                                ),
+                              ));
+                          safeSetState(() {
+                            _model.textController?.text = '';
+                          });
+                          await Future.delayed(
+                            Duration(
+                              milliseconds: 200,
+                            ),
+                          );
+                          await _model.scrollColumnScrollController?.animateTo(
+                            _model.scrollColumnScrollController!.position
+                                .maxScrollExtent,
+                            duration: Duration(milliseconds: 100),
+                            curve: Curves.ease,
+                          );
+                        } else {
+                          await Future.delayed(
+                            Duration(
+                              milliseconds: 10,
+                            ),
+                          );
+                        }
                       },
                       child: Icon(
                         Icons.send,
