@@ -73,29 +73,44 @@ class MessageModel extends FlutterFlowModel<MessageWidget> {
   Future sendMessage(BuildContext context) async {
     MessagesRecord? createMessage;
 
-    var messagesRecordReference = MessagesRecord.createDoc(threadRef!);
-    await messagesRecordReference.set(createMessagesRecordData(
-      text: textController.text,
-      senderId: currentUserReference?.id,
-      senderIsAdmin: false,
-      createdAt: getCurrentTimestamp,
-    ));
-    createMessage = MessagesRecord.getDocumentFromData(
-        createMessagesRecordData(
-          text: textController.text,
-          senderId: currentUserReference?.id,
-          senderIsAdmin: false,
-          createdAt: getCurrentTimestamp,
-        ),
-        messagesRecordReference);
+    if (textController.text != null && textController.text != '') {
+      var messagesRecordReference = MessagesRecord.createDoc(threadRef!);
+      await messagesRecordReference.set(createMessagesRecordData(
+        text: textController.text,
+        senderId: currentUserReference?.id,
+        senderIsAdmin: false,
+        createdAt: getCurrentTimestamp,
+      ));
+      createMessage = MessagesRecord.getDocumentFromData(
+          createMessagesRecordData(
+            text: textController.text,
+            senderId: currentUserReference?.id,
+            senderIsAdmin: false,
+            createdAt: getCurrentTimestamp,
+          ),
+          messagesRecordReference);
 
-    await threadRef!.update(createThreadsRecordData(
-      lastMessageText: textController.text,
-      lastMessageAt: getCurrentTimestamp,
-      lastMessageSenderId: currentUserReference?.id,
-      lastMessageRef: createMessage?.reference,
-      messagesSent: true,
-      adminHasUnread: true,
-    ));
+      await threadRef!.update(createThreadsRecordData(
+        lastMessageText: textController.text,
+        lastMessageAt: getCurrentTimestamp,
+        lastMessageSenderId: currentUserReference?.id,
+        lastMessageRef: createMessage?.reference,
+        messagesSent: true,
+        adminHasUnread: true,
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Please enter a message',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryBackground,
+            ),
+          ),
+          duration: Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).error,
+        ),
+      );
+    }
   }
 }
