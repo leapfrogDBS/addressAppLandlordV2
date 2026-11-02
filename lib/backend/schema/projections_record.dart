@@ -124,8 +124,7 @@ class ProjectionsRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is ProjectionsRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is ProjectionsRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createProjectionsRecordData({
@@ -168,13 +167,13 @@ class ProjectionsRecordDocumentEquality implements Equality<ProjectionsRecord> {
 
   @override
   int hash(ProjectionsRecord? e) => const ListEquality().hash([
-        e?.years,
-        e?.projectedHousePrice,
-        e?.rentalIncome,
-        e?.rentalProfit,
-        e?.cumulativeRentalProfit,
-        e?.combinedDailyGain,
-        e?.expenses,
+        const ListEquality().hash(e?.years),
+        const ListEquality().hash(e?.projectedHousePrice),
+        const ListEquality().hash(e?.rentalIncome),
+        const ListEquality().hash(e?.rentalProfit),
+        const ListEquality().hash(e?.cumulativeRentalProfit),
+        const ListEquality().hash(e?.combinedDailyGain),
+        const ListEquality().hash(e?.expenses),
         e?.startYear,
         e?.endYear,
         e?.lastComputedAt,

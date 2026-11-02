@@ -23,6 +23,8 @@ exports.recalculatePropertyData = functions
       "_recalcTrigger",
       "dateJoinedAddressed",
       "currentRentAmount",
+      "averageYearlyExpenses",
+      "priceValuationOnJoiningAddressed",
     ];
 
     const norm = (v) =>

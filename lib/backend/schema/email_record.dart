@@ -68,8 +68,7 @@ class EmailRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is EmailRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is EmailRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createEmailRecordData({
@@ -101,8 +100,8 @@ class EmailRecordDocumentEquality implements Equality<EmailRecord> {
   }
 
   @override
-  int hash(EmailRecord? e) =>
-      const ListEquality().hash([e?.message, e?.to, e?.toUids]);
+  int hash(EmailRecord? e) => const ListEquality()
+      .hash([e?.message, e?.to, const ListEquality().hash(e?.toUids)]);
 
   @override
   bool isValidKey(Object? o) => o is EmailRecord;

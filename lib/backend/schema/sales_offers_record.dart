@@ -200,8 +200,7 @@ class SalesOffersRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is SalesOffersRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is SalesOffersRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createSalesOffersRecordData({
@@ -317,7 +316,7 @@ class SalesOffersRecordDocumentEquality implements Equality<SalesOffersRecord> {
         e?.addressVerifiedAt,
         e?.updatedBy,
         e?.latLng,
-        e?.gallery,
+        const ListEquality().hash(e?.gallery),
         e?.monthlyRental,
         e?.noOfBedrooms,
         e?.estimatedYearlyExpenses,

@@ -134,8 +134,7 @@ class NotificationsRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is NotificationsRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is NotificationsRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createNotificationsRecordData({

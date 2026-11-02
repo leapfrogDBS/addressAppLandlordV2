@@ -112,7 +112,7 @@ class _LoginWidgetState extends State<LoginWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: Column(
@@ -403,8 +403,9 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 !_model
                                                     .passwordCreateVisibility);
                                           },
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: _model
+                                              .passwordCreatePasswordVisibilityFocusNode
+                                            ..skipTraversal = !(false),
                                           child: Icon(
                                             _model.passwordCreateVisibility
                                                 ? Icons.visibility_outlined

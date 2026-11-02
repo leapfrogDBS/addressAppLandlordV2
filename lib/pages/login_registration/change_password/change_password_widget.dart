@@ -113,7 +113,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -326,8 +326,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                                     .newPasswordVisibility =
                                                 !_model.newPasswordVisibility);
                                           },
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: _model
+                                              .newPasswordPasswordVisibilityFocusNode
+                                            ..skipTraversal = !(false),
                                           child: Icon(
                                             _model.newPasswordVisibility
                                                 ? Icons.visibility_outlined
@@ -458,8 +459,9 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget>
                                                 !_model
                                                     .confirmNewPasswordVisibility);
                                           },
-                                          focusNode:
-                                              FocusNode(skipTraversal: true),
+                                          focusNode: _model
+                                              .confirmNewPasswordPasswordVisibilityFocusNode
+                                            ..skipTraversal = !(false),
                                           child: Icon(
                                             _model.confirmNewPasswordVisibility
                                                 ? Icons.visibility_outlined

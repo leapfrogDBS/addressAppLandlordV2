@@ -309,8 +309,7 @@ class PropertiesRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is PropertiesRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is PropertiesRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createPropertiesRecordData({
@@ -466,7 +465,7 @@ class PropertiesRecordDocumentEquality implements Equality<PropertiesRecord> {
         e?.gasCert,
         e?.elecCert,
         e?.latLng,
-        e?.gallery,
+        const ListEquality().hash(e?.gallery),
         e?.lastUpdated,
         e?.updatedBy,
         e?.addressLine1,

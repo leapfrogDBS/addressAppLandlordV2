@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -286,7 +286,8 @@ Future downloadFile({
   final baseFilename = filename.contains('.')
       ? filename.substring(0, filename.lastIndexOf('.'))
       : filename;
-  final fileExtension = extension ?? mime.extensionFromMime(mimeType ?? '');
+  final fileExtension =
+      extension ?? mime.extensionFromMime(mimeType ?? '') ?? '';
 
   if (kIsWeb) {
     await FileSaver.instance.saveFile(

@@ -4,7 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -73,7 +73,9 @@ class _PurchasePromptWidgetState extends State<PurchasePromptWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               FaIcon(
-                FontAwesomeIcons.fileContract,
+                FaIconData(const IconData(/* fileContract */ 0xf56c,
+                    fontFamily: 'FontAwesomeSolid',
+                    fontPackage: 'font_awesome_flutter')),
                 color: FlutterFlowTheme.of(context).tertiary,
                 size: 32.0,
               ),

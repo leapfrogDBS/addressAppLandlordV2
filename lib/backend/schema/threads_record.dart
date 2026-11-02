@@ -133,8 +133,7 @@ class ThreadsRecord extends FirestoreRecord {
 
   @override
   bool operator ==(other) =>
-      other is ThreadsRecord &&
-      reference.path.hashCode == other.reference.path.hashCode;
+      other is ThreadsRecord && reference.path == other.reference.path;
 }
 
 Map<String, dynamic> createThreadsRecordData({

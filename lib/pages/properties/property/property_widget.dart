@@ -27,7 +27,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -1647,8 +1647,12 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     FaIcon(
-                                                      FontAwesomeIcons
-                                                          .chartLine,
+                                                      FaIconData(const IconData(
+                                                          /* chartLine */ 0xf201,
+                                                          fontFamily:
+                                                              'FontAwesomeSolid',
+                                                          fontPackage:
+                                                              'font_awesome_flutter')),
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)

@@ -18,11 +18,13 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for new_password widget.
+  late FocusNode newPasswordPasswordVisibilityFocusNode;
   FocusNode? newPasswordFocusNode;
   TextEditingController? newPasswordTextController;
   late bool newPasswordVisibility;
   String? Function(BuildContext, String?)? newPasswordTextControllerValidator;
   // State field(s) for confirm_new_password widget.
+  late FocusNode confirmNewPasswordPasswordVisibilityFocusNode;
   FocusNode? confirmNewPasswordFocusNode;
   TextEditingController? confirmNewPasswordTextController;
   late bool confirmNewPasswordVisibility;
@@ -31,7 +33,9 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
 
   @override
   void initState(BuildContext context) {
+    newPasswordPasswordVisibilityFocusNode = FocusNode();
     newPasswordVisibility = false;
+    confirmNewPasswordPasswordVisibilityFocusNode = FocusNode();
     confirmNewPasswordVisibility = false;
   }
 
@@ -39,8 +43,9 @@ class ChangePasswordModel extends FlutterFlowModel<ChangePasswordWidget> {
   void dispose() {
     newPasswordFocusNode?.dispose();
     newPasswordTextController?.dispose();
-
+    newPasswordPasswordVisibilityFocusNode.dispose();
     confirmNewPasswordFocusNode?.dispose();
     confirmNewPasswordTextController?.dispose();
+    confirmNewPasswordPasswordVisibilityFocusNode.dispose();
   }
 }

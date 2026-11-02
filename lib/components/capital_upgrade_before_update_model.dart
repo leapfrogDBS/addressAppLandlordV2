@@ -10,7 +10,7 @@ import '/index.dart';
 import 'capital_upgrade_before_update_widget.dart'
     show CapitalUpgradeBeforeUpdateWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

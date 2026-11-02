@@ -6,7 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' hide Type;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -124,7 +124,9 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         FaIcon(
-                          FontAwesomeIcons.piggyBank,
+                          FaIconData(const IconData(/* piggyBank */ 0xf4d3,
+                              fontFamily: 'FontAwesomeSolid',
+                              fontPackage: 'font_awesome_flutter')),
                           color: FlutterFlowTheme.of(context).secondary,
                           size: 48.0,
                         ),
@@ -185,7 +187,10 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FaIcon(
-                                  FontAwesomeIcons.bullseye,
+                                  FaIconData(const IconData(
+                                      /* bullseye */ 0xf140,
+                                      fontFamily: 'FontAwesomeSolid',
+                                      fontPackage: 'font_awesome_flutter')),
                                   color: FlutterFlowTheme.of(context).tertiary,
                                   size: 32.0,
                                 ),
@@ -640,7 +645,10 @@ class _RetirementGoalsWidgetState extends State<RetirementGoalsWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 FaIcon(
-                                  FontAwesomeIcons.bullseye,
+                                  FaIconData(const IconData(
+                                      /* bullseye */ 0xf140,
+                                      fontFamily: 'FontAwesomeSolid',
+                                      fontPackage: 'font_awesome_flutter')),
                                   color: FlutterFlowTheme.of(context).tertiary,
                                   size: 32.0,
                                 ),
