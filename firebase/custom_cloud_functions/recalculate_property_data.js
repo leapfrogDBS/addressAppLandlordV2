@@ -425,7 +425,7 @@ async function computePropertyProjectionCore(args) {
       lastComputedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       ratesVersionUsed: yearClose.ratesVersion,
-      schemaVersion: "recalculatePropertyData@2026-11-05",
+      schemaVersion: "recalculatePropertyData@2026-11-06",
     };
 
     if (Object.keys(yearClose.propUpdates).length === 0) {
@@ -447,6 +447,12 @@ async function computePropertyProjectionCore(args) {
           _engineWriteAt: admin.firestore.FieldValue.serverTimestamp(),
         });
         t.set(projRef, projectionPayload);
+        for (const v of yearClose.valuationUpdates || []) {
+          t.update(v.ref, {
+            status: v.status,
+            appliedAt: admin.firestore.FieldValue.serverTimestamp(),
+          });
+        }
         return true;
       });
       if (!written) {
@@ -639,12 +645,13 @@ async function resolveYearClose({ db, propRef, propertyId, p, now }) {
       ? ymdInLondon(markerTs.toDate())
       : null;
 
-  const [storedSnap, houseOvSnap, houseGlobalSnap, expensePct] =
+  const [storedSnap, houseOvSnap, houseGlobalSnap, expensePct, waitingSnap] =
     await Promise.all([
       db.collection("propertyProjections").doc(propertyId).get(),
       propRef.collection("housePriceOverrides").get(),
       db.collection("housePriceYears").get(),
       resolveGlobalExpenseInflationPct({ db, contextId: propertyId }),
+      propRef.collection("valuations").where("status", "==", "waiting").get(),
     ]);
   const houseOverride = toYearPctMap(houseOvSnap);
   const houseGlobal = toYearPctMap(houseGlobalSnap);
@@ -664,6 +671,15 @@ async function resolveYearClose({ db, propRef, propertyId, p, now }) {
   });
 
   const u = {};
+
+  // A valuation entered early waits here until its anniversary has passed.
+  const today = ymdInLondon(now);
+  const chosen = chooseWaitingValuation(
+    waitingSnap.docs.map((d) => ({ ref: d.ref, ...d.data() })),
+    join && cmpYMD(today, join) >= 0
+      ? propertyYearStartFor(today, join.m, join.d)
+      : null,
+  );
 
   // A value differing from our last step can only have been typed by someone.
   const valueSource =
@@ -696,7 +712,7 @@ async function resolveYearClose({ db, propRef, propertyId, p, now }) {
     result.rebuildValues.previousRentalIncome = income;
     result.rebuildValues.previousExpenses = spent;
 
-    if (plan.valueStepped) {
+    if (plan.valueStepped && !chosen.apply) {
       u.estimatedValue = plan.value;
       u.lastEstimatedStepValue = plan.value;
       u.valuationSource = SOURCE_ESTIMATE;
@@ -717,12 +733,47 @@ async function resolveYearClose({ db, propRef, propertyId, p, now }) {
     };
   }
 
+  if (chosen.apply) {
+    u.estimatedValue = chosen.apply.value;
+    u.valuationSource = SOURCE_MANUAL;
+    result.rebuildValues.estimatedValue = chosen.apply.value;
+    result.summary.valuationApplied = chosen.apply.value;
+    result.valuationUpdates = [
+      { ref: chosen.apply.ref, status: "applied" },
+      ...chosen.replaced.map((v) => ({ ref: v.ref, status: "replaced" })),
+    ];
+  }
+
   result.propUpdates = u;
   return result;
 }
 
+/**
+ * Picks the valuation to use from those still waiting. Pure.
+ * Only anniversaries that have arrived count. The latest anniversary wins, then
+ * the most recently entered, and the others due at the same time are replaced.
+ */
+function chooseWaitingValuation(waiting, currentYear) {
+  if (currentYear === null) return { apply: null, replaced: [] };
+  const due = waiting
+    .filter(
+      (v) =>
+        Number.isFinite(Number(v.anniversaryYear)) &&
+        Number(v.anniversaryYear) <= currentYear &&
+        num(v.value, 0) > 0,
+    )
+    .map((v) => ({ ...v, value: num(v.value, 0) }))
+    .sort(
+      (a, b) =>
+        Number(b.anniversaryYear) - Number(a.anniversaryYear) ||
+        (tsMillis(b.createdAt) || 0) - (tsMillis(a.createdAt) || 0),
+    );
+  return { apply: due[0] || null, replaced: due.slice(1) };
+}
+
 // Tests only. FlutterFlow's index.js wires up named functions, so this is unused live.
 exports._test = {
+  chooseWaitingValuation,
   planYearClose,
   engineEnabledFor,
   isOwnEngineWrite,
