@@ -521,41 +521,28 @@ PortfolioTotalsStruct aggregateAtRetirement(
     return 0.0;
   }
 
-  // Calendar-year projected gain for ONE property by overlapping periods with [calStart, calEndExcl).
-  double _calendarYearGainForProperty(PropertyProjectionsRecord rec,
-      DateTime calStart, DateTime calEndExcl, DateTime now) {
-    double total = 0.0;
-
+  // Annual gain and per-second rate of the property year containing now.
+  // Same basis as the Property page, and it covers the whole property year
+  // even after the projection has rolled past the anniversary.
+  ({double annualGain, double perSecond}) _currentPeriodRate(
+      PropertyProjectionsRecord rec, DateTime now) {
     final maxIdx =
         math.min(rec.periodStartDates.length, rec.periodEndDates.length);
 
     for (var idx = 0; idx < maxIdx; idx++) {
       final b = _periodBounds(rec, idx, now);
       if (b == null) continue;
+      if (now.isBefore(b.start) || !now.isBefore(b.endExcl)) continue;
 
-      final start = b.start;
-      final endExcl = b.endExcl;
-
-      // overlap window
-      final overlapStart = start.isAfter(calStart) ? start : calStart;
-      final overlapEnd = endExcl.isBefore(calEndExcl) ? endExcl : calEndExcl;
-
-      if (!overlapEnd.isAfter(overlapStart)) continue;
-
-      final secondsInPeriod = endExcl.difference(start).inSeconds.toDouble();
-      if (secondsInPeriod <= 0) continue;
+      final secondsInPeriod =
+          b.endExcl.difference(b.start).inSeconds.toDouble();
+      if (secondsInPeriod <= 0) break;
 
       final annualGain = _annualGainForIndex(rec, idx);
-      if (annualGain == 0.0) continue;
-
-      final perSecond = annualGain / secondsInPeriod;
-      final overlapSeconds =
-          overlapEnd.difference(overlapStart).inSeconds.toDouble();
-
-      total += perSecond * overlapSeconds;
+      return (annualGain: annualGain, perSecond: annualGain / secondsInPeriod);
     }
 
-    return total;
+    return (annualGain: 0.0, perSecond: 0.0);
   }
 
   // Pro-rata gain accrued so far within the CURRENT property-year period (for earnings-as-of-now).
@@ -599,17 +586,11 @@ PortfolioTotalsStruct aggregateAtRetirement(
   double sumCumulativeRentalProfit = 0.0;
   int? retirementYear;
 
-  // ───────────────────────── Live stats (calendar year) ─────────────────────────
+  // ───────────────────────── Live stats (current property year) ─────────────────────────
   final now = DateTime.now();
-  final calStart = DateTime(now.year, 1, 1);
-  final calEndExcl = DateTime(now.year + 1, 1, 1);
-  final secondsInCalendarYear = calEndExcl
-      .difference(calStart)
-      .inSeconds
-      .toDouble()
-      .clamp(1.0, double.infinity);
 
-  double liveCalendarYearGain = 0.0;
+  double liveGainThisYear = 0.0;
+  double liveGainPerSecond = 0.0;
   double liveEarningsAsOfNow = 0.0;
 
   for (final rec in projections) {
@@ -631,9 +612,10 @@ PortfolioTotalsStruct aggregateAtRetirement(
         ? rec.atRetirementYear as int
         : int.tryParse('${rec.atRetirementYear}');
 
-    // Calendar-year gain (projection, pro-rated across overlapping property periods)
-    liveCalendarYearGain +=
-        _calendarYearGainForProperty(rec, calStart, calEndExcl, now);
+    // Each property's own current year, so different anniversaries add up correctly
+    final rate = _currentPeriodRate(rec, now);
+    liveGainThisYear += rate.annualGain;
+    liveGainPerSecond += rate.perSecond;
 
     // Earnings-as-of-now since joining Addressed (requires these fields to exist on the projection doc)
     final estimatedValueNow = _toDouble(rec.estimatedValueNow);
@@ -650,7 +632,6 @@ PortfolioTotalsStruct aggregateAtRetirement(
   }
 
   // IMPORTANT: do NOT round per-second values (counters will stutter or stick)
-  final liveGainPerSecond = liveCalendarYearGain / secondsInCalendarYear;
   final liveGainPerDay = liveGainPerSecond * 86400.0;
 
   return _makeTotals(
@@ -661,7 +642,7 @@ PortfolioTotalsStruct aggregateAtRetirement(
     retirementYear: retirementYear,
     liveGainPerDay: r2(liveGainPerDay),
     liveGainPerSecond: liveGainPerSecond, // <- keep full precision
-    liveGainThisYear: r2(liveCalendarYearGain),
+    liveGainThisYear: r2(liveGainThisYear),
     liveEarningsAsOfNow: r2(liveEarningsAsOfNow),
     currentYearIndex: null,
   );
