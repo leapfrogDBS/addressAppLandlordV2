@@ -16,6 +16,9 @@ exports.recalculatePropertyData = functions
     const before = change.before.data() || {};
     const after = change.after.data() || {};
 
+    // This function's own year-close write has already rebuilt the projection.
+    if (isOwnEngineWrite(before, after)) return null;
+
     const fieldsToWatch = [
       "estimatedValue",
       "purchasePrice",
@@ -25,6 +28,8 @@ exports.recalculatePropertyData = functions
       "currentRentAmount",
       "averageYearlyExpenses",
       "priceValuationOnJoiningAddressed",
+      "previousRentalIncome",
+      "previousExpenses",
     ];
 
     const norm = (v) =>
@@ -98,7 +103,7 @@ async function computePropertyProjectionCore(args) {
   const propRef = db.collection("properties").doc(propertyId);
   const propSnap = await propRef.get();
   if (!propSnap.exists) throw new Error("Property not found");
-  const p = propSnap.data() || {};
+  let p = propSnap.data() || {};
 
   // Resolve owner
   const ownerId = getOwnerUserIdFromPropertyData(p); // reads p.ownerID
@@ -158,7 +163,20 @@ async function computePropertyProjectionCore(args) {
   try {
     // ==== YOUR PROJECTION MATH (unchanged from your working version) ====
 
-    const now = new Date();
+    const now = args.now || new Date();
+
+    // Close any finished property year first, so the rebuild starts from the
+    // banked figures. Nothing is written until the projection is ready.
+    const yearClose = await resolveYearClose({
+      db,
+      propRef,
+      propertyId,
+      p,
+      now,
+    });
+    p = { ...p, ...yearClose.rebuildValues };
+    const originalMarkerMs = tsMillis(propSnap.get("lastAccruedPeriodStart"));
+    const originalEstimatedValue = propSnap.get("estimatedValue");
 
     // Pull join day/month (London time)
     const joinedTs = p.dateJoinedAddressed;
@@ -406,10 +424,42 @@ async function computePropertyProjectionCore(args) {
 
       lastComputedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      schemaVersion: "recalculatePropertyData@2026-01-30",
+      ratesVersionUsed: yearClose.ratesVersion,
+      schemaVersion: "recalculatePropertyData@2026-11-05",
     };
 
-    await projRef.set(projectionPayload, { merge: false });
+    if (Object.keys(yearClose.propUpdates).length === 0) {
+      await projRef.set(projectionPayload, { merge: false });
+    } else {
+      // Property and projection change together, so no screen ever counts a
+      // closed year twice. If the property moved underneath us, whichever run
+      // caused that handles the close instead: closing happens only once.
+      const written = await db.runTransaction(async (t) => {
+        const latest = await t.get(propRef);
+        if (
+          tsMillis(latest.get("lastAccruedPeriodStart")) !== originalMarkerMs ||
+          latest.get("estimatedValue") !== originalEstimatedValue
+        ) {
+          return false;
+        }
+        t.update(propRef, {
+          ...yearClose.propUpdates,
+          _engineWriteAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        t.set(projRef, projectionPayload);
+        return true;
+      });
+      if (!written) {
+        functions.logger.info("Year close abandoned: property changed", {
+          propertyId,
+        });
+        return { skipped: false, abandoned: true };
+      }
+      functions.logger.info("Year close applied", {
+        propertyId,
+        ...yearClose.summary,
+      });
+    }
 
     functions.logger.info("Projection written", {
       propertyId,
@@ -449,6 +499,235 @@ async function computePropertyProjectionCore(args) {
     }
   }
 }
+
+// ───────────────────────── YEAR CLOSE ─────────────────────────
+
+const SOURCE_ESTIMATE = "from_estimate";
+const SOURCE_MANUAL = "manual_entry";
+
+function isOwnEngineWrite(before, after) {
+  return tsMillis(before._engineWriteAt) !== tsMillis(after._engineWriteAt);
+}
+
+function tsMillis(v) {
+  return v && typeof v.toMillis === "function" ? v.toMillis() : null;
+}
+
+/** off: nothing closes. test: isAuditFixture properties only. live: everything. */
+function engineEnabledFor(mode, propertyData) {
+  if (mode === "live") return true;
+  return mode === "test" && propertyData.isAuditFixture === true;
+}
+
+function propertyYearStartFor(ymd, joinMonth, joinDay) {
+  const ann = makeAnniversaryYMD(ymd.y, joinMonth, joinDay);
+  return cmpYMD(ymd, ann) >= 0 ? ymd.y : ymd.y - 1;
+}
+
+/**
+ * Works out what closing should do. Pure: no reads, no writes, no clock.
+ *
+ * Rules agreed 5 Nov 2026:
+ * - Banks projected rent and expenses, using the stored figures for the year
+ *   the app was counting so "since joining" carries on smoothly.
+ * - Never backfills: a property the app wasn't counting just starts from its
+ *   current year. A stale projection is the exception, because its year was
+ *   being counted, so that year closes even with no marker.
+ * - A value or expenses figure typed since the projection was built is a real
+ *   figure, so it is kept rather than stepped.
+ */
+function planYearClose(input) {
+  const { join, today, marker, stored, housePctFor, expensePct } = input;
+  const none = { action: "none" };
+  if (!join || cmpYMD(today, join) < 0) return none;
+
+  const currentYear = propertyYearStartFor(today, join.m, join.d);
+  const init = { action: "init", markerYear: currentYear };
+  const markerYear = marker
+    ? propertyYearStartFor(marker, join.m, join.d)
+    : null;
+
+  // Never had a projection, so the app wasn't counting anything to bank.
+  if (!stored) {
+    return markerYear !== null && markerYear >= currentYear ? none : init;
+  }
+
+  const firstEnd = (stored.periodEndDates || [])[0];
+  const stale = !!firstEnd && firstEnd < ymdToString(today);
+  const fromYear =
+    markerYear !== null ? markerYear : stale ? stored.startYear : null;
+
+  if (fromYear === null) return init;
+  if (fromYear >= currentYear) return none;
+
+  const differs = (a, b) =>
+    Number.isFinite(a) && Number.isFinite(b) && Math.abs(a - b) > 0.005;
+  const firstOf = (list) =>
+    Array.isArray(list) && Number.isFinite(list[0]) ? list[0] : NaN;
+
+  const valueWasTyped = differs(stored.estimatedValueNow, input.estimatedValue);
+  const expensesWereTyped = differs(firstOf(stored.expenses), input.expenses);
+
+  let value = input.estimatedValue;
+  let expenses = input.expenses;
+  let bankedRent = 0;
+  let bankedExpenses = 0;
+  let valueStepped = false;
+  let expensesStepped = false;
+  const closedYears = [];
+
+  for (let y = fromYear; y < currentYear; y++) {
+    // Skip years that started before this property joined.
+    if (cmpYMD(makeAnniversaryYMD(y, join.m, join.d), join) < 0) continue;
+
+    const isStoredYear = y === stored.startYear;
+    const storedRent = isStoredYear ? firstOf(stored.rentalIncome) : NaN;
+    const storedExpenses = isStoredYear ? firstOf(stored.expenses) : NaN;
+
+    bankedRent += Number.isFinite(storedRent) ? storedRent : input.rentPCM * 12;
+    bankedExpenses += Number.isFinite(storedExpenses)
+      ? storedExpenses
+      : expenses;
+
+    // Growth only moves for years the projection hadn't already rolled past.
+    if (y >= stored.startYear && !valueWasTyped && value > 0) {
+      const storedGain = isStoredYear ? firstOf(stored.capitalGains) : NaN;
+      value += Number.isFinite(storedGain)
+        ? storedGain
+        : value * (housePctFor(y) / 100);
+      valueStepped = true;
+    }
+    if (!expensesWereTyped && expenses > 0) {
+      expenses *= 1 + expensePct / 100;
+      expensesStepped = true;
+    }
+    closedYears.push(y);
+  }
+
+  return {
+    action: "close",
+    markerYear: currentYear,
+    closedYears,
+    bankedRent: round2(bankedRent),
+    bankedExpenses: round2(bankedExpenses),
+    value: round2(value),
+    expenses: round2(expenses),
+    valueStepped,
+    expensesStepped,
+  };
+}
+
+async function resolveYearClose({ db, propRef, propertyId, p, now }) {
+  const cfgSnap = await db.collection("appConfig").doc("projections").get();
+  const cfg = cfgSnap.exists ? cfgSnap.data() || {} : {};
+  const result = {
+    propUpdates: {},
+    rebuildValues: {},
+    summary: {},
+    ratesVersion: cfg.ratesVersion || null,
+  };
+  if (!engineEnabledFor(cfg.propertyYearMode, p)) return result;
+
+  const joinedTs = p.dateJoinedAddressed;
+  const join =
+    joinedTs && typeof joinedTs.toDate === "function"
+      ? ymdInLondon(joinedTs.toDate())
+      : null;
+  const markerTs = p.lastAccruedPeriodStart;
+  const marker =
+    markerTs && typeof markerTs.toDate === "function"
+      ? ymdInLondon(markerTs.toDate())
+      : null;
+
+  const [storedSnap, houseOvSnap, houseGlobalSnap, expensePct] =
+    await Promise.all([
+      db.collection("propertyProjections").doc(propertyId).get(),
+      propRef.collection("housePriceOverrides").get(),
+      db.collection("housePriceYears").get(),
+      resolveGlobalExpenseInflationPct({ db, contextId: propertyId }),
+    ]);
+  const houseOverride = toYearPctMap(houseOvSnap);
+  const houseGlobal = toYearPctMap(houseGlobalSnap);
+
+  const estimatedValue = num(p.estimatedValue, 0);
+  const expenses = num(p.averageYearlyExpenses, 0);
+  const plan = planYearClose({
+    join,
+    today: ymdInLondon(now),
+    marker,
+    stored: storedSnap.exists ? storedSnap.data() : null,
+    estimatedValue,
+    expenses,
+    rentPCM: Math.max(0, num(p.currentRentAmount, 0)),
+    housePctFor: (y) => pickPct(y, houseOverride, houseGlobal, 3.0),
+    expensePct,
+  });
+
+  const u = {};
+
+  // A value differing from our last step can only have been typed by someone.
+  const valueSource =
+    num(p.lastEstimatedStepValue, NaN) === estimatedValue
+      ? SOURCE_ESTIMATE
+      : SOURCE_MANUAL;
+  const expensesSource =
+    num(p.lastEstimatedExpensesValue, NaN) === expenses
+      ? SOURCE_ESTIMATE
+      : SOURCE_MANUAL;
+  if (p.valuationSource !== valueSource) u.valuationSource = valueSource;
+  if (p.expensesSource !== expensesSource) u.expensesSource = expensesSource;
+
+  if (plan.action !== "none") {
+    const y = plan.markerYear;
+    u.lastAccruedPeriodStart = admin.firestore.Timestamp.fromDate(
+      londonMidnightAsUTCDate(makeAnniversaryYMD(y, join.m, join.d)),
+    );
+  }
+
+  if (plan.action === "close") {
+    const income = round2(num(p.previousRentalIncome, 0) + plan.bankedRent);
+    const spent = round2(num(p.previousExpenses, 0) + plan.bankedExpenses);
+    u.previousRentalIncome = income;
+    u.previousExpenses = spent;
+    u.lastAccruedRentalAmount = plan.bankedRent;
+    u.lastAccruedExpenseAmount = plan.bankedExpenses;
+    u.lastAccruedSource = SOURCE_ESTIMATE;
+    u.lastAccruedAt = admin.firestore.FieldValue.serverTimestamp();
+    result.rebuildValues.previousRentalIncome = income;
+    result.rebuildValues.previousExpenses = spent;
+
+    if (plan.valueStepped) {
+      u.estimatedValue = plan.value;
+      u.lastEstimatedStepValue = plan.value;
+      u.valuationSource = SOURCE_ESTIMATE;
+      result.rebuildValues.estimatedValue = plan.value;
+    }
+    if (plan.expensesStepped) {
+      u.averageYearlyExpenses = plan.expenses;
+      u.lastEstimatedExpensesValue = plan.expenses;
+      u.expensesSource = SOURCE_ESTIMATE;
+      result.rebuildValues.averageYearlyExpenses = plan.expenses;
+    }
+    result.summary = {
+      closedYears: plan.closedYears,
+      bankedRent: plan.bankedRent,
+      bankedExpenses: plan.bankedExpenses,
+      value: plan.value,
+      expenses: plan.expenses,
+    };
+  }
+
+  result.propUpdates = u;
+  return result;
+}
+
+// Tests only. FlutterFlow's index.js wires up named functions, so this is unused live.
+exports._test = {
+  planYearClose,
+  engineEnabledFor,
+  isOwnEngineWrite,
+  computePropertyProjectionCore,
+};
 
 // ───────────────────────── UTILS ─────────────────────────
 
@@ -687,6 +966,19 @@ function ymdMinusOneDay(ymd) {
     m: dt.getUTCMonth() + 1,
     d: dt.getUTCDate(),
   };
+}
+
+function londonMidnightAsUTCDate(ymd) {
+  // UTC midnight of that date, shifted back by whatever London's clock reads then.
+  const dt = new Date(Date.UTC(ymd.y, ymd.m - 1, ymd.d, 0, 0, 0));
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: LONDON_TZ,
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).formatToParts(dt);
+  const get = (type) => Number(parts.find((x) => x.type === type)?.value);
+  return new Date(dt.getTime() - (get("hour") * 60 + get("minute")) * 60000);
 }
 
 function ymdToString(ymd) {

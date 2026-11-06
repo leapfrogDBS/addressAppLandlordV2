@@ -34,6 +34,14 @@ exports.accrueRentalIncomeOnValuationUpdate = functions
 
     const db = admin.firestore();
 
+    // recalculatePropertyData closes years once the engine is on. Running this
+    // too could advance the marker at £0 and lose that year's rent for good.
+    const cfgSnap = await db.collection("appConfig").doc("projections").get();
+    const mode = cfgSnap.exists ? cfgSnap.get("propertyYearMode") : null;
+    if (mode === "live" || (mode === "test" && after.isAuditFixture === true)) {
+      return null;
+    }
+
     try {
       const result = await accrueRentalIncomeForProperty({ db, propertyId });
       functions.logger.info("Accrual result", { propertyId, ...result });

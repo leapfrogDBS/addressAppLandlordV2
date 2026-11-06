@@ -27,3 +27,5 @@ exports.accrueRentalIncomeOnValuationUpdate =
 const computeSalesOfferProjection = require("./compute_sales_offer_projection.js");
 exports.computeSalesOfferProjection =
   computeSalesOfferProjection.computeSalesOfferProjection;
+const propertyYearNightly = require("./property_year_nightly.js");
+exports.propertyYearNightly = propertyYearNightly.propertyYearNightly;
