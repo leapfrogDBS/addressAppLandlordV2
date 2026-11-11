@@ -116,7 +116,7 @@ class _PropertyDetailsWidgetState extends State<PropertyDetailsWidget> {
                         child: Image.network(
                           valueOrDefault<String>(
                             widget!.propertyDoc?.gallery?.firstOrNull,
-                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/data-shema-changes-phnljo/assets/osnyemfa80kf/house-placeholder-300x213.jpg',
+                            'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fhouse_placeholder_onboarding.jpg?alt=media&token=1541dbff-27da-46c3-bd62-c7bc0c21aa36',
                           ),
                           width: double.infinity,
                           height: 150.0,

@@ -261,7 +261,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               child: Image.network(
                                                 valueOrDefault<String>(
                                                   currentUserPhoto,
-                                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/y3lck4nhzkbs/profileDefault.jpg',
+                                                  'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fprofile_default.jpg?alt=media&token=074aa3dd-1539-4f65-93c7-e9b4224cb0df',
                                                 ),
                                                 width: 100.0,
                                                 height: 100.0,

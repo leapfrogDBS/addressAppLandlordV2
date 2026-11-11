@@ -108,12 +108,18 @@ class _SinglePropertyWidgetState extends State<SinglePropertyWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: widget!.propImg!,
+                  tag: valueOrDefault<String>(
+                    widget!.propImg,
+                    'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fproperty_placeholder.jpg?alt=media&token=9caeb6ab-20aa-4a54-a8d7-f2a670ee67aa',
+                  ),
                   transitionOnUserGestures: true,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      widget!.propImg!,
+                      valueOrDefault<String>(
+                        widget!.propImg,
+                        'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fproperty_placeholder.jpg?alt=media&token=9caeb6ab-20aa-4a54-a8d7-f2a670ee67aa',
+                      ),
                       width: double.infinity,
                       height: 153.41,
                       fit: BoxFit.cover,

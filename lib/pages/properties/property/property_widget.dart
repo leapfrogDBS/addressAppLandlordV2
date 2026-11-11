@@ -649,7 +649,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                               tag: valueOrDefault<String>(
                                                 propertyPropertiesRecord
                                                     .gallery.firstOrNull,
-                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/9trt90hix19a/360_F_276422232_RTzQ3ATAs1gOYAjfvD2tsbRgdOeLjIq0.jpg',
+                                                'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fproperty_placeholder.jpg?alt=media&token=9caeb6ab-20aa-4a54-a8d7-f2a670ee67aa',
                                               ),
                                               transitionOnUserGestures: true,
                                               child: ClipRRect(
@@ -659,7 +659,7 @@ class _PropertyWidgetState extends State<PropertyWidget> {
                                                   valueOrDefault<String>(
                                                     propertyPropertiesRecord
                                                         .gallery.firstOrNull,
-                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/9trt90hix19a/360_F_276422232_RTzQ3ATAs1gOYAjfvD2tsbRgdOeLjIq0.jpg',
+                                                    'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Fproperty_placeholder.jpg?alt=media&token=9caeb6ab-20aa-4a54-a8d7-f2a670ee67aa',
                                                   ),
                                                   width: double.infinity,
                                                   height: 180.0,

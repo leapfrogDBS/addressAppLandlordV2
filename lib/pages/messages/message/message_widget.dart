@@ -201,8 +201,8 @@ class _MessageWidgetState extends State<MessageWidget> {
                             padding: EdgeInsets.all(2.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(40.0),
-                              child: Image.asset(
-                                'assets/images/logo-add-icon-box-col-rgb@2x.png',
+                              child: Image.network(
+                                'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Faddressed_icon_box.png?alt=media&token=f8a9a8ae-865e-4f41-b0e4-ecdf66b21de8',
                                 width: 53.9,
                                 height: 44.0,
                                 fit: BoxFit.cover,
