@@ -611,7 +611,7 @@ class _AllMessagesWidgetState extends State<AllMessagesWidget>
                                                                               40.0),
                                                                   child: Image
                                                                       .network(
-                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/addressed-app-design-dxidz2/assets/ud0bs10ukq7d/logo-add-icon-box-col-rgb%402x.png',
+                                                                    'https://firebasestorage.googleapis.com/v0/b/addressedapp.firebasestorage.app/o/public%2Fapp-images%2Faddressed_icon_box.png?alt=media&token=f8a9a8ae-865e-4f41-b0e4-ecdf66b21de8',
                                                                     width: 44.0,
                                                                     height:
                                                                         44.0,
